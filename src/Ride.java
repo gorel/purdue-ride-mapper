@@ -2,6 +2,7 @@ public abstract class Ride
 {
 	protected Date departureOpen;		//The opening window of when the person offering the ride will be leaving
 	protected Date departureClose;		//The closing window of when the person offering the ride will be leaving
+	protected String description;		//A user's personal description if they wish to give one
 	
 	//These are string objects for now.  We will replace with the appropriate Map API when we decide on one
 	//Note: Either startLocation or endLocation must be Purdue.
@@ -10,10 +11,11 @@ public abstract class Ride
 	
 	public RideOffer(Date openWindow, Date closeWindow, String startLoc, String endLoc)
 	{
-		departureOpen = openWindow;
-		departureClose = closeWindow;
-		startLocation = startLoc;
-		endLocation = endLoc;
+		this.departureOpen = openWindow;
+		this.departureClose = closeWindow;
+		this.startLocation = startLoc;
+		this.endLocation = endLoc;
+		this.description = "";
 	}
 	
 	/**
