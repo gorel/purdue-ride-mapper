@@ -1,18 +1,22 @@
-Purdue Ride Mapper
-==================
+Purdue Ride Mapper (collegecarpool.us)
+======================================
 
 An app where users can easily and intuitively request or share rides
 
 
 Project Charter
 ---------------
-_Updated January 21, 2014_
+_Updated January 29, 2014_
 
 **Problem Statement:** A Purdue Ride-Board group exists on Facebook that students use to carpool together.  Some students are trying to find a way home, while others are looking to take someone to help with gas.  The Facebook group’s usage is complex, inconsistent, and requires manual monitoring of posts in order to find a ride.  Some websites already exist for this type of software, but none are specifically for college students (and are therefore seen as shady to many students).
 
 **Project Objectives:** This project will aim to create a web app where users can easily and intuitively request or share rides.
 
-**Stakeholders:** Students looking to request or share a ride with other students on campus in a more convenient and consistent way than is currently available
+**Stakeholders:**
++ _Users_: Students looking to request or share a ride with other students on campus in a  more convenient and consistent way than is currently available
++ _Customers_: The users of the software
++ _Software Developers_: Evan Arnold, Logan Gore, Stephen Hong, Steven Leewood, Isabel Lee Li, Timothy Thong
++ _Development Manager_: Mohammad Qudeisat, Project Coordinator
 
 **Project Deliverables:** To make the process of requesting or sharing a ride to or from campus for students, a web app with the following features will be created:
 + Ability to request a ride to a given destination
