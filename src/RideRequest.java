@@ -27,10 +27,11 @@ public class RideRequest extends Ride
 	  */
 	public RideRequest(Date openWindow, Date closeWindow, String startLoc, String endLoc, String description, int radius) throws IllegalArgumentException
 	{
+		super(openWindow, closeWindow, startLoc, endLoc, description);
+		
 		if (radius < 0)
 			throw new IllegalArgumentException("Error: Radius must be greater than or equal to zero.");
 		
-		super(openWindow, closeWindow, startLoc, endLoc);
 		this.searchRadius = radius;
 	}
 	
