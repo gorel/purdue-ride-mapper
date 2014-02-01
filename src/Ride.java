@@ -31,7 +31,7 @@ public abstract class Ride
 	  * @param description an optional field of extra information the user wishes to list
 	  * @throws IllegalArgumentException if closeWindow < openWindow
 	  */
-	public RideOffer(Date openWindow, Date closeWindow, String startLoc, String endLoc, String description) throws IllegalArgumentException
+	public Ride(Date openWindow, Date closeWindow, String startLoc, String endLoc, String description) throws IllegalArgumentException
 	{
 		if (closeWindow.compareTo(openWindow) < 1)
 			throw new IllegalArgumentException("Error: Ending departure time must occur after starting departure time.");

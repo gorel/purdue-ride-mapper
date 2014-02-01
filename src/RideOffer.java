@@ -26,10 +26,11 @@ public class RideOffer extends Ride
 	  */
 	public RideOffer(Date openWindow, Date closeWindow, String startLoc, String endLoc, String description, int numSeats) throws IllegalArgumentException
 	{
+		super(openWindow, closeWindow, startLoc, endLoc, description);
+		
 		if (numSeats < 1)
 			throw new IllegalArgumentException("Error: User must offer at least one open seat.");
 		
-		super(openWindow, closeWindow, startLoc, endLoc, description);
 		this.seatsAvailable = numSeats;
 	}
 	
