@@ -17,6 +17,147 @@
 	</head>
 
 	<body>
+	<script>
+	var emailValid = false;
+	var usernameValid = false;
+	var passwordValid = false;
+	var passwordRepeatValid = false;
+	var universityValid = false;
+	var termsOfServiceValid = false;
+	
+	function validateEmail(sender) 
+	{
+        var parent = sender.parentNode;		
+		var textBoxValue = sender.value;
+		var atPos= textBoxValue.indexOf("@");
+		var dotPos= textBoxValue.lastIndexOf(".");
+		
+		if (atPos < 1 || dotPos < atPos + 2 || dotPos + 2 >= textBoxValue.length)
+		{
+			parent.className = "form-group has-error";
+			emailValid = false;
+			validateForm();
+		}
+		else
+		{
+			parent.className = "form-group has-success";
+			emailValid = true;
+			validateForm();
+		}
+	}
+	
+	function validateUsername(sender)
+	{
+		var parent = sender.parentNode;		
+		var textBoxValue = sender.value;
+		
+		if(textBoxValue.length >= 6 && textBoxValue.length <= 24)
+		{
+			parent.className = "form-group has-success";
+			usernameValid = true;
+			validateForm();
+		}
+		else
+		{
+			parent.className = "form-group has-error";
+			usernameValid = false;
+			validateForm();
+		}
+	}
+	
+	function validatePassword(sender)
+	{
+		var parent = sender.parentNode;		
+		var textBoxValue = sender.value;
+		
+		if(textBoxValue.length >= 6 && textBoxValue.length <= 24)
+		{
+			parent.className = "form-group has-success";
+			passwordValid = true;
+			validateForm();
+		}
+		else
+		{
+			parent.className = "form-group has-error";
+			passwordValid = false;
+			validateForm();
+		}
+	}
+
+	function validatePasswordMatcher(sender)
+	{
+		var parent = sender.parentNode;		
+		var textBoxValue = sender.value;
+		var textBoxValueTwo =  document.getElementById('password').value;
+		
+		if(textBoxValue == textBoxValueTwo)
+		{
+			parent.className = "form-group has-success";
+			passwordRepeatValid = true;
+			validateForm();
+		}
+		else
+		{
+			parent.className = "form-group has-error";
+			passwordRepeatValid = false;
+			validateForm();
+		}
+	}
+	
+	function validateUniversity(sender)
+	{
+		var parent = sender.parentNode;		
+		var textBoxValue = sender.value;
+		
+		if(textBoxValue.length > 0)
+		{
+			parent.className = "form-group has-success";
+			universityValid = true;
+			validateForm();
+		}
+		else
+		{
+			parent.className = "form-group has-error";
+			universityValid = false;
+			validateForm();
+		}
+	}
+	
+	function validateTermsOfService(sender)
+	{
+		var parent = sender.parentNode.parentNode;		
+		if(sender.checked)
+		{
+			parent.className = "form-group has-success";
+			termsOfServiceValid = true;
+			validateForm();
+		}
+		else
+		{
+			parent.className = "form-group has-error";
+			termsOfServiceValid = false;
+			validateForm();
+		}
+	}
+	
+	function validateForm()
+	{
+		var button =  document.getElementById('submitButton');
+		
+		if(termsOfServiceValid && universityValid && passwordRepeatValid &&
+			usernameValid && usernameValid)
+		{
+			button.disabled = false;
+		}
+		else
+		{
+			button.disabled = true;
+		}
+	}
+	
+	</script>
+	
+	
 		<div class="container" >
 			<div class="row">
 			
@@ -24,17 +165,36 @@
 				</div>				
 				
 				<div class="col-md-4">
-					<form class="form-signin" role="form">
+					<form class="form-signin" role="form" id="registerForm">
 						<h2 class="form-signin-heading">Register here</h2>
-						<input type="text" class="form-control" placeholder="Username" required autofocus>
-						<input type="text" class="form-control" placeholder="Email" required autofocus>
-						<input type="password" class="form-control" placeholder="Password" required>
-						<input type="password" class="form-control" placeholder="Retype Password" required>
-						<input type="text" class="form-control" placeholder="University" required autofocus>
-						<label class="checkbox">
-							<input type="checkbox" value="agree"> Agree to Terms of Service
-						</label>						
-						<button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+						
+						<div class="form-group has-error">
+							<input type="text" class="form-control" placeholder="Username" onkeyup="validateUsername(this);" required autofocus>
+						</div>
+
+						<div class="form-group has-error" id="test">
+							<input type="text" class="form-control" placeholder="Email" onkeyup="validateEmail(this);" required autofocus>
+						</div>
+						
+						<div class="form-group has-error">
+							<input type="password" class="form-control" placeholder="Password" id="password" onkeyup="validatePassword(this);" required autofocus>
+						</div>
+						
+						<div class="form-group has-error">
+							<input type="password" class="form-control" placeholder="Retype Password" onkeyup="validatePasswordMatcher(this);" required autofocus>
+						</div>
+						
+						<div class="form-group has-error">
+							<input type="text" class="form-control" placeholder="University" onkeyup="validateUniversity(this);" required autofocus>
+						</div>
+						
+						<div class="form-group has-error">
+							<label class="checkbox">
+								<input type="checkbox" value="agree" onclick="validateTermsOfService(this);">Agree to Terms of Service
+							</label>		
+						</div>	
+						
+						<button class="btn btn-lg btn-primary btn-block" type="submit" id="submitButton" disabled>Submit</button>
 					</form>
 				</div> <!-- col-md-4 -->
 				
