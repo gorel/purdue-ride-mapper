@@ -31,8 +31,9 @@
 		var textBoxValue = sender.value;
 		var atPos= textBoxValue.indexOf("@");
 		var dotPos= textBoxValue.lastIndexOf(".");
+		var edu = textBoxValue.split(".").pop();
 		
-		if (atPos < 1 || dotPos < atPos + 2 || dotPos + 2 >= textBoxValue.length)
+		if (atPos < 1 || dotPos < atPos + 2 || dotPos + 2 >= textBoxValue.length || edu != "edu")
 		{
 			parent.className = "form-group has-error";
 			emailValid = false;
