@@ -11,9 +11,17 @@
 
 		<!-- Bootstrap core CSS -->
 		<link href="css/bootstrap.css" rel="stylesheet">
+		
 
 		<!-- Custom styles for this template -->
-		<link href="signin.css" rel="stylesheet">		
+		<link href="signin.css" rel="stylesheet">
+		
+		<!-- Custom scripts for the datatimepicker -->
+		<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" />
+		<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>		
+		<script type="text/javascript" src="js/moment.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
 	</head>
 
 	<body>		
@@ -39,23 +47,21 @@
 							<input type="text" class="form-control" placeholder="Number of Passangers" required autofocus>
 						</div>						
 						
-						<div class="well">
-  <div id="datetimepicker3" class="input-append">
-    <input data-format="hh:mm:ss" type="text"></input>
-    <span class="add-on">
-      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-      </i>
-    </span>
-  </div>
-</div>
-<script type="text/javascript">
-  $(function() {
-    $('#datetimepicker3').datetimepicker({
-      pickDate: false
-    });
-  });
-</script>
-						<button class="btn btn-lg btn-primary btn-block" type="Create Listing" id="submitButton" disabled>Submit</button>
+						<div class="form-group">
+							<div class='input-group date' id='datetimepicker1'>
+								<input type='text' class="form-control" placeholder="Desired Departure Date"/>
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+								</span>
+							</div>
+						</div>
+
+					<script type="text/javascript">
+						$(function () {
+							$('#datetimepicker1').datetimepicker();
+						});
+					</script>
+
+						<button class="btn btn-lg btn-primary btn-block" type="Create Listing" id="submitButton">Submit</button>
 					</form>
 				</div> <!-- col-md-4 -->
 				
