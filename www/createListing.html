@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>Create a Listing</title>
+
+		<!-- Bootstrap core CSS -->
+		<link href="css/bootstrap.css" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<link href="signin.css" rel="stylesheet">		
+	</head>
+
+	<body>		
+		<div class="container" >
+			<div class="row">
+			
+				<div class="col-md-4">
+				</div>				
+				
+				<div class="col-md-4">
+					<form class="form-signin" role="form" id="createListingForm">
+						<h2 class="form-signin-heading">Create Listing</h2>
+						
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Starting Location" required autofocus>
+						</div>
+
+						<div class="form-group" id="test">
+							<input type="text" class="form-control" placeholder="Destination" required autofocus>
+						</div>
+						
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Number of Passangers" required autofocus>
+						</div>						
+						
+						<div class="well">
+  <div id="datetimepicker3" class="input-append">
+    <input data-format="hh:mm:ss" type="text"></input>
+    <span class="add-on">
+      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+      </i>
+    </span>
+  </div>
+</div>
+<script type="text/javascript">
+  $(function() {
+    $('#datetimepicker3').datetimepicker({
+      pickDate: false
+    });
+  });
+</script>
+						<button class="btn btn-lg btn-primary btn-block" type="Create Listing" id="submitButton" disabled>Submit</button>
+					</form>
+				</div> <!-- col-md-4 -->
+				
+			</div> <!-- row -->
+		</div> <!-- /container -->
+	</body>
+</html>
