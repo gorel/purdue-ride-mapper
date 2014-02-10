@@ -1,100 +1,113 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
 
-    <title>College Carpool</title>
+		<title>College Carpool</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="jumbotron.css" rel="stylesheet">
-  </head>
+		<!-- Bootstrap core CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
 
-	<body>
-		<script>
-		function Register()
-		{
-			location.replace("register.html");
-		}
-		</script>  
-  
-		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		  <div class="container">
-			<div class="navbar-header">
-			  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			  </button>
-			  <a class="navbar-brand" href="#">College Carpool</a>
-			</div>
-			<div class="navbar-collapse collapse">
-			  <form class="navbar-form navbar-right" role="form">
-				<div class="form-group">
-				  <input type="text" placeholder="Email" class="form-control">
-				</div>
-				<div class="form-group">
-				  <input type="password" placeholder="Password" class="form-control">
-				</div>
-				<button type="submit" class="btn btn-success">Sign in</button>
-			  </form>
-			</div><!--/.navbar-collapse -->
-		  </div>
-		</div>
+		<!-- Custom styles for this template -->
+		<link href="css/justified-nav.css" rel="stylesheet">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+	</head>
 
-		<!-- Main jumbotron for a primary marketing message or call to action -->
-		<div class="jumbotron">
-			<div class="container">
-				<h1>Welcome to College Carpool!</h1>
-				<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, 
-				tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-				<a href="#" class="btn btn-large btn-success" onclick="Register()" >Register Now!</a>
-			</div>
-		</div>
-
+	<body>		
+		<script type="text/javascript">
+			function hideAll(sender) 
+			{				
+				document.getElementById('about').parentNode.className = "inactive";
+				document.getElementById('contact').parentNode.className = "inactive";
+				document.getElementById('findARide').parentNode.className = "inactive";
+				document.getElementById('listARide').parentNode.className = "inactive";
+				document.getElementById('login').parentNode.className = "inactive";
+				document.getElementById('home').parentNode.className = "inactive";
+				sender.parentNode.className = "active";
+			}
+		</script>
+		
 		<div class="container">
-		  <!-- Example row of columns -->
-		  <div class="row">
-			<div class="col-md-4">
-				<ul class="nav nav-list">
-				<li class="nav-header">Navigation</li>
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#">Find a Ride</a></li>
-				<li><a href="#">List a Ride</a></li>
-				<li><a href="#">About Us</a></li>
-				<li><a href="#">Contact Us</a></li>
-			</ul>
-			</div>
-			<div class="col-md-4">
-			  <h2>List a Ride!</h2>
-			  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-			  <p><a class="btn btn-primary" href="#" role="button">List a Ride</a></p>
-		   </div>
-			<div class="col-md-4">
-			  <h2>Find a Ride!</h2>
-			  <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-			  <p><a class="btn btn-primary" href="#" role="button">Find a Ride</a></p>
-			</div>
-		  </div>
+			<div id="#body">
+				<div class="masthead">
+					<div align=middle>
+						<img src="images/LogoHiRes.png" align="middle" width="600" alt="College-Carpool-Banner">
+					</div>
+					<ul class="nav nav-justified">
+						<li class="active"><a href="#" id="home" onClick="hideAll(this);">Home</a></li>
+						<li><a href="#" id="about" onclick="hideAll(this);">About</a></li>
+						<li><a href="#" id="contact" onclick="hideAll(this);">Contact</a></li>
+						<li><a href="#" id="findARide" onclick="hideAll(this);">Find a Ride</a></li>
+						<li><a href="#" id="listARide" onclick="hideAll(this);">List a Ride</a></li>
+						<li><a href="#" id="login" onclick="hideAll(this);">Log In</a></li>
+					</ul>
+				</div>
 
-		  <hr>
+				<div id="content">
+					<!-- Jumbotron -->
+					<div class="jumbotron">
+						<h1>Welcome to College Carpool!</h1>
+						<p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>
+						<p><a class="btn btn-lg btn-success" href="#" role="button">Register Now!</a></p>
+					</div>
 
-		  <footer>
-			<p>&copy; College Carpool 2014</p>
-		  </footer>
+					<!-- Example row of columns -->
+					<div class="row">
+						<div class="col-lg-4">
+							<h2>Heading</h2>
+							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+							<p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+						</div>
+						<div class="col-lg-4">
+							<h2>Heading</h2>
+							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+							<p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+						</div>
+						<div class="col-lg-4">
+							<h2>Heading</h2>
+							<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
+							<p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+						</div>
+					</div>
+				</div>
+				
+				<script type="text/javascript">    
+					$("#login").click(function()
+					{
+						$( "#content" ).load( "signin.html" );
+					});
+					$("#contact").click(function()
+					{
+						$( "#content" ).load( "contact.html" );
+					});
+					$("#home").click(function()
+					{
+						$( "#content" ).load( "home.html" );
+					});
+					$("#listARide").click(function()
+					{
+						$( "#content" ).load( "listARide.html" );
+					});
+					$("#findARide").click(function()
+					{
+						$( "#content" ).load( "findARide.html" );
+					});
+					$("#about").click(function()
+					{
+						$( "#content" ).load( "about.html" );
+					});
+				</script>
+				
+
+				<!-- Site footer -->
+				<div class="footer">
+					<p>&copy; Company 2014</p>
+				</div>
+			</div>
 		</div> <!-- /container -->
-
-
-		<!-- Bootstrap core JavaScript
-		================================================== -->
-		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
 	</body>
 </html>
