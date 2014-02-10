@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Demo</title>
+</head>
+
+<body>
+	<script type="text/javascript">
+		function hideLayer(id) {
+			var e = document.getElementById(id);
+			if(e.style.display == 'block')
+			e.style.display = 'none';
+		}
+	</script>
+	<script type="text/javascript">
+		function showLayer(id)
+		{
+			var e = document.getElementById(id);
+			if(e.style.display == 'none')
+			e.style.display = 'block';
+		}
+	</script>
+	<input name="" type="button"onclick="hideLayer('btn2content'); hideLayer('btn3content'); hideLayer('btn4content'); showLayer('btn1content');" value="btn1" />
+	<input name="" type="button"onclick="hideLayer('btn1content'); hideLayer('btn3content'); hideLayer('btn4content'); showLayer('btn2content');" value="btn2" />
+	<input name="" type="button"onclick="hideLayer('btn1content'); hideLayer('btn2content'); hideLayer('btn4content'); showLayer('btn3content');" value="btn3" />
+	<input name="" type="button"onclick="hideLayer('btn1content'); hideLayer('btn2content'); hideLayer('btn4content'); showLayer('btn4content');" value="btn4" />
+
+	<div id="content-wrapper">
+		<div id="btn1content" style="display:block;">stuff</div>
+		<div id="btn2content" style="display:none;"><body>
+		<script>
+			var usernameValid = false;
+			var passwordValid = false;
+			
+			function registerRedirect()
+			{
+				location.replace("register.html");
+			}
+			
+			function forgot-password()
+			{
+				location.replace("forgot-password.html");
+			}
+			function validateUsername(sender)
+			{
+				var parent = sender.parentNode;		
+				var textBoxValue = sender.value;
+				
+				if(textBoxValue.length >= 6 && textBoxValue.length <= 24)
+				{
+					parent.className = "form-group has-success";
+					usernameValid = true;
+					validateForm();
+				}
+				else
+				{
+					parent.className = "form-group has-error";
+					usernameValid = false;
+					validateForm();
+				}
+			}
+			
+			function validatePassword(sender)
+			{
+				var parent = sender.parentNode;		
+				var textBoxValue = sender.value;
+
+				if(textBoxValue.length >= 6 && textBoxValue.length <= 24)
+				{
+					parent.className = "form-group has-success";
+					passwordValid = true;
+					validateForm();
+				}
+				else
+				{
+					parent.className = "form-group has-error";
+					passwordValid = false;
+					validateForm();
+				}
+			}
+			
+			function validateForm()
+			{
+				var button =  document.getElementById('loginButton');
+				if(usernameValid && passwordValid)
+				{
+					button.disabled = false;
+				}
+				else
+				{
+					button.disabled = true;
+				}
+			}
+		</script>
+	
+		<div class="container" >
+			<div class="row">
+			
+				<div class="col-md-4">
+				</div>				
+				
+				<div class="col-md-4">
+					<form class="form-signin" role="form">
+						<h2 class="form-signin-heading">Please Sign In</h2>
+						
+						<div class="form-group has-error">
+							<input type="text" class="form-control" placeholder="Email" onkeyup="validateUsername(this)" required autofocus>
+						</div>
+						
+						<div class="form-group has-error">
+							<input type="password" class="form-control" placeholder="Password" onkeyup="validatePassword(this)" required>
+						</div>
+						
+						<div class="form-group">
+							<label class="checkbox">
+								<input type="checkbox" value="remember-me"> Remember me
+							</label>
+						</div>
+						
+						<div class="form-grou">
+						<a> 
+							<onclick="forgot-password" type="text" id="forgotPassword" disabled>Forgot Password?</button>
+						</a>
+						</div>
+						
+						<div class="form-group">
+							<button class="btn btn-lg btn-primary btn-block" type="submit" id="loginButton" disabled>Sign in</button>
+						</div>
+						
+						<div class="form-group">
+							<button class="btn btn-lg btn-primary btn-block" onclick="registerRedirect()" type = "button" id="registerButton" >Register</button>
+						</div>
+					</form>
+				</div> <!-- col-md-4 -->
+				
+			</div> <!-- row -->
+		</div> <!-- /container -->
+	</body></div>
+		<div id="btn3content" style="display:none;">other stuff</div>
+		<div id="btn4content" style="display:none;">that stuff</div>
+	</div>
+    </body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>Justified Nav Template for Bootstrap</title>
+
+		<!-- Bootstrap core CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<link href="css/justified-nav.css" rel="stylesheet">
+		
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	</head>
+
+	<body>
+
+		<!-- Include Jquery here in a script tag -->
+		<script type="text/javascript">
+			<!-- Include Jquery here in a script tag -->
+			<script type="text/javascript">
+				$(document).ready(function(){
+					 $("about").click(function(){
+						 $("#body").load("register.html");
+					 });
+				});
+		</script>	
+		
+		<script type="text/javascript">
+			function hideAll(sender) 
+			{
+				
+				document.getElementById('about').parentNode.className = "inactive";
+				document.getElementById('contact').parentNode.className = "inactive";
+				document.getElementById('findARide').parentNode.className = "inactive";
+				document.getElementById('listARide').parentNode.className = "inactive";
+				document.getElementById('login').parentNode.className = "inactive";
+				document.getElementById('home').parentNode.className = "inactive";
+				sender.parentNode.className = "active";
+				var e = document.getElementById('homeContent');
+	
+				if(e.style.display == 'block')
+					e.style.display = 'none';
+			
+				e = document.getElementById('contactContent');
+				if(e.style.display == 'block')
+					e.style.display = 'none';
+					
+				e = document.getElementById('aboutContent');
+				if(e.style.display == 'block')
+					e.style.display = 'none';
+					
+				e = document.getElementById('findARideContent');
+				if(e.style.display == 'block')
+					e.style.display = 'none';
+					
+				e = document.getElementById('listARideContent');
+				if(e.style.display == 'block')
+					e.style.display = 'none';
+					
+				e = document.getElementById('loginContent');
+				if(e.style.display == 'block')
+					e.style.display = 'none';
+			}
+		</script>
+		<script type="text/javascript">
+			function show(id)
+			{
+				var e = document.getElementById(id);
+				if(e.style.display == 'none')
+					e.style.display = 'block';
+			}
+		</script>
+		
+		<div class="container">
+			<div id="#body">
+				<div class="masthead">
+					<div align=middle>
+						<img src="images/LogoHiRes.png" align="middle" width="600" alt="College-Carpool-Banner">
+					</div>
+					<ul class="nav nav-justified">
+						<li class="active"><a href="#" id="home" onClick="hideAll(this); show('homeContent');">Home</a></li>
+						<li><a href="#" id="about" onclick="hideAll(this); show('aboutContent');">About</a></li>
+						<li><a href="#" id="contact" onclick="hideAll(this); show('contactContent');">Contact</a></li>
+						<li><a href="#" id="findARide" onclick="hideAll(this); show('findARideContent');">Find a Ride</a></li>
+						<li><a href="#" id="listARide" onclick="hideAll(this); show('listARideContent');">List a Ride</a></li>
+						<li><a href="#" id="login" onclick="hideAll(this); show('loginContent');">Log In</a></li>
+					</ul>
+				</div>
+
+				<div id="content-wrapper">
+					<div id="homeContent" style="display:block;">
+						<!-- Jumbotron -->
+						<div class="jumbotron">
+							<h1>Welcome to College Carpool!</h1>
+							<p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>
+							<p><a class="btn btn-lg btn-success" href="#" role="button">Register Now!</a></p>
+						</div>
+
+						<!-- Example row of columns -->
+						<div class="row">
+							<div class="col-lg-4">
+								<h2>Heading</h2>
+								<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+								<p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+							</div>
+							<div class="col-lg-4">
+								<h2>Heading</h2>
+								<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+								<p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+							</div>
+							<div class="col-lg-4">
+								<h2>Heading</h2>
+								<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
+								<p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+							</div>
+						</div>
+					</div>
+					<div id="aboutContent" style="display:none;">
+						about
+					</div>
+					<div id="findARideContent" style="display:none;">
+						find
+					</div>
+					<div id="listARideContent" style="display:none;">
+						list
+					</div>
+					<div id="loginContent" style="display:none;">
+						login
+					</div>
+					<div id="contactContent" style="display:none;">
+						contact
+					</div>
+				</div>
+				
+				
+
+				<!-- Site footer -->
+				<div class="footer">
+					<p>&copy; Company 2014</p>
+				</div>
+			</div>
+		</div> <!-- /container -->
+	</body>
+</html>
