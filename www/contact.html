@@ -1,23 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="">
-		<meta name="author" content="">
-
-		<title>College Carpool</title>
-
-		<!-- Bootstrap core CSS -->
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-
-		<!-- Custom styles for this template -->
-		<link href="css/justified-nav.css" rel="stylesheet">
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-	</head>
-
-	<body>		
-		<p>WOW GO AWAY JESUS<p>
-	</body>
-</html>
+<div id="contact" class="contact_page">
+	<div class="container">		
+			<div class="col-md-4">
+				</div>					
+		<div class="col-md-4">
+			<form enctype="application/x-www-form-urlencoded" class="form-horizontal" action="" method="post"><div class="padded">
+				<h2 class="form-signin-heading">Contact Us</h2>
+				<div class="control-group"><label for="category" class="control-label required">Category</label>
+					<div class="controls">
+						<select name="category" id="category" class="form-control">
+						<option value="Question" label="Question">Making a Listing</option>
+						<option value="Other Problem" label="Other Problem">Finding a Listing</option>
+						<option value="Other Problem" label="Other Problem">Other</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="control-group"><label for="email" class="control-label required">Your Email Address</label>
+					<div class="controls">
+						<input type="text" name="email" id="email" value="" size="30" class="form-control" />
+					</div>
+				</div>
+				
+				<div class="control-group"><label for="text" class="control-label required">Message</label>
+					<div class="controls">
+						<textarea name="text" id="text" rows="6" class="form-control" cols="80"></textarea>
+					</div>
+				</div>
+				<div class="form-actions">
+					<button class="btn btn-lg btn-primary btn-block" id="sendButton">Send</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
