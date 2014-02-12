@@ -13,13 +13,25 @@
 <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
 
 <?php
-// define variables and set to empty values
-$name = $email = $gender = $comment = $website = "";
+	// define variables and set to empty values
+	$startingAddress = $destinationAddress = $passengers = $dateTime = $isRequest = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST")
-{
-	alert("BAM!");
-}
+	if ($_SERVER["REQUEST_METHOD"] == "POST")
+	{
+		$startingAddress = test_input($_POST["startingAddress"]);
+		$destinationAddress = test_input($_POST["destinationAddress"]);
+		$passengers = test_input($_POST["passengers"]);
+		$dateTime = test_input($_POST["dateTime"]);
+		$isRequest = test_input($_POST["isRequest"]);
+	}
+
+	function test_input($data)
+	{
+	   $data = trim($data);
+	   $data = stripslashes($data);
+	   $data = htmlspecialchars($data);
+	   return $data;
+	}
 ?>
 
 <hr class="featurette-divider">
@@ -34,20 +46,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 				<h2 class="form-signin-heading">Create Listing</h2>
 				
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Starting Location" required autofocus>
+					<input type="text" class="form-control" placeholder="Starting Location" name="startingAddress" required autofocus>
 				</div>
 
 				<div class="form-group" id="test">
-					<input type="text" class="form-control" placeholder="Destination" required autofocus>
+					<input type="text" class="form-control" placeholder="Destination" name="destinationAddress" required autofocus>
 				</div>
 				
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Number of Passangers" required autofocus>
+					<input type="text" class="form-control" placeholder="Number of Passangers" name="passengers" required autofocus>
 				</div>						
 				
 				<div class="form-group">
 					<div class='input-group date' id='datetimepicker1'>
-						<input type='text' class="form-control" placeholder="Desired Departure Date"/>
+						<input type='text' class="form-control" name="dateTime" placeholder="Desired Departure Date"/>
 						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
 						</span>
 					</div>
@@ -63,5 +75,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 			</form>
 		</div> <!-- col-md-4 -->
 		
+		<?php
+			echo "<h2>Your Input:</h2>";
+			echo $startingAddress;
+			echo "<br>";
+			echo $destinationAddress;
+			echo "<br>";
+			echo $passengers;
+			echo "<br>";
+			echo $isRequest;
+			echo "<br>";
+			echo $dateTime;
+		?>
 	</div> <!-- row -->
 </div> <!-- /container -->
