@@ -12,28 +12,6 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
 
-<?php
-	// define variables and set to empty values
-	$startingAddress = $destinationAddress = $passengers = $dateTime = $isRequest = "";
-
-	if ($_SERVER["REQUEST_METHOD"] == "POST")
-	{
-		$startingAddress = test_input($_POST["startingAddress"]);
-		$destinationAddress = test_input($_POST["destinationAddress"]);
-		$passengers = test_input($_POST["passengers"]);
-		$dateTime = test_input($_POST["dateTime"]);
-		$isRequest = test_input($_POST["isRequest"]);
-	}
-
-	function test_input($data)
-	{
-	   $data = trim($data);
-	   $data = stripslashes($data);
-	   $data = htmlspecialchars($data);
-	   return $data;
-	}
-?>
-
 <hr class="featurette-divider">
 <div class="container" >
 	<div class="row">
@@ -74,18 +52,5 @@
 				<button class="btn btn-lg btn-primary btn-block" type="submit" id="submitButton">Submit</button>
 			</form>
 		</div> <!-- col-md-4 -->
-		
-		<?php
-			echo "<h2>Your Input:</h2>";
-			echo $startingAddress;
-			echo "<br>";
-			echo $destinationAddress;
-			echo "<br>";
-			echo $passengers;
-			echo "<br>";
-			echo $isRequest;
-			echo "<br>";
-			echo $dateTime;
-		?>
 	</div> <!-- row -->
 </div> <!-- /container -->
