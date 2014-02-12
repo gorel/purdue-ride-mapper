@@ -42,7 +42,7 @@
 		</div>				
 		
 		<div class="col-md-4">
-			<form class="form-signin" role="form" id="createListingForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+			<form class="form-signin" role="form" id="createListingForm" method="post" action="createListingProcessing.php">
 				<h2 class="form-signin-heading">Create Listing</h2>
 				
 				<div class="form-group">
