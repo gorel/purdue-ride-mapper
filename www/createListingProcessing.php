@@ -36,13 +36,13 @@
 			$dateTime = test_input($_POST["dateTime"]);
 			$isRequest = test_input($_POST["isRequest"]);
 			
-			$con=mysqli_connect("collegecarpool.us","collegecarpool","collegecarpool","collegecarpool_test");
+			$con=mysqli_connect("collegecarpool.us","collegecarpool","collegecarpool","purdue_test");
 			// Check connection
 			if (mysqli_connect_errno())
 			{
 				echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			}
-
+	/*
 			$sql="INSERT INTO Persons (FirstName, LastName, Age)
 			VALUES
 			('$startingAddress','$desintationAddress','$passengers','$dateTime','$isRequest')";
@@ -57,7 +57,8 @@
 				mysqli_close($con);
 				header('Location: findListing.html');
 				exit();
-			}			
+			}	
+*/			
 		?>
 	</body>
 </html>
