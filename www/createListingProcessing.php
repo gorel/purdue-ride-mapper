@@ -42,6 +42,10 @@
 			{
 				echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			}
+			else
+			{
+				echo "IT WORKED!!!";
+			}
 	/*
 			$sql="INSERT INTO Persons (FirstName, LastName, Age)
 			VALUES
