@@ -36,7 +36,7 @@
 			$dateTime = test_input($_POST["dateTime"]);
 			$isRequest = test_input($_POST["isRequest"]);
 			
-			$con=mysqli_connect("collegecarpool.us","collegecarpool","collegecarpool","purdue_test");
+			$con=mysqli_connect("collegecarpool.us", "collegecarpool", "collegecarpool", "purdue_test");
 			// Check connection
 			if (mysqli_connect_errno())
 			{
@@ -45,24 +45,23 @@
 			else
 			{
 				echo "IT WORKED!!!";
-			}
-	/*
-			$sql="INSERT INTO Persons (FirstName, LastName, Age)
-			VALUES
-			('$startingAddress','$desintationAddress','$passengers','$dateTime','$isRequest')";
+				
+				$sql="INSERT INTO listings (startingAddress, endingAddress, isRequest, passengers, dateOfDeparture)
+				VALUES
+				('$startingAddress','$desintationAddress','$isRequest','$passengers','$dateTime')";
 
-			if (!mysqli_query($con,$sql))
-			{
-				die('Error: ' . mysqli_error($con));
-				mysqli_close($con);
-			}
-			else
-			{
-				mysqli_close($con);
-				header('Location: findListing.html');
-				exit();
-			}	
-*/			
+				if (!mysqli_query($con,$sql))
+				{
+					die('Error: ' . mysqli_error($con));
+					mysqli_close($con);
+				}
+				else
+				{
+					mysqli_close($con);
+					header('Location: findListing.html');
+					exit();
+				}		
+			}			
 		?>
 	</body>
 </html>
