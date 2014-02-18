@@ -11,6 +11,19 @@
 <script type="text/javascript" src="js/moment.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+<script>
+	function disablePassengers()
+	{
+		var passengers = document.getElementById('passengersTextBox');
+		passengers.disabled = true;
+	}
+	function enablePassengers()
+	{
+		var passengers = document.getElementById('passengersTextBox');
+		passengers.disabled = false;
+	}
+</script>
+
 
 <hr class="featurette-divider">
 <div class="container" >
@@ -32,8 +45,8 @@
 				</div>
 				
 				<div class="form-group">
-					<input type="radio" name="isRequest" value="1" onClick="enablePassengers()" checked> Looking for a Ride 
-					<input type="radio" name="isRequest" value="0" onClick="disablePassengers()"> Hosting a Ride 			
+					<input type="radio" name="isRequest" value="1" onClick="disablePassengers()" checked> Looking for a Ride 
+					<input type="radio" name="isRequest" value="0" onClick="enablePassengers()"> Hosting a Ride 			
 				</div>
 				
 				<div class="form-group">
