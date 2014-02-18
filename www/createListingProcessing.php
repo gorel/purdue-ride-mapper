@@ -57,14 +57,9 @@
 				}
 				else
 				{
-					echo $startingAddress;
-					echo $destinationAddress;
-					echo $isRequest;
-					echo $passengers;
-					echo $dateTime;
 					mysqli_close($con);
-					//header('Location: findListing.html');
-					//exit();
+					header('Location: index.html');
+					exit();
 				}		
 			}			
 		?>
