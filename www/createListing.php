@@ -11,18 +11,6 @@
 <script type="text/javascript" src="js/moment.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
-<script>
-	function disablePassengers()
-	{
-		var passengers = document.getElementById('passengersTextBox');
-		passengers.disabled = true;
-	}
-	function enablePassengers()
-	{
-		var passengers = document.getElementById('passengersTextBox');
-		passengers.disabled = false;
-	}
-</script>
 
 <hr class="featurette-divider">
 <div class="container" >
@@ -36,20 +24,12 @@
 				<h2 class="form-signin-heading">Create Listing</h2>
 				
 				<div class="form-group">
-					<input name="startingLocation" type="text" class="form-control" placeholder="Starting Location" required autofocus>
+					<input type="text" class="form-control" placeholder="Starting Location" name="startingAddress" required autofocus>
 				</div>
 
 				<div class="form-group" id="test">
-					<input name="destination" type="text" class="form-control" placeholder="Destination" required autofocus>
+					<input type="text" class="form-control" placeholder="Destination" name="destinationAddress" required autofocus>
 				</div>
-				
-				<div class="form-group">
-					<div class='input-group date' id='dateTimerPicker'>
-						<input name="departureDateTime" type='text' class="form-control" placeholder="Desired Departure Date" required autofocus />
-						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-						</span>
-					</div>
-				</div>	
 				
 				<div class="form-group">
 					<input type="radio" name="isRequest" value="1" onClick="enablePassengers()" checked> Looking for a Ride 
@@ -57,18 +37,25 @@
 				</div>
 				
 				<div class="form-group">
-					<input id="passengersTextBox" name="numberOfPassengers" type="text" class="form-control" placeholder="Number of Passangers" required autofocus>
-				</div>		
+					<input type="text" class="form-control" placeholder="Number of Passangers" name="passengers" required autofocus>
+				</div>						
 				
+				<div class="form-group">
+					<div class='input-group date' id='datetimepicker1'>
+						<input type='text' class="form-control" name="dateTime" placeholder="Desired Departure Date"/>
+						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+						</span>
+					</div>
+				</div>
+
 				<script type="text/javascript">
 					$(function () {
-						$('#dateTimerPicker').datetimepicker();
+						$('#datetimepicker1').datetimepicker();
 					});
 				</script>
 
 				<button class="btn btn-lg btn-primary btn-block" type="submit" id="submitButton">Submit</button>
 			</form>
 		</div> <!-- col-md-4 -->
-		
 	</div> <!-- row -->
 </div> <!-- /container -->
