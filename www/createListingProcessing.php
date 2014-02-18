@@ -48,7 +48,7 @@
 				
 				$sql="INSERT INTO listings (startingAddress, endingAddress, isRequest, passengers, dateOfDeparture)
 				VALUES
-				('$startingAddress','$desintationAddress','$isRequest','$passengers','$dateTime')";
+				('$startingAddress','$destinationAddress','$isRequest','$passengers','$dateTime')";
 
 				if (!mysqli_query($con,$sql))
 				{
