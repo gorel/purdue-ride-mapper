@@ -36,7 +36,7 @@
 			$dateTime = test_input($_POST["dateTime"]);
 			$isRequest = test_input($_POST["isRequest"]);
 			
-			$con=mysqli_connect("collegecarpool.us", "collegecarpool", "collegecarpool", "purdue_test");
+			$con=mysqli_connect("localhost", "collegecarpool", "collegecarpool", "purdue_test");
 			// Check connection
 			if (mysqli_connect_errno())
 			{
