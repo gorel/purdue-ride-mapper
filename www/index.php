@@ -42,39 +42,51 @@
 					</div>
 					<ul class="nav nav-justified">
 						<li class="active"><a href="#" id="home" onClick="hideAll(this);">Home</a></li>
-						<li><a href="#" id="about" onclick="hideAll(this);">About</a></li>
-						<li><a href="#" id="contact" onclick="hideAll(this);">Contact</a></li>
+						<li><a href="#" id="about" onclick="hideAll(this);">About Us</a></li>
+						<li><a href="#" id="contact" onclick="hideAll(this);">Contact Us</a></li>
 						<li><a href="#" id="findARide" onclick="hideAll(this);">Find a Ride</a></li>
-						<li><a href="#" id="listARide" onclick="hideAll(this);">List a Ride</a></li>
+						<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>
 						<li><a href="#" id="login" onclick="hideAll(this);">Log In</a></li>
 					</ul>
 				</div>
 				
 				<div id="content">
-				<hr class="featurette-divider">
+					<hr class="featurette-divider">
 					<!-- Jumbotron -->
 					<div class="jumbotron">
 						<h1>Welcome to College Carpool!</h1>
-						<p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>
-						<p><a class="btn btn-lg btn-success" href="#" role="button">Register Now!</a></p>
+						<p class="lead">Many students who attend college live far away from home. 
+						Many of those students do not own vehicles on campus. When it comes time to take trips home or to other places, 
+						some students need rides or are looking for people to share with to help pay for gas. But sometimes finding people 
+						in a student population of 40,000 can be difficult or even impossible.
+						College Carpool is here to make it easier!
+						</p>
+						
+						<p><a class="btn btn-lg btn-success" id="register" href="#" role="button" onclick="hideAll(this);">Register Now!</a></p>
 					</div>
 
 					<!-- Example row of columns -->
 					<div class="row">
 						<div class="col-lg-4">
-							<h2>Heading</h2>
-							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-							<p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+							<h2>Find a Ride</h2>
+							<p>
+							Once you register or sign in, you will be able to see a list of all available rides.
+							</p>
+							<p><a class="btn btn-primary" id="findARide" href="#" role="button" onclick="hideAll(this);">Find a ride</a></p>
 						</div>
 						<div class="col-lg-4">
-							<h2>Heading</h2>
-							<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-							<p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+							<h2>Create a Ride</h2>
+							<p>
+							Once you sign in, you will be able to create your own rides.
+							</p>
+							<p><a class="btn btn-primary" id="listARide" href="#" role="button" onclick="hideAll(this);">List a ride</a></p>
 						</div>
 						<div class="col-lg-4">
-							<h2>Heading</h2>
-							<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-							<p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+							<h2>Questions?</h2>
+							<p>
+							Concerns? Not sure how this works? Found a bug? Feel free to email us!
+							</p>
+							<p><a class="btn btn-primary" id="contact" href="#" role="button" onclick="hideAll(this);">Contact us</a></p>
 						</div>
 					</div>
 				</div>
@@ -82,27 +94,31 @@
 				<script type="text/javascript">    
 					$("#login").click(function()
 					{
-						$( "#content" ).load( "signin.html" );
+						$( "#content" ).load( "modules/signin/signin.php" );
 					});
 					$("#contact").click(function()
 					{
-						$( "#content" ).load( "contact.html" );
+						$( "#content" ).load( "modules/contact/contact.php" );
 					});
 					$("#home").click(function()
 					{
-						$( "#content" ).load( "home.html" );
+						$( "#content" ).load( "home.php" );
 					});
 					$("#listARide").click(function()
 					{
-						$( "#content" ).load( "createListing.php" );
+						$( "#content" ).load( "modules/createListing/createListing.php" );
 					});
 					$("#findARide").click(function()
 					{
-						$( "#content" ).load( "findListing.html" );
+						$( "#content" ).load( "modules/findListing/findListing.php" );
 					});
 					$("#about").click(function()
 					{
-						$( "#content" ).load( "about.html" );
+						$( "#content" ).load( "modules/about/about.php" );
+					});
+					$("#register").click(function()
+					{
+						$( "#content" ).load( "modules/register/register.php" );
 					});
 				</script>
 				
