@@ -1,7 +1,7 @@
 <?php
 
-require '../../../dbcredentials.php';
-require 'hash.php';
+require '/var/dbcredentials.php';
+require '../../../lib/hash.php';
 
 /**
  *

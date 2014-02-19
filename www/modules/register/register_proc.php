@@ -15,7 +15,7 @@
 
 // include login info
 
-require '../../../dbcredentials.php';
+require '/var/dbcredentials.php';
 require '../../lib/hash.php';
 require '../../lib/email.php';
 
