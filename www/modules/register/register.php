@@ -47,12 +47,12 @@
 		}
 	}
 	
-	function validateUsername(sender)
+	function validateName(sender)
 	{
 		var parent = sender.parentNode;		
 		var textBoxValue = sender.value;
 		
-		if(textBoxValue.length >= 6 && textBoxValue.length <= 24)
+		if(textBoxValue.length != 0)
 		{
 			parent.className = "form-group has-success";
 			usernameValid = true;
@@ -166,19 +166,23 @@
 				</div>				
 				
 				<div class="col-md-4">
-					<form class="form-signin" role="form" id="registerForm">
+					<form class="form-signin" action="register_proc.php" role="form" method="post" id="registerForm">
 						<h2 class="form-signin-heading">Register here</h2>
 						
 						<div class="form-group has-error">
-							<input type="text" class="form-control" placeholder="Username" onkeyup="validateUsername(this);" required autofocus>
+							<input type="text" class="form-control" name="fname" placeholder="First Name" onkeyup="validateNname(this);" required autofocus>
+						</div>
+
+						<div class="form-group has-error">
+							<input type="text" class="form-control" name="lname" placeholder="Last Name" onkeyup="validateName(this);" required autofocus>
 						</div>
 
 						<div class="form-group has-error" id="test">
-							<input type="text" class="form-control" placeholder="Email" onkeyup="validateEmail(this);" required autofocus>
+							<input type="text" class="form-control" name="email" placeholder="Email" onkeyup="validateEmail(this);" required autofocus>
 						</div>
 						
 						<div class="form-group has-error">
-							<input type="password" class="form-control" placeholder="Password" id="password" onkeyup="validatePassword(this);" required autofocus>
+							<input type="password" class="form-control" name="pass" placeholder="Password" id="password" onkeyup="validatePassword(this);" required autofocus>
 						</div>
 						
 						<div class="form-group has-error">
