@@ -10,19 +10,19 @@
 		<title>Sign in to College Carpool</title>
 
 		<!-- Bootstrap core CSS -->
-		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="../../css/bootstrap.css" rel="stylesheet">
 
 		<!-- Custom styles for this template -->
-		<link href="signin.css" rel="stylesheet">
+		<link href="../../signin.css" rel="stylesheet">
 	</head>
 
 	<body>
 	<script>
 	var emailValid = false;
-	var usernameValid = false;
+	var firstNameValid = false;
+	var lastNameValid = false;
 	var passwordValid = false;
 	var passwordRepeatValid = false;
-	var universityValid = false;
 	var termsOfServiceValid = false;
 	
 	function validateEmail(sender) 
@@ -47,7 +47,7 @@
 		}
 	}
 	
-	function validateName(sender)
+	function validateFirstName(sender)
 	{
 		var parent = sender.parentNode;		
 		var textBoxValue = sender.value;
@@ -55,13 +55,32 @@
 		if(textBoxValue.length != 0)
 		{
 			parent.className = "form-group has-success";
-			usernameValid = true;
+			firstNameValid = true;
 			validateForm();
 		}
 		else
 		{
 			parent.className = "form-group has-error";
-			usernameValid = false;
+			firstNameValid = false;
+			validateForm();
+		}
+	}
+	
+	function validateLastName(sender)
+	{
+		var parent = sender.parentNode;		
+		var textBoxValue = sender.value;
+		
+		if(textBoxValue.length != 0)
+		{
+			parent.className = "form-group has-success";
+			lastNameValid = true;
+			validateForm();
+		}
+		else
+		{
+			parent.className = "form-group has-error";
+			lastNameValid = false;
 			validateForm();
 		}
 	}
@@ -105,25 +124,6 @@
 		}
 	}
 	
-	function validateUniversity(sender)
-	{
-		var parent = sender.parentNode;		
-		var textBoxValue = sender.value;
-		
-		if(textBoxValue.length > 0)
-		{
-			parent.className = "form-group has-success";
-			universityValid = true;
-			validateForm();
-		}
-		else
-		{
-			parent.className = "form-group has-error";
-			universityValid = false;
-			validateForm();
-		}
-	}
-	
 	function validateTermsOfService(sender)
 	{
 		var parent = sender.parentNode.parentNode;		
@@ -145,8 +145,7 @@
 	{
 		var button =  document.getElementById('submitButton');
 		
-		if(termsOfServiceValid && universityValid && passwordRepeatValid &&
-			usernameValid && usernameValid)
+		if(termsOfServiceValid && passwordRepeatValid && firstNameValid && lastNameValid && emailValid && passwordValid)
 		{
 			button.disabled = false;
 		}
@@ -170,11 +169,11 @@
 						<h2 class="form-signin-heading">Register here</h2>
 						
 						<div class="form-group has-error">
-							<input type="text" class="form-control" name="fname" placeholder="First Name" onkeyup="validateNname(this);" required autofocus>
+							<input type="text" class="form-control" name="fname" placeholder="First Name" onkeyup="validateFirstName(this);" required autofocus>
 						</div>
 
 						<div class="form-group has-error">
-							<input type="text" class="form-control" name="lname" placeholder="Last Name" onkeyup="validateName(this);" required autofocus>
+							<input type="text" class="form-control" name="lname" placeholder="Last Name" onkeyup="validateLastName(this);" required autofocus>
 						</div>
 
 						<div class="form-group has-error" id="test">
@@ -187,10 +186,6 @@
 						
 						<div class="form-group has-error">
 							<input type="password" class="form-control" placeholder="Retype Password" onkeyup="validatePasswordMatcher(this);" required autofocus>
-						</div>
-						
-						<div class="form-group has-error">
-							<input type="text" class="form-control" placeholder="University" onkeyup="validateUniversity(this);" required autofocus>
 						</div>
 						
 						<div class="form-group has-error">
