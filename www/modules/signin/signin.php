@@ -11,7 +11,7 @@
 	
 	function registerRedirect()
 	{
-		location.replace("register.php");
+		location.replace("modules/register.php");
 	}
 	
 	function forgotPassword()
