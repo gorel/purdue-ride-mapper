@@ -75,6 +75,6 @@ $stmt->close();
 
 sendRegMail($email, $fname, $uid, $token);
 
-header(Location:../../index.php);
+header"(Location:../../index.php");
 
 ?>
