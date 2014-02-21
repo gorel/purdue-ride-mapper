@@ -32,10 +32,18 @@
 					<tr>
 						<td>2243 US HWY 52 W, West Lafayette IN 47906</td>
 						<td>Purdue University, West Lafayette IN 47906</td> 
-						<td>3</td>
+						<td>0</td>
 						<td>2/25/2014</td>
 						<td>Yes</td>
 						<td>evan@purdue.edu</td>
+					</tr>
+					<tr>
+						<td>Purdue University, West Lafayette IN 47906</td>
+						<td>Indianapolis, IN</td> 
+						<td>3</td>
+						<td>2/27/2014</td>
+						<td>No</td>
+						<td>logan@purdue.edu</td>
 					</tr>
 			</table>
 		</div>
@@ -43,6 +51,8 @@
 	<div class="col-lg-6">
 		<div id="map_canvas" style="height: 500px; width: 400px"></div>
 		<script>
+			//This script create the map with a default address.
+			//Its current location is somewhere by College Station
 			$(document).ready(function () 
 			{
 				var map = new GMaps
@@ -50,6 +60,7 @@
 					div: '#map_canvas',
 					lat: 40.463666,
 					lng: -86.945828,
+					position: 'bottom_center',
 				    zoom: 12,
 					zoomControl : true,
 					zoomControlOpt: 
@@ -59,12 +70,15 @@
 					panControl : false,
 				});
 				
+				//This add the start address marker
 				map.addMarker
 				({
 					lat:40.463666,
 					lng: -86.945828,
 				});
 				
+				//This will add the route drawing from start to destination
+				//Colors can be changed (Its in Hex)
 				map.drawRoute
 				({
 					origin: [40.463666,-86.945828],
@@ -75,10 +89,27 @@
 					strokeWeight: 6
 				});
 				
+				//This add the destination address marker
 				map.addMarker
 				({
 					lat:40.422906,
 					lng:-86.910637,
+				});
+								
+				map.drawRoute
+				({
+					origin: [40.422906,-86.910637],
+					destination: [39.772659,-86.167359],
+					travelMode: 'driving',
+					strokeColer: '#BBD8E9',
+					strokeOpacity: 0.5,
+					strokeWeight: 10
+				});
+				
+				map.addMarker
+				({
+					lat:39.772659,
+					lng:-86.167359,
 				});
 			});
 		</script>
