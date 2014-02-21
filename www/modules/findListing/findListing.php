@@ -34,7 +34,7 @@
 						<td>evan@purdue.edu</td>
 					</tr>
 					<tr>
-						<td>Purdue University, West Lafayette IN 47906</td>
+						<td>Brookston IN 47906</td>
 						<td>Indianapolis, IN</td> 
 						<td>3</td>
 						<td>2/27/2014</td>
@@ -91,10 +91,15 @@
 					lat:40.422906,
 					lng:-86.910637,
 				});
-								
+				
+				map.addMarker
+				({
+					lat:40.602875,
+					lng:-86.874245,
+				});				
 				map.drawRoute
 				({
-					origin: [40.422906,-86.910637],
+					origin: [40.602875,-86.874245],
 					destination: [39.772659,-86.167359],
 					travelMode: 'driving',
 					strokeColer: '#BBD8E9',
