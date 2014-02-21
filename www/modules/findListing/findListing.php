@@ -1,9 +1,7 @@
-<style>
-  #map_canvas {
-	width: 500px;
-	height: 400px;
-  }
-</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script type="text/javascript" src="js/gmaps.js"></script>
+
 <hr class="featurette-divider">
 <div class="row">
 	<div class="col-lg-6">
@@ -27,48 +25,62 @@
 						<th>Destination</th>
 						<th>Capacity</th>
 						<th>Date of Departure</th>
+						<th>Request</th>
+						<th>User</th>
 					</tr>
 				</thead>
 					<tr>
-						<td>123 Evan Street</td>
-						<td>555 Logan Road</td> 
+						<td>2243 US HWY 52 W, West Lafayette IN 47906</td>
+						<td>Purdue University, West Lafayette IN 47906</td> 
 						<td>3</td>
 						<td>2/25/2014</td>
-					</tr>
-					<tr>
-						<td>555 Isabel Court</td>
-						<td>132 Tim Court</td> 
-						<td>1</td>
-						<td>2/28/2014</td>
-					</tr>
-					<tr>
-						<td>111 Fake Address</td>
-						<td>323 Stephen Road</td> 
-						<td>2</td>
-						<td>3/1/2014</td>
+						<td>Yes</td>
+						<td>evan@purdue.edu</td>
 					</tr>
 			</table>
 		</div>
 	</div>
 	<div class="col-lg-6">
-		<div id="map_canvas"></div>
-		<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+		<div id="map_canvas" style="height: 500px; width: 400px"></div>
 		<script>
-			var directionsDisplay;
-			var directionsService = new google.maps.DirectionsService();
-			var map;
-			
-			  directionsDisplay = new google.maps.DirectionsRenderer();
-			  var chicago = new google.maps.LatLng(41.850033, -87.6500523);
-			  var mapOptions = {
-				zoom:7,
-				center: chicago
-			  }
-			  map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-			  directionsDisplay.setMap(map);
-			
-
-			google.maps.event.addDomListener(window, 'load', run);
+			$(document).ready(function () 
+			{
+				var map = new GMaps
+				({
+					div: '#map_canvas',
+					lat: 40.463666,
+					lng: -86.945828,
+				    zoom: 12,
+					zoomControl : true,
+					zoomControlOpt: 
+					{
+						style : 'SMALL',
+					},
+					panControl : false,
+				});
+				
+				map.addMarker
+				({
+					lat:40.463666,
+					lng: -86.945828,
+				});
+				
+				map.drawRoute
+				({
+					origin: [40.463666,-86.945828],
+					destination: [40.422906,-86.910637],
+					travelMode: 'driving',
+					strokeColer: '#131540',
+					strokeOpacity: 0.6,
+					strokeWeight: 6
+				});
+				
+				map.addMarker
+				({
+					lat:40.422906,
+					lng:-86.910637,
+				});
+			});
 		</script>
 	</div>
 </div>
