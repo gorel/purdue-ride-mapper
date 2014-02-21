@@ -16,6 +16,7 @@
 		<link href="css/justified-nav.css" rel="stylesheet">
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 		<script src="js/gmaps.js"></script>
 	</head>

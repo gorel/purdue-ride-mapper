@@ -1,7 +1,3 @@
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
-<script type="text/javascript" src="js/gmaps.js"></script>
-
 <hr class="featurette-divider">
 <div class="row">
 	<div class="col-lg-6">
