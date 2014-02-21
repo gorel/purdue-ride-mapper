@@ -81,7 +81,7 @@
 					origin: [40.463666,-86.945828],
 					destination: [40.422906,-86.910637],
 					travelMode: 'driving',
-					strokeColer: '#131540',
+					strokeColor: '#0000FF',
 					strokeOpacity: 0.6,
 					strokeWeight: 6
 				});
@@ -103,9 +103,9 @@
 					origin: [40.602875,-86.874245],
 					destination: [39.772659,-86.167359],
 					travelMode: 'driving',
-					strokeColer: '#BBD8E9',
-					strokeOpacity: 0.5,
-					strokeWeight: 10
+					strokeColor: '#E9BBC1',
+					strokeOpacity: 0.6,
+					strokeWeight: 6
 				});
 				
 				map.addMarker
