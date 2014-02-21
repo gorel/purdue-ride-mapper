@@ -1,3 +1,4 @@
+
 <hr class="featurette-divider">
 <div class="row">
 	<div class="col-lg-6">
@@ -57,7 +58,7 @@
 					lat: 40.463666,
 					lng: -86.945828,
 					position: 'bottom_center',
-				    zoom: 12,
+				    zoom: 8,
 					zoomControl : true,
 					zoomControlOpt: 
 					{
