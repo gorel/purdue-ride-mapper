@@ -19,20 +19,20 @@
 		<p>
 		Once you register or sign in, you will be able to see a list of all available rides.
 		</p>
-		<p><a class="btn btn-primary" id="findARide" href="#" role="button" onclick="hideAll(this);">Find a ride</a></p>
+		<p><a class="btn btn-primary" id="findARideAlternative" href="#" role="button" onclick="hideAll(this);">Find a ride</a></p>
 	</div>
 	<div class="col-lg-4">
 		<h2>Create a Ride</h2>
 		<p>
 		Once you sign in, you will be able to create your own rides.
 		</p>
-		<p><a class="btn btn-primary" id="listARide" href="#" role="button" onclick="hideAll(this);">List a ride</a></p>
+		<p><a class="btn btn-primary" id="listARideAlternative" href="#" role="button" onclick="hideAll(this);">List a ride</a></p>
 	</div>
 	<div class="col-lg-4">
 		<h2>Questions?</h2>
 		<p>
 		Concerns? Not sure how this works? Found a bug? Feel free to email us!
 		</p>
-		<p><a class="btn btn-primary" id="contact" href="#" role="button" onclick="hideAll(this);">Contact us</a></p>
+		<p><a class="btn btn-primary" id="contactAlternative" href="#" role="button" onclick="hideAll(this);">Contact us</a></p>
 	</div>
 </div>

@@ -57,17 +57,6 @@
 			var directionsDisplay;
 			var directionsService = new google.maps.DirectionsService();
 			var map;
-			function run() {
-			  directionsDisplay = new google.maps.DirectionsRenderer();
-			  var chicago = new google.maps.LatLng(41.850033, -87.6500523);
-			  var mapOptions = {
-				zoom:7,
-				center: chicago
-			  }
-			  map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-			  directionsDisplay.setMap(map);
-			
-			}
 			
 			  directionsDisplay = new google.maps.DirectionsRenderer();
 			  var chicago = new google.maps.LatLng(41.850033, -87.6500523);
@@ -78,22 +67,7 @@
 			  map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 			  directionsDisplay.setMap(map);
 			
-			
-			function calcRoute() {
-			  var start = 'chicago, il';
-			  var end = 'oklahoma city, ok';
-			  var request = {
-				origin:start,
-				destination:end,
-				travelMode: google.maps.TravelMode.DRIVING
-			  };
-			  directionsService.route(request, function(result, status) {
-				if (status == google.maps.DirectionsStatus.OK) {
-				  directionsDisplay.setDirections(result);
-				}
-			  });
-			}
-			
+
 			google.maps.event.addDomListener(window, 'load', run);
 		</script>
 	</div>

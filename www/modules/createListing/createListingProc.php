@@ -37,15 +37,19 @@
 			$isRequest = test_input($_POST["isRequest"]);
 			
 			$con=mysqli_connect("localhost", "collegecarpool", "collegecarpool", "purdue_test");
+			
+			if($isRequest == 1)
+			{
+				&passengers = 0;
+			}
+			
 			// Check connection
 			if (mysqli_connect_errno())
 			{
 				echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			}
 			else
-			{
-				echo "IT WORKED!!!";
-				
+			{				
 				$sql="INSERT INTO listings (startingAddress, endingAddress, isRequest, passengers, dateOfDeparture)
 				VALUES
 				('$startingAddress','$destinationAddress','$isRequest','$passengers','$dateTime')";
@@ -58,7 +62,7 @@
 				else
 				{
 					mysqli_close($con);
-					header('Location: index.html');
+					header('Location: ../../index.html');
 					exit();
 				}		
 			}			
