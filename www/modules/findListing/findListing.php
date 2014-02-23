@@ -58,7 +58,6 @@
 					lat: 40.463666,
 					lng: -86.945828,
 					position: 'bottom_center',
-				    zoom: 8,
 					zoomControl : true,
 					zoomControlOpt: 
 					{
