@@ -113,6 +113,8 @@
 					lat:39.772659,
 					lng:-86.167359,
 				});
+				
+				map.fixZoom();
 			});
 		</script>
 	</div>
