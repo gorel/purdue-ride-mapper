@@ -63,7 +63,7 @@
 				else
 				{
 					mysqli_close($con);
-					header('Location: ../../index.html');
+					header('Location: ../../index.php');
 					exit();
 				}		
 			}			
