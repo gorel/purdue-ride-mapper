@@ -32,24 +32,25 @@
 			{				
 				$sql="SELECT listings_id, startingAddress, endingAddress, isRequest, passengers, dateOfDeparture, user_id
 				FROM `purdue_test`.`listings`;";
-
-				if (!mysqli_query($con,$sql))
+				
+				$result = mysqli_query($con,$sql);
+				if (!$result)
 				{
 					die('Error: ' . mysqli_error($con));
 					mysqli_close($con);
 				}
 				else
 				{
-					$result = $con->query($sql);
-					while($row = $result->fetch())
+					while($row = mysqli_fetch_array($result))
 					{
-						$start	=	$row["StartingAdress"];
+						$start	=	$row["StartingAddress"];
 						$end	=	$row["endingAddress"];
 						$req	=	$row["isRequest"];
 						$pass	=	$row["passengers"];
 						$dDept	=	$row["dateOfDeparture"];
 						$user	=	$row["user_id"];
-						print($start);
+						echo $row['StartingAdress'];
+						echo "<br>";
 					}
 					mysqli_close($con);
 					header('Location: ../../index.html');
