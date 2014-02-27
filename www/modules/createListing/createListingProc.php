@@ -51,6 +51,7 @@
 			}
 			else
 			{				
+				//THIS IS WHERE YOU CALL THE MAPQUEST API
 				$sql="INSERT INTO listings (startingAddress, endingAddress, isRequest, passengers, dateOfDeparture)
 				VALUES
 				('$startingAddress','$destinationAddress','$isRequest','$passengers','$dateTime')";
