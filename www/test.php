@@ -20,6 +20,7 @@
 		<h2 align="center">You will be redirected once your request has been processed.</h2>
 
 		<?php
+			
 			function test_input($data)
 			{
 			   $data = trim($data);
@@ -40,7 +41,7 @@
 			
 			if($isRequest == 1)
 			{
-				&passengers = 0;
+				$passengers = 0;
 			}
 			
 			// Check connection
