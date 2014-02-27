@@ -1,9 +1,10 @@
 import math
 import operator
+import MySQLdb as mysql
 
 # Circle class to represent a geometric Circle object
 class Circle:
-	def Circle(self, x, y, radius):
+	def __init__(self, x, y, radius):
 		self.x = x
 		self.y = y
 		self.radius = radius
@@ -19,7 +20,7 @@ class Circle:
 		
 # Line class to represent a geometric Line object
 class Line:
-	def Line(self, x1, y1, x2, y2):
+	def __init__(self, x1, y1, x2, y2):
 		self.x1 = x1
 		self.y1 = y1
 		self.x2 = x2
@@ -39,6 +40,16 @@ class Line:
 
 
 class Matcher:
+	def __init__(self):
+		try:
+			self.db = mysql.connect('localhost', 'collegecarpool', 'collegecarpool', 'purdue_test')
+			self.cursor = self.db.cursor()
+		except _mysql.Error as e:
+			sys.exit(1)
+		finally:
+			if (self.db):
+				self.db.close()
+
 	# Match a user to a list of rides of the opposite type
 	def match(self, user):
 		if user.getType() == "Request":
@@ -51,7 +62,13 @@ class Matcher:
 		circle = Circle(request.long, request.lat, request.radius)
 		
 		#offers = get list of offers from database
+		self.cursor.execute('SELECT * FROM listings WHERE isRequest=0')
 		offers = []
+		for _ in range(self.cursor.rowcount):
+			row = self.cursor.fetchone()
+			offers.append(row)
+			print row
+
 		scores = {}
 		for offer in offers:
 			line = Line(offer.startlong, offer.startlat, offer.endlong, offer.endlat)
@@ -65,7 +82,13 @@ class Matcher:
 		line = Line(offer.startlong, offer.startlat, offer.endlong, offer.endlat)
 		
 		#requests = get list of requests from database
+		self.cursor.execute('SELECT * FROM listings WHERE isRequest=1')
 		requests = []
+		for _ in range(self.cursor.rowcount):
+			row = self.cursor.fetchone()
+			requests.append(row)
+			print row
+
 		scores = {}
 		for request in requests:
 			circle = Circle(request.long, request.lat, request.radius)
@@ -106,3 +129,12 @@ class Matcher:
 			result = 0
 		
 		return result
+
+class User:
+	def __init__(self):
+		self.type = "Request"
+	def getType():
+		return self.type
+
+matcher = Matcher()
+matcher.match(User())
