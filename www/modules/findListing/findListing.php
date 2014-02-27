@@ -14,7 +14,7 @@
 				<button type="submit" class="btn btn-default" onclick="calcRoute();" >Search</button>
 			</form>
 		</div>
-			<?php
+		<?php
 	
 			$con=mysqli_connect("localhost", "collegecarpool", "collegecarpool", "purdue_test");
 			
@@ -34,30 +34,24 @@
 				FROM `purdue_test`.`listings`;";
 				
 				$result = mysqli_query($con,$sql);
-				if (!$result)
+				while($row = mysqli_fetch_array($result))
 				{
-					die('Error: ' . mysqli_error($con));
-					mysqli_close($con);
+				/*
+					$start	=	$row["StartingAddress"];
+					$end	=	$row["endingAddress"];
+					$req	=	$row["isRequest"];
+					$pass	=	$row["passengers"];
+					$dDept	=	$row["dateOfDeparture"];
+					$user	=	$row["user_id"];
+					*/
+					echo $row['StartingAdress'];
+					echo "<br>";
 				}
-				else
-				{
-					while($row = mysqli_fetch_array($result))
-					{
-						$start	=	$row["StartingAddress"];
-						$end	=	$row["endingAddress"];
-						$req	=	$row["isRequest"];
-						$pass	=	$row["passengers"];
-						$dDept	=	$row["dateOfDeparture"];
-						$user	=	$row["user_id"];
-						echo $row['StartingAdress'];
-						echo "<br>";
-					}
-					mysqli_close($con);
-					header('Location: ../../index.html');
-					exit();
-				}		
+				mysqli_close($con);
+				header('Location: ../../index.html');
+				exit();		
 			}			
-	?>
+		?>
 		<div>
 			<table class="table table-striped">
 				<thead>
