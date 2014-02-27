@@ -96,7 +96,14 @@
 				({
 					lat:40.602875,
 					lng:-86.874245,
-				});				
+				});			
+				
+				map.addMarker
+				({
+					lat:39.772659,
+					lng:-86.167359,
+				});
+								
 				map.drawRoute
 				({
 					origin: [40.602875,-86.874245],
@@ -107,13 +114,7 @@
 					strokeWeight: 6
 				});
 				
-				map.addMarker
-				({
-					lat:39.772659,
-					lng:-86.167359,
-				});
-				
-				map.fixZoom();
+				map.fitZoom();
 			});
 		</script>
 	</div>
