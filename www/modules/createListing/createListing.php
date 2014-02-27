@@ -33,7 +33,7 @@
 		</div>				
 		
 		<div class="col-md-4">
-			<form class="form-signin" role="form" id="createListingForm" method="post" action="modules/createListing/createListingProc.php">
+			<form class="form-signin" role="form" id="createListingForm" method="post" action="createListingProc.php">
 				<h2 class="form-signin-heading">Create Listing</h2>
 				
 				<div class="form-group">
