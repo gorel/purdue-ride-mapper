@@ -14,6 +14,49 @@
 				<button type="submit" class="btn btn-default" onclick="calcRoute();" >Search</button>
 			</form>
 		</div>
+			<?php
+	
+			$con=mysqli_connect("localhost", "collegecarpool", "collegecarpool", "purdue_test");
+			
+			if($isRequest == 1)
+			{
+				&passengers = 0;
+			}
+			
+			// Check connection
+			if (mysqli_connect_errno())
+			{
+				echo "Failed to connect to MySQL: " . mysqli_connect_error();
+			}
+			else
+			{				
+				$sql="SELECT listings_id, startingAddress, endingAddress, isRequest, passengers, dateOfDeparture, user_id
+				FROM `purdue_test`.`listings`;";
+
+				if (!mysqli_query($con,$sql))
+				{
+					die('Error: ' . mysqli_error($con));
+					mysqli_close($con);
+				}
+				else
+				{
+					$result = $con->query($sql);
+					while($row = $result->fetch())
+					{
+						$start	=	$row["StartingAdress"];
+						$end	=	$row["endingAddress"];
+						$req	=	$row["isRequest"];
+						$pass	=	$row["passengers"];
+						$dDept	=	$row["dateOfDeparture"];
+						$user	=	$row["user_id"];
+						print($start);
+					}
+					mysqli_close($con);
+					header('Location: ../../index.html');
+					exit();
+				}		
+			}			
+	?>
 		<div>
 			<table class="table table-striped">
 				<thead>
