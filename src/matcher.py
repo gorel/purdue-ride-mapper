@@ -41,38 +41,34 @@ class Line:
 
 class Matcher:
 	def __init__(self):
-		try:
-			self.db = mysql.connect('localhost', 'collegecarpool', 'collegecarpool', 'purdue_test')
-			self.cursor = self.db.cursor()
-		except _mysql.Error as e:
-			sys.exit(1)
-		finally:
-			if (self.db):
-				self.db.close()
+		self.db = mysql.connect('localhost', 'collegecarpool', 'collegecarpool', 'purdue_test')
 
 	# Match a user to a list of rides of the opposite type
 	def match(self, user):
 		if user.getType() == "Request":
-			match_request_to_offer(user)
+			matches = self.match_request_to_offer(user)
 		else:
-			match_offer_to_request(user)
+			matches = self.match_offer_to_request(user)
+		for match in matches:
+			print "Match found! Score:", match[1], "\tDestination:", match[0][4]
 			
 	# Match a request to a list of scored offers
 	def match_request_to_offer(self, request):
 		circle = Circle(request.long, request.lat, request.radius)
 		
 		#offers = get list of offers from database
-		self.cursor.execute('SELECT * FROM listings WHERE isRequest=0')
+		cursor = self.db.cursor()
+		cursor.execute('SELECT * FROM listings WHERE isRequest=0')
 		offers = []
-		for _ in range(self.cursor.rowcount):
-			row = self.cursor.fetchone()
+		for _ in range(cursor.rowcount):
+			row = cursor.fetchone()
 			offers.append(row)
-			print row
 
+		cursor.close()
 		scores = {}
 		for offer in offers:
-			line = Line(offer.startlong, offer.startlat, offer.endlong, offer.endlat)
-			scores[offer] = score(dist_function(circle, line), circle.radius)
+			line = Line(offer[2], offer[3], offer[5], offer[6])
+			scores[offer] = self.score(self.dist_function(circle, line), circle.radius)
 		
 		sorted_scores = sorted(scores.items(), key=operator.itemgetter(1))
 		return sorted_scores
@@ -82,37 +78,42 @@ class Matcher:
 		line = Line(offer.startlong, offer.startlat, offer.endlong, offer.endlat)
 		
 		#requests = get list of requests from database
-		self.cursor.execute('SELECT * FROM listings WHERE isRequest=1')
+		cursor = self.db.cursor()
+		cursor.query('SELECT * FROM listings WHERE isRequest=1')
+		result = self.db.use_result()
 		requests = []
-		for _ in range(self.cursor.rowcount):
-			row = self.cursor.fetchone()
+		for _ in range(cursor.rowcount):
+			row = cursor.fetchone()
 			requests.append(row)
-			print row
 
+		cursor.close()
 		scores = {}
 		for request in requests:
-			circle = Circle(request.long, request.lat, request.radius)
-			scores[request] = score(dist_function(circle, line), circle.radius)
+			circle = Circle(request[5], request[6], request[8])
+			scores[request] = self.score(self.dist_function(circle, line), circle.radius)
 		
 		sorted_scores = sorted(scores.items(), key=operator.itemgetter(1))
 		return sorted_scores
 	
 	# Uses the geometric formula for the minimum distance from a point to a line.
 	def dist_function(self, circle, line):
-		px = line.getX2() - line.getX1()
-		py = line.getY2() - line.getY1()
-		
-		u = ((circle.getX() - line.getX1()) * px + (circle.getY() - line.getY1()) * py) / float(px * px + py * py)
-		
-		if u > 1:
-			u = 1
-		elif u < 0:
-			u = 0
-		
-		dx = line.getX1() + u * px - circle.getX()
-		dy = line.getY1() + u * py - circle.getY()
-		
-		return math.sqrt(dx * dx + dy * dy)
+		try:
+			px = line.getX2() - line.getX1()
+			py = line.getY2() - line.getY1()
+			
+			u = ((circle.getX() - line.getX1()) * px + (circle.getY() - line.getY1()) * py) / float(px * px + py * py)
+			
+			if u > 1:
+				u = 1
+			elif u < 0:
+				u = 0
+			
+			dx = line.getX1() + u * px - circle.getX()
+			dy = line.getY1() + u * py - circle.getY()
+			
+			return math.sqrt(dx * dx + dy * dy)
+		except TypeError as err:
+			return 5
 		
 	# Score a result by its distance to a given match
 	# Currently uses a naive probabilistic function where...
@@ -133,7 +134,11 @@ class Matcher:
 class User:
 	def __init__(self):
 		self.type = "Request"
-	def getType():
+		self.long = 0
+		self.lat = 0
+		self.radius = 50
+
+	def getType(self):
 		return self.type
 
 matcher = Matcher()
