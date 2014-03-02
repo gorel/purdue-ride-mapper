@@ -169,7 +169,7 @@ class User:
 			self.start_lat = 0
 		if start_long is not None:
 			self.start_long = start_long
-		else
+		else:
 			self.start_long = 0
 		if end_lat is not None:
 			self.end_lat = end_lat
@@ -177,7 +177,7 @@ class User:
 			self.end_lat = 0
 		if end_long is not None:
 			self.end_long = end_long
-		else
+		else:
 			self.end_long = 0
 
 		
