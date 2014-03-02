@@ -39,7 +39,7 @@
 				{
 					return true;
 				}
-				return false; //When in doubt, assume it's a bad code
+				return true; //When in doubt, assume it's a bad code
 			}
 			
 			$startingAddress = $destinationAddress = $passengers = $dateTime = $isRequest = "";
