@@ -13,45 +13,7 @@
 				</div>
 				<button type="submit" class="btn btn-default" onclick="calcRoute();" >Search</button>
 			</form>
-		</div>
-		<?php
-	
-			$con=mysqli_connect("localhost", "collegecarpool", "collegecarpool", "purdue_test");
-			
-			if($isRequest == 1)
-			{
-				&passengers = 0;
-			}
-			
-			// Check connection
-			if (mysqli_connect_errno())
-			{
-				echo "Failed to connect to MySQL: " . mysqli_connect_error();
-			}
-			else
-			{				
-				$sql="SELECT listings_id, startingAddress, endingAddress, isRequest, passengers, dateOfDeparture, user_id
-				FROM `purdue_test`.`listings`;";
-				
-				$result = mysqli_query($con,$sql);
-				while($row = mysqli_fetch_array($result))
-				{
-				/*
-					$start	=	$row["StartingAddress"];
-					$end	=	$row["endingAddress"];
-					$req	=	$row["isRequest"];
-					$pass	=	$row["passengers"];
-					$dDept	=	$row["dateOfDeparture"];
-					$user	=	$row["user_id"];
-					*/
-					echo $row['StartingAdress'];
-					echo "<br>";
-				}
-				mysqli_close($con);
-				header('Location: ../../index.html');
-				exit();		
-			}			
-		?>
+		</div>		
 		<div>
 			<table class="table table-striped">
 				<thead>
@@ -155,5 +117,41 @@
 				map.fitZoom();
 			});
 		</script>
+		<?php
+	
+			$con=mysqli_connect("localhost", "collegecarpool", "collegecarpool", "purdue_test");
+			
+			if($isRequest == 1)
+			{
+				&passengers = 0;
+			}
+			
+			// Check connection
+			if (mysqli_connect_errno())
+			{
+				echo "Failed to connect to MySQL: " . mysqli_connect_error();
+			}
+			else
+			{				
+				$sql="SELECT * FROM listings";
+				
+				$result = mysqli_query($con,$sql);
+				while($row = mysqli_fetch_array($result))
+				{
+				/*
+					$start	=	$row["StartingAddress"];
+					$end	=	$row["endingAddress"];
+					$req	=	$row["isRequest"];
+					$pass	=	$row["passengers"];
+					$dDept	=	$row["dateOfDeparture"];
+					$user	=	$row["user_id"];
+					*/
+					echo $row['StartingAdress'];
+					echo "<br>";
+				}
+				mysqli_close($con);
+				header('Location: ../../index.html');
+				exit();		
+		?>
 	</div>
 </div>
