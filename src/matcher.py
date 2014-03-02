@@ -17,7 +17,7 @@ class Circle:
 		if radius is not None and radius != 0:
 			self.radius = radius
 		else:
-			radius = 1
+			self.radius = 1
 		
 	
 	def getX(self):
