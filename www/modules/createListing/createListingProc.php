@@ -97,8 +97,8 @@
 				}				
 				else//If the quality of the input is good enough
 				{
-					$endLatitude = $parsedResult->results[0]->locations[0]->latLng->lat;
-					$endLongitude = $parsedResult->results[0]->locations[0]->latLng->lng;
+					$endLatitude = $parsedResult2->results[0]->locations[0]->latLng->lat;
+					$endLongitude = $parsedResult2->results[0]->locations[0]->latLng->lng;
 				}
 
 				//At this point the start and end Latitudes and Longitudes /should/ be correct.... if there was bad input they are 0.0. We need to handle this
