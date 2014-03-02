@@ -90,7 +90,7 @@ class Matcher:
 		else:
 			matches = self.match_offer_to_request(user)
 		for match in matches:
-			print match
+			print int(match[0] * 100), int(match[1])
 			
 	# Match a request to a list of scored offers
 	def match_request_to_offer(self, request):
