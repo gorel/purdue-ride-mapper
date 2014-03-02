@@ -80,7 +80,7 @@
 				//}				
 				//else//If the quality of the input is good enough
 				//{
-				$startLatitude = $parsedResult->results[0]->locations[0]->latLng->lat;//Add dat tab
+				$startLatitude = $parsedResult->results[0]->providedLocation->location;//locations[0]->latLng->lat;//Add dat tab
 				$startLongitude = $parsedResult->results[0]->locations[0]->latLng->lng;//Add dat tab
 				//}
 
@@ -97,7 +97,7 @@
 				//}				
 				//else//If the quality of the input is good enough
 				//{
-				$endLatitude = $parsedResult2->results[0]->locations[0]->latLng->lat;//Add dat tab
+				$endLatitude = $parsedResult2->results[0]->providedLocation->location;//locations[0]->latLng->lat;//Add dat tab
 				$endLongitude = $parsedResult2->results[0]->locations[0]->latLng->lng;//Add dat tab
 				//}
 
