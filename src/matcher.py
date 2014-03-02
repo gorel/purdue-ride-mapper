@@ -136,7 +136,7 @@ class Matcher:
 			circle = Circle(request[5], request[6], request[8])
 			scores.append([self.score(self.dist_function(circle, line), circle.getRadius()), listing_ids[request]])
 		
-		sorted_scores = sorted(scores, key=lambda score: score[0])
+		sorted_scores = sorted(scores, key=lambda score: -score[0])
 		return sorted_scores
 	
 	# Uses the geometric formula for the minimum distance from a point to a line.
