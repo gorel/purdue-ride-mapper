@@ -112,7 +112,7 @@ class Matcher:
 			line = Line(offer[2], offer[3], offer[5], offer[6])
 			scores.append([self.score(self.dist_function(circle, line), circle.getRadius()), listing_ids[offer]])
 		
-		sorted_scores = sorted(scores, key=lambda score: score[0])
+		sorted_scores = sorted(scores, key=lambda score: -score[0])
 		return sorted_scores
 	
 	# Match an offer to a list of scored requests
