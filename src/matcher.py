@@ -91,7 +91,7 @@ class Matcher:
 		else:
 			matches = self.match_offer_to_request(user)
 		for match in matches:
-			match
+			print match
 			
 	# Match a request to a list of scored offers
 	def match_request_to_offer(self, request):
@@ -210,7 +210,7 @@ if len(sys.argv) != 2:
 
 matcher = Matcher()
 try:
-	user = matcher.get(int(sys.argv[1]))
+	user = matcher.get(sys.argv[1])
 	matcher.match(user)
 except:
 	pass
