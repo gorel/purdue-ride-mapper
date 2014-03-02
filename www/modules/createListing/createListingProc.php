@@ -101,7 +101,7 @@
 				$endLongitude = $parsedResult2->results[0]->locations[0]->latLng->lng;//Add dat tab
 				//}
 
-				$endLocationString = $parsedResult2->results[0]->providedLocation->location;
+				//$endLocationString = $parsedResult2->results[0]->providedLocation->location;
 
 				//At this point the start and end Latitudes and Longitudes /should/ be correct.... if there was bad input they are 0.0. We need to handle this.//This has been temporarily removed
 
@@ -109,7 +109,7 @@
 
 				$sql="INSERT INTO listings (startingAddress, start_lat, start_long, endingAddress, end_lat, end_long, isRequest, passengers, dateOfDeparture)
 				VALUES
-				('$startingAddress','$startLatitude','$startLongitude','$endLocationString','$endLatitude','$endLongitude','$isRequest','$passengers','$dateTime')";//$endLocationString should be $destinationAddress
+				('$startingAddress','$startLatitude','$startLongitude','$destinationAddress','$endLatitude','$endLongitude','$isRequest','$passengers','$dateTime')";//$endLocationString should be $destinationAddress
 
 				if (!mysqli_query($con,$sql))
 				{
