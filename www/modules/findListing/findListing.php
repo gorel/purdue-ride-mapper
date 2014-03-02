@@ -121,11 +121,6 @@
 	
 			$con=mysqli_connect("localhost", "collegecarpool", "collegecarpool", "purdue_test");
 			
-			if($isRequest == 1)
-			{
-				&passengers = 0;
-			}
-			
 			// Check connection
 			if (mysqli_connect_errno())
 			{
@@ -139,14 +134,14 @@
 				while($row = mysqli_fetch_array($result))
 				{
 				/*
-					$start	=	$row["StartingAddress"];
+					$start	=	$row["startingAddress"];
 					$end	=	$row["endingAddress"];
 					$req	=	$row["isRequest"];
 					$pass	=	$row["passengers"];
 					$dDept	=	$row["dateOfDeparture"];
 					$user	=	$row["user_id"];
 					*/
-					echo $row['StartingAdress'];
+					echo $row['startingAddress'];
 					echo "<br>";
 				}
 				mysqli_close($con);
