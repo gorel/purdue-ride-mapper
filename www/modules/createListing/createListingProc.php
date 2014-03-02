@@ -75,8 +75,8 @@
 				if(qualityCode($addressQualityCode) === false)//If the quality code is bad
 				{
 					//GUYS WHAT DO WE DO IF IT IS BAD?
-					$startLatitude = 0.0;
-					$startLongitude = 0.0;
+					$startLatitude = 5.0;
+					$startLongitude = 5.0;
 				}				
 				else//If the quality of the input is good enough
 				{
@@ -92,8 +92,8 @@
 				if(qualityCode($addressQualityCode2) === false)//If the quality code is bad
 				{
 					//GUYS WHAT DO WE DO IF IT IS BAD?
-					$endLatitude = 0.0;
-					$endLongitude = 0.0;
+					$endLatitude = 5.0;
+					$endLongitude = 5.0;
 				}				
 				else//If the quality of the input is good enough
 				{
