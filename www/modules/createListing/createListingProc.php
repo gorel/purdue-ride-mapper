@@ -29,7 +29,7 @@
 			   return $data;
 			}
 
-			function qualityCode($qualityCode)
+			function qualityCodeCheck($qualityCode)
 			{
 				if(strpos($qualityCode,'C') !== false)//If the quality code contains 'C' it is bad
 				{
@@ -74,11 +74,11 @@
 				$parsedResult = json_decode($mapquestResult);
 				//Only parse result if the input address is good.
 				$addressQualityCode = $parsedResult->results->locations[0]->geocodeQualityCode;
-				if(qualityCode($addressQualityCode) === false)//If the quality code is bad
+				if(qualityCodeCheck($addressQualityCode) === false)//If the quality code is bad
 				{
 					//GUYS WHAT DO WE DO IF IT IS BAD?
-					$startLatitude = 5.0;
-					$startLongitude = 5.0;
+					$startLatitude = -1.0;
+					$startLongitude = -1.0;
 				}				
 				else//If the quality of the input is good enough
 				{
@@ -91,11 +91,11 @@
 				$parsedResult2 = json_decode($mapquestResult2);
 				//Only parse result if the input address is good.
 				$addressQualityCode2 = $parsedResult2->results->locations[0]->geocodeQualityCode;
-				if(qualityCode($addressQualityCode2) === false)//If the quality code is bad
+				if(qualityCodeCheck($addressQualityCode2) === false)//If the quality code is bad
 				{
 					//GUYS WHAT DO WE DO IF IT IS BAD?
-					$endLatitude = 5.0;
-					$endLongitude = 5.0;
+					$endLatitude = -1.0;
+					$endLongitude = -1.0;
 				}				
 				else//If the quality of the input is good enough
 				{
@@ -103,7 +103,7 @@
 					$endLongitude = $parsedResult2->results[0]->locations[0]->latLng->lng;//Add dat tab
 				}
 
-				//At this point the start and end Latitudes and Longitudes /should/ be correct.... if there was bad input they are 0.0. We need to handle this.//This has been temporarily removed
+				//At this point the start and end Latitudes and Longitudes /should/ be correct.... if there was bad input they are -1.0. We need to handle this.//This has been temporarily removed
 
 
 
