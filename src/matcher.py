@@ -208,5 +208,8 @@ if len(sys.argv) != 2:
 	sys.exit(1)
 
 matcher = Matcher()
-user = matcher.get(sys.argv[1])
-matcher.match(user)
+try:
+	user = matcher.get(int(sys.argv[1]))
+	matcher.match(user)
+except:
+	pass
