@@ -68,7 +68,7 @@
 				//@author Evan Arnold <arnold4@purdue.edu>
 				//Sets the start/end lats and longs to their real-world values, and 0.0 if there is bad input (like just a state or gibberish)
 				//Start Location:
-				$mapquestResult = file_get_contents('http://www.mapquestapi.com/geocoding/v1/address?&key=Fmjtd%7Cluur210znh%2Cb0%3Do5-90ys0a&location=$startingAddress');
+				$mapquestResult = file_get_contents("http://www.mapquestapi.com/geocoding/v1/address?&key=Fmjtd%7Cluur210znh%2Cb0%3Do5-90ys0a&location={$startingAddress}");
 				$parsedResult = json_decode($mapquestResult);
 				//Only parse result if the input address is good.
 				//$addressQualityCode = $parsedResult->results->locations[0]->geocodeQualityCode;
@@ -85,7 +85,7 @@
 				//}
 
 				//EndLocation
-				$mapquestResult2 = file_get_contents('http://www.mapquestapi.com/geocoding/v1/address?&key=Fmjtd%7Cluur210znh%2Cb0%3Do5-90ys0a&location=$destinationAddress');
+				$mapquestResult2 = file_get_contents("http://www.mapquestapi.com/geocoding/v1/address?&key=Fmjtd%7Cluur210znh%2Cb0%3Do5-90ys0a&location={$destinationAddress}");
 				$parsedResult2 = json_decode($mapquestResult2);
 				//Only parse result if the input address is good.
 				//$addressQualityCode2 = $parsedResult2->results->locations[0]->geocodeQualityCode;
