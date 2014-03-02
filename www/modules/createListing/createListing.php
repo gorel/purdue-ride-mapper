@@ -50,7 +50,7 @@
 				</div>
 				
 				<div class="form-group">
-					<input id="passengersTextBox" type="text" class="form-control" placeholder="Number of Passangers" name="passengers" required autofocus disabled>
+					<input id="passengersTextBox" type="text" class="form-control" placeholder="Number of Passengers" name="passengers" required autofocus disabled>
 				</div>						
 				
 				<div class="form-group">
