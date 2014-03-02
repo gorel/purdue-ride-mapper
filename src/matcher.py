@@ -66,7 +66,7 @@ class Matcher:
 			
 	# Match a request to a list of scored offers
 	def match_request_to_offer(self, request):
-		circle = Circle(request.long, request.lat, request.radius)
+		circle = Circle(request.end_long, request.end_lat, request.radius)
 		
 		#offers = get list of offers from database
 		cursor = self.db.cursor()
@@ -87,7 +87,7 @@ class Matcher:
 	
 	# Match an offer to a list of scored requests
 	def match_offer_to_request(self, offer):
-		line = Line(offer.startlong, offer.startlat, offer.endlong, offer.endlat)
+		line = Line(offer.start_long, offer.start_lat, offer.end_long, offer.end_lat)
 		
 		#requests = get list of requests from database
 		cursor = self.db.cursor()
