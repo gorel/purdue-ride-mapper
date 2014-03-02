@@ -31,15 +31,15 @@
 
 			function qualityCodeCheck($qualityCode)
 			{
-				//if(strpos($qualityCode,'C') !== false)//If the quality code contains 'C' it is bad
-				//{
-				//	return false;
-				//}
+				if(strpos($qualityCode,'C') !== false)//If the quality code contains 'C' it is bad
+				{
+					return false;
+				}
 				if(strpos($qualityCode,'P1') !== false || strpos($qualityCode,'A5') !== false || strpos($qualityCode,'Z1') !== false)//If the quality code indicates an exact point or city, it's good
 				{
 					return true;
 				}
-				return true; //When in doubt, assume it's a bad code
+				return false; //When in doubt, assume it's a bad code
 			}
 			
 			$startingAddress = $destinationAddress = $passengers = $dateTime = $isRequest = "";
@@ -109,7 +109,7 @@
 
 				$sql="INSERT INTO listings (startingAddress, start_lat, start_long, endingAddress, end_lat, end_long, isRequest, passengers, dateOfDeparture)
 				VALUES
-				('$startingAddress','$startLatitude','$startLongitude','$destinationAddress','$endLatitude','$endLongitude','$isRequest','$passengers','$dateTime')";
+				('$addressQualityCode','$startLatitude','$startLongitude','$destinationAddress','$endLatitude','$endLongitude','$isRequest','$passengers','$dateTime')";//startingAddress
 
 				if (!mysqli_query($con,$sql))
 				{
