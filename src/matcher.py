@@ -79,6 +79,7 @@ class Matcher:
 		query = 'SELECT * FROM listings WHERE listings_id=' + listings_id
 		cursor.execute(query)
 		user = cursor.fetchone()
+		print 'User found:', user
 		cursor.close()
 		user = User(user[7], user[2], user[3], user[5], user[6], user[8])
 		return user
