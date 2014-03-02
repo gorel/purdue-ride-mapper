@@ -31,10 +31,10 @@
 
 			function qualityCodeCheck($qualityCode)
 			{
-				if(strpos($qualityCode,'C') !== false)//If the quality code contains 'C' it is bad
-				{
-					return false;
-				}
+				//if(strpos($qualityCode,'C') !== false)//If the quality code contains 'C' it is bad
+				//{
+				//	return false;
+				//}
 				if(strpos($qualityCode,'P1') !== false || strpos($qualityCode,'A5') !== false || strpos($qualityCode,'Z1') !== false)//If the quality code indicates an exact point or city, it's good
 				{
 					return true;
