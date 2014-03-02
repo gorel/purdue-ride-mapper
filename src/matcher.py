@@ -49,10 +49,10 @@ class Line:
 		else:
 			self.y2 = 0
 			
-		if x1 == x2:
-			x2 += 1
-		if y1 == y2:
-			y2 += 1
+		if self.x1 == self.x2:
+			self.x2 += 1
+		if self.y1 == self.y2:
+			self.y2 += 1
 		
 		
 	def getX1(self):
