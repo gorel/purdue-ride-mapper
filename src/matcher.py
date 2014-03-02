@@ -6,12 +6,19 @@ import MySQLdb as mysql
 # Circle class to represent a geometric Circle object
 class Circle:
 	def __init__(self, x, y, radius):
-		if radius == 0:
+		if x is not None:
+			self.x = x
+		else:
+			self.x = 0
+		if y is not None:
+			self.y = y
+		else:
+			self.y = 0
+		if radius is not None and radius != 0:
+			self.radius = radius
+		else:
 			radius = 1
 		
-		self.x = x
-		self.y = y
-		self.radius = radius
 	
 	def getX(self):
 		return self.x
@@ -25,15 +32,28 @@ class Circle:
 # Line class to represent a geometric Line object
 class Line:
 	def __init__(self, x1, y1, x2, y2):
+		if x1 is not None:
+			self.x1 = x1
+		else:
+			self.x1 = 0
+		if x2 is not None:
+			self.x2 = x2
+		else:
+			self.x2 = 0
+		if y1 is not None:
+			self.y1 = y1
+		else:
+			self.y1 = 0
+		if y2 is not None:
+			self.y2 = y2
+		else:
+			self.y2 = 0
+			
 		if x1 == x2:
 			x2 += 1
 		if y1 == y2:
 			y2 += 1
 		
-		self.x1 = x1
-		self.y1 = y1
-		self.x2 = x2
-		self.y2 = y2
 		
 	def getX1(self):
 		return self.x1
