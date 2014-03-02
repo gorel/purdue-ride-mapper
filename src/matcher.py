@@ -45,7 +45,7 @@ class Matcher:
 		self.db = mysql.connect('localhost', 'collegecarpool', 'collegecarpool', 'purdue_test')
 
 	# Return a User object corresponding to the given listings_id
-	def get(lstings_id):
+	def get(self, listings_id):
 		cursor = self.db.cursor()
 		# TODO: Do I have to sanitize queries?  I don't know databases...
 		query = 'SELECT * FROM listings WHERE listings_id=' + listings_id
