@@ -68,6 +68,8 @@
 				//@author Evan Arnold <arnold4@purdue.edu>
 				//Sets the start/end lats and longs to their real-world values, and 0.0 if there is bad input (like just a state or gibberish)
 				//Start Location:
+				$startingAddress = str_replace(' ', '%20', $startingAddress);
+				$destinationAddress = str_replace(' ', '%20', $destinationAddress);
 				$mapquestResult = file_get_contents("http://www.mapquestapi.com/geocoding/v1/address?&key=Fmjtd%7Cluur210znh%2Cb0%3Do5-90ys0a&location=" . $startingAddress ."");
 				$parsedResult = json_decode($mapquestResult);
 				//Only parse result if the input address is good.
