@@ -110,7 +110,7 @@ class Matcher:
 		scores = []
 		for offer in offers:
 			line = Line(offer[2], offer[3], offer[5], offer[6])
-			scores.append(self.score(self.dist_function(circle, line), circle.getRadius()), listing_ids[offer])
+			scores.append([self.score(self.dist_function(circle, line), circle.getRadius()), listing_ids[offer]])
 		
 		sorted_scores = sorted(scores, key=lambda score: score[0])
 		return sorted_scores
@@ -134,7 +134,7 @@ class Matcher:
 		scores = []
 		for request in requests:
 			circle = Circle(request[5], request[6], request[8])
-			scores.append(self.score(self.dist_function(circle, line), circle.getRadius()), listing_ids[request])
+			scores.append([self.score(self.dist_function(circle, line), circle.getRadius()), listing_ids[request]])
 		
 		sorted_scores = sorted(scores, key=lambda score: score[0])
 		return sorted_scores
