@@ -1,5 +1,6 @@
 import math
 import operator
+import sys
 import MySQLdb as mysql
 
 # Circle class to represent a geometric Circle object
@@ -43,14 +44,25 @@ class Matcher:
 	def __init__(self):
 		self.db = mysql.connect('localhost', 'collegecarpool', 'collegecarpool', 'purdue_test')
 
+	# Return a User object corresponding to the given listings_id
+	def get(lstings_id):
+		cursor = self.db.cursor()
+		# TODO: Do I have to sanitize queries?  I don't know databases...
+		query = 'SELECT * FROM listings WHERE listings_id=' + listings_id
+		cursor.execute(query)
+		user = cursor.fetchone()
+		cursor.close()
+		user = User(user[7], user[2], user[3], user[5], user[6], user[8])
+		return user
+		
 	# Match a user to a list of rides of the opposite type
 	def match(self, user):
-		if user.getType() == "Request":
+		if user.type == 'Request':
 			matches = self.match_request_to_offer(user)
 		else:
 			matches = self.match_offer_to_request(user)
 		for match in matches:
-			print "Match found! Score:", match[1], "\tDestination:", match[0][4]
+			match
 			
 	# Match a request to a list of scored offers
 	def match_request_to_offer(self, request):
@@ -132,14 +144,29 @@ class Matcher:
 		return result
 
 class User:
-	def __init__(self):
-		self.type = "Request"
-		self.long = 0
-		self.lat = 0
-		self.radius = 50
+	# Note: special_field depends on type.
+	#	If type == 'Request':	special_field corresponds to radius
+	#	If type == 'Offer':		special_field corresponds to number of passengers
+	def __init__(self, type, start_lat, start_long, end_lat, end_long, special_field):
+		if type == 1:
+			self.type = 'Request'
+			self.radius = special_field
+		else:
+			self.type = 'Offer'
+			self.num_passengers = special_field
+		
+		self.start_lat = start_lat
+		self.start_long = start_long
+		self.end_lat = end_lat
+		self.end_long = end_long
 
-	def getType(self):
-		return self.type
+		
+		
+		
+if len(sys.argv) != 2:
+	print '0'
+	sys.exit(1)
 
 matcher = Matcher()
-matcher.match(User())
+user = matcher.get(sys.argv[1])
+matcher.match(user)
