@@ -119,7 +119,7 @@ class Matcher:
 		
 		#requests = get list of requests from database
 		cursor = self.db.cursor()
-		cursor.query('SELECT * FROM listings WHERE isRequest=1')
+		cursor.execute('SELECT * FROM listings WHERE isRequest=1')
 		result = self.db.use_result()
 		requests = []
 		for _ in range(cursor.rowcount):
