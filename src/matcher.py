@@ -156,12 +156,6 @@ class User:
 	#	If type == 'Request':	special_field corresponds to radius
 	#	If type == 'Offer':		special_field corresponds to number of passengers
 	def __init__(self, type, start_lat, start_long, end_lat, end_long, special_field):
-		print 'type',type
-		print 'start_lat',start_lat
-		print 'start_long',start_long
-		print 'end_lat',end_lat
-		print 'end_long', end_long
-		print 'special',special_field
 		if type == 1:
 			self.type = 'Request'
 			self.radius = special_field
@@ -169,10 +163,22 @@ class User:
 			self.type = 'Offer'
 			self.num_passengers = special_field
 		
-		self.start_lat = start_lat
-		self.start_long = start_long
-		self.end_lat = end_lat
-		self.end_long = end_long
+		if start_lat is not None:
+			self.start_lat = start_lat
+		else:
+			self.start_lat = 0
+		if start_long is not None:
+			self.start_long = start_long
+		else
+			self.start_long = 0
+		if end_lat is not None:
+			self.end_lat = end_lat
+		else:
+			self.end_lat = 0
+		if end_long is not None:
+			self.end_long = end_long
+		else
+			self.end_long = 0
 
 		
 		
