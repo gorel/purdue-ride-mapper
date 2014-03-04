@@ -118,7 +118,7 @@
 			});
 		</script>
 		<?php
-	
+			
 			$con=mysqli_connect("localhost", "collegecarpool", "collegecarpool", "purdue_test");
 			
 			// Check connection
@@ -141,8 +141,6 @@
 					$dDept	=	$row["dateOfDeparture"];
 					$user	=	$row["user_id"];
 					*/
-					echo $row['startingAddress'];
-					echo "<br>";
 				}
 				mysqli_close($con);
 				header('Location: ../../index.html');
