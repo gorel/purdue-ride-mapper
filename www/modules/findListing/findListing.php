@@ -16,7 +16,7 @@
 				<button type="submit" class="btn btn-default" onclick="calcRoute();" >Search</button>
 			</form>			
 		</div>		
-	<div class="col-lg-6">
+	<div class="col-lg-6" style="padding-left: 0px; padding-right: 0px; padding-top: 5px">
 		<div id="map_canvas" style="height: 400px; width: 800px"></div>
 	</div>
 		<script>
@@ -29,7 +29,6 @@
 					div: '#map_canvas',
 					lat: 40.463666,
 					lng: -86.945828,
-					position: 'BOTTOM_CENTER',
 					zoomControl : true,
 					zoomControlOpt: 
 					{
