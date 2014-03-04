@@ -136,11 +136,15 @@
 		{
 			$start = $row["startingAddress"];
 			$end = $row["endingAddress"];
+		/*
+		$req	=	$row["isRequest"];
+		$pass	=	$row["passengers"];
+		$dDept	=	$row["dateOfDeparture"];
+		$user	=	$row["user_id"];
+		*/
 		}
 	}
 	mysqli_close($con);
-	header('Location: ../../index.php');
-	exit();
 ?>
 </body>
 </html>
