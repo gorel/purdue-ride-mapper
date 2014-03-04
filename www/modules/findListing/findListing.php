@@ -127,11 +127,7 @@
 				echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			}
 			else
-			{				
-				$sql="SELECT * FROM listings";
-				
-				$result = mysqli_query($con,$sql);
-
+			{		
 				mysqli_close($con);
 				header('Location: ../../index.html');
 				exit();		
