@@ -14,10 +14,12 @@
 					<input type="text" class="form-control" placeholder="Destination Address">
 				</div>
 				<button type="submit" class="btn btn-default" onclick="calcRoute();" >Search</button>
-			</form>
-			
+			</form>			
+		</div>		
+	</div>
+</div>
 	<div class="col-lg-6">
-		<div id="map_canvas" style="height: 500px; width: 800px"></div>
+		<div id="map_canvas" style="height: 400px; width: 800px"></div>
 	</div>
 <?php
 	$con=mysqli_connect("localhost","collegecarpool","collegecarpool","purdue_test");
@@ -54,9 +56,7 @@
 	}
 	mysqli_close($con);
 ?>
-		</div>		
-	</div>
-</div>
+
 		<script>
 			//This script create the map with a default address.
 			//Its current location is somewhere by College Station
@@ -127,6 +127,5 @@
 				map.fitZoom();
 			});
 		</script>
-
 </body>
 </html>
