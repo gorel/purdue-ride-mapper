@@ -131,17 +131,7 @@
 				$sql="SELECT * FROM listings";
 				
 				$result = mysqli_query($con,$sql);
-				while($row = mysqli_fetch_array($result))
-				{
-				/*
-					$start	=	$row["startingAddress"];
-					$end	=	$row["endingAddress"];
-					$req	=	$row["isRequest"];
-					$pass	=	$row["passengers"];
-					$dDept	=	$row["dateOfDeparture"];
-					$user	=	$row["user_id"];
-					*/
-				}
+
 				mysqli_close($con);
 				header('Location: ../../index.html');
 				exit();		
