@@ -134,7 +134,8 @@
 		$result = mysqli_query($con,$sql);
 		while($row = mysqli_fetch_array($result))
 		{
-			echo "Hi";
+			$start = $row["startingAddress"];
+			$end = $row["endingAddress"];
 		}
 	}
 	mysqli_close($con);
