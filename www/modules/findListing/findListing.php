@@ -1,4 +1,6 @@
-
+<!DOCTYPE html>
+<html>
+<body>
 <hr class="featurette-divider">
 <div class="row">
 	<div class="col-lg-6">
@@ -119,3 +121,14 @@
 		</script>
 	</div>
 </div>
+<?php
+	$con=mysqli_connect("localhost","collegecarpool","collegecarpool","purdue_test");
+	
+	if(mysqli_connect_errno())
+	{
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	}
+	mysqli_close($con);
+?>
+</body>
+</html>
