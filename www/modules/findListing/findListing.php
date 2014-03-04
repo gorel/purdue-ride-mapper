@@ -117,21 +117,5 @@
 				map.fitZoom();
 			});
 		</script>
-		<?php
-			
-			$con=mysqli_connect("localhost", "collegecarpool", "collegecarpool", "purdue_test");
-			
-			// Check connection
-			if (mysqli_connect_errno())
-			{
-				echo "Failed to connect to MySQL: " . mysqli_connect_error();
-			}
-			else
-			{		
-				mysqli_close($con);
-				header('Location: ../../index.html');
-				exit();	
-			}
-		?>
 	</div>
 </div>
