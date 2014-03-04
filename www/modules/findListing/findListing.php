@@ -132,6 +132,10 @@
 	{
 		$sql = "SELECT * FROM listings";
 		$result = mysqli_query($con,$sql);
+		while($row = mysqli_fetch_array($result))
+		{
+			echo "Hi";
+		}
 	}
 	mysqli_close($con);
 ?>
