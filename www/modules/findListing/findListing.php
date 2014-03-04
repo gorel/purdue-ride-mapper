@@ -34,21 +34,23 @@
 		$result = mysqli_query($con,$sql);
 		echo "<table border='1'>
 		<tr>
-		<th> startingAddress </th>
-		<th> endingAddress </th>
+		<th> StartingAddress </th>
+		<th> EndingAddress </th>
+		<th> Request? </th>
+		<th> Passengers </th>
+		<th> Date of Departure </th>
+		<th> User ID </th>
 		</tr>";
 		while($row = mysqli_fetch_array($result))
 		{
 		echo "<tr>";
 		echo "<td>". $row['startingAddress'] . "</td>";
 		echo "<td>". $row["endingAddress"] . "</td>";
+		echo "<td>". $row["isRequest"] . "</td>";
+		echo "<td>". $row["passengers"] . "</td>";
+		echo "<td>". $row["dateOfDeparture"] . "</td>";
+		echo "<td>". $row["user_id"] . "</td>";
 		echo "</tr>";
-		/*
-			$req	=	$row["isRequest"];
-			$pass	=	$row["passengers"];
-			$dDept	=	$row["dateOfDeparture"];
-			$user	=	$row["user_id"];
-		*/
 		}
 		echo "</table>";
 	}
@@ -64,7 +66,7 @@
 					div: '#map_canvas',
 					lat: 40.463666,
 					lng: -86.945828,
-					position: 'bottom_center',
+					position: 'BOTTOM_CENTER',
 					zoomControl : true,
 					zoomControlOpt: 
 					{
