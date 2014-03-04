@@ -16,36 +16,6 @@
 				<button type="submit" class="btn btn-default" onclick="calcRoute();" >Search</button>
 			</form>
 		</div>		
-		<div>
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>Starting Location</th>
-						<th>Destination</th>
-						<th>Capacity</th>
-						<th>Date of Departure</th>
-						<th>Request</th>
-						<th>User</th>
-					</tr>
-				</thead>
-					<tr>
-						<td>2243 US HWY 52 W, West Lafayette IN 47906</td>
-						<td>Purdue University, West Lafayette IN 47906</td> 
-						<td>0</td>
-						<td>2/25/2014</td>
-						<td>Yes</td>
-						<td>evan@purdue.edu</td>
-					</tr>
-					<tr>
-						<td>Brookston IN 47906</td>
-						<td>Indianapolis, IN</td> 
-						<td>3</td>
-						<td>2/27/2014</td>
-						<td>No</td>
-						<td>logan@purdue.edu</td>
-					</tr>
-			</table>
-		</div>
 	</div>
 	<div class="col-lg-6">
 		<div id="map_canvas" style="height: 500px; width: 400px"></div>
@@ -132,17 +102,25 @@
 	{
 		$sql = "SELECT * FROM listings";
 		$result = mysqli_query($con,$sql);
+		echo "<table border='1'>
+		<tr>
+		<th> startingAddress </th>
+		<th> endingAddress </th>
+		</tr>";
 		while($row = mysqli_fetch_array($result))
 		{
-			$start = $row["startingAddress"];
-			$end = $row["endingAddress"];
+		echo "<tr>";
+		echo "<td>". $row['startingAddress'] . "</td>";
+		echo "<td>". $row["endingAddress"] . "</td>";
+		echo "</tr>";
 		/*
-		$req	=	$row["isRequest"];
-		$pass	=	$row["passengers"];
-		$dDept	=	$row["dateOfDeparture"];
-		$user	=	$row["user_id"];
+			$req	=	$row["isRequest"];
+			$pass	=	$row["passengers"];
+			$dDept	=	$row["dateOfDeparture"];
+			$user	=	$row["user_id"];
 		*/
 		}
+		echo "</table>";
 	}
 	mysqli_close($con);
 ?>
