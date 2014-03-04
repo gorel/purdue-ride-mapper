@@ -32,7 +32,7 @@
 	{
 		$sql = "SELECT * FROM listings";
 		$result = mysqli_query($con,$sql);
-		echo "<table border='1'>
+		echo "<table border='1' align = "top">
 		<tr>
 		<th> StartingAddress </th>
 		<th> EndingAddress </th>
