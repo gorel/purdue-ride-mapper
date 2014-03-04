@@ -55,9 +55,7 @@
 		echo "</table>";
 	}
 	mysqli_close($con);
-?>
-		<script>
-			//This script create the map with a default address.
+				//This script create the map with a default address.
 			//Its current location is somewhere by College Station
 			$(document).ready(function () 
 			{
@@ -125,7 +123,8 @@
 				
 				map.fitZoom();
 			});
-		</script>
+
+?>
 
 </body>
 </html>
