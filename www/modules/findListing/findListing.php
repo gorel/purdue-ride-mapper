@@ -19,6 +19,7 @@
 	</div>
 	<div class="col-lg-6">
 		<div id="map_canvas" style="height: 500px; width: 400px"></div>
+<<<<<<< HEAD
 	</div>
 </div>
 <?php
@@ -56,6 +57,8 @@
 	}
 	mysqli_close($con);
 ?>
+=======
+>>>>>>> parent of d011902... Cleaning some stuff
 		<script>
 			//This script create the map with a default address.
 			//Its current location is somewhere by College Station
@@ -126,5 +129,43 @@
 				map.fitZoom();
 			});
 		</script>
+<<<<<<< HEAD
+=======
+	</div>
+</div>
+<?php
+	$con=mysqli_connect("localhost","collegecarpool","collegecarpool","purdue_test");
+	
+	if(mysqli_connect_errno())
+	{
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	}
+	else
+	{
+		$sql = "SELECT * FROM listings";
+		$result = mysqli_query($con,$sql);
+		echo "<table border='1'>
+		<tr>
+		<th> startingAddress </th>
+		<th> endingAddress </th>
+		</tr>";
+		while($row = mysqli_fetch_array($result))
+		{
+		echo "<tr>";
+		echo "<td>". $row['startingAddress'] . "</td>";
+		echo "<td>". $row["endingAddress"] . "</td>";
+		echo "</tr>";
+		/*
+			$req	=	$row["isRequest"];
+			$pass	=	$row["passengers"];
+			$dDept	=	$row["dateOfDeparture"];
+			$user	=	$row["user_id"];
+		*/
+		}
+		echo "</table>";
+	}
+	mysqli_close($con);
+?>
+>>>>>>> parent of d011902... Cleaning some stuff
 </body>
 </html>
