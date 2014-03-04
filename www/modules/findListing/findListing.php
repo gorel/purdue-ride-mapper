@@ -17,7 +17,6 @@
 			</form>			
 		</div>		
 	</div>
-</div>
 	<div class="col-lg-6">
 		<div id="map_canvas" style="height: 400px; width: 800px"></div>
 	</div>
@@ -127,5 +126,6 @@
 				map.fitZoom();
 			});
 		</script>
+</div>
 </body>
 </html>
