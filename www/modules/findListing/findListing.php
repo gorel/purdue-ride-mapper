@@ -32,7 +32,7 @@
 	{
 		$sql = "SELECT * FROM listings";
 		$result = mysqli_query($con,$sql);
-		echo "<table border='1'>
+		echo "<table border='1' align="left">
 		<tr>
 		<th> StartingAddress </th>
 		<th> EndingAddress </th>
@@ -55,7 +55,9 @@
 		echo "</table>";
 	}
 	mysqli_close($con);
-				//This script create the map with a default address.
+?>
+		<script>
+			//This script create the map with a default address.
 			//Its current location is somewhere by College Station
 			$(document).ready(function () 
 			{
@@ -123,8 +125,6 @@
 				
 				map.fitZoom();
 			});
-
-?>
-
+		</script>
 </body>
 </html>
