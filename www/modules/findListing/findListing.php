@@ -14,6 +14,10 @@
 					<input type="text" class="form-control" placeholder="Destination Address">
 				</div>
 				<button type="submit" class="btn btn-default" onclick="calcRoute();" >Search</button>
+			</form>
+		</div>		
+	</div>
+</div>
 				<?php
 	$con=mysqli_connect("localhost","collegecarpool","collegecarpool","purdue_test");
 	
@@ -50,12 +54,8 @@
 	mysqli_close($con);
 ?>
 
-			</form>
-		</div>		
-	</div>
-</div>
 	<div class="col-lg-6">
-		<div id="map_canvas" style="height: 500px; width: 400px"></div>
+		<div id="map_canvas" style="height: 600px; width: 600px"></div>
 	</div>
 		<script>
 			//This script create the map with a default address.
