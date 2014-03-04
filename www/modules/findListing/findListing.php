@@ -14,14 +14,7 @@
 					<input type="text" class="form-control" placeholder="Destination Address">
 				</div>
 				<button type="submit" class="btn btn-default" onclick="calcRoute();" >Search</button>
-			</form>
-		</div>		
-	</div>
-	<div class="col-lg-6">
-		<div id="map_canvas" style="height: 500px; width: 400px"></div>
-	</div>
-</div>
-<?php
+				<?php
 	$con=mysqli_connect("localhost","collegecarpool","collegecarpool","purdue_test");
 	
 	if(mysqli_connect_errno())
@@ -32,7 +25,7 @@
 	{
 		$sql = "SELECT * FROM listings";
 		$result = mysqli_query($con,$sql);
-		echo "<table border='1' align = 'top'>
+		echo "<table border='1' align = 'left'>
 		<tr>
 		<th> StartingAddress </th>
 		<th> EndingAddress </th>
@@ -56,6 +49,14 @@
 	}
 	mysqli_close($con);
 ?>
+
+			</form>
+		</div>		
+	</div>
+</div>
+	<div class="col-lg-6">
+		<div id="map_canvas" style="height: 500px; width: 400px"></div>
+	</div>
 		<script>
 			//This script create the map with a default address.
 			//Its current location is somewhere by College Station
