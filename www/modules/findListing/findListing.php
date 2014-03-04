@@ -130,7 +130,8 @@
 			{		
 				mysqli_close($con);
 				header('Location: ../../index.html');
-				exit();		
+				exit();	
+			}
 		?>
 	</div>
 </div>
