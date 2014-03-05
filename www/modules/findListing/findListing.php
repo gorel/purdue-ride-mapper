@@ -16,9 +16,7 @@
 				<button type="submit" class="btn btn-default" onclick="calcRoute();" >Search</button>
 			</form>			
 		</div>		
-	<div class="col-lg-6" style="padding-left: 0px; padding-right: 0px; padding-top: 5px">
 		<div id="map_canvas" style="height: 400px; width: 800px"></div>
-	</div>
 		<script>
 			//This script create the map with a default address.
 			//Its current location is somewhere by College Station
