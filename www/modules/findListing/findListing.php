@@ -3,7 +3,6 @@
 <body>
 <hr class="featurette-divider">
 <div class="row">
-	<div class="col-lg-6">
 		<div>
 		<h2 class="form-signin-heading">Search for a ride:</h2>
 			<form class="form-inline" role="form">
@@ -86,47 +85,44 @@
 				map.fitZoom();
 			});
 		</script>
-<div>
-<?php
-	$con=mysqli_connect("localhost","collegecarpool","collegecarpool","purdue_test");
-	
-	if(mysqli_connect_errno())
-	{
-		echo "Failed to connect to MySQL: " . mysqli_connect_error();
-	}
-	else
-	{
-		$sql = "SELECT * FROM listings";
-		$result = mysqli_query($con,$sql);
-		echo "<table class='table table-striped'>
-		<thead>
-		<tr>
-		<th> StartingAddress </th>
-		<th> EndingAddress </th>
-		<th> Request? </th>
-		<th> Passengers </th>
-		<th> Date of Departure </th>
-		<th> User ID </th>
-		</tr>
-		</thead>";
-		while($row = mysqli_fetch_array($result))
+	<div>
+	<?php
+		$con=mysqli_connect("localhost","collegecarpool","collegecarpool","purdue_test");
+		
+		if(mysqli_connect_errno())
 		{
-		echo "<tr>";
-		echo "<td>". $row['startingAddress'] . "</td>";
-		echo "<td>". $row["endingAddress"] . "</td>";
-		echo "<td>". $row["isRequest"] . "</td>";
-		echo "<td>". $row["passengers"] . "</td>";
-		echo "<td>". $row["dateOfDeparture"] . "</td>";
-		echo "<td>". $row["user_id"] . "</td>";
-		echo "</tr>";
+			echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
-		echo "</table>";
-	}
-	mysqli_close($con);
-?>
-
-</div>
-
-</div>
+		else
+		{
+			$sql = "SELECT * FROM listings";
+			$result = mysqli_query($con,$sql);
+			echo "<table class='table table-striped'>
+			<thead>
+			<tr>
+			<th> StartingAddress </th>
+			<th> EndingAddress </th>
+			<th> Request? </th>
+			<th> Passengers </th>
+			<th> Date of Departure </th>
+			<th> User ID </th>
+			</tr>
+			</thead>";
+			while($row = mysqli_fetch_array($result))
+			{
+			echo "<tr>";
+			echo "<td>". $row['startingAddress'] . "</td>";
+			echo "<td>". $row["endingAddress"] . "</td>";
+			echo "<td>". $row["isRequest"] . "</td>";
+			echo "<td>". $row["passengers"] . "</td>";
+			echo "<td>". $row["dateOfDeparture"] . "</td>";
+			echo "<td>". $row["user_id"] . "</td>";
+			echo "</tr>";
+			}
+			echo "</table>";
+		}
+		mysqli_close($con);
+	?>
+	</div>
 </body>
 </html>
