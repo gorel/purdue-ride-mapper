@@ -14,7 +14,7 @@
 				</div>
 				<button type="submit" class="btn btn-default" onclick="calcRoute();" >Search</button>
 			</form>			
-		</div>		
+</div>		
 		<div id="map_canvas" style="height: 400px; width: 800px"></div>
 		<script>
 			//This script create the map with a default address.
