@@ -56,16 +56,16 @@
 							else
 							{
 								echo '<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>';
-								echo '<li><a href="#" id="logout" onclick="location.href = 'modules/signin/signoutProc.php';">Log Out</a></li>';
+								echo '<li><a href="#" id="logout" onclick="location.href = \'modules/signin/signoutProc.php\';">Log Out</a></li>';
 							}
-							
+
 							function logout()
-							{								
+							{
 								session_destroy();
 								echo "<script type='text/javascript'>alert('logged out'); location.reload();</script>";
 							}
 						?>
-						
+
 					</ul>
 				</div>
 
