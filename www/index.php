@@ -58,16 +58,17 @@
 								echo '<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>';
 								echo '<li><a href="#" id="login" onclick="logout();">Log Out</a></li>';
 							}
+							session_destroy();
 						?>
 						
-						<script type="text/javascript">
+						<!--<script type="text/javascript">
 							function logout()
 							{
 								alert("logging out");
 								<?php session_destroy(); ?>;
 								location.reload();
 							}
-						</script>
+						</script> -->
 					</ul>
 				</div>
 
