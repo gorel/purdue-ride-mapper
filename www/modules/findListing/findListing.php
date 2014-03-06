@@ -3,8 +3,10 @@
 <body>
 <hr class="featurette-divider">
 <div class="row">
+		<div id="map_canvas" style="height: 400px; width: 100%"></div>
+		<hr class="featurette-divider">
 		<div>
-		<h2 class="form-signin-heading">Search for a ride:</h2>
+			<h2 class="form-signin-heading">Search for a ride:</h2>
 			<form class="form-inline" role="form">
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="Starting Address">
@@ -14,8 +16,8 @@
 				</div>
 				<button type="submit" class="btn btn-default" onclick="calcRoute();" >Search</button>
 			</form>			
-</div>		
-		<div id="map_canvas" style="height: 400px; width: 800px"></div>
+		</div>		
+		<br>
 		<script>
 			//This script create the map with a default address.
 			//Its current location is somewhere by College Station
