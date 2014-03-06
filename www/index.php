@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<script>
+function sessionDestroy()
+{
+	<?php session_destroy(); ?>
+
+}
+</script>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -59,7 +66,7 @@ if (!isset($_SESSION['user']))
 else
 {
 	echo '<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>';
-	echo '<li><a href="#" id="login" onclick="<?php session_destroy();?>">Log Out</a></li>';
+	echo '<li><a href="#" id="login" onclick="sessionDestroy()">Log Out</a></li>';
 }
 ?>
 					</ul>
