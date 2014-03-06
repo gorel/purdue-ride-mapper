@@ -6,16 +6,24 @@
 		<div id="map_canvas" style="height: 400px; width: 100%"></div>
 		<hr class="featurette-divider">
 		<div>
-			<h2 class="form-signin-heading">Search for a ride:</h2>
-			<form class="form-inline" role="form">
-				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Starting Address">
-				</div>
-				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Destination Address">
-				</div>
-				<button type="submit" class="btn btn-default" onclick="calcRoute();" >Search</button>
-			</form>
+		<?php
+			session_start();
+			if (!isset($_SESSION['user']))
+			{
+			}
+			else
+			{
+				<h2 class="form-signin-heading">Search for a ride:</h2>
+				<form class="form-inline" role="form">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Starting Address">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Destination Address">
+					</div>
+					<button type="submit" class="btn btn-default" onclick="calcRoute();" >Search</button>
+				</form>
+			?>
 		</div>
 		<br>
 		<script>
