@@ -59,14 +59,14 @@ else
 	else if(!strcmp($password, $hashpw) && $verified==0)
 	{
 		echo "You are not a verified user";
-		echo "You will be redirected to main page in 5 seconds.. if your browser is IE6 and you just want to watch the world burn, refresh the webpage");
+		echo "You will be redirected to main page in 5 seconds.. if your browser is IE6 and you just want to watch the world burn, refresh the webpage";
 		time.sleep(5);
 		header("Location:../../index.php");
 	}
 	else
 	{
 		echo "Password is not correct for E-Mail address";
-		echo "You will be redirected to main page in 5 seconds.. if your browser is IE6 and you just want to watch the world burn, refresh the webpage");
+		echo "You will be redirected to main page in 5 seconds.. if your browser is IE6 and you just want to watch the world burn, refresh the webpage";
 		time.sleep(5);
 		header("Location:../../index.php");
 	}
