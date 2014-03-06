@@ -34,6 +34,13 @@
 				sender.parentNode.className = "active";
 			}
 		</script>
+		<script type="text/javascript">
+			function logout()
+			{
+				<?php session_destroy(); ?>;
+				location.reload();
+			}
+		</script>
 
 		<div class="container">
 			<div id="#body">
@@ -46,18 +53,18 @@
 						<li><a href="#" id="about" onclick="hideAll(this);">About Us</a></li>
 						<li><a href="#" id="contact" onclick="hideAll(this);">Contact Us</a></li>
 						<li><a href="#" id="findARide" onclick="hideAll(this);">Find a Ride</a></li>
-<?php
-session_start();
-if (!isset($_SESSION['user']))
-{
-	echo '<li><a href="#" id="login" onclick="hideAll(this);">Log In</a></li>';
-}
-else
-{
-	echo '<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>';
-	echo '<li><a href="#" id="login" onclick="location.reload();">Log Out</a></li>';
-}
-?>
+						<?php
+							session_start();
+							if (!isset($_SESSION['user']))
+							{
+								echo '<li><a href="#" id="login" onclick="hideAll(this);">Log In</a></li>';
+							}
+							else
+							{
+								echo '<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>';
+								echo '<li><a href="#" id="login" onclick="logout();">Log Out</a></li>';
+							}
+						?>
 					</ul>
 				</div>
 
