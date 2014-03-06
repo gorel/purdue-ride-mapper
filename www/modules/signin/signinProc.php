@@ -49,9 +49,6 @@ else
 	$stmt->bind_result($user_id, $password);
 	$stmt->fetch();
 
-	echo "$password, $hashpw";
-	die;
-
 	if (!strcmp($password, $hashpw))
 	{
 		session_start();
