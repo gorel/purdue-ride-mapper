@@ -165,7 +165,7 @@
 				</div>				
 				
 				<div class="col-md-4">
-					<form class="form-signin" action="registerProc.php" role="form" method="post" id="registerForm">
+					<form class="form-signin" action="/modules/register/registerProc.php" role="form" method="post" id="registerForm">
 						<h2 class="form-signin-heading">Register here</h2>
 						
 						<div class="form-group has-error">
