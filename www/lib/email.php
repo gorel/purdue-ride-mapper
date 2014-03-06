@@ -19,6 +19,7 @@
  *
  */
 $orgEmail = "donotreply@collegecarpool.us";
+$tmpEmail = "collegecarpool1869@gmail.com";
 $orgName  = "College Carpool";
 
 $headers  = "MIME-Version: 1.0" . "\r\n" .
@@ -55,6 +56,35 @@ function sendRegMail($rcpt, $fname, $uid, $token)
 
         mail($rcpt, $subject, $msg, $headers);
 }
+
+/**
+ * 
+ * Send an email to administrators (Contact us)
+ *
+ * @param	string $from   user's email
+ * @param	int    $cat    message category
+ * @param	string $msg    message
+ *
+ */
+function sendContactMail($from, $cat, $msg)
+{
+	global $tmpEmail, $orgName, $headers;
+
+	if ($cat == 0)
+		$sub = "Make a listing";
+        else if ($cat == 1)
+		$sub = "Find a listing";
+	else if ($cat == 2)
+		$sub = "Other";
+
+        $content = "<html><body>" .
+                   "From: $from<br><br>" .
+                   $msg .
+                   "</body></html>";
+
+	mail($tmpEmail, $sub, $msg, $headers);
+}
+ 
 
 ?>
 
