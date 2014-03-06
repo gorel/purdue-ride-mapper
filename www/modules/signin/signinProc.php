@@ -47,6 +47,10 @@ else
 {
 	echo "binding result";
 	$stmt->bind_result($user_id, $password);
+
+	echo "$password, $hashpw";
+	die;
+
 	if (!strcmp($password, $hashpw))
 	{
 		session_start();
