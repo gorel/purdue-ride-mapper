@@ -59,7 +59,7 @@ if (!isset($_SESSION['user']))
 else
 {
 	echo '<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>';
-	echo '<li><a href="#" id="login" onclick="hideAll(this)">Log Out</a></li>';
+	echo '<li><a href="#" id="login" onclick="session_destroy();">Log Out</a></li>';
 }
 ?>
 					</ul>
