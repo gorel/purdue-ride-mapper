@@ -4,14 +4,14 @@
 		<div class="col-md-4">
 		</div>					
 		<div class="col-md-4">
-			<form enctype="application/x-www-form-urlencoded" class="form-horizontal" action="" method="post"><div class="padded">
+			<form enctype="application/x-www-form-urlencoded" class="form-horizontal" action="/modules/contact/contactProc.php" method="post"><div class="padded">
 				<h2 class="form-signin-heading">Contact Us</h2>
 				<div class="control-group"><label for="category" class="control-label required">Category</label>
 					<div class="controls">
 						<select name="category" id="category" class="form-control">
-						<option value="make">Making a Listing</option>
-						<option value="find">Finding a Listing</option>
-						<option value="other">Other</option>
+						<option value="0">Making a Listing</option>
+						<option value="1">Finding a Listing</option>
+						<option value="2">Other</option>
 						</select>
 					</div>
 				</div>
