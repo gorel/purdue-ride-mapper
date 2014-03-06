@@ -56,7 +56,6 @@ else
 {
 	echo '<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>';
 	echo '<li><a href="#" id="login" onclick="session_destroy();">Log Out</a></li>';
-	header("Location:index.php");
 }
 ?>
 					</ul>
