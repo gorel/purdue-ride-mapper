@@ -1,7 +1,3 @@
-<?php
-session_start();
-echo '$_SESSION['user']';
-?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -26,6 +22,10 @@ echo '$_SESSION['user']';
 	</head>
 
 	<body>
+<?php
+session_start();
+echo '$_SESSION['user']';
+?>
 		<script type="text/javascript">
 			function hideAll(sender)
 			{
