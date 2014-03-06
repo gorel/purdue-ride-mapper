@@ -21,10 +21,10 @@
 		<script src="js/gmaps.js"></script>
 	</head>
 
-	<body>		
+	<body>
 		<script type="text/javascript">
-			function hideAll(sender) 
-			{				
+			function hideAll(sender)
+			{
 				document.getElementById('about').parentNode.className = "inactive";
 				document.getElementById('contact').parentNode.className = "inactive";
 				document.getElementById('findARide').parentNode.className = "inactive";
@@ -34,7 +34,7 @@
 				sender.parentNode.className = "active";
 			}
 		</script>
-		
+
 		<div class="container">
 			<div id="#body">
 				<div class="masthead">
@@ -47,22 +47,31 @@
 						<li><a href="#" id="contact" onclick="hideAll(this);">Contact Us</a></li>
 						<li><a href="#" id="findARide" onclick="hideAll(this);">Find a Ride</a></li>
 						<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>
-						<li><a href="#" id="login" onclick="hideAll(this);">Log In</a></li>
+<?php
+
+if ($_SESSION['user'] != null)
+{
+	echo '<li><a href="#" id="login" onclick="hideAll(this);">Log In</a></li>';
+}
+else
+{
+	echo '<li><a href="#" id="login" onclick="hideAll(this);">Log Out</a></li>';
+}
 					</ul>
 				</div>
-				
+
 				<div id="content">
 					<hr class="featurette-divider">
 					<!-- Jumbotron -->
 					<div class="jumbotron">
 						<h1>Welcome to College Carpool!</h1>
-						<p class="lead">Many students who attend college live far away from home. 
-						Many of those students do not own vehicles on campus. When it comes time to take trips home or to other places, 
-						some students need rides or are looking for people to share with to help pay for gas. But sometimes finding people 
+						<p class="lead">Many students who attend college live far away from home.
+						Many of those students do not own vehicles on campus. When it comes time to take trips home or to other places,
+						some students need rides or are looking for people to share with to help pay for gas. But sometimes finding people
 						in a student population of 40,000 can be difficult or even impossible.
 						College Carpool is here to make it easier!
 						</p>
-						
+
 						<p><a class="btn btn-lg btn-success" id="register" href="#" role="button" onclick="hideAll(this);">Register Now!</a></p>
 					</div>
 
@@ -91,8 +100,8 @@
 						</div>
 					</div>
 				</div>
-				
-				<script type="text/javascript">    
+
+				<script type="text/javascript">
 					$("#login").click(function()
 					{
 						$( "#content" ).load( "modules/signin/signin.php" );
@@ -134,7 +143,7 @@
 						$( "#content" ).load( "modules/register/register.php" );
 					});
 				</script>
-				
+
 
 				<!-- Site footer -->
 				<div class="footer">
