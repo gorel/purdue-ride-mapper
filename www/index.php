@@ -22,6 +22,10 @@
 	</head>
 
 	<body>
+<?php
+session_start();
+echo "$_SESSION['user']";
+?>
 		<script type="text/javascript">
 			function hideAll(sender)
 			{
