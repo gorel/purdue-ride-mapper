@@ -42,6 +42,7 @@ function hideAll(sender)
 	document.getElementById('listARide').parentNode.className = "inactive";
 	document.getElementById('login').parentNode.className = "inactive";
 	document.getElementById('home').parentNode.className = "inactive";
+	document.getElementById('logout').parentNode.className = "inactive";
 	sender.parentNode.className = "active";
 }
 </script>
@@ -66,7 +67,7 @@ if (!isset($_SESSION['user']))
 else
 {
 	echo '<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>';
-	echo '<li><a href="#" id="login" onclick="sessionDestroy()">Log Out</a></li>';
+	echo '<li><a href="#" id="logout" onclick="hideAll(this)">Log Out</a></li>';
 }
 ?>
 					</ul>
@@ -154,6 +155,10 @@ $("#register").click(function()
 {
 	$( "#content" ).load( "modules/register/register.php" );
 });
+$("#logout").click(function()
+{
+<?php session_destroy(); ?>;
+}
 </script>
 
 
