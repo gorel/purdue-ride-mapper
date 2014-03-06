@@ -38,13 +38,14 @@ $stmt->bind_param('s', $email);
 $stmt->execute();
 $stmt->store_result();
 
-if ($stmt->num_rows < 0)
+if ($stmt->num_rows < 1)
 {
 	echo "E-Mail is incorrect or it doesn't exist";
 	die;
 }
 else
 {
+	echo "binding result";
 	$stmt->bind_result($user_id, $password);
 	if (strcmp($password, hashpw))
 	{
