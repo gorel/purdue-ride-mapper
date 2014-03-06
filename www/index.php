@@ -48,6 +48,7 @@
 						<li><a href="#" id="findARide" onclick="hideAll(this);">Find a Ride</a></li>
 <?php
 session_start();
+echo '$_SESSION['user']';
 if (!isset($_SESSION['user']))
 {
 	echo '<li><a href="#" id="login" onclick="hideAll(this);">Log In</a></li>';
