@@ -47,6 +47,7 @@ else
 {
 	echo "binding result";
 	$stmt->bind_result($user_id, $password);
+	$stmt->fetch();
 
 	echo "$password, $hashpw";
 	die;
