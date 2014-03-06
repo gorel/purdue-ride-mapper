@@ -22,10 +22,6 @@
 	</head>
 
 	<body>
-<?php
-session_start();
-echo $_SESSION['user'];
-?>
 		<script type="text/javascript">
 			function hideAll(sender)
 			{
@@ -52,14 +48,15 @@ echo $_SESSION['user'];
 						<li><a href="#" id="findARide" onclick="hideAll(this);">Find a Ride</a></li>
 <?php
 session_start();
-if (!isset($_SESSION['user']))
+if (session_id() == '' || !isset($_SESSION))
 {
 	echo '<li><a href="#" id="login" onclick="hideAll(this);">Log In</a></li>';
 }
 else
 {
 	echo '<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>';
-	echo '<li><a href="#" id="login" onclick="hideAll(this)">Log Out</a></li>';
+	echo '<li><a href="#" id="login" onclick="session_destroy();">Log Out</a></li>';
+	header("Location:index.php");
 }
 ?>
 					</ul>
