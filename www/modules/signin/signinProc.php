@@ -58,3 +58,7 @@ else
 
 
 $stmt->close();
+
+header("Location:../../index.php");
+
+?>
