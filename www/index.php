@@ -37,6 +37,7 @@
 		<script type="text/javascript">
 			function logout()
 			{
+				alert("logging out");
 				<?php session_destroy(); ?>;
 				location.reload();
 			}
