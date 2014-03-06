@@ -46,7 +46,6 @@
 						<li><a href="#" id="about" onclick="hideAll(this);">About Us</a></li>
 						<li><a href="#" id="contact" onclick="hideAll(this);">Contact Us</a></li>
 						<li><a href="#" id="findARide" onclick="hideAll(this);">Find a Ride</a></li>
-						<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>
 <?php
 session_start();
 if (session_id() == '' || !isset($_SESSION))
@@ -55,6 +54,7 @@ if (session_id() == '' || !isset($_SESSION))
 }
 else
 {
+	echo '<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>';
 	echo '<li><a href="#" id="login" onclick="hideAll(this);">Log Out</a></li>';
 }
 ?>
