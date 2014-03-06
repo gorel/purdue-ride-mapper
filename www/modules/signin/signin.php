@@ -105,10 +105,6 @@
 				<div class="form-group">
 					<button class="btn btn-lg btn-primary btn-block" onclick="registerRedirect()" type = "button" id="registerButton">Register</button>
 				</div>
-
-				<div class="form-group">
-					<button class="btn btn-lg btn-primary btn-block" onclick="forgotPassword" type="text" id="forgotPassword">Forgot Password?</button>
-				</div>
 			</form>
 		</div> <!-- col-md-4 -->
 	</div> <!-- row -->
