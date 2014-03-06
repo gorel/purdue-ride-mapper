@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+<script type="text/javascript">
+function sessionDestroy()
+{
+	<?php session_destroy(); ?>
+
+}
+</script>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,7 +42,6 @@ function hideAll(sender)
 	document.getElementById('listARide').parentNode.className = "inactive";
 	document.getElementById('login').parentNode.className = "inactive";
 	document.getElementById('home').parentNode.className = "inactive";
-	document.getElementById('logout').parentNode.className = "inactive";
 	sender.parentNode.className = "active";
 }
 </script>
@@ -60,7 +66,7 @@ if (!isset($_SESSION['user']))
 else
 {
 	echo '<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>';
-	echo '<li><a href="#" id="logout" onclick="hideAll(this)">Log Out</a></li>';
+	echo '<li><a href="#" id="login" onclick="sessionDestroy()">Log Out</a></li>';
 }
 ?>
 					</ul>
@@ -148,10 +154,6 @@ $("#register").click(function()
 {
 	$( "#content" ).load( "modules/register/register.php" );
 });
-$("#logout").click(function()
-{
-<?php session_destroy(); ?>;
-}
 </script>
 
 
