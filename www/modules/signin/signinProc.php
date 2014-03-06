@@ -47,7 +47,7 @@ else
 {
 	echo "binding result";
 	$stmt->bind_result($user_id, $password);
-	if (strcmp($password, $hashpw))
+	if (!strcmp($password, $hashpw))
 	{
 		session_start();
 		$_SESSION['user']=$user_id;
