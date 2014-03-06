@@ -45,7 +45,8 @@ if ($stmt->num_rows < 0)
 }
 else
 {
-	if($stmt->get_result() == hashpw)
+	$stmt->bind_result($user_id, $password);
+	if (strcmp($password, hashpw))
 	{
 		session_start();
 		$_SESSION['user']=user_id;
@@ -55,6 +56,7 @@ else
 		echo "Password is not correct for E-Mail address";
 	}
 }
+
 
 
 $stmt->close();
