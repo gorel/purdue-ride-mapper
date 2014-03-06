@@ -51,10 +51,14 @@ else
 	{
 		session_start();
 		$_SESSION['user']=user_id;
+
+		echo "log in success";
+		die;
 	}
 	else
 	{
 		echo "Password is not correct for E-Mail address";
+		die;
 	}
 }
 

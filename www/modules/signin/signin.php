@@ -81,7 +81,7 @@
 		</div>
 
 		<div class="col-md-4">
-			<form class="form-signin" action="modules/signin/signinProc.php" method="post" role="form">
+			<form class="form-signin" action="/modules/signin/signinProc.php" method="post" role="form">
 				<h2 class="form-signin-heading">Please Sign In</h2>
 
 				<div class="form-group has-error">
