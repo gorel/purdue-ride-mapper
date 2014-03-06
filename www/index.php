@@ -49,7 +49,7 @@
 						<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>
 <?php
 
-if ($_SESSION['user'] != null)
+if (!isset($_SESSION))
 {
 	echo '<li><a href="#" id="login" onclick="hideAll(this);">Log In</a></li>';
 }
