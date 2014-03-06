@@ -26,18 +26,18 @@
 session_start();
 echo $_SESSION['user'];
 ?>
-<script type="text/javascript">
-function hideAll(sender)
-{
-	document.getElementById('about').parentNode.className = "inactive";
-	document.getElementById('contact').parentNode.className = "inactive";
-	document.getElementById('findARide').parentNode.className = "inactive";
-	document.getElementById('listARide').parentNode.className = "inactive";
-	document.getElementById('login').parentNode.className = "inactive";
-	document.getElementById('home').parentNode.className = "inactive";
-	sender.parentNode.className = "active";
-}
-</script>
+		<script type="text/javascript">
+			function hideAll(sender)
+			{
+				document.getElementById('about').parentNode.className = "inactive";
+				document.getElementById('contact').parentNode.className = "inactive";
+				document.getElementById('findARide').parentNode.className = "inactive";
+				document.getElementById('listARide').parentNode.className = "inactive";
+				document.getElementById('login').parentNode.className = "inactive";
+				document.getElementById('home').parentNode.className = "inactive";
+				sender.parentNode.className = "active";
+			}
+		</script>
 
 		<div class="container">
 			<div id="#body">
@@ -59,7 +59,7 @@ if (!isset($_SESSION['user']))
 else
 {
 	echo '<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>';
-	echo '<li><a href="#" id="login" onclick="sessionDestroy()">Log Out</a></li>';
+	echo '<li><a href="#" id="login" onclick="hideAll(this)">Log Out</a></li>';
 }
 ?>
 					</ul>
@@ -106,48 +106,48 @@ else
 					</div>
 				</div>
 
-<script type="text/javascript">
-$("#login").click(function()
-{
-	$( "#content" ).load( "modules/signin/signin.php" );
-});
-$("#contact").click(function()
-{
-	$( "#content" ).load( "modules/contact/contact.php" );
-});
-$("#contactAlternative").click(function()
-{
-	$( "#content" ).load( "modules/contact/contact.php" );
-});
-$("#home").click(function()
-{
-	$( "#content" ).load( "home.php" );
-});
-$("#listARide").click(function()
-{
-	$( "#content" ).load( "modules/createListing/createListing.php" );
-});
-$("#findARideAlternative").click(function()
-{
-	$( "#content" ).load( "modules/findListing/findListing.php" );
-});
-$("#listARideAlternative").click(function()
-{
-	$( "#content" ).load( "modules/createListing/createListing.php" );
-});
-$("#findARide").click(function()
-{
-	$( "#content" ).load( "modules/findListing/findListing.php" );
-});
-$("#about").click(function()
-{
-	$( "#content" ).load( "modules/about/about.php" );
-});
-$("#register").click(function()
-{
-	$( "#content" ).load( "modules/register/register.php" );
-});
-</script>
+				<script type="text/javascript">
+					$("#login").click(function()
+					{
+						$( "#content" ).load( "modules/signin/signin.php" );
+					});
+					$("#contact").click(function()
+					{
+						$( "#content" ).load( "modules/contact/contact.php" );
+					});
+					$("#contactAlternative").click(function()
+					{
+						$( "#content" ).load( "modules/contact/contact.php" );
+					});
+					$("#home").click(function()
+					{
+						$( "#content" ).load( "home.php" );
+					});
+					$("#listARide").click(function()
+					{
+						$( "#content" ).load( "modules/createListing/createListing.php" );
+					});
+					$("#findARideAlternative").click(function()
+					{
+						$( "#content" ).load( "modules/findListing/findListing.php" );
+					});
+					$("#listARideAlternative").click(function()
+					{
+						$( "#content" ).load( "modules/createListing/createListing.php" );
+					});
+					$("#findARide").click(function()
+					{
+						$( "#content" ).load( "modules/findListing/findListing.php" );
+					});
+					$("#about").click(function()
+					{
+						$( "#content" ).load( "modules/about/about.php" );
+					});
+					$("#register").click(function()
+					{
+						$( "#content" ).load( "modules/register/register.php" );
+					});
+				</script>
 
 
 				<!-- Site footer -->
