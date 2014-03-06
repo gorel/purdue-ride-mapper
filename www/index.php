@@ -47,7 +47,7 @@
 						<li><a href="#" id="contact" onclick="hideAll(this);">Contact Us</a></li>
 						<li><a href="#" id="findARide" onclick="hideAll(this);">Find a Ride</a></li>
 <?php
-session_start();
+//session_start();
 if (!isset($_SESSION))
 {
 	echo '<li><a href="#" id="login" onclick="hideAll(this);">Log In</a></li>';
