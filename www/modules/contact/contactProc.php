@@ -9,12 +9,14 @@
 * @version	1.0
 
 */
-require '../../lib/email.php'
+require '../../lib/email.php';
 
-$cat   = $_POST["category"]);
+$cat   = $_POST["category"];
 $email = strtolower($_POST["email"]);
 $msg   = $_POST["text"];
 
 sendContactMail($email, $cat, $msg);
+
+header("Location:../../index.php");
 
 ?>
