@@ -34,14 +34,7 @@
 				sender.parentNode.className = "active";
 			}
 		</script>
-		<script type="text/javascript">
-			function logout()
-			{
-				alert("logging out");
-				<?php session_destroy(); ?>;
-				location.reload();
-			}
-		</script>
+
 
 		<div class="container">
 			<div id="#body">
@@ -66,6 +59,15 @@
 								echo '<li><a href="#" id="login" onclick="logout();">Log Out</a></li>';
 							}
 						?>
+						
+						<script type="text/javascript">
+							function logout()
+							{
+								alert("logging out");
+								<?php session_destroy(); ?>;
+								location.reload();
+							}
+						</script>
 					</ul>
 				</div>
 
