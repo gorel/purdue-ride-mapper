@@ -25,12 +25,24 @@
 		<script type="text/javascript">
 			function hideAll(sender)
 			{
-				document.getElementById('about').parentNode.className = "inactive";
-				document.getElementById('contact').parentNode.className = "inactive";
-				document.getElementById('findARide').parentNode.className = "inactive";
-				document.getElementById('listARide').parentNode.className = "inactive";
-				document.getElementById('login').parentNode.className = "inactive";
-				document.getElementById('home').parentNode.className = "inactive";
+				if (document.getElementById("about")) {
+					document.getElementById('about').parentNode.className = "inactive";
+				}
+				if (document.getElementById("contact")) {
+					document.getElementById('contact').parentNode.className = "inactive";
+				}
+				if (document.getElementById("findARide")) {
+					document.getElementById('findARide').parentNode.className = "inactive";
+				}
+				if (document.getElementById("listARide")) {
+					document.getElementById('listARide').parentNode.className = "inactive";
+				}
+				if (document.getElementById("login")) {
+					document.getElementById('login').parentNode.className = "inactive";
+				}
+				if (document.getElementById("home")) {
+					document.getElementById('home').parentNode.className = "inactive";
+				}
 				sender.parentNode.className = "active";
 			}
 		</script>
