@@ -38,7 +38,7 @@ $stmt->bind_param('s', $email);
 $stmt->execute();
 $stmt->store_result();
 
-if ($stmt->num_rows != 1)
+if ($stmt->num_rows < 0)
 {
 	echo "E-Mail is incorrect or it doesn't exist";
 	die;
