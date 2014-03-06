@@ -41,7 +41,7 @@
 	<hr class="featurette-divider">
 
 	<div class="featurette" id="contact">
-		<img class="featurette-image img-circle img-responsive pull-right" src="images/gustavo.gif" height="300" width="300">
+		<img class="featurette-image img-circle img-responsive pull-right" src="images/stephen_hong.jpg" height="300" width="300">
 		<h2 class="featurette-heading">Stephen Hong
 			<span class="text-muted">Developer</span>
 		</h2>
