@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-<script>
+<script type="text/javascript">
 function sessionDestroy()
 {
 	<?php session_destroy(); ?>
