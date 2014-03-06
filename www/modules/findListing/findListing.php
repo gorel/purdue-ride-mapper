@@ -107,19 +107,25 @@
 			<th> Request? </th>
 			<th> Passengers </th>
 			<th> Date of Departure </th>
-			<th> User ID </th>
 			</tr>
 			</thead>";
 			while($row = mysqli_fetch_array($result))
 			{
-			echo "<tr>";
-			echo "<td>". $row['startingAddress'] . "</td>";
-			echo "<td>". $row["endingAddress"] . "</td>";
-			echo "<td>". $row["isRequest"] . "</td>";
-			echo "<td>". $row["passengers"] . "</td>";
-			echo "<td>". $row["dateOfDeparture"] . "</td>";
-			echo "<td>". $row["user_id"] . "</td>";
-			echo "</tr>";
+				echo "<tr>";
+				echo "<td>". $row['startingAddress'] . "</td>";
+				echo "<td>". $row["endingAddress"] . "</td>";
+				if($row["isRequest"] == 0)
+				{
+					echo "<td> No </td>";					
+				}
+				else
+				{
+					echo "<td> Yes </td>";					
+				}
+
+				echo "<td>". $row["passengers"] . "</td>";
+				echo "<td>". $row["dateOfDeparture"] . "</td>";
+				echo "</tr>";
 			}
 			echo "</table>";
 		}
