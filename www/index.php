@@ -57,6 +57,7 @@ else
 {
 	echo '<li><a href="#" id="login" onclick="hideAll(this);">Log Out</a></li>';
 }
+?>
 					</ul>
 				</div>
 
