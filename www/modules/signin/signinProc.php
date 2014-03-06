@@ -53,7 +53,6 @@ else
 		$_SESSION['user']=user_id;
 
 		echo "log in success";
-		die;
 	}
 	else
 	{
