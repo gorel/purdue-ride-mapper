@@ -9,9 +9,9 @@
 				<div class="control-group"><label for="category" class="control-label required">Category</label>
 					<div class="controls">
 						<select name="category" id="category" class="form-control">
-						<option value="Making a Listing" label="Question">Making a Listing</option>
-						<option value="Finding a Listing" label="Other Problem">Finding a Listing</option>
-						<option value="Other Problem" label="Other Problem">Other</option>
+						<option value="make">Making a Listing</option>
+						<option value="find">Finding a Listing</option>
+						<option value="other">Other</option>
 						</select>
 					</div>
 				</div>
