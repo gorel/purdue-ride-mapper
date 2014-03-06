@@ -34,7 +34,7 @@
 				sender.parentNode.className = "active";
 			}
 		</script>
-		<script>
+		<script type="text/javascript">
 			function logout()
 			{
 				<?php session_destroy(); ?>;
