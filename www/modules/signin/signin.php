@@ -8,25 +8,25 @@
 <script>
 	var emailValid = false;
 	var passwordValid = false;
-	
+
 	function registerRedirect()
 	{
 		location.replace("modules/register/register.php");
 	}
-	
+
 	function forgotPassword()
 	{
 		location.replace("forgotPassword.html");
 	}
-	
+
 	function validateEmail(sender)
 	{
-		var parent = sender.parentNode;		
+		var parent = sender.parentNode;
 		var textBoxValue = sender.value;
 		var atPos= textBoxValue.indexOf("@");
 		var dotPos= textBoxValue.lastIndexOf(".");
 		var edu = textBoxValue.split(".").pop();
-		
+
 		if (atPos < 1 || dotPos < atPos + 2 || dotPos + 2 >= textBoxValue.length || edu != "edu")
 		{
 			parent.className = "form-group has-error";
@@ -40,10 +40,10 @@
 			validateForm();
 		}
 	}
-	
+
 	function validatePassword(sender)
 	{
-		var parent = sender.parentNode;		
+		var parent = sender.parentNode;
 		var textBoxValue = sender.value;
 
 		if(textBoxValue.length >= 6 && textBoxValue.length <= 24)
@@ -59,7 +59,7 @@
 			validateForm();
 		}
 	}
-	
+
 	function validateForm()
 	{
 		var button =  document.getElementById('loginButton');
@@ -76,36 +76,36 @@
 
 <div class="container" >
 	<div class="row">
-	
+
 		<div class="col-md-4">
-		</div>				
-		
+		</div>
+
 		<div class="col-md-4">
 			<form class="form-signin" role="form">
 				<h2 class="form-signin-heading">Please Sign In</h2>
-				
+
 				<div class="form-group has-error">
-					<input type="text" class="form-control" placeholder="Email" onkeyup="validateEmail(this)" required autofocus>
+					<input type="text" class="form-control" name="email" placeholder="Email" onkeyup="validateEmail(this)" required autofocus>
 				</div>
-				
+
 				<div class="form-group has-error">
-					<input type="password" class="form-control" placeholder="Password" onkeyup="validatePassword(this)" required>
+					<input type="password" class="form-control" name="pass" placeholder="Password" onkeyup="validatePassword(this)" required>
 				</div>
-				
+
 				<div class="form-group">
 					<label class="checkbox">
 						<input type="checkbox" value="remember-me">Remember me
 					</label>
 				</div>
-				
+
 				<div class="form-group">
 					<button class="btn btn-lg btn-primary btn-block" type="submit" id="loginButton" disabled>Sign in</button>
 				</div>
-				
+
 				<div class="form-group">
 					<button class="btn btn-lg btn-primary btn-block" onclick="registerRedirect()" type = "button" id="registerButton">Register</button>
 				</div>
-				
+
 				<div class="form-group">
 					<button class="btn btn-lg btn-primary btn-block" onclick="forgotPassword" type="text" id="forgotPassword">Forgot Password?</button>
 				</div>
