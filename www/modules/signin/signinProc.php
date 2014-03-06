@@ -50,7 +50,7 @@ else
 	if (strcmp($password, hashpw))
 	{
 		session_start();
-		$_SESSION['user']=user_id;
+		$_SESSION['user']=$user_id;
 
 		echo "log in success";
 	}
