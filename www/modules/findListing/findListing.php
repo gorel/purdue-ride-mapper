@@ -23,7 +23,8 @@
 					</div>
 					<button type="submit" class="btn btn-default" onclick="calcRoute();" >Search</button>
 				</form>
-			?>
+			}
+		?>
 		</div>
 		<br>
 		<script>
