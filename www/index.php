@@ -56,7 +56,7 @@
 							else
 							{
 								echo '<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>';
-								echo '<li><a href="#" id="logout" onclick="modules/signin/signinProc.php">Log Out</a></li>';
+								echo '<li><a href="#" id="logout" onclick="modules/signin/signoutProc.php">Log Out</a></li>';
 							}
 							
 							function logout()
