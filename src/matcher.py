@@ -157,6 +157,8 @@ class Matcher:
 			
 			dx = line.getX1() + u * px - circle.getX()
 			dy = line.getY1() + u * py - circle.getY()
+
+			print 'Distance in lat/long units:', math.sqrt(dx * dx + dy * dy)
 			
 			return math.sqrt(dx * dx + dy * dy)
 		except TypeError as err:
