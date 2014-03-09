@@ -14,10 +14,14 @@ class Circle:
 			self.y = y
 		else:
 			self.y = 0
+
+		# One unit of latitidue/longitude corresponds to about 55 miles.
+		# Multiply the user's desired drop off radius by 55 to find the fixed coordinate value
+		# Default to a 5 mile desired drop off radius.
 		if radius is not None and radius != 0:
-			self.radius = 50
+			self.radius = radius * 55
 		else:
-			self.radius = 50
+			self.radius = 55 * 5
 		
 	
 	def getX(self):
