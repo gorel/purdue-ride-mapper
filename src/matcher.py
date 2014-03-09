@@ -8,12 +8,16 @@ class Circle:
 	def __init__(self, x, y, radius):
 		if x is not None:
 			self.x = x
+			self.longitude = x
 		else:
 			self.x = 0
+			self.longitude = 0
 		if y is not None:
 			self.y = y
+			self.latitude = y
 		else:
 			self.y = 0
+			self.latitude = 0
 
 		# One unit of latitidue/longitude corresponds to about 55 miles.
 		# Multiply the user's desired drop off radius by 55 to find the fixed coordinate value
@@ -23,55 +27,41 @@ class Circle:
 		else:
 			self.radius = 55 * 5
 		
-	
-	def getX(self):
-		return self.x
-	
-	def getY(self):
-		return self.y
-	
-	def getRadius(self):
-		return self.radius
-		
 # Line class to represent a geometric Line object
 class Line:
 	def __init__(self, x1, y1, x2, y2):
 		if x1 is not None:
 			self.x1 = x1
+			self.start_lat = x1
 		else:
 			self.x1 = 0
+			self.start_lat = 0
 		if x2 is not None:
 			self.x2 = x2
+			self.end_lat = x2
 		else:
 			self.x2 = 0
+			self.end_lat = 0
 		if y1 is not None:
 			self.y1 = y1
+			self.start_long = y1
 		else:
 			self.y1 = 0
+			self.start_long = 0
 		if y2 is not None:
 			self.y2 = y2
+			self.end_long = y2
 		else:
 			self.y2 = 0
+			self.end_long = y2
 			
 		if self.x1 == self.x2:
 			self.x2 += 1
+			self.end_lat += 1
 		if self.y1 == self.y2:
 			self.y2 += 1
-		
-		
-	def getX1(self):
-		return self.x1
+			self.end_long += 1
 	
-	def getY1(self):
-		return self.y1
-	
-	def getX2(self):
-		return self.x2
-	
-	def getY2(self):
-		return self.y2
-
-
 class Matcher:
 	def __init__(self):
 		self.db = mysql.connect('localhost', 'collegecarpool', 'collegecarpool', 'purdue_test')
@@ -113,7 +103,7 @@ class Matcher:
 		scores = []
 		for offer in offers:
 			line = Line(offer[2], offer[3], offer[5], offer[6])
-			scores.append([self.score(self.dist_function(circle, line), circle.getRadius()), listing_ids[offer]])
+			scores.append([self.score(self.dist_function(circle, line), circle.radius), listing_ids[offer]])
 		
 		sorted_scores = sorted(scores, key=lambda score: -score[0])
 		return sorted_scores
@@ -138,7 +128,7 @@ class Matcher:
 		for request in requests:
 			circle = Circle(request[5], request[6], request[8])
 			print 'Scoring id', listing_ids[request]
-			scores.append([self.score(self.dist_function(circle, line), circle.getRadius()), listing_ids[request]])
+			scores.append([self.score(self.dist_function(circle, line), circle.radius), listing_ids[request]])
 		
 		sorted_scores = sorted(scores, key=lambda score: -score[0])
 		return sorted_scores
@@ -147,24 +137,24 @@ class Matcher:
 	def dist_function(self, circle, line):
 		RADIUS = 3961
 		try:
-			px = line.getX2() - line.getX1()
-			py = line.getY2() - line.getY1()
+			px = line.end_long - line.start_long
+			py = line.end_lat - line.start_lat
 			
-			u = ((circle.getX() - line.getX1()) * px + (circle.getY() - line.getY1()) * py) / float(px * px + py * py)
+			u = ((circle.longitude - line.start_long) * px + (circle.latitude - line.start_lat) * py) / float(px * px + py * py)
 			
 			if u > 1:
 				u = 1
 			elif u < 0:
 				u = 0
 
-			x = line.getX1() + u * px
-			y = line.getY1() + u * py
+			x = line.start_long + u * px
+			y = line.start_lat + u * py
 			
-			dlon = x - circle.getX()
-			dlat = y - circle.getY()
+			dlon = x - circle.longitude
+			dlat = y - circle.latitude
 			print 'dlat:', dlat, 'dlon:', dlon
 
-			a = math.sin(dlat / 2.0) ** 2 + math.cos(x) * math.cos(circle.getX()) * (math.sin(dlon / 2.0) ** 2)
+			a = math.sin(dlat / 2.0) ** 2 + math.cos(x) * math.cos(circle.longitude) * (math.sin(dlon / 2.0) ** 2)
 			c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
 			d = RADIUS * c
 
