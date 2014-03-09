@@ -71,6 +71,7 @@ class Matcher:
 		cursor.execute(query)
 		user = cursor.fetchone()
 		cursor.close()
+		print 'Matchin from location:', user[4]
 		user = User(user[7], user[2], user[3], user[5], user[6], user[8])
 		return user
 		
