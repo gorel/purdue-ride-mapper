@@ -144,6 +144,7 @@ class Matcher:
 	
 	# Uses the geometric formula for the minimum distance from a point to a line.
 	def dist_function(self, circle, line):
+		RADIUS = 3961
 		try:
 			px = line.getX2() - line.getX1()
 			py = line.getY2() - line.getY1()
@@ -154,11 +155,21 @@ class Matcher:
 				u = 1
 			elif u < 0:
 				u = 0
-			
-			dx = line.getX1() + u * px - circle.getX()
-			dy = line.getY1() + u * py - circle.getY()
 
-			print 'Distance in lat/long units:', math.sqrt(dx * dx + dy * dy)
+			x = line.getX1() + u * px
+			y = line.getY1() + u * py
+			
+			dx = x - circle.getX()
+			dy = y - circle.getY()
+
+			dlon = dy
+			dlat = dx
+
+			a = math.sin(dlat / 2.0) ** 2 + math.cos(x) * math.cos(circle.getX()) * (math.sin(dlon / 2.0) ** 2)
+			c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
+			d = RADIUS * c
+
+			print 'Distance in lat/long units:', d
 			
 			return math.sqrt(dx * dx + dy * dy)
 		except TypeError as err:
