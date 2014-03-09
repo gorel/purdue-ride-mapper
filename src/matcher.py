@@ -15,9 +15,9 @@ class Circle:
 		else:
 			self.y = 0
 		if radius is not None and radius != 0:
-			self.radius = radius
+			self.radius = 50
 		else:
-			self.radius = 1
+			self.radius = 50
 		
 	
 	def getX(self):
@@ -75,7 +75,6 @@ class Matcher:
 	# Return a User object corresponding to the given listings_id
 	def get(self, listings_id):
 		cursor = self.db.cursor()
-		# TODO: Do I have to sanitize queries?  I don't know databases...
 		query = 'SELECT * FROM listings WHERE listings_id=' + listings_id
 		cursor.execute(query)
 		user = cursor.fetchone()
