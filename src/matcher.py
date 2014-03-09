@@ -137,7 +137,7 @@ class Matcher:
 		scores = []
 		for request in requests:
 			circle = Circle(request[5], request[6], request[8])
-			print 'Scoring id', listings_ids[request]
+			print 'Scoring id', listing_ids[request]
 			scores.append([self.score(self.dist_function(circle, line), circle.getRadius()), listing_ids[request]])
 		
 		sorted_scores = sorted(scores, key=lambda score: -score[0])
