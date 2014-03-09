@@ -162,6 +162,7 @@ class Matcher:
 			
 			dlon = x - circle.getX()
 			dlat = y - circle.getY()
+			print 'dlat:', dlat, 'dlon:', dlon
 
 			a = math.sin(dlat / 2.0) ** 2 + math.cos(x) * math.cos(circle.getX()) * (math.sin(dlon / 2.0) ** 2)
 			c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
