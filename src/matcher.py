@@ -19,13 +19,11 @@ class Circle:
 			self.y = 0
 			self.latitude = 0
 
-		# One unit of latitidue/longitude corresponds to about 55 miles.
-		# Multiply the user's desired drop off radius by 55 to find the fixed coordinate value
-		# Default to a 5 mile desired drop off radius.
+		# Default search radius of 5 miles
 		if radius is not None and radius != 0:
-			self.radius = radius * 55
+			self.radius = radius
 		else:
-			self.radius = 55 * 5
+			self.radius = 5
 		
 # Line class to represent a geometric Line object
 class Line:
@@ -152,7 +150,6 @@ class Matcher:
 			
 			dlon = x - circle.longitude
 			dlat = y - circle.latitude
-			print 'dlat:', dlat, 'dlon:', dlon
 
 			a = math.sin(dlat / 2.0) ** 2 + math.cos(x) * math.cos(circle.longitude) * (math.sin(dlon / 2.0) ** 2)
 			c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
