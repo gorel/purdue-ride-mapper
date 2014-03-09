@@ -159,19 +159,16 @@ class Matcher:
 			x = line.getX1() + u * px
 			y = line.getY1() + u * py
 			
-			dx = x - circle.getX()
-			dy = y - circle.getY()
-
-			dlon = dy
-			dlat = dx
+			dlon = x - circle.getX()
+			dlat = y - circle.getY()
 
 			a = math.sin(dlat / 2.0) ** 2 + math.cos(x) * math.cos(circle.getX()) * (math.sin(dlon / 2.0) ** 2)
 			c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
 			d = RADIUS * c
 
-			print 'Distance in lat/long units:', d
+			print 'Distance in miles:', d
 			
-			return math.sqrt(dx * dx + dy * dy)
+			return d
 		except TypeError as err:
 			return 5
 		
