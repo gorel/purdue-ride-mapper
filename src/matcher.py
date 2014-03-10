@@ -16,11 +16,12 @@ class Circle:
 		else:
 			self.lon = 0
 		
-		# Default search radius is 5 miles
+		# Default search radius is 10 miles
+		# We multiply by 4 since we only do the crude straight line matching
 		if rad is not None and rad != 0:
-			self.rad = rad
+			self.rad = rad * 4
 		else:
-			self.rad = 10
+			self.rad = 10 * 4
 
 class Line:
 	def __init__(self, start_lat, start_lon, end_lat, end_lon):
@@ -137,9 +138,9 @@ class Matcher:
 		scores = []
 		for request in requests:
 			# Only look at matches if the start locations are close
-			radius = request[8]
+			radius = request[8] * 3
 			if radius == 0:
-				radius = 10
+				radius = 10 * 3
 			if self.startLocProximity(request[2], request[3], offer.start_lat, offer.start_lon) < 2 * radius:
 				circle = Circle(request[5], request[6], request[8])
 				score = self.score(self.dist(circle, line), circle.rad)
