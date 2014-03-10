@@ -165,7 +165,6 @@ class Matcher:
 		d = 100 * c
 		return d
 
-	
 	def dist(self, circle, line):
 		px = line.end_lon - line.start_lon
 		py = line.end_lat - line.start_lat
@@ -188,8 +187,13 @@ class Matcher:
 		d = 100 * c
 		return d
 	
+	# Score a ride based on its distance from a destination and desired drop-off radius
+	#	distance = 0:				match score of 100%
+	#	distance = desired_radius:		match score of  75%
+	#	distance = 2 * desired_radius:		match score of  30%
+	#	distance = 2.5 * desired_radius:	match score of   1%
 	def score(self, distance, desired_radius):
-		result = 1 - 0.25 * distance / desired_radius
+		result = 1 - 0.25 * (distance / desired_radius) ** 1.5
 
 		if result < 0:
 			result = 0
