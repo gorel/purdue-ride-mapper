@@ -118,8 +118,7 @@ class Matcher:
 		scores = []
 		for offer in offers:
 			# Only look at matches if the start locations are close
-			print 'Need proximity <', 2 * request.rad
-			if self.startLocProximity(request.start_lat, request.start_lon, offer[2], offer[3]) < 2 * request.rad:
+			if self.startLocProximity(request.start_lat, request.start_lon, offer[2], offer[3]) < 2 * circle.rad:
 				line = Line(offer[2], offer[3], offer[5], offer[6])
 				score = self.score(self.dist(circle, line), circle.rad)
 				scores.append([score, offer[0]])
@@ -155,7 +154,6 @@ class Matcher:
 		a = math.sin(dlat / 2.0) ** 2 + math.cos(lat1) * math.cos(lat2) * (math.sin(dlon / 2.0) ** 2)
 		c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
 		d = 100 * c
-		print 'Start location proximity:', d
 		return d
 
 	
