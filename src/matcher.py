@@ -117,9 +117,11 @@ class Matcher:
 
 		scores = []
 		for offer in offers:
-			line = Line(offer[2], offer[3], offer[5], offer[6])
-			score = self.score(self.dist(circle, line), circle.rad)
-			scores.append([score, offer[0]])
+			# Only look at matches if the start locations are close
+			if self.startLocProximity(request.start_lat, request.start_lon, offer[2], offer[3]) < 2 * request.rad:
+				line = Line(offer[2], offer[3], offer[5], offer[6])
+				score = self.score(self.dist(circle, line), circle.rad)
+				scores.append([score, offer[0]])
 		return sorted(scores, key=lambda score: score[0], reverse=True)
 	
 	def match_offer_to_request(self, offer):
@@ -134,10 +136,24 @@ class Matcher:
 
 		scores = []
 		for request in requests:
-			circle = Circle(request[5], request[6], request[8])
-			score = self.score(self.dist(circle, line), circle.rad)
-			scores.append([score, request[0]])
+			# Only look at matches if the start locations are close
+			if self.startLocProximity(request[2], request[3], offer.start_lat, offer.start_lon) < 2 * request[8]:
+				circle = Circle(request[5], request[6], request[8])
+				score = self.score(self.dist(circle, line), circle.rad)
+				scores.append([score, request[0]])
 		return sorted(scores, key=lambda score: score[0], reverse=True)
+	
+	def startLocProximity(self, lat1, lon1, lat2, lon2):
+		dlon = lon2 - lon1
+		dlat = lat2 - lat1
+
+		# Convert a latitude/longitude distance into miles
+		a = math.sin(dlat / 2.0) ** 2 + math.cos(lat1) * math.cos(lat2) * (math.sin(dlon / 2.0) ** 2)
+		c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
+		d = 100 * c
+		print 'Start location proximity:', d
+		return d
+
 	
 	def dist(self, circle, line):
 		px = line.end_lon - line.start_lon
