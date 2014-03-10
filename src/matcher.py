@@ -1,3 +1,4 @@
+import datetime
 import math
 import operator
 import sys
@@ -56,7 +57,7 @@ class User:
 	#	If typ == 'Request':	special corresponds to radius
 	#	If typ == 'Offer':	special corresponds to passengers
 	def __init__(self, typ, start_lat, start_lon, end_lat, end_lon, special, date):
-		print date
+		print date.type()
 		if typ == 1:
 			self.typ = 'Request'
 			self.rad = special
