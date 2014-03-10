@@ -57,7 +57,6 @@ class User:
 	#	If typ == 'Request':	special corresponds to radius
 	#	If typ == 'Offer':	special corresponds to passengers
 	def __init__(self, typ, start_lat, start_lon, end_lat, end_lon, special, date):
-		print date.type()
 		if typ == 1:
 			self.typ = 'Request'
 			self.rad = special
@@ -123,10 +122,11 @@ class Matcher:
 		scores = []
 		for offer in offers:
 			# Only look at matches if the start locations are close and the departure dates are within one day of each other
-			if self.startLocProximity(request.start_lat, request.start_lon, offer[2], offer[3]) < 2 * circle.rad:
-				line = Line(offer[2], offer[3], offer[5], offer[6])
-				score = self.score(self.dist(circle, line), circle.rad)
-				scores.append([score, offer[0]])
+			if self.datesWithinDays(request.date, offer[9], 1):
+				if self.startLocProximity(request.start_lat, request.start_lon, offer[2], offer[3]) < 2 * circle.rad:
+					line = Line(offer[2], offer[3], offer[5], offer[6])
+					score = self.score(self.dist(circle, line), circle.rad)
+					scores.append([score, offer[0]])
 		return sorted(scores, key=lambda score: score[0], reverse=True)
 	
 	def match_offer_to_request(self, offer):
@@ -142,14 +142,19 @@ class Matcher:
 		scores = []
 		for request in requests:
 			# Only look at matches if the start locations are close and the departure dates are within one day of each other
-			radius = request[8] * 3
-			if radius == 0:
-				radius = 10 * 3
-			if self.startLocProximity(request[2], request[3], offer.start_lat, offer.start_lon) < 2 * radius:
-				circle = Circle(request[5], request[6], request[8])
-				score = self.score(self.dist(circle, line), circle.rad)
-				scores.append([score, request[0]])
+			if self.datesWithinDays(request[9], offer.date, 1):
+				radius = request[8] * 3
+				if radius == 0:
+					radius = 10 * 3
+				if self.startLocProximity(request[2], request[3], offer.start_lat, offer.start_lon) < 2 * radius:
+					circle = Circle(request[5], request[6], request[8])
+					score = self.score(self.dist(circle, line), circle.rad)
+					scores.append([score, request[0]])
 		return sorted(scores, key=lambda score: score[0], reverse=True)
+
+	def datesWithinDays(self, date1, date2, N):
+		print date1 - date2
+		return True
 	
 	def startLocProximity(self, lat1, lon1, lat2, lon2):
 		dlon = lon2 - lon1
