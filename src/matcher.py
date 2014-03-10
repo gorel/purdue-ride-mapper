@@ -118,6 +118,7 @@ class Matcher:
 		scores = []
 		for offer in offers:
 			# Only look at matches if the start locations are close
+			print 'Need proximity <', 2 * request.rad
 			if self.startLocProximity(request.start_lat, request.start_lon, offer[2], offer[3]) < 2 * request.rad:
 				line = Line(offer[2], offer[3], offer[5], offer[6])
 				score = self.score(self.dist(circle, line), circle.rad)
@@ -137,8 +138,10 @@ class Matcher:
 		scores = []
 		for request in requests:
 			# Only look at matches if the start locations are close
-			print 'Need proximity <', 2 * request[8]
-			if self.startLocProximity(request[2], request[3], offer.start_lat, offer.start_lon) < 2 * request[8]:
+			radius = request[8]
+			if radius == 0:
+				radius = 10
+			if self.startLocProximity(request[2], request[3], offer.start_lat, offer.start_lon) < 2 * radius:
 				circle = Circle(request[5], request[6], request[8])
 				score = self.score(self.dist(circle, line), circle.rad)
 				scores.append([score, request[0]])
