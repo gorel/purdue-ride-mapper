@@ -55,7 +55,8 @@ class User:
 	# Note: special depends on type.
 	#	If typ == 'Request':	special corresponds to radius
 	#	If typ == 'Offer':	special corresponds to passengers
-	def __init__(self, typ, start_lat, start_lon, end_lat, end_lon, special):
+	def __init__(self, typ, start_lat, start_lon, end_lat, end_lon, special, date):
+		print date
 		if typ == 1:
 			self.typ = 'Request'
 			self.rad = special
@@ -83,6 +84,8 @@ class User:
 		else:
 			self.end_lon = 0
 
+		self.date = date
+
 
 class Matcher:
 	def __init__(self):
@@ -95,7 +98,7 @@ class Matcher:
 		cursor.execute(query)
 		user = cursor.fetchone()
 		cursor.close()
-		user = User(user[7], user[2], user[3], user[5], user[6], user[8])
+		user = User(user[7], user[2], user[3], user[5], user[6], user[8], user[9])
 		return user
 	
 	def match(self, user):
@@ -118,7 +121,7 @@ class Matcher:
 
 		scores = []
 		for offer in offers:
-			# Only look at matches if the start locations are close
+			# Only look at matches if the start locations are close and the departure dates are within one day of each other
 			if self.startLocProximity(request.start_lat, request.start_lon, offer[2], offer[3]) < 2 * circle.rad:
 				line = Line(offer[2], offer[3], offer[5], offer[6])
 				score = self.score(self.dist(circle, line), circle.rad)
@@ -137,7 +140,7 @@ class Matcher:
 
 		scores = []
 		for request in requests:
-			# Only look at matches if the start locations are close
+			# Only look at matches if the start locations are close and the departure dates are within one day of each other
 			radius = request[8] * 3
 			if radius == 0:
 				radius = 10 * 3
