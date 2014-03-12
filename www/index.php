@@ -43,6 +43,12 @@
 				if (document.getElementById("home")) {
 					document.getElementById('home').parentNode.className = "inactive";
 				}
+				if (document.getElementById("manageUsers")) {
+					document.getElementById('manageUsers').parentNode.className = "inactive";
+				}
+				if (document.getElementById("editListings")) {
+					document.getElementById('editListings').parentNode.className = "inactive";
+				}
 				sender.parentNode.className = "active";
 			}
 		</script>
