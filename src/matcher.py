@@ -184,8 +184,8 @@ class Matcher:
 		# Convert a latitude/longitude distance into miles
 		a = math.sin(dlat / 2.0) ** 2 + math.cos(line.end_lat) * math.cos(circle.lat) * (math.sin(dlon / 2.0) ** 2)
 		c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
-		d = 100 * c
-		return d
+		distance = 100 * c
+		return distance
 	
 	# Score a ride based on its distance from a destination and desired drop-off radius
 	#	distance = 0:				match score of 100%
