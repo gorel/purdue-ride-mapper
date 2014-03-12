@@ -106,7 +106,7 @@
 				//At this point the start and end Latitudes and Longitudes /should/ be correct.... if there was bad input they are 0.0. We need to handle this.//This has been temporarily removed
 
 
-				$addressQualityCode = $parsedResult->results->locations[0]->street;
+				$addressQualityCode = $parsedResult->results->locations[0]->{'geocodeQualityCode'};
 				$sql="INSERT INTO listings (startingAddress, start_lat, start_long, endingAddress, end_lat, end_long, isRequest, passengers, dateOfDeparture)
 				VALUES
 				('$addressQualityCode','$startLatitude','$startLongitude','$destinationAddress','$endLatitude','$endLongitude','$isRequest','$passengers','$dateTime')";//$startingAddress
