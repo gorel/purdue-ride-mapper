@@ -67,6 +67,12 @@
 							}
 							else
 							{
+								//if(isAdmin)
+								//{
+									echo '<li><a href="#" id="manageUsers" onclick="hideAll(this);">Manage Users</a></li>';
+								//}
+								
+								echo '<li><a href="#" id="editListings" onclick="hideAll(this);">Edit Listings</a></li>';
 								echo '<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>';
 								echo '<li><a href="#" id="logout" onclick="location.href = \'modules/signin/signoutProc.php\';">Log Out</a></li>';
 							}
@@ -123,6 +129,14 @@
 				</div>
 
 				<script type="text/javascript">
+					$("#editListings").click(function()
+					{
+						$( "#content" ).load( "modules/editListings/editListings.php" );
+					});
+					$("#manageUsers").click(function()
+					{
+						$( "#content" ).load( "modules/manageUsers/manageUsers.php" );
+					});
 					$("#login").click(function()
 					{
 						$( "#content" ).load( "modules/signin/signin.php" );
