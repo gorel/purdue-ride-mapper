@@ -91,17 +91,17 @@
 				$parsedResult2 = json_decode($mapquestResult2,true);
 				//Only parse result if the input address is good.
 				$addressQualityCode2 = $parsedResult2->results->locations[0]->geocodeQualityCode;
-				if(qualityCodeCheck($addressQualityCode2) === false)//If the quality code is bad
-				{
-					//GUYS WHAT DO WE DO IF IT IS BAD?
-					$endLatitude = 0.0;
-					$endLongitude = 0.0;
-				}				
-				else//If the quality of the input is good enough
-				{
+			//	if(qualityCodeCheck($addressQualityCode2) === false)//If the quality code is bad
+			//	{
+			//		//GUYS WHAT DO WE DO IF IT IS BAD?
+			//		$endLatitude = 0.0;
+			//		$endLongitude = 0.0;
+			//	}				
+			//	else//If the quality of the input is good enough
+			//	{
 				$endLatitude = $parsedResult2->results[0]->locations[0]->latLng->lat;//Add dat tab
 				$endLongitude = $parsedResult2->results[0]->locations[0]->latLng->lng;//Add dat tab
-				}
+			//	}
 
 				//At this point the start and end Latitudes and Longitudes /should/ be correct.... if there was bad input they are 0.0. We need to handle this.//This has been temporarily removed
 
