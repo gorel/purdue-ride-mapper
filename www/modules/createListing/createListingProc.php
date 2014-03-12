@@ -71,7 +71,7 @@
 				$lookupStartingAddress = str_replace(' ', '%20', $startingAddress);
 				$lookupDestinationAddress = str_replace(' ', '%20', $destinationAddress);
 				$mapquestResult = file_get_contents("http://www.mapquestapi.com/geocoding/v1/address?&key=Fmjtd%7Cluur210znh%2Cb0%3Do5-90ys0a&location=" . $lookupStartingAddress ."");
-				$parsedResult = json_decode($mapquestResult);
+				$parsedResult = json_decode($mapquestResult,true);
 				//Only parse result if the input address is good.
 				$addressQualityCode = $parsedResult->results->locations[0]->geocodeQualityCode;
 				if(qualityCodeCheck($addressQualityCode) === false)//If the quality code is bad
@@ -88,7 +88,7 @@
 
 				//EndLocation
 				$mapquestResult2 = file_get_contents("http://www.mapquestapi.com/geocoding/v1/address?&key=Fmjtd%7Cluur210znh%2Cb0%3Do5-90ys0a&location=" . $lookupDestinationAddress ."");
-				$parsedResult2 = json_decode($mapquestResult2);
+				$parsedResult2 = json_decode($mapquestResult2,true);
 				//Only parse result if the input address is good.
 				$addressQualityCode2 = $parsedResult2->results->locations[0]->geocodeQualityCode;
 				if(qualityCodeCheck($addressQualityCode2) === false)//If the quality code is bad
