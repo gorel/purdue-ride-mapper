@@ -132,6 +132,7 @@
 
 					echo "<td>". $row["passengers"] . "</td>";
 					echo "<td>". $row["dateOfDeparture"] . "</td>";
+					echo "<td>". $row["user_id"] . "</td>";
 					echo "</tr>";
 				}
 				echo "</table>";

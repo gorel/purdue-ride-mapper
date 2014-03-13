@@ -42,14 +42,14 @@
 				return false; //When in doubt, assume it's a bad code
 			}
 			
-			$startingAddress = $destinationAddress = $passengers = $dateTime = $isRequest = "";
+			$startingAddress = $destinationAddress = $passengers = $dateTime = $isRequest = $user_id = "";
 			
 			$startingAddress = test_input($_POST["startingAddress"]);
 			$destinationAddress = test_input($_POST["destinationAddress"]);
 			$passengers = test_input($_POST["passengers"]);
 			$dateTime = test_input($_POST["dateTime"]);
 			$isRequest = test_input($_POST["isRequest"]);
-			
+			$user_id = $_SESSION['user'];
 			$con=mysqli_connect("localhost", "collegecarpool", "collegecarpool", "purdue_test");
 			
 			if($isRequest == 1)
@@ -106,9 +106,9 @@
 				//At this point the start and end Latitudes and Longitudes /should/ be correct.... if there was bad input they are 0.0. We need to handle this.//This has been temporarily removed
 
 
-				$sql="INSERT INTO listings (startingAddress, start_lat, start_long, endingAddress, end_lat, end_long, isRequest, passengers, dateOfDeparture)
+				$sql="INSERT INTO listings (startingAddress, start_lat, start_long, endingAddress, end_lat, end_long, isRequest, passengers, dateOfDeparture, user_id)
 				VALUES
-				('$startingAddress','$startLatitude','$startLongitude','$destinationAddress','$endLatitude','$endLongitude','$isRequest','$passengers','$dateTime')";
+				('$startingAddress','$startLatitude','$startLongitude','$destinationAddress','$endLatitude','$endLongitude','$isRequest','$passengers','$dateTime', '$user_id')";
 
 				if (!mysqli_query($con,$sql))
 				{
