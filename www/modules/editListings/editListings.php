@@ -52,5 +52,25 @@
 			}
 			mysqli_close($con);
 		?>
+		
+		<div data-role="main" class="ui-content">
+			<a href="#myPopupDialog" data-rel="popup" data-position-to="window" data-transition="fade" class="btn btn-danger">Open Dialog Popup</a>
+
+			<div data-role="popup" id="myPopupDialog">
+			<div data-role="header">
+			<h1>Header Text</h1>
+			</div>
+
+			<div data-role="main" class="ui-content">
+			<h2>Welcome to my Popup Dialog!</h2>
+			<p>jQuery Mobile is FUN!</p>
+			<a href="#" class="btn btn-danger" data-rel="back">Go Back</a>
+			</div>
+
+			<div data-role="footer">
+			<h1>Footer Text</h1>
+			</div>
+			</div>
+		</div>
 	</div> <!-- row -->
 </div> <!-- /container -->
