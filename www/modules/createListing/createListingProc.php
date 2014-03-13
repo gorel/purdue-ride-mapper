@@ -49,6 +49,8 @@
 			$passengers = test_input($_POST["passengers"]);
 			$dateTime = test_input($_POST["dateTime"]);
 			$isRequest = test_input($_POST["isRequest"]);
+			
+			session_start();
 			$user_id = $_SESSION['user'];
 			$con=mysqli_connect("localhost", "collegecarpool", "collegecarpool", "purdue_test");
 			
