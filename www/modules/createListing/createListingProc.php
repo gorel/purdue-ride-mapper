@@ -85,7 +85,7 @@
 				$startLatitude = $parsedResult->results[0]->locations[0]->latLng->lat;//Add dat tab
 				$startLongitude = $parsedResult->results[0]->locations[0]->latLng->lng;//Add dat tab
 				}
-				print("Hello world!!!!lol\n");
+				<script>console.log("Hello world!!!!lol\n");</script>
 				//EndLocation
 				$mapquestResult2 = file_get_contents("http://www.mapquestapi.com/geocoding/v1/address?&key=Fmjtd%7Cluur210znh%2Cb0%3Do5-90ys0a&location=" . $lookupDestinationAddress ."");
 				$parsedResult2 = json_decode($mapquestResult2);
