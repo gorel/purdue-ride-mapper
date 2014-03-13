@@ -4,7 +4,8 @@
 <script src="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.js"></script>
 <hr class="featurette-divider">
 <div class="container" >
-	<div class="row">
+	<div data-role="page">
+	  <div data-role="main" class="ui-content">
 		<?php
 			$con=mysqli_connect("localhost","collegecarpool","collegecarpool","purdue_test");
 
@@ -56,13 +57,8 @@
 			}
 			mysqli_close($con);
 		?>
-		
-<div data-role="page">
-  <div data-role="header">
-    <h1>Welcome To My Homepage</h1>
-  </div>
 
-  <div data-role="main" class="ui-content">
+
     <a href="#myPopupDialog" data-rel="popup" data-position-to="window" data-transition="fade" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">Open Dialog Popup</a>
 
     <div data-role="popup" id="myPopupDialog">
@@ -86,7 +82,4 @@
     <h1>Footer Text</h1>
   </div>
 </div> 
-
-		</div>
-	</div> <!-- row -->
 </div> <!-- /container -->
