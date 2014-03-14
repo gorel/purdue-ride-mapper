@@ -18,6 +18,60 @@
 			</form>
 		</div>
 		<br>
+		<script>
+			//This script create the map with a default address.
+			//Its current location is somewhere by College Station
+			$(document).ready(function ()
+			{
+				var map = new GMaps
+				({
+					div: '#map_canvas',
+					lat: 40.431042,
+					lng: -86.913651,
+					zoomControl : true,
+					zoomControlOpt:
+					{
+						style : 'SMALL',
+					},
+					panControl : false,
+				});
+				var rides = "<?php echo $num_rides; ?>";
+				var lat1 = <?php echo json_encode($start_lat1); ?>;
+				var lat2 = <?php echo json_encode($start_lat2); ?>;
+				var lon1 = <?php echo json_encode($end_lon1); ?>;
+				var lon2 = <?php echo json_encode($end_lon2); ?>;
+				for (var i = 0; i < rides;i++)
+				{
+					//This add the start address marker
+					map.addMarker
+					({
+						lat:lat1[i],
+						lng: lon1[i],
+					});
+
+					//This will add the route drawing from start to destination
+					//Colors can be changed (Its in Hex)
+					map.drawRoute
+					({
+						origin: [lat1[i],lon1[i]],
+						destination: [lat2[i],lon2[i]],
+						travelMode: 'driving',
+						strokeColor: '#0000FF',
+						strokeOpacity: 0.6,
+						strokeWeight: 6
+					});
+
+					//This add the destination address marker
+					map.addMarker
+					({
+						lat:lat2[i],
+						lng:lon2[i],
+					});
+				}
+				map.fitZoom();
+				
+			});
+		</script>
 	<div>
 	<?php
 		session_start();
@@ -75,31 +129,7 @@
 				}
 				$num_rides = $i;
 				echo "</table>";
-				echo '<script>
-					$(document).ready(function ()
-					{
-						var map = new GMaps
-						({
-							div: \'#map_canvas\',
-							lat: 40.431042,
-							lng: -86.913651,
-							zoomControl : true,
-							zoomControlOpt:
-							{
-								style : \'SMALL\',
-							},
-							panControl : false,
-						});
-
-							//This add the start address marker
-								map.addMarker
-								({
-									lat:40.431042,
-									lng: -86.913651,
-								});
-							map.fitZoom();
-					});
-				</script>'
+				
 			}
 			mysqli_close($con);
 		}
