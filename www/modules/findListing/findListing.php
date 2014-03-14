@@ -101,9 +101,10 @@
 				<th> Request? </th>
 				<th> Passengers </th>
 				<th> Date of Departure </th>
+				<th> Listing_id </th>
 				</tr>
 				</thead>";
-				//$i = 0;
+				$i = 0;
 				while($row = mysqli_fetch_array($result))
 				{
 					echo "<tr>";
@@ -126,8 +127,9 @@
 					$end_lon1[]= $row["start_long"];
 					$start_lat2[] = $row["end_lat"];
 					$end_lon2[] = $row["end_long"];
-					$num_rides = $row["listings_id"];
+					$i++;
 				}
+				$num_rides = $i;
 				echo "</table>";
 				
 			}
