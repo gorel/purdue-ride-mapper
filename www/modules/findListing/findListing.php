@@ -94,6 +94,7 @@
 				<th> Test </th>
 				</tr>
 				</thead>";
+				$i = 1;
 				while($row = mysqli_fetch_array($result))
 				{
 					echo "<tr>";
@@ -116,8 +117,9 @@
 					$end_lon1[]= $row["start_long"];
 					$start_lat2[] = $row["end_lat"];
 					$end_lon2[] = $row["end_long"];
-					echo "<td>". $start_lat1[2] . "</td>";
+					echo "<td>". $start_lat1[$i] . "</td>";
 					echo "</tr>";
+					$i++;
 				}
 				echo "</table>";
 			}
