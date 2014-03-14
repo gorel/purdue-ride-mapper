@@ -90,32 +90,13 @@
 							},
 							panControl : false,
 						});
-						for(var i = 0; i < \"$num_rides\";i++)
-						{
+
 							//This add the start address marker
 								map.addMarker
 								({
-									lat:\"$start_lat1\"[i],
-									lng: \"$end_lon1\"[i],
+									lat:40.431042,
+									lng: -86.913651,
 								});
-								//This will add the route drawing from start to destination
-								//Colors can be changed (Its in Hex)
-								map.drawRoute
-								({
-									origin: [\"$start_lat1\"[i],\"$end_lon1\"[i]],
-									destination: [\"$start_lat2\"[i],\"$end_lon2\"[i]],
-									travelMode: 'driving',
-									strokeColor: '#0000FF',
-									strokeOpacity: 0.6,
-									strokeWeight: 6
-								});
-								//This add the destination address marker
-								map.addMarker
-								({
-									lat:\"$start_lat2\"[i],
-									lng: \"$end_lon2\"[i],
-								});
-						}
 							map.fitZoom();
 					});
 				</script>"
