@@ -36,10 +36,10 @@
 					panControl : false,
 				});
 				var rides = "<?php echo $num_rides; ?>";
-				var lat1 = "<?php echo json_encode($start_lat1); ?>";
-				var lat2 = "<?php echo json_encode($start_lat2); ?>";
-				var lon1 = "<?php echo json_encode($end_lon1); ?>";
-				var lon2 = "<?php echo json_encode($end_lon2); ?>";
+				var lat1 = <?php echo json_encode($start_lat1); ?>;
+				var lat2 = <?php echo json_encode($start_lat2); ?>;
+				var lon1 = <?php echo json_encode($end_lon1); ?>;
+				var lon2 = <?php echo json_encode($end_lon2); ?>;
 				for (var i = 0; i < rides;i++)
 				{
 					//This add the start address marker
@@ -101,7 +101,7 @@
 				<th> Listing_id </th>
 				</tr>
 				</thead>";
-				$i = 0;
+				$i = 1;
 				while($row = mysqli_fetch_array($result))
 				{
 					echo "<tr>";
