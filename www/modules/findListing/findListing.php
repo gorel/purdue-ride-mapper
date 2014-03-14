@@ -23,6 +23,10 @@
 			//Its current location is somewhere by College Station
 			$(document).ready(function ()
 			{
+			var rides = "<?php echo $num_rides; ?>";
+			document.write("Hello World")
+			document.write(rides)
+			/*
 				var map = new GMaps
 				({
 					div: '#map_canvas',
@@ -69,6 +73,7 @@
 					});
 				}
 				map.fitZoom();
+				*/
 			});
 		</script>
 	<div>
