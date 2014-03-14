@@ -133,6 +133,11 @@
 					echo "<td>". $row["passengers"] . "</td>";
 					echo "<td>". $row["dateOfDeparture"] . "</td>";
 					echo "</tr>";
+					
+					$start_lat = $row["start_lat"];
+					$end_lon = $row["start_long"];
+					$start_lat = $row["end_lat"];
+					$end_lon = $row["end_long"];
 				}
 				echo "</table>";
 			}
