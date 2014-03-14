@@ -75,18 +75,18 @@
 				}
 				$num_rides = $i;
 				echo "</table>";
-				echo " <script>
+				echo '<script>
 					$(document).ready(function ()
 					{
 						var map = new GMaps
 						({
-							div: '#map_canvas',
+							div: \'#map_canvas\',
 							lat: 40.431042,
 							lng: -86.913651,
 							zoomControl : true,
 							zoomControlOpt:
 							{
-								style : 'SMALL',
+								style : \'SMALL\',
 							},
 							panControl : false,
 						});
@@ -99,7 +99,7 @@
 								});
 							map.fitZoom();
 					});
-				</script>"
+				</script>'
 			}
 			mysqli_close($con);
 		}
