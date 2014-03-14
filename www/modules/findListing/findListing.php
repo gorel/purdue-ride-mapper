@@ -36,25 +36,30 @@
 					panControl : false,
 				});
 				var rides = "<?php echo $num_rides; ?>";
-				var lat1 = "<?php echo json_encode($start_lat1); ?>";
-				var lat2 = "<?php echo json_encode($start_lat2); ?>";
-				var lon1 = "<?php echo json_encode($end_lon1); ?>";
-				var lon2 = "<?php echo json_encode($end_lon2); ?>";
+				var lat1 = new Array(rides);
+				var lat2 = new Array(rides);
+				var lon1 = new Array(rides);
+				var lon2 = new Array(rides);
 				for (var i = 0; i < rides;i++)
 				{
+					lat1[0] = "<?php echo $start_lat1[0]; ?>";
+					lat2[0] = "<?php echo $start_lat2[0]; ?>";
+					lon1[0] = "<?php echo $end_lon1[0]; ?>";
+					lon2[0] = "<?php echo $end_lon2[0]; ?>";
+				
 					//This add the start address marker
 					map.addMarker
 					({
-						lat:lat1[i],
-						lng: lon1[i],
+						lat:lat1[0],
+						lng: lon1[0],
 					});
 
 					//This will add the route drawing from start to destination
 					//Colors can be changed (Its in Hex)
 					map.drawRoute
 					({
-						origin: [lat1[i],lon1[i]],
-						destination: [lat2[i],lon2[i]],
+						origin: [lat1[0],lon1[0]],
+						destination: [lat2[0],lon2[0]],
 						travelMode: 'driving',
 						strokeColor: '#0000FF',
 						strokeOpacity: 0.6,
@@ -64,8 +69,8 @@
 					//This add the destination address marker
 					map.addMarker
 					({
-						lat:lat2[i],
-						lng:lon2[i],
+						lat:lat2[0],
+						lng:lon2[0],
 					});
 				}
 				//map.fitZoom();
