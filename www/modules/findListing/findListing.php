@@ -26,8 +26,8 @@
 				var map = new GMaps
 				({
 					div: '#map_canvas',
-					lat: 40.463666,
-					lng: -86.945828,
+					lat: 40.431042,
+					lng: -86.913651,
 					zoomControl : true,
 					zoomControlOpt:
 					{
@@ -39,16 +39,16 @@
 				//This add the start address marker
 				map.addMarker
 				({
-					lat:40.463666,
-					lng: -86.945828,
+					lat:40.431042,
+					lng: -86.913651,
 				});
 
 				//This will add the route drawing from start to destination
 				//Colors can be changed (Its in Hex)
 				map.drawRoute
 				({
-					origin: [40.463666,-86.945828],
-					destination: [40.422906,-86.910637],
+					origin: [40.431042,-86.913651],
+					destination: [39.766911,-86.126419],
 					travelMode: 'driving',
 					strokeColor: '#0000FF',
 					strokeOpacity: 0.6,
@@ -58,32 +58,9 @@
 				//This add the destination address marker
 				map.addMarker
 				({
-					lat:40.422906,
-					lng:-86.910637,
+					lat:39.766911,
+					lng:-86.126419,
 				});
-
-				map.addMarker
-				({
-					lat:40.602875,
-					lng:-86.874245,
-				});
-
-				map.addMarker
-				({
-					lat:39.772659,
-					lng:-86.167359,
-				});
-
-				map.drawRoute
-				({
-					origin: [40.602875,-86.874245],
-					destination: [39.772659,-86.167359],
-					travelMode: 'driving',
-					strokeColor: '#E9BBC1',
-					strokeOpacity: 0.6,
-					strokeWeight: 6
-				});
-
 				map.fitZoom();
 			});
 		</script>
@@ -133,15 +110,13 @@
 
 					echo "<td>". $row["passengers"] . "</td>";
 					echo "<td>". $row["dateOfDeparture"] . "</td>";
-					//echo "</tr>";
+					echo "</tr>";
 					
 					$start_lat1 = $row["start_lat"];
 					$end_lon1 = $row["start_long"];
 					$start_lat2 = $row["end_lat"];
 					$end_lon2 = $row["end_long"];
 				}
-				echo "<td>". $end_long1 . "</td>";
-				echo "</tr>";
 				echo "</table>";
 			}
 			mysqli_close($con);
