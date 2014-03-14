@@ -18,6 +18,9 @@
 			</form>
 		</div>
 		<br>
+	<div>
+	<?php
+		session_start();
 		<script>
 			//This script create the map with a default address.
 			//Its current location is somewhere by College Station
@@ -87,9 +90,6 @@
 				map.fitZoom();
 			});
 		</script>
-	<div>
-	<?php
-		session_start();
 		if (!isset($_SESSION['user']))
 		{
 		}
