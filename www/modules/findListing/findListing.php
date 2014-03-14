@@ -115,7 +115,6 @@
 				<th> Passengers </th>
 				<th> Date of Departure </th>
 				<th> Test1 </th>
-				<th> Test2 </th>
 				</tr>
 				</thead>";
 				while($row = mysqli_fetch_array($result))
@@ -141,7 +140,6 @@
 					$start_lat2 = $row["end_lat"];
 					$end_lon2 = $row["end_long"];
 				}
-				echo "<td>". $start_lat1 . "</td>";
 				echo "<td>". $end_long1 . "</td>";
 				echo "</tr>";
 				echo "</table>";
