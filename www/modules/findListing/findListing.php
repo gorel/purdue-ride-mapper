@@ -24,8 +24,9 @@
 			$(document).ready(function ()
 			{
 			var rides = "<?php echo $num_rides; ?>";
+			var r = 6;
 			document.write("Hello World")
-			document.write(rides)
+			document.write(r)
 			/*
 				var map = new GMaps
 				({
