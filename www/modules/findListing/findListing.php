@@ -46,20 +46,20 @@
 					lat2 = "<?php echo $start_lat2; ?>";
 					lon1 = "<?php echo $end_lon1; ?>";
 					lon2 = "<?php echo $end_lon2; ?>";
-				}
+				
 					//This add the start address marker
 					map.addMarker
 					({
-						lat:40.431042,
-						lng: -86.913651,
+						lat:lat1,
+						lng: lon1,
 					});
 
 					//This will add the route drawing from start to destination
 					//Colors can be changed (Its in Hex)
 					map.drawRoute
 					({
-						origin: [40.431042,-86.913651],
-						destination: [39.766911,-86.126419],
+						origin: [lat1,lon1],
+						destination: [lat2,lon2],
 						travelMode: 'driving',
 						strokeColor: '#0000FF',
 						strokeOpacity: 0.6,
@@ -69,10 +69,10 @@
 					//This add the destination address marker
 					map.addMarker
 					({
-						lat:39.766911,
-						lng:-86.126419,
+						lat:lat2,
+						lng:lon2,
 					});
-				//}
+				}
 				map.fitZoom();
 			});
 		</script>
