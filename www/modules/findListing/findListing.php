@@ -35,32 +35,44 @@
 					},
 					panControl : false,
 				});
+				var rides = "<?php echo $num_rides; ?>";
+				var lat1 = 0;
+				var lat2 = 0;
+				var lon1 = 0;
+				var lon2 = 0;
+				for (var i = 0; i < rides;i++)
+				{
+					lat1 = "<?php echo $start_lat1; ?>";
+					lat2 = "<?php echo $start_lat2; ?>";
+					lon1 = "<?php echo $end_lon1; ?>";
+					lon2 = "<?php echo $end_lon2; ?>";
+				}
+					//This add the start address marker
+					map.addMarker
+					({
+						lat:40.431042,
+						lng: -86.913651,
+					});
 
-				//This add the start address marker
-				map.addMarker
-				({
-					lat:40.431042,
-					lng: -86.913651,
-				});
+					//This will add the route drawing from start to destination
+					//Colors can be changed (Its in Hex)
+					map.drawRoute
+					({
+						origin: [40.431042,-86.913651],
+						destination: [39.766911,-86.126419],
+						travelMode: 'driving',
+						strokeColor: '#0000FF',
+						strokeOpacity: 0.6,
+						strokeWeight: 6
+					});
 
-				//This will add the route drawing from start to destination
-				//Colors can be changed (Its in Hex)
-				map.drawRoute
-				({
-					origin: [40.431042,-86.913651],
-					destination: [39.766911,-86.126419],
-					travelMode: 'driving',
-					strokeColor: '#0000FF',
-					strokeOpacity: 0.6,
-					strokeWeight: 6
-				});
-
-				//This add the destination address marker
-				map.addMarker
-				({
-					lat:39.766911,
-					lng:-86.126419,
-				});
+					//This add the destination address marker
+					map.addMarker
+					({
+						lat:39.766911,
+						lng:-86.126419,
+					});
+				//}
 				map.fitZoom();
 			});
 		</script>
@@ -72,7 +84,6 @@
 		}
 		else
 		{
-
 			$con=mysqli_connect("localhost","collegecarpool","collegecarpool","purdue_test");
 
 			if(mysqli_connect_errno())
@@ -91,10 +102,9 @@
 				<th> Request? </th>
 				<th> Passengers </th>
 				<th> Date of Departure </th>
-				<th> Test </th>
 				</tr>
 				</thead>";
-				$i = 0;
+				//$i = 0;
 				while($row = mysqli_fetch_array($result))
 				{
 					echo "<tr>";
@@ -111,17 +121,16 @@
 
 					echo "<td>". $row["passengers"] . "</td>";
 					echo "<td>". $row["dateOfDeparture"] . "</td>";
-					//echo "</tr>";
+					echo "</tr>";
 					
 					$start_lat1[]= $row["start_lat"];
 					$end_lon1[]= $row["start_long"];
 					$start_lat2[] = $row["end_lat"];
 					$end_lon2[] = $row["end_long"];
-					echo "<td>". $start_lat1[$i] . "</td>";
-					echo "</tr>";
-					$i++;
+					$num_rides = $row["listings_id"];
 				}
 				echo "</table>";
+				
 			}
 			mysqli_close($con);
 		}
