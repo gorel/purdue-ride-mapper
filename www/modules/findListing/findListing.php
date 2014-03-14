@@ -73,7 +73,7 @@
 						lng:lon2,
 					});
 				}
-				map.fitZoom();
+				//map.fitZoom();
 			});
 		</script>
 	<div>
