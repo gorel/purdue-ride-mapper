@@ -36,13 +36,12 @@
 					panControl : false,
 				});
 				var rides = "<?php echo $num_rides; ?>";
+				lat1 = "<?php echo json_encode($start_lat1); ?>";
+				lat2 = "<?php echo json_encode($start_lat2); ?>";
+				lon1 = "<?php echo json_encode($end_lon1); ?>";
+				lon2 = "<?php echo json_encode($end_lon2); ?>";
 				for (var i = 0; i < rides;i++)
 				{
-					lat1 = "<?php echo json_encode($start_lat1); ?>";
-					lat2 = "<?php echo json_encode($start_lat2); ?>";
-					lon1 = "<?php echo json_encode($end_lon1); ?>";
-					lon2 = "<?php echo json_encode($end_lon2); ?>";
-				
 					//This add the start address marker
 					map.addMarker
 					({
