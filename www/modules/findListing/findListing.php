@@ -18,13 +18,13 @@
 			</form>
 		</div>
 		<br>
-		<script>
+		
 			//This script create the map with a default address.
 			//Its current location is somewhere by College Station
 			$(document).ready(function ()
 			{
-			var rides = "<?php echo $num_rides; ?>";
-			document.write(rides)
+			//var rides = "<?php echo $num_rides; ?>";
+			//document.write(rides)
 			/*
 				var map = new GMaps
 				({
