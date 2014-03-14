@@ -91,7 +91,7 @@
 				<th> Request? </th>
 				<th> Passengers </th>
 				<th> Date of Departure </th>
-				<th> Test1 </th>
+				<th> Test </th>
 				</tr>
 				</thead>";
 				while($row = mysqli_fetch_array($result))
@@ -110,12 +110,14 @@
 
 					echo "<td>". $row["passengers"] . "</td>";
 					echo "<td>". $row["dateOfDeparture"] . "</td>";
-					echo "</tr>";
+					//echo "</tr>";
 					
-					$start_lat1 = $row["start_lat"];
-					$end_lon1 = $row["start_long"];
-					$start_lat2 = $row["end_lat"];
-					$end_lon2 = $row["end_long"];
+					$start_lat1[]= $row["start_lat"];
+					$end_lon1[]= $row["start_long"];
+					$start_lat2[] = $row["end_lat"];
+					$end_lon2[] = $row["end_long"];
+					echo "<td>". $start_lat1[2] . "</td>";
+					echo "</tr>";
 				}
 				echo "</table>";
 			}
