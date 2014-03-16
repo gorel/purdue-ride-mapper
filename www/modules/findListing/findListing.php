@@ -75,6 +75,16 @@
 	<div>
 	<?php
 		session_start();
+
+		function debug_to_console($data)
+		{
+			if (is_array($data))
+				$output = "<script>console.log('Debug: " . implode(', ', $data) . "');</script>";
+			else
+				$output = "<script>console.log('Debug: " . $data . "');</script>";
+			echo $output
+		}
+
 		if (!isset($_SESSION['user']))
 		{
 		}
@@ -107,6 +117,7 @@
 				foreach(explode('\n', $output) as $line)
 				{
 					$val = explode(' ', $line);
+					echo "<h1>" . $val[0] . " " . $val[1] . "</h1>";
 					$sql = "SELECT * FROM listings WHERE listings_id=$val[0]";
 					$result = mysqli_query($con,$sql);
 					while($row = mysqli_fetch_array($result))
@@ -121,8 +132,6 @@
 						}
 				}
 			
-				<h2 class="form-signin-heading">All listings:</h2>
-
 				$sql = "SELECT * FROM listings";
 				$result = mysqli_query($con,$sql);
 				echo "<table class='table table-striped'>
