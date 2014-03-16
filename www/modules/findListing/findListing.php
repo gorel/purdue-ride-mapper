@@ -23,7 +23,7 @@
 			<h2 class="form-signin-heading">Match a ride:</h2>
 			<form class="form-inline" role="form">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Listing ID">
+					<input id='listing_id_field' type="text" class="form-control" placeholder="Listing ID">
 				</div>
 				<button type="submit" class="btn btn-default" onclick="matchListing();" >Match</button>
 			</form>
@@ -39,6 +39,14 @@
 			function matchListing()
 			{
 				console.log('It works!');
+				var listing_id = parseInt(document.getElementById('listing_id_field').value);
+				if (listing_id === NaN)
+					listing_id = 1;
+				theader = "<table class='table table-striped'>\<thead><tr><th> Listing ID </th><th> Match Percentage </th><th> Starting Address </th><th> Ending Address </th><th> Date of Departure </th></tr></thead>";
+				tbody = "<tr><td> </td><td>No matches found.</td><td> </td><td> </td></tr>";
+				tfooter = "</table>";
+				
+				document.getElementById('matcher_wrapper').innerHTML = theader + tbody + tfooter;
 			}
 		
 			//This script create the map with a default address.
@@ -94,6 +102,9 @@
 				
 			});
 		</script>
+		
+	<div id='matcher_wrapper'></div>
+	
 	<div>
 	<?php
 		session_start();
