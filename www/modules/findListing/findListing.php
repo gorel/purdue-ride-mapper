@@ -117,7 +117,7 @@
 				foreach(explode('\n', $output) as $line)
 				{
 					$val = explode(' ', $line);
-					$sql = "SELECT * FROM listings WHERE listings_id=$val[0]";
+					$sql = "SELECT * FROM listings WHERE listings_id=$val[1]";
 					debug_to_console($sql);
 					$result = mysqli_query($con,$sql);
 					while($row = mysqli_fetch_array($result))
