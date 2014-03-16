@@ -18,10 +18,27 @@
 			</form>
 		</div>
 		<br>
+		
+		<div>
+			<h2 class="form-signin-heading">Match a ride:</h2>
+			<form class="form-inline" role="form">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Listing ID">
+				</div>
+				<button type="submit" class="btn btn-default" onclick="matchListing();" >Match</button>
+			</form>
+		</div>
+		<br>
+		
 		<script>
 			function calcRoute()
 			{
 				console.log('Not yet implemented.');
+			}
+			
+			function matchListing()
+			{
+				console.log('It works!');
 			}
 		
 			//This script create the map with a default address.
