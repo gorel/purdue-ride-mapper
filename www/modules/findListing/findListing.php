@@ -123,7 +123,7 @@
 					while($row = mysqli_fetch_array($result))
 					{
 						echo "<tr>";
-						echo '<td>'. $val[1] .'</td>';
+						echo '<td>'. $val[0] .'</td>';
 						echo "<td>". $row['startingAddress'] . "</td>";
 						echo "<td>". $row["endingAddress"] . "</td>";
 						echo "<td>". $row["dateOfDeparture"] . "</td>";
