@@ -21,7 +21,7 @@
 		<script>
 			function calcRoute()
 			{
-				document.write('<h1>TODO</h1>');
+				console.log('Not yet implemented.');
 			}
 		
 			//This script create the map with a default address.
