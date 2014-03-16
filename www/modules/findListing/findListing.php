@@ -17,18 +17,6 @@
 				<button type="submit" class="btn btn-default" onclick="calcRoute();" >Search</button>
 			</form>
 		</div>
-		
-		<div id="listing_id_input" style="height: 400px; width: 100%"></div>
-		<hr class="featurette-divider">
-		<div>
-			<h2 class="form-signin-heading">Match a ride:</h2>
-			<form class="form-inline" role="form">
-				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Listing ID">
-				</div>
-				<button type="submit" class="btn btn-default" onclick="getMatches();" >Search</button>
-			</form>
-		</div>
 		<br>
 		<script>
 			function getMatches()
