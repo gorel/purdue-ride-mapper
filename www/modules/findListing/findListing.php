@@ -42,6 +42,9 @@
 				var listing_id = parseInt(document.getElementById('listing_id_field').value);
 				if (listing_id === NaN)
 					listing_id = 1;
+					
+				//TODO: I need to send this value to PHP to parse
+				
 				theader = "<table class='table table-striped'>\<thead><tr><th> Listing ID </th><th> Match Percentage </th><th> Starting Address </th><th> Ending Address </th><th> Date of Departure </th></tr></thead>";
 				tbody = "<tr><td> </td><td>No matches found.</td><td> </td><td> </td></tr>";
 				tfooter = "</table>";
