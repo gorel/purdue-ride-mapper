@@ -88,7 +88,8 @@
 			}
 			else
 			{
-				$output = exec('python ../../../src/matcher.py 1')
+				//$output = exec('python ../../../src/matcher.py 1')
+				$output = "95 2\n75 4\n 34 5\n 13 8\n"
 				foreach(explode('\n', $output) as $line)
 				{
 					echo "<h1>$line</h1>"
