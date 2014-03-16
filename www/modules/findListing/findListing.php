@@ -139,7 +139,7 @@
 				<tr>
 				<th> StartingAddress </th>
 				<th> EndingAddress </th>
-				<th> Request? </th>
+				<th> Ride Type </th>
 				<th> Passengers </th>
 				<th> Date of Departure </th>
 				<th> Listing_id </th>
@@ -153,11 +153,11 @@
 					echo "<td>". $row["endingAddress"] . "</td>";
 					if($row["isRequest"] == 0)
 					{
-						echo "<td> No </td>";
+						echo "<td>Offering Ride</td>";
 					}
 					else
 					{
-						echo "<td> Yes </td>";
+						echo "<td>Requesting Ride</td>";
 					}
 
 					echo "<td>". $row["passengers"] . "</td>";
