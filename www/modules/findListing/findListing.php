@@ -88,6 +88,12 @@
 			}
 			else
 			{
+				$output = exec('python ../../../src/matcher.py 1')
+				foreach(explode('\n', $output) as $line)
+				{
+					echo "<h1>$line</h1>"
+				}
+
 				$sql = "SELECT * FROM listings";
 				$result = mysqli_query($con,$sql);
 				echo "<table class='table table-striped'>
