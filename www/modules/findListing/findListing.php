@@ -19,6 +19,11 @@
 		</div>
 		<br>
 		<script>
+			function calcRoute()
+			{
+				document.write('<h1>TODO</h1>');
+			}
+		
 			//This script create the map with a default address.
 			//Its current location is somewhere by College Station
 			$(document).ready(function ()
@@ -123,7 +128,7 @@
 					echo "</tr>";
 				}
 
-				//For each match
+				//For each match	
 				foreach($matches as $match)
 				{
 					$val = explode(' ', $match);
