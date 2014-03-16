@@ -46,7 +46,7 @@
 				//TODO: I need to send this value to PHP to parse
 				
 				theader = "<table class='table table-striped'>\<thead><tr><th> Listing ID </th><th> Match Percentage </th><th> Starting Address </th><th> Ending Address </th><th> Date of Departure </th></tr></thead>";
-				tbody = "<tr><td> </td><td>No matches found.</td><td> </td><td> </td></tr>";
+				tbody = "<tr><td> </td><td>No matches found.</td><td> </td><td> </td><td> </td></tr>";
 				tfooter = "</table>";
 				
 				document.getElementById('matcher_wrapper').innerHTML = theader + tbody + tfooter;
