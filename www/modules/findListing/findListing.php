@@ -107,7 +107,8 @@
 				foreach(explode('\n', $output) as $line)
 				{
 					$val = explode(' ', $line);
-					$sql = "SELECT * FROM listings WHERE listings_id = $val[0]";
+					echo <h1>$val</h1>;
+					$sql = "SELECT * FROM listings WHERE listings_id=$val[0]";
 					$result = mysqli_query($con,$sql);
 					while($row = mysqli_fetch_array($result))
 					{
@@ -120,6 +121,8 @@
 						echo "</tr>";
 						}
 				}
+			
+				<h2 class="form-signin-heading">All listings:</h2>
 
 				$sql = "SELECT * FROM listings";
 				$result = mysqli_query($con,$sql);
