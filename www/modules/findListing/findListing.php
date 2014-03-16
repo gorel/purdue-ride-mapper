@@ -107,7 +107,7 @@
 				foreach(explode('\n', $output) as $line)
 				{
 					$val = explode(' ', $line);
-					echo "<h1>$val[0] $val[1]</h1>";
+					echo "<h1>". $val[0] . " ". $val[1] . "</h1>";
 					$sql = "SELECT * FROM listings WHERE listings_id=$val[0]";
 					$result = mysqli_query($con,$sql);
 					while($row = mysqli_fetch_array($result))
