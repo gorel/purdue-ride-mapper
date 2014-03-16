@@ -14,7 +14,7 @@
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="Destination Address">
 				</div>
-				<button type="submit" class="btn btn-default" onclick="calcRoute();" >Search</button>
+				<button type="submit" class="btn btn-default" onclick="calcRoute(); return false;" >Search</button>
 			</form>
 		</div>
 		<br>
@@ -25,7 +25,7 @@
 				<div class="form-group">
 					<input id='listing_id_field' type="text" class="form-control" placeholder="Listing ID">
 				</div>
-				<button type="submit" class="btn btn-default" onclick="matchListing();" >Match</button>
+				<button type="submit" class="btn btn-default" onclick="matchListing(); return false;" >Match</button>
 			</form>
 		</div>
 		<br>
