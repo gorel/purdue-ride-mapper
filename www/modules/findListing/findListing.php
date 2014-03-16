@@ -19,11 +19,6 @@
 		</div>
 		<br>
 		<script>
-			function getMatches()
-			{
-				document.write('<h1>It works!</h1>');
-			}
-		
 			//This script create the map with a default address.
 			//Its current location is somewhere by College Station
 			$(document).ready(function ()
@@ -80,8 +75,7 @@
 	<div>
 	<?php
 		session_start();
-		
-		//Use this to print variables to the web console for debugging purposes
+
 		function debug_to_console($data)
 		{
 			if (is_array($data))
@@ -103,10 +97,7 @@
 				echo "Failed to connect to MySQL: " . mysqli_connect_error();
 			}
 			else
-			{				
-				//Find matches to this listing
-				$output = exec('python ../../../src/matcher.py 1');
-				
+			{
 				echo "<table class='table table-striped'>
 				<thead>
 				<tr>
@@ -117,35 +108,42 @@
 				<th> Date of Departure </th>
 				</tr>
 				</thead>";
+				
+				//Find matches to this listing
+				$matches = explode('\n', exec('python ../../../src/matcher.py 1'));
 
 				//TODO: If len(output) == 0, print "no matches"
+				if (count($matches) == 0)
+				{
+					echo "<tr>";
+					echo '<td> </td>';
+					echo "<td>No matches found.</td>";
+					echo "<td> </td>";
+					echo "<td> </td>";
+					echo "</tr>";
+				}
 
 				//For each match
-				foreach(explode('\n', $output) as $line)
+				foreach($matches as $match)
 				{
-					//Get the match's score and id
-					$val = explode(' ', $line);
-					$score = $val[0]
+					$val = explode(' ', $match);
+					$match = $val[0]
 					$id = $val[1]
-					
-					//Get the match from the database
 					$sql = "SELECT * FROM listings WHERE listings_id=$id";
 					$result = mysqli_query($con,$sql);
-					
-					//Print the match to the table
 					while($row = mysqli_fetch_array($result))
 					{
 						echo "<tr>";
-						echo '<td>'. $id . '</td>';
-						echo '<td>'. $score .'</td>';
+						echo '<td>'. $row['listings_id'] . '</td>';
+						echo '<td>'. $match .'</td>';
 						echo "<td>". $row['startingAddress'] . "</td>";
 						echo "<td>". $row["endingAddress"] . "</td>";
 						echo "<td>". $row["dateOfDeparture"] . "</td>";
+						echo "<td>". $i . "</td>";
 						echo "</tr>";
 					}
 				}
 			
-				//Print every listing in the database
 				$sql = "SELECT * FROM listings";
 				$result = mysqli_query($con,$sql);
 				echo "<table class='table table-striped'>
