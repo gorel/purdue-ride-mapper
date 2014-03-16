@@ -119,23 +119,16 @@
 				//Find matches to this listing
 				$output = exec('python ../../../src/matcher.py 1');
 				
-				if (0)
-				{
-				
-				}
-				else
-				{
-					echo "<table class='table table-striped'>
-					<thead>
-					<tr>
-					<th> Listing ID </th>
-					<th> Match Percentage </th>
-					<th> Starting Address </th>
-					<th> Ending Address </th>
-					<th> Date of Departure </th>
-					</tr>
-					</thead>";
-				}
+				echo "<table class='table table-striped'>
+				<thead>
+				<tr>
+				<th> Listing ID </th>
+				<th> Match Percentage </th>
+				<th> Starting Address </th>
+				<th> Ending Address </th>
+				<th> Date of Departure </th>
+				</tr>
+				</thead>";
 
 				//TODO: If len(output) == 0, print "no matches"
 
