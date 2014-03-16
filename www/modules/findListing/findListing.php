@@ -88,10 +88,37 @@
 			}
 			else
 			{
+				echo "<table class='table table-striped'>
+				<thead>
+				<tr>
+				<th> Match Percentage </th>
+				<th> Starting Address </th>
+				<th> Ending Address </th>
+				<th> Date of Departure </th>
+				</tr>
+				</thead>";
+				
+				//Find matches to this listing
 				$output = exec('python ../../../src/matcher.py 1');
+
+				//TODO: If len(output) == 0, print "no matches"
+
+				//For each match
 				foreach(explode('\n', $output) as $line)
 				{
-					echo "<h1>$line</h1>";
+					$val = explode(' ', $line);
+					$sql = "SELECT * FROM listings WHERE listings_id = $val[0]";
+					$result = mysqli_query($con,$sql);
+					while($row = mysqli_fetch_array($result))
+					{
+						echo "<tr>";
+						echo '<td>'. $val[1] .'</td>';
+						echo "<td>". $row['startingAddress'] . "</td>";
+						echo "<td>". $row["endingAddress"] . "</td>";
+						echo "<td>". $row["dateOfDeparture"] . "</td>";
+						echo "<td>". $i . "</td>";
+						echo "</tr>";
+						}
 				}
 
 				$sql = "SELECT * FROM listings";
