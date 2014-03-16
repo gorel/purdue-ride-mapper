@@ -127,8 +127,8 @@
 				foreach($matches as $match)
 				{
 					$val = explode(' ', $match);
-					$match = $val[0]
-					$id = $val[1]
+					$match = $val[0];
+					$id = $val[1];
 					$sql = "SELECT * FROM listings WHERE listings_id=$id";
 					$result = mysqli_query($con,$sql);
 					while($row = mysqli_fetch_array($result))
