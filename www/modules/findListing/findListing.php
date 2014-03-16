@@ -82,7 +82,7 @@
 				$output = "<script>console.log('Debug: " . implode(', ', $data) . "');</script>";
 			else
 				$output = "<script>console.log('Debug: " . $data . "');</script>";
-			echo $output
+			echo $output;
 		}
 
 		if (!isset($_SESSION['user']))
