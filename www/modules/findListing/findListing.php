@@ -57,7 +57,7 @@
 				}
 				
 				//Reload the page with the new parameter
-				document.location.search = kvp.join('&') + "findARide";
+				$("#content").load("modules/findListing/findListing.php?" + kvp.join('&'));
 			}
 		
 			function calcRoute()
