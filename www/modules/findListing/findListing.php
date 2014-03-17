@@ -172,9 +172,8 @@
 					</tr>
 					</thead>";
 				
-					$match = htmlspecialchars($_GET['matchValue']);
-					$matches = explode('\n', exec('python ../../../src/matcher.py '. $match));
-					debug_to_console(count($matches));
+					$matchNum = htmlspecialchars($_GET['matchValue']);
+					$matches = explode('\n', exec('python ../../../src/matcher.py '. $matchNum));
 
 					//TODO: If len(output) == 0, print "no matches"
 					if (count($matches) == 0)
@@ -186,25 +185,27 @@
 						echo "<td> </td>";
 						echo "</tr>";
 					}
-
-					//For each match	
-					foreach($matches as $match)
+					else
 					{
-						$val = explode(' ', $match);
-						$match = $val[0];
-						$id = $val[1];
-						$sql = "SELECT * FROM listings WHERE listings_id=$id";
-						$result = mysqli_query($con,$sql);
-						while($row = mysqli_fetch_array($result))
+						//For each match	
+						foreach($matches as $match)
 						{
-							echo "<tr>";
-							echo '<td>'. $row['listings_id'] . '</td>';
-							echo '<td>'. $match .'</td>';
-							echo "<td>". $row['startingAddress'] . "</td>";
-							echo "<td>". $row["endingAddress"] . "</td>";
-							echo "<td>". $row["dateOfDeparture"] . "</td>";
-							echo "<td>". $i . "</td>";
-							echo "</tr>";
+							$val = explode(' ', $match);
+							$match = $val[0];
+							$id = $val[1];
+							$sql = "SELECT * FROM listings WHERE listings_id=$id";
+							$result = mysqli_query($con,$sql);
+							while($row = mysqli_fetch_array($result))
+							{
+								echo "<tr>";
+								echo '<td>'. $row['listings_id'] . '</td>';
+								echo '<td>'. $match .'</td>';
+								echo "<td>". $row['startingAddress'] . "</td>";
+								echo "<td>". $row["endingAddress"] . "</td>";
+								echo "<td>". $row["dateOfDeparture"] . "</td>";
+								echo "<td>". $i . "</td>";
+								echo "</tr>";
+							}
 						}
 					}
 				}
