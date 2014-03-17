@@ -160,7 +160,6 @@
 				//Find matches to this listing
 				if (isset($_GET['matchValue']))
 				{
-					echo "<h1> Listings matched to Listing ID #" . $matchNum . ":</h1>";
 					echo "<table class='table table-striped'>
 					<thead>
 					<tr>
@@ -211,51 +210,53 @@
 						}
 					}
 				}
-			
-				$sql = "SELECT * FROM listings";
-				$result = mysqli_query($con,$sql);
-				
-				echo "<h1>All listings:</h1>";
-				echo "<table class='table table-striped'>
-				<thead>
-				<tr>
-				<th> StartingAddress </th>
-				<th> EndingAddress </th>
-				<th> Ride Type </th>
-				<th> Passengers </th>
-				<th> Date of Departure </th>
-				<th> Listing_id </th>
-				</tr>
-				</thead>";
-				$i = 1;
-				while($row = mysqli_fetch_array($result))
+				else
 				{
-					echo "<tr>";
-					echo "<td>". $row['startingAddress'] . "</td>";
-					echo "<td>". $row["endingAddress"] . "</td>";
-					if($row["isRequest"] == 0)
-					{
-						echo "<td>Offering Ride</td>";
-					}
-					else
-					{
-						echo "<td>Requesting Ride</td>";
-					}
-
-					echo "<td>". $row["passengers"] . "</td>";
-					echo "<td>". $row["dateOfDeparture"] . "</td>";
-					echo "<td>". $i . "</td>";
-					echo "</tr>";
-					
-					$start_lat1[]= $row["start_lat"];
-					$end_lon1[]= $row["start_long"];
-					$start_lat2[] = $row["end_lat"];
-					$end_lon2[] = $row["end_long"];
-					$i++;
-				}
-				$num_rides = $i;
-				echo "</table>";
+					$sql = "SELECT * FROM listings";
+					$result = mysqli_query($con,$sql);
 				
+					echo "<h1>All listings:</h1>";
+					echo "<table class='table table-striped'>
+					<thead>
+					<tr>
+					<th> StartingAddress </th>
+					<th> EndingAddress </th>
+					<th> Ride Type </th>
+					<th> Passengers </th>
+					<th> Date of Departure </th>
+					<th> Listing_id </th>
+					</tr>
+					</thead>";
+					$i = 1;
+					while($row = mysqli_fetch_array($result))
+					{
+						echo "<tr>";
+						echo "<td>". $row['startingAddress'] . "</td>";
+						echo "<td>". $row["endingAddress"] . "</td>";
+						if($row["isRequest"] == 0)
+						{
+							echo "<td>Offering Ride</td>";
+						}
+						else
+						{
+							echo "<td>Requesting Ride</td>";
+						}
+
+						echo "<td>". $row["passengers"] . "</td>";
+						echo "<td>". $row["dateOfDeparture"] . "</td>";
+						echo "<td>". $i . "</td>";
+						echo "</tr>";
+					
+						$start_lat1[]= $row["start_lat"];
+						$end_lon1[]= $row["start_long"];
+						$start_lat2[] = $row["end_lat"];
+						$end_lon2[] = $row["end_long"];
+						$i++;
+					}
+					$num_rides = $i;
+					echo "</table>";
+				
+				}
 			}
 			mysqli_close($con);
 		}
