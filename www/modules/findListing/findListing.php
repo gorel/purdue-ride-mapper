@@ -160,7 +160,7 @@
 				//Find matches to this listing
 				if (isset($_GET['matchValue']))
 				{
-					echo "<h1> Matched listings:</h1>";
+					echo "<h1> Listings matched to Listing ID #" . $matchNum . ":</h1>";
 					echo "<table class='table table-striped'>
 					<thead>
 					<tr>
@@ -173,6 +173,7 @@
 					</thead>";
 				
 					$matchNum = htmlspecialchars($_GET['matchValue']);
+					echo "<h1> Listings matched to Listing ID #" . $matchNum . ":</h1>";
 					$matches = explode('\n', exec('python ../../../src/matcher.py '. $matchNum));
 
 					//TODO: If len(output) == 0, print "no matches"
@@ -190,6 +191,7 @@
 						//For each match	
 						foreach($matches as $match)
 						{
+							debug_to_console("$match");
 							$val = explode(' ', $match);
 							$match = $val[0];
 							$id = $val[1];
