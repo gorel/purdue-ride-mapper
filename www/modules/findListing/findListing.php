@@ -67,7 +67,6 @@
 			
 			function matchListing()
 			{
-				console.log('It works!');
 				var listing_id = parseInt(document.getElementById('listing_id_field').value);
 				if (listing_id === NaN)
 					listing_id = 1;
@@ -173,6 +172,7 @@
 					</thead>";
 				
 					$match = htmlspecialchars($_GET['matchValue']);
+					debug_to_console($match);
 					$matches = explode('\n', exec('python ../../../src/matcher.py '. $match));
 
 					//TODO: If len(output) == 0, print "no matches"
