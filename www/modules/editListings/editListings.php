@@ -3,7 +3,6 @@
 <hr class="featurette-divider">
 <div class="container" >
 		<?php
-		/*
 			$con=mysqli_connect("localhost","collegecarpool","collegecarpool","purdue_test");
 
 			if(mysqli_connect_errno())
@@ -52,20 +51,6 @@
 				}
 				echo "</table>";
 			}
-			mysqli_close($con);*/
+			mysqli_close($con);
 		?>
-		
-<div class="modal hide fade">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3>Modal header</h3>
-  </div>
-  <div class="modal-body">
-    <p>One fine body…</p>
-  </div>
-  <div class="modal-footer">
-    <a href="#" class="btn">Close</a>
-    <a href="#" class="btn btn-primary">Save changes</a>
-  </div>
-</div>
 </div> <!-- /container -->
