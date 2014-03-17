@@ -31,6 +31,35 @@
 		<br>
 		
 		<script>
+			function insertParameter(key, val)
+			{
+				key = encodeURI(key);
+				value = encodeURI(value);
+				var kvp = document.location.search.substr(1).split('&');
+
+				var i=kvp.length;
+				var x;
+				
+				while(i--) 
+				{
+					x = kvp[i].split('=');
+					if (x[0]==key)
+					{
+						x[1] = value;
+						kvp[i] = x.join('=');
+						break;
+					}
+				}
+
+				if(i<0)
+				{
+					kvp[kvp.length] = [key,value].join('=');
+				}
+				
+				//Reload the page with the new parameter
+				document.location.search = kvp.join('&');
+			}
+		
 			function calcRoute()
 			{
 				console.log('Not yet implemented.');
@@ -43,13 +72,7 @@
 				if (listing_id === NaN)
 					listing_id = 1;
 					
-				//TODO: I need to send this value to PHP to parse
-				
-				theader = "<table class='table table-striped'>\<thead><tr><th> Listing ID </th><th> Match Percentage </th><th> Starting Address </th><th> Ending Address </th><th> Date of Departure </th></tr></thead>";
-				tbody = "<tr><td> </td><td>No matches found.</td><td> </td><td> </td><td> </td></tr>";
-				tfooter = "</table>";
-				
-				document.getElementById('matcher_wrapper').innerHTML = theader + tbody + tfooter;
+				insertParameter("matchValue", listing_id);
 			}
 		
 			//This script create the map with a default address.
@@ -146,42 +169,48 @@
 				</thead>";
 				
 				//Find matches to this listing
-				$matches = explode('\n', exec('python ../../../src/matcher.py 1'));
+				if (isset($_GET['matchListing']))
+					{
+					$match = htmlspecialchars($_GET['matchListing']);
+					$matches = explode('\n', exec('python ../../../src/matcher.py '. $match));
 
-				//TODO: If len(output) == 0, print "no matches"
-				if (count($matches) == 0)
-				{
-					echo "<tr>";
-					echo '<td> </td>';
-					echo "<td>No matches found.</td>";
-					echo "<td> </td>";
-					echo "<td> </td>";
-					echo "</tr>";
-				}
-
-				//For each match	
-				foreach($matches as $match)
-				{
-					$val = explode(' ', $match);
-					$match = $val[0];
-					$id = $val[1];
-					$sql = "SELECT * FROM listings WHERE listings_id=$id";
-					$result = mysqli_query($con,$sql);
-					while($row = mysqli_fetch_array($result))
+					//TODO: If len(output) == 0, print "no matches"
+					if (count($matches) == 0)
 					{
 						echo "<tr>";
-						echo '<td>'. $row['listings_id'] . '</td>';
-						echo '<td>'. $match .'</td>';
-						echo "<td>". $row['startingAddress'] . "</td>";
-						echo "<td>". $row["endingAddress"] . "</td>";
-						echo "<td>". $row["dateOfDeparture"] . "</td>";
-						echo "<td>". $i . "</td>";
+						echo '<td> </td>';
+						echo "<td>No matches found.</td>";
+						echo "<td> </td>";
+						echo "<td> </td>";
 						echo "</tr>";
+					}
+
+					//For each match	
+					foreach($matches as $match)
+					{
+						$val = explode(' ', $match);
+						$match = $val[0];
+						$id = $val[1];
+						$sql = "SELECT * FROM listings WHERE listings_id=$id";
+						$result = mysqli_query($con,$sql);
+						while($row = mysqli_fetch_array($result))
+						{
+							echo "<tr>";
+							echo '<td>'. $row['listings_id'] . '</td>';
+							echo '<td>'. $match .'</td>';
+							echo "<td>". $row['startingAddress'] . "</td>";
+							echo "<td>". $row["endingAddress"] . "</td>";
+							echo "<td>". $row["dateOfDeparture"] . "</td>";
+							echo "<td>". $i . "</td>";
+							echo "</tr>";
+						}
 					}
 				}
 			
 				$sql = "SELECT * FROM listings";
 				$result = mysqli_query($con,$sql);
+				
+				echo "<h1>All listings:</h1>";
 				echo "<table class='table table-striped'>
 				<thead>
 				<tr>
