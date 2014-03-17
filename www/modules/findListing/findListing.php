@@ -160,6 +160,7 @@
 				//Find matches to this listing
 				if (isset($_GET['matchValue']))
 				{
+					echo "<h1> Matched listings:</h1>";
 					echo "<table class='table table-striped'>
 					<thead>
 					<tr>
@@ -172,8 +173,8 @@
 					</thead>";
 				
 					$match = htmlspecialchars($_GET['matchValue']);
-					debug_to_console($match);
 					$matches = explode('\n', exec('python ../../../src/matcher.py '. $match));
+					debug_to_console(count($matches));
 
 					//TODO: If len(output) == 0, print "no matches"
 					if (count($matches) == 0)
