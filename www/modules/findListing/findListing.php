@@ -33,6 +33,7 @@
 		<script>
 			function insertParameter(key, val)
 			{
+				console.log(val);
 				if (isNaN(val))
 					$("#content").load("modules/findListing/findListing.php?");
 				
