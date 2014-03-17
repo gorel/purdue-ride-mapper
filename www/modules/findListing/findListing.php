@@ -57,7 +57,7 @@
 				}
 				
 				//Reload the page with the new parameter
-				document.location.search = kvp.join('&');
+				document.location.search = kvp.join('&') + "findARide";
 			}
 		
 			function calcRoute()
@@ -157,21 +157,22 @@
 			}
 			else
 			{
-				echo "<table class='table table-striped'>
-				<thead>
-				<tr>
-				<th> Listing ID </th>
-				<th> Match Percentage </th>
-				<th> Starting Address </th>
-				<th> Ending Address </th>
-				<th> Date of Departure </th>
-				</tr>
-				</thead>";
 				
 				//Find matches to this listing
-				if (isset($_GET['matchListing']))
-					{
-					$match = htmlspecialchars($_GET['matchListing']);
+				if (isset($_GET['matchValue']))
+				{
+					echo "<table class='table table-striped'>
+					<thead>
+					<tr>
+					<th> Listing ID </th>
+					<th> Match Percentage </th>
+					<th> Starting Address </th>
+					<th> Ending Address </th>
+					<th> Date of Departure </th>
+					</tr>
+					</thead>";
+				
+					$match = htmlspecialchars($_GET['matchValue']);
 					$matches = explode('\n', exec('python ../../../src/matcher.py '. $match));
 
 					//TODO: If len(output) == 0, print "no matches"
