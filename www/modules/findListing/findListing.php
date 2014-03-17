@@ -33,6 +33,9 @@
 		<script>
 			function insertParameter(key, val)
 			{
+				if (isNaN(val))
+					$("#content").load("modules/findListing/findListing.php?");
+				
 				key = encodeURI(key);
 				val = encodeURI(val);
 				var kvp = document.location.search.substr(1).split('&');
@@ -67,10 +70,7 @@
 			
 			function matchListing()
 			{
-				var listing_id = parseInt(document.getElementById('listing_id_field').value);
-				if (listing_id === NaN)
-					listing_id = 1;
-					
+				var listing_id = parseInt(document.getElementById('listing_id_field').value);\
 				insertParameter("matchValue", listing_id);
 			}
 		
