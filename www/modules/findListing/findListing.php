@@ -34,7 +34,7 @@
 			function insertParameter(key, val)
 			{
 				key = encodeURI(key);
-				value = encodeURI(value);
+				val = encodeURI(val);
 				var kvp = document.location.search.substr(1).split('&');
 
 				var i=kvp.length;
@@ -45,7 +45,7 @@
 					x = kvp[i].split('=');
 					if (x[0]==key)
 					{
-						x[1] = value;
+						x[1] = val;
 						kvp[i] = x.join('=');
 						break;
 					}
@@ -53,7 +53,7 @@
 
 				if(i<0)
 				{
-					kvp[kvp.length] = [key,value].join('=');
+					kvp[kvp.length] = [key,val].join('=');
 				}
 				
 				//Reload the page with the new parameter
