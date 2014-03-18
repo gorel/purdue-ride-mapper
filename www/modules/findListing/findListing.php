@@ -31,39 +31,13 @@
 		<br>
 		
 		<script>
-			function insertParameter(key, val)
+			function loadParameter(key, val)
 			{
 				console.log("val is " + val);
-				if (isNaN(val))
-				{
+				if (isNaN(val))\
 					$("#content").load("modules/findListing/findListing.php?");
-				}
-				
-				key = encodeURI(key);
-				val = encodeURI(val);
-				var kvp = document.location.search.substr(1).split('&');
-
-				var i=kvp.length;
-				var x;
-				
-				while(i--) 
-				{
-					x = kvp[i].split('=');
-					if (x[0]==key)
-					{
-						x[1] = val;
-						kvp[i] = x.join('=');
-						break;
-					}
-				}
-
-				if(i<0)
-				{
-					kvp[kvp.length] = [key,val].join('=');
-				}
-				
-				//Reload the page with the new parameter
-				$("#content").load("modules/findListing/findListing.php?params" + kvp.join('&'));
+				else
+					$("#content").load("modules/findListing/findListing.php?" + key + "=" + val);
 			}
 		
 			function calcRoute()
@@ -73,8 +47,8 @@
 			
 			function matchListing()
 			{
-				var listing_id = parseInt(document.getElementById('listing_id_field').value);\
-				insertParameter("matchValue", listing_id);
+				var listing_id = parseInt(document.getElementById('listing_id_field').value);
+				loadParameter("matchValue", listing_id);
 			}
 		
 			//This script create the map with a default address.
