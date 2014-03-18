@@ -34,7 +34,7 @@
 			function loadParameter(key, val)
 			{
 				console.log("val is " + val);
-				if (isNaN(val))\
+				if (isNaN(val))
 					$("#content").load("modules/findListing/findListing.php?");
 				else
 					$("#content").load("modules/findListing/findListing.php?" + key + "=" + val);
