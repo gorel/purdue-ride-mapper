@@ -35,7 +35,7 @@
 			{
 				console.log("val is " + val);
 				if (isNaN(val))
-					$("#content").load("modules/findListing/findListing.php?");
+					$("#content").load("modules/findListing/findListing.php?error=NaN");
 				else
 					$("#content").load("modules/findListing/findListing.php?" + key + "=" + val);
 			}
@@ -153,7 +153,7 @@
 					$matches = explode('\n', exec('python ../../../src/matcher.py '. $matchNum));
 
 					//TODO: If len(output) == 0, print "no matches"
-					if (count($matches) == 0)
+					if (strpos($matches, "\n") == 0)
 					{
 						echo "<tr>";
 						echo '<td> </td>';
@@ -189,6 +189,9 @@
 				}
 				else
 				{
+					if (isset($_GET['error']) && strcmp(htmlspecialchars($_GET['error']), 'NaN'))
+						echo '<h1>Error: Value is not a number.</h1>';
+					
 					$sql = "SELECT * FROM listings";
 					$result = mysqli_query($con,$sql);
 				
