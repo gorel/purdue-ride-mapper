@@ -187,8 +187,7 @@
 				}
 				else
 				{
-					debug_to_console(htmlspecialchars($_GET['error']) . 'vs' . 'NaN');
-					if (isset($_GET['error']) && strcmp(htmlspecialchars($_GET['error']), 'NaN'))
+					if (isset($_GET['error']) && strcmp($_GET['error'], 'NaN'))
 						echo '<h1>Error: Value is not a number.</h1>';
 					
 					$sql = "SELECT * FROM listings";
