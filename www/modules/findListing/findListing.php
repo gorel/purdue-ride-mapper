@@ -188,7 +188,7 @@
 				else
 				{
 					if (isset($_GET['NaNerror']))
-						echo '<h1>Error: Value is not a number.</h1>';
+						echo "<div style='color: red; font-size: 14pt;'>Error: Value is not a number.</div>";
 					
 					$sql = "SELECT * FROM listings";
 					$result = mysqli_query($con,$sql);
