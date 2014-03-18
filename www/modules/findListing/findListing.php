@@ -34,7 +34,7 @@
 			function loadParameter(key, val)
 			{
 				if (isNaN(val))
-					$("#content").load("modules/findListing/findListing.php?error=NaN");
+					$("#content").load("modules/findListing/findListing.php?NaNerror");
 				else
 					$("#content").load("modules/findListing/findListing.php?" + key + "=" + val);
 			}
@@ -140,7 +140,7 @@
 					<thead>
 					<tr>
 					<th> Listing ID </th>
-					<th> Match Percentage </th>
+					<th> Match % </th>
 					<th> Starting Address </th>
 					<th> Ending Address </th>
 					<th> Date of Departure </th>
@@ -187,7 +187,7 @@
 				}
 				else
 				{
-					if (isset($_GET['error']) && strcmp($_GET['error'], 'NaN'))
+					if (isset($_GET['NaNerror']))
 						echo '<h1>Error: Value is not a number.</h1>';
 					
 					$sql = "SELECT * FROM listings";
@@ -202,10 +202,10 @@
 					<th> Ride Type </th>
 					<th> Passengers </th>
 					<th> Date of Departure </th>
-					<th> Listing_id </th>
+					<th> Listing ID </th>
 					</tr>
 					</thead>";
-					$i = 1;
+					$i = 0;
 					while($row = mysqli_fetch_array($result))
 					{
 						echo "<tr>";
@@ -222,7 +222,7 @@
 
 						echo "<td>". $row["passengers"] . "</td>";
 						echo "<td>". $row["dateOfDeparture"] . "</td>";
-						echo "<td>". $i . "</td>";
+						echo "<td>". $row['listings_id'] . "</td>";
 						echo "</tr>";
 					
 						$start_lat1[]= $row["start_lat"];
