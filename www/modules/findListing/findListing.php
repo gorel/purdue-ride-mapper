@@ -153,7 +153,8 @@
 					$matches = explode('\n', exec('python ../../../src/matcher.py '. $matchNum));
 
 					//TODO: If len(output) == 0, print "no matches"
-					if (strpos($matches, "\n") == 0)
+					debug_to_console("String length: " . strlen($matches));
+					if (strlen($matches) == 1)
 					{
 						echo "<tr>";
 						echo '<td> </td>';
