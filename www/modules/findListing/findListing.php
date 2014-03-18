@@ -35,7 +35,9 @@
 			{
 				console.log("val is " + val);
 				if (isNaN(val))
+				{
 					$("#content").load("modules/findListing/findListing.php?");
+				}
 				
 				key = encodeURI(key);
 				val = encodeURI(val);
@@ -61,7 +63,7 @@
 				}
 				
 				//Reload the page with the new parameter
-				$("#content").load("modules/findListing/findListing.php?" + kvp.join('&'));
+				$("#content").load("modules/findListing/findListing.php?params" + kvp.join('&'));
 			}
 		
 			function calcRoute()
