@@ -153,8 +153,8 @@
 					$matches = explode('\n', exec('python ../../../src/matcher.py '. $matchNum));
 
 					//TODO: If len(output) == 0, print "no matches"
-					debug_to_console("String length: " . strlen($matches));
-					if (strlen($matches) == 1)
+					debug_to_console("String length: " . strlen($matches[0]));
+					if (strlen($matches[0]) == 1)
 					{
 						echo "<tr>";
 						echo '<td> </td>';
@@ -168,7 +168,6 @@
 						//For each match	
 						foreach($matches as $match)
 						{
-							debug_to_console("$match");
 							$val = explode(' ', $match);
 							$match = $val[0];
 							$id = $val[1];
