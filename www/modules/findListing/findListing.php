@@ -33,7 +33,6 @@
 		<script>
 			function loadParameter(key, val)
 			{
-				console.log("val is " + val);
 				if (isNaN(val))
 					$("#content").load("modules/findListing/findListing.php?error=NaN");
 				else
@@ -152,9 +151,8 @@
 					echo "<h1> Listings matched to Listing ID #" . $matchNum . ":</h1>";
 					$matches = explode('\n', exec('python ../../../src/matcher.py '. $matchNum));
 
-					//TODO: If len(output) == 0, print "no matches"
-					debug_to_console("String length: " . strlen($matches[0]));
-					if (strlen($matches[0]) == 1)
+					//If len(output) == 0, print "no matches"
+					if (strlen($matches[0]) == 0)
 					{
 						echo "<tr>";
 						echo '<td> </td>';
@@ -189,6 +187,7 @@
 				}
 				else
 				{
+					debug_to_console($_GET['error']);
 					if (isset($_GET['error']) && strcmp(htmlspecialchars($_GET['error']), 'NaN'))
 						echo '<h1>Error: Value is not a number.</h1>';
 					
