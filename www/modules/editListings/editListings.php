@@ -46,9 +46,14 @@
 
 					echo "<td>". $row["passengers"] . "</td>";
 					echo "<td>". $row["dateOfDeparture"] . "</td>";
-					echo "<td> <button class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#myModal\">Edit</button> </td>";
 					echo "<td> 
-							<form action=\"modules/editListings/editListingsProc.php\" method=\"post\" onsubmit=\"return confirm('You want to delete this listing?')\">
+							<form action=\"modules/editListings/editListings.php\" method=\"get\">
+								<input type=\"hidden\" name=\"listings_id\" value=\"". $row['listings_id'] ."\">
+								<button type=\"submit\" class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#myModal\">Edit</button>
+							</form> 
+						</td>";
+					echo "<td> 
+							<form action=\"modules/editListings/deleteListingsProc.php\" method=\"post\" onsubmit=\"return confirm('Are you sure you want to delete this listing?')\">
 								<input type=\"hidden\" name=\"listings_id\" value=\"". $row['listings_id'] ."\">
 								<button class=\"btn btn-danger\" type=\"submit\">Delete</button>
 							</form> 
@@ -69,7 +74,7 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title" id="myModalLabel">Edit Listing</h4>
 				</div>
-				<form action="modules/editListings/editListingsProc.php" method="post" onsubmit="return confirm('You want to delete this listing?')">
+				<form action="modules/editListings/editListingsProc.php" method="post" onsubmit="return confirm('Are you sure you want to delete this listing?')">
 					<div class="modal-body">
 						<div class="form-group">
 							<label>Starting Address</label>
@@ -93,8 +98,7 @@
 						
 						<div class="form-group">
 							<label>Date of Departure</label>
-							<div class='input-group date' id='datetimepicker1'>
-								
+							<div class='input-group date' id='datetimepicker1'>								
 								<input type='text' class="form-control" name="dateTime" placeholder="Desired Departure Date" data-format="YYYY-MM-DD hh:mm:ss"/>
 								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
 								</span>
