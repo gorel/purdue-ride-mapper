@@ -58,7 +58,7 @@
 					echo "<td>". $row["dateOfDeparture"] . "</td>";
 					echo "<td> <button class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#myModal\">Edit</button> </td>";
 					echo "<td> 
-							<form action=\"editListingsProc.php\" method=\"get\">
+							<form action=\"modules/editListings/editListingsProc.php\" method=\"get\">
 								<input type=\"hidden\" name=\"listings_id\" value=\"run\">
 								<button class=\"btn btn-danger\" type=\"submit\">Delete</button>
 							</form> 
