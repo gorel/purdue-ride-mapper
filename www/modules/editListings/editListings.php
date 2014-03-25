@@ -60,7 +60,7 @@
 					echo "<td> 
 						<form action=\"editListings.php\" method=\"get\">
 							<input type=\"hidden\" name=\"listings_id\" value=\"run\">
-							<input class=\"btn btn-danger\" type=\"submit\" value=\"Run me now!\">
+							<button class=\"btn btn-danger\" type=\"submit\">Delete</button>
 						</form> </td>";
 					echo "</tr>";
 				}
