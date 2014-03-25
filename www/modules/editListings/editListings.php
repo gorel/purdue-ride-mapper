@@ -15,8 +15,6 @@
 <hr class="featurette-divider">
 <div class="container" >
 	<?php
-		echo '<script type="text/javascript">alert("hello!");</script>'; 
-
 		$con=mysqli_connect("localhost","collegecarpool","collegecarpool","purdue_test");
 
 		if(mysqli_connect_errno())
@@ -60,10 +58,11 @@
 					echo "<td>". $row["dateOfDeparture"] . "</td>";
 					echo "<td> <button class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#myModal\">Edit</button> </td>";
 					echo "<td> 
-						<form action=\"editListings.php\" method=\"get\">
-							<input type=\"hidden\" name=\"listings_id\" value=\"run\">
-							<button class=\"btn btn-danger\" type=\"submit\">Delete</button>
-						</form> </td>";
+							<form action=\"editListingsProc.php\" method=\"get\">
+								<input type=\"hidden\" name=\"listings_id\" value=\"run\">
+								<button class=\"btn btn-danger\" type=\"submit\">Delete</button>
+							</form> 
+						</td>";
 					echo "</tr>";
 				}
 			}
