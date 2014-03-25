@@ -7,7 +7,15 @@
 			$listings_id = $_POST["listings_id"];
 			
 			$con=mysqli_connect("localhost","collegecarpool","collegecarpool","purdue_test");
-header('Location: ../../index.php');
+
+			if(mysqli_connect_errno())
+			{
+				echo "Failed to connect to MySQL: " . mysqli_connect_error();
+			}
+			else
+			{
+				echo "hello!";	
+			}
 		?>
 
 	</body>
