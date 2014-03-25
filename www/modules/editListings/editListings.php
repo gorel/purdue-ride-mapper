@@ -15,10 +15,8 @@
 <hr class="featurette-divider">
 <div class="container" >
 	<?php
-		if (!empty($_GET['listings_id'])) {
-			echo '<script type="text/javascript">alert("hello!");</script>'; 
-		}
-	
+		echo '<script type="text/javascript">alert("hello!");</script>'; 
+
 		$con=mysqli_connect("localhost","collegecarpool","collegecarpool","purdue_test");
 
 		if(mysqli_connect_errno())
