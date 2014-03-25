@@ -53,8 +53,8 @@
 
 					echo "<td>". $row["passengers"] . "</td>";
 					echo "<td>". $row["dateOfDeparture"] . "</td>";
-					echo "<td> <button class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#myModal\">Edit</button> </td>";
-					echo "<td> <button type=\"button\" class=\"btn btn-danger\">Delete</button> </td>";
+					echo "<td> <button class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#myModal\" value="$row["listings_id"]">Edit</button> </td>";
+					echo "<td> <button type=\"button\" class=\"btn btn-danger\" value="$row["listings_id"]">Delete</button> </td>";
 					echo "</tr>";
 				}
 			}
@@ -69,7 +69,7 @@
 		<div class="modal-content">
 		  <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+			<h4 class="modal-title" id="myModalLabel">Edit Listing</h4>
 		  </div>
 		  <div class="modal-body">
 			...
