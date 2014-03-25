@@ -72,10 +72,12 @@
 				<form action="modules/editListings/editListingsProc.php" method="post" onsubmit="return confirm('You want to delete this listing?')">
 					<div class="modal-body">
 						<div class="form-group">
+							<label>Starting Address</label>
 							<input type="text" class="form-control" placeholder="Starting Location" name="startingAddress" required autofocus>
 						</div>
 
 						<div class="form-group" id="test">
+							<label>Ending Address</label>
 							<input type="text" class="form-control" placeholder="Destination" name="destinationAddress" required autofocus>
 						</div>
 						
@@ -85,11 +87,14 @@
 						</div>
 						
 						<div class="form-group">
+							<label>Number of Passengers</label>
 							<input id="passengersTextBox" type="text" class="form-control" placeholder="Number of Passengers" name="passengers" required autofocus disabled>
 						</div>						
 						
 						<div class="form-group">
+							<label>Date of Departure</label>
 							<div class='input-group date' id='datetimepicker1'>
+								
 								<input type='text' class="form-control" name="dateTime" placeholder="Desired Departure Date" data-format="YYYY-MM-DD hh:mm:ss"/>
 								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
 								</span>
