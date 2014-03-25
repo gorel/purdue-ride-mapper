@@ -14,12 +14,7 @@
 <script src="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.js"></script>
 <hr class="featurette-divider">
 <div class="container" >
-	<?php
-		function deleteListing($msg)
-		{
-			 echo '<script type="text/javascript">alert("' . $msg . '"); </script>';
-		}
-		
+	<?php		
 		$con=mysqli_connect("localhost","collegecarpool","collegecarpool","purdue_test");
 
 		if(mysqli_connect_errno())
@@ -61,33 +56,33 @@
 
 					echo "<td>". $row["passengers"] . "</td>";
 					echo "<td>". $row["dateOfDeparture"] . "</td>";
-					echo "<td> <button class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#myModal\" id=" . $row['listings_id'] . ">Edit</button> </td>";
-					echo "<td> <button type=\"button\" class=\"btn btn-danger\" id=" . $row['listings_id'] . " onclick="deleteListing($row['listings_id'])">Delete</button> </td>";
+					echo "<td> <button class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#myModal\">Edit</button> </td>";
+					echo "<td> <button type=\"button\" class=\"btn btn-danger\">Delete</button> </td>";
 					echo "</tr>";
 				}
 			}
 			echo "</table>";
 		}
 		mysqli_close($con);
-	?>
 	
-			<!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-		<div class="modal-content">
-		  <div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			<h4 class="modal-title" id="myModalLabel">Edit Listing</h4>
-		  </div>
-		  <div class="modal-body">
-			...
-		  </div>
-		  <div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			<button type="button" class="btn btn-primary">Save changes</button>
+	
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Edit Listing</h4>
+			  </div>
+			  <div class="modal-body">
+				...
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			  </div>
+			</div>
 		  </div>
 		</div>
-	  </div>
-	</div>
 
 </div> <!-- /container -->
