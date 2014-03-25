@@ -29,17 +29,11 @@
 			else
 			{
 				$sql = "DELETE FROM listings WHERE listings_id = $listings_id";
-				if (!mysqli_query($con,$sql))
-				{
-					die('Error: ' . mysqli_error($con));
-					mysqli_close($con);
-				}
-				else
-				{
-					mysqli_close($con);
-					header('Location: ../../index.php');
-					exit();
-				}				
+				mysqli_query($con,$sql)
+				mysqli_close($con);
+				header('Location: ../../index.php');
+				location.reload();
+				exit();			
 			}
 		?>
 
