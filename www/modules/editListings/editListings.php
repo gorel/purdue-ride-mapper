@@ -16,7 +16,7 @@
 <div class="container" >
 	<?php
 		if (!empty($_GET['listings_id'])) {
-			'<script type="text/javascript">alert("hello!");</script>'; 
+			echo '<script type="text/javascript">alert("hello!");</script>'; 
 		}
 	
 		$con=mysqli_connect("localhost","collegecarpool","collegecarpool","purdue_test");
