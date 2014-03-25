@@ -23,7 +23,7 @@
 				else
 				{
 					mysqli_close($con);
-					header('Location: ../../index.php?sort=title');
+					header('Location: ../../index.php?page=editListings');
 					exit();
 				}		
 			}
