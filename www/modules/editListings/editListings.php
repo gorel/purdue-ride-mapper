@@ -59,7 +59,7 @@
 					echo "<td> <button class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#myModal\">Edit</button> </td>";
 					echo "<td> 
 							<form action=\"modules/editListings/editListingsProc.php\" method=\"get\">
-								<input type=\"hidden\" name=\"listings_id\" value=\"run\">
+								<input type=\"hidden\" name=\"listings_id\" value=\"". $row['listings_id'] ."\">
 								<button class=\"btn btn-danger\" type=\"submit\">Delete</button>
 							</form> 
 						</td>";
