@@ -13,11 +13,19 @@
 			}
 			else
 			{
-				$sql = "DELETE FROM listings WHERE listings_id = 38";
-				mysqli_query($con,$sql)
-				mysqli_close($con);
-				header('Location: ../../index.php');
-				exit();			
+				$sql = "DELETE FROM listings WHERE listings_id = $listings_id";
+				if (!mysqli_query($con,$sql))
+				{
+					echo "error";
+					echo mysqli_error($con);
+					mysqli_close($con);
+				}
+				else
+				{
+					mysqli_close($con);
+					header('Location: ../../index.php');
+					exit();
+				}		
 			}
 		?>
 
