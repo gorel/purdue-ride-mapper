@@ -1,13 +1,3 @@
-<!-- Bootstrap core CSS -->
-<link href="css/bootstrap.css" rel="stylesheet">
-
-
-<!-- Custom styles for this template -->
-<link href="signin.css" rel="stylesheet">
-
-<!-- Custom scripts for the datatimepicker -->
-<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" />
-<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>		
 <script type="text/javascript" src="js/moment.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -56,7 +46,10 @@
 
 					echo "<td>". $row["passengers"] . "</td>";
 					echo "<td>". $row["dateOfDeparture"] . "</td>";
-
+					echo "<td> <button class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#myModal\">Edit</button> </td>";
+					echo "<td> 
+					<button type=\"button\" class=\"btn btn-danger\">Delete</button> 
+					</td>";
 					echo "</tr>";
 				}
 			}
