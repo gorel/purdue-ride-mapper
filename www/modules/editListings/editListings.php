@@ -15,6 +15,11 @@
 <hr class="featurette-divider">
 <div class="container" >
 	<?php
+		function deleteListing($msg)
+		{
+			 echo '<script type="text/javascript">alert("' . $msg . '"); </script>';
+		}
+		
 		$con=mysqli_connect("localhost","collegecarpool","collegecarpool","purdue_test");
 
 		if(mysqli_connect_errno())
@@ -57,7 +62,7 @@
 					echo "<td>". $row["passengers"] . "</td>";
 					echo "<td>". $row["dateOfDeparture"] . "</td>";
 					echo "<td> <button class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#myModal\" id=" . $row['listings_id'] . ">Edit</button> </td>";
-					echo "<td> <button type=\"button\" class=\"btn btn-danger\" id=" . $row['listings_id'] . ">Delete</button> </td>";
+					echo "<td> <button type=\"button\" class=\"btn btn-danger\" id=" . $row['listings_id'] . " onclick="deleteListing($row['listings_id'])">Delete</button> </td>";
 					echo "</tr>";
 				}
 			}
