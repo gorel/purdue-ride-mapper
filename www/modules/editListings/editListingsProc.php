@@ -14,6 +14,7 @@
 			else
 			{
 				$sql = "DELETE FROM listings WHERE listings_id = $listings_id";
+				mysqli_query($con,$sql)
 				mysqli_close($con);
 				header('Location: ../../index.php');
 				exit();			
