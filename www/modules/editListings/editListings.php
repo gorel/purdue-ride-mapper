@@ -47,10 +47,7 @@
 					echo "<td>". $row["passengers"] . "</td>";
 					echo "<td>". $row["dateOfDeparture"] . "</td>";
 					echo "<td> 
-							<form action=\"index.php\" method=\"get\">
-								<input type=\"hidden\" name=\"listings_id\" value=\"". $row['listings_id'] ."\">
-								<button type=\"submit\" class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#myModal\">Edit</button>
-							</form> 
+							<button class=\"open-AddBookDialog btn btn-success\" data-id=\"". $row['listings_id'] ."\" data-toggle=\"modal\" data-target=\"#myModal\">Edit</button>	
 						</td>";
 					echo "<td> 
 							<form action=\"modules/editListings/deleteListingsProc.php\" method=\"post\" onsubmit=\"return confirm('Are you sure you want to delete this listing?')\">
@@ -66,19 +63,28 @@
 		mysqli_close($con);
 	?>
 	
+	<script type="text/javascript">
+		$(document).on("click", ".open-AddBookDialog", function () {
+			 var myBookId = $(this).data('id');
+			 $(".modal-body #bookId").val( myBookId );
+		});
+	</script>
+	
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">Edit Listing <?php echo $_GET["listings_id"]; ?></h4>
+					<h4 class="modal-title" id="myModalLabel">Edit Listing</h4>
 				</div>
 				<form action="modules/editListings/editListingsProc.php" method="post" onsubmit="return confirm('Are you sure you want to delete this listing?')">
 					<div class="modal-body">
+						<input type="text" name="bookId" id="bookId" value=""/>
 						<div class="form-group">
 							<label>Starting Address</label>
 							<input type="text" class="form-control" placeholder="Starting Location" name="startingAddress" required autofocus>
+							
 						</div>
 
 						<div class="form-group" id="test">
