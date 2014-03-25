@@ -56,8 +56,7 @@
 
 					echo "<td>". $row["passengers"] . "</td>";
 					echo "<td>". $row["dateOfDeparture"] . "</td>";
-					echo "<td> <button class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#myModal\">Edit</button> </td>";
-					echo "<td> <button type=\"button\" class=\"btn btn-danger\">Delete</button> </td>";
+
 					echo "</tr>";
 				}
 			}
