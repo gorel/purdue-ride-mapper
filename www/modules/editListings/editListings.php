@@ -57,7 +57,11 @@
 					echo "<td>". $row["passengers"] . "</td>";
 					echo "<td>". $row["dateOfDeparture"] . "</td>";
 					echo "<td> <button class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#myModal\">Edit</button> </td>";
-					echo "<td> <button type=\"button\" class=\"btn btn-danger\">Delete</button> </td>";
+					echo "<td> 
+						<form action=\"editListings.php\" method=\"get\">
+							<input type=\"hidden\" name=\"listings_id\" value=\"run\">
+							<input type=\"submit\" value=\"Run me now!\">
+						</form> </td>";
 					echo "</tr>";
 				}
 			}
