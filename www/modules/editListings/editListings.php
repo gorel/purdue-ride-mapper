@@ -1,5 +1,7 @@
+<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" />
 <script type="text/javascript" src="js/moment.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
 <hr class="featurette-divider">
 <div class="container" >
 	<?php
@@ -19,10 +21,10 @@
 			echo "<table class='table table-striped'>
 			<thead>
 			<tr>
-			<th> StartingAddress </th>
-			<th> EndingAddress </th>
-			<th> Request? </th>
-			<th> Passengers </th>
+			<th> Starting Address </th>
+			<th> Ending Address </th>
+			<th> Hosting </th>
+			<th> Number of Passengers </th>
 			<th> Date of Departure </th>
 			</tr>
 			</thead>";
@@ -59,23 +61,57 @@
 		mysqli_close($con);
 	?>
 	
-			<!-- Modal -->
+	<!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-		<div class="modal-content">
-		  <div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			<h4 class="modal-title" id="myModalLabel">Edit Listing</h4>
-		  </div>
-		  <div class="modal-body">
-			...
-		  </div>
-		  <div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			<button type="button" class="btn btn-primary">Save changes</button>
-		  </div>
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Edit Listing</h4>
+				</div>
+				<form action="modules/editListings/editListingsProc.php" method="post" onsubmit="return confirm('You want to delete this listing?')">
+					<div class="modal-body">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Starting Location" name="startingAddress" required autofocus>
+						</div>
+
+						<div class="form-group" id="test">
+							<input type="text" class="form-control" placeholder="Destination" name="destinationAddress" required autofocus>
+						</div>
+						
+						<div class="form-group">
+							<input type="radio" name="isRequest" value="1" onClick="disablePassengers()" checked> Looking for a Ride 
+							<input type="radio" name="isRequest" value="0" onClick="enablePassengers()"> Hosting a Ride 			
+						</div>
+						
+						<div class="form-group">
+							<input id="passengersTextBox" type="text" class="form-control" placeholder="Number of Passengers" name="passengers" required autofocus disabled>
+						</div>						
+						
+						<div class="form-group">
+							<div class='input-group date' id='datetimepicker1'>
+								<input type='text' class="form-control" name="dateTime" placeholder="Desired Departure Date" data-format="YYYY-MM-DD hh:mm:ss"/>
+								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+								</span>
+							</div>
+						</div>
+
+						<script type="text/javascript">
+							$(function () {
+								$('#datetimepicker1').datetimepicker();
+							});
+						</script>
+
+						
+						<input type="hidden" name="listings_id" value="">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" type="submit">Save changes</button>
+					</div>
+				</form> 
+			</div>
 		</div>
-	  </div>
 	</div>
 
 </div> <!-- /container -->
