@@ -47,7 +47,7 @@
 					echo "<td>". $row["passengers"] . "</td>";
 					echo "<td>". $row["dateOfDeparture"] . "</td>";
 					echo "<td> 
-							<form action=\"modules/editListings/editListings.php\" method=\"get\">
+							<form action=\"index.php\" method=\"get\">
 								<input type=\"hidden\" name=\"listings_id\" value=\"". $row['listings_id'] ."\">
 								<button type=\"submit\" class=\"btn btn-success\" data-toggle=\"modal\" data-target=\"#myModal\">Edit</button>
 							</form> 
