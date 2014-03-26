@@ -47,7 +47,7 @@
 					echo "<td>". $row["passengers"] . "</td>";
 					echo "<td>". $row["dateOfDeparture"] . "</td>";
 					echo "<td> 
-							<button class=\"open-AddBookDialog btn btn-success\" data-id=\"". $row['listings_id'] ."\" data-toggle=\"modal\" data-target=\"#myModal\">Edit</button>	
+							<button class=\"open-EditListingDialog btn btn-success\" data-id=\"". $row['listings_id'] ."\" data-toggle=\"modal\" data-target=\"#myModal\">Edit</button>	
 						</td>";
 					echo "<td> 
 							<form action=\"modules/editListings/deleteListingsProc.php\" method=\"post\" onsubmit=\"return confirm('Are you sure you want to delete this listing?')\">
@@ -64,9 +64,9 @@
 	?>
 	
 	<script type="text/javascript">
-		$(document).on("click", ".open-AddBookDialog", function () {
-			 var myBookId = $(this).data('id');
-			 $(".modal-body #bookId").val( myBookId );
+		$(document).on("click", ".open-EditListingDialog", function () {
+			 var listingID = $(this).data('id');
+			 $(".modal-body #listingID").val( listingID );
 		});
 	</script>
 	
@@ -80,7 +80,7 @@
 				</div>
 				<form action="modules/editListings/editListingsProc.php" method="post" onsubmit="return confirm('Are you sure you want to delete this listing?')">
 					<div class="modal-body">
-						<input type="text" name="bookId" id="bookId" value=""/>
+						<input type="text" name="listingID" id="listingID" value=""/>
 						<div class="form-group">
 							<label>Starting Address</label>
 							<input type="text" class="form-control" placeholder="Starting Location" name="startingAddress" required autofocus>
