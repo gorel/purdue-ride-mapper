@@ -105,7 +105,8 @@
 							<label>Date of Departure</label>
 							<div class='input-group date' id='datetimepicker1'>								
 								<input type='text' class="form-control" name="dateTime" placeholder="Desired Departure Date" data-format="YYYY-MM-DD hh:mm:ss"/>
-								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+								<span class="input-group-addon">
+									<span class="glyphicon glyphicon-calendar"></span>
 								</span>
 							</div>
 						</div>
@@ -115,9 +116,6 @@
 								$('#datetimepicker1').datetimepicker();
 							});
 						</script>
-
-						
-						<input type="hidden" name="listings_id" value="">
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
