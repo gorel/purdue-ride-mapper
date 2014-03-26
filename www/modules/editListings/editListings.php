@@ -80,11 +80,10 @@
 				</div>
 				<form action="modules/editListings/editListingsProc.php" method="post" onsubmit="return confirm('Are you sure you want to delete this listing?')">
 					<div class="modal-body">
-						<input type="text" name="listingID" id="listingID" value=""/>
+						<input type="hidden" name="listingID" id="listingID" value=""/>						
 						<div class="form-group">
 							<label>Starting Address</label>
 							<input type="text" class="form-control" placeholder="Starting Location" name="startingAddress" required autofocus>
-							
 						</div>
 
 						<div class="form-group" id="test">
