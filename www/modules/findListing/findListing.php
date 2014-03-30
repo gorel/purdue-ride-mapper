@@ -49,52 +49,16 @@
 				var listing_id = parseInt(document.getElementById('listing_id_field').value);
 				loadParameter("matchValue", listing_id);
 			}
-		
-			//This script create the map with a default address.
-			//Its current location is somewhere by College Station
-			$(document).ready(function ()
+			
+			$(document).ready(function()
 			{
 				var map = new GMaps
 				({
 					div: '#map_canvas',
 					lat: 40.431042,
 					lng: -86.913651,
-					zoomControl : true,
-					zoomControlOpt:
-					{
-						style : 'SMALL',
-					},
-					panControl : false,
 				});
-					//This add the start address marker
-					map.addMarker
-					({
-						lat:40.431042,
-						lng: -86.913651,
-					});
-
-					//This will add the route drawing from start to destination
-					//Colors can be changed (Its in Hex)
-					map.drawRoute
-					({
-						origin: [40.431042,-86.913651],
-						destination: [39.958199,-86.017082],
-						travelMode: 'driving',
-						strokeColor: '#0000FF',
-						strokeOpacity: 0.6,
-						strokeWeight: 6
-					});
-
-					//This add the destination address marker
-					map.addMarker
-					({
-						lat:39.958199,
-						lng:-86.017082,
-					});
-				
-				map.fitZoom();
-				
-			});
+			}
 		</script>
 		
 	<div id='matcher_wrapper'></div>
@@ -198,7 +162,6 @@
 					<th> Listing ID </th>
 					</tr>
 					</thead>";
-					$i = 0;
 					while($row = mysqli_fetch_array($result))
 					{
 						echo "<tr>";
@@ -222,9 +185,8 @@
 						$end_lon1[]= $row["start_long"];
 						$start_lat2[] = $row["end_lat"];
 						$end_lon2[] = $row["end_long"];
-						$i++;
+						
 					}
-					$num_rides = $i;
 					echo "</table>";
 				
 				}
