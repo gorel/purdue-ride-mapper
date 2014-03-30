@@ -49,16 +49,24 @@
 				var listing_id = parseInt(document.getElementById('listing_id_field').value);
 				loadParameter("matchValue", listing_id);
 			}
-			
-			$(document).ready(function()
+		
+			//This script create the map with a default address.
+			//Its current location is somewhere by College Station
+			$(document).ready(function ()
 			{
 				var map = new GMaps
 				({
 					div: '#map_canvas',
 					lat: 40.431042,
 					lng: -86.913651,
+					zoomControl : true,
+					zoomControlOpt:
+					{
+						style : 'SMALL',
+					},
+					panControl : false,
 				});
-			}
+			});
 		</script>
 		
 	<div id='matcher_wrapper'></div>
@@ -162,6 +170,7 @@
 					<th> Listing ID </th>
 					</tr>
 					</thead>";
+					$i = 0;
 					while($row = mysqli_fetch_array($result))
 					{
 						echo "<tr>";
@@ -185,7 +194,6 @@
 						$end_lon1[]= $row["start_long"];
 						$start_lat2[] = $row["end_lat"];
 						$end_lon2[] = $row["end_long"];
-						
 					}
 					echo "</table>";
 				
