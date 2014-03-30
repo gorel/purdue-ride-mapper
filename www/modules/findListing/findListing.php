@@ -128,6 +128,13 @@
 					}
 					else
 					{
+						//Testing
+						echo "map.addMarker
+						({
+							lat: 40.431042,
+							lng: -86.913651,
+						});";
+						
 						//For each match	
 						foreach($matches as $match)
 						{
