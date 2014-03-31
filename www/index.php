@@ -22,7 +22,6 @@
 	</head>
 
 	<body>
-		<
 		<script type="text/javascript">
 			function hideAll(sender)
 			{
