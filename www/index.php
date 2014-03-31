@@ -53,12 +53,6 @@
 			}
 		</script>
 
-		<?php 
-		if("editListings" == $_GET["page"]) 
-		{ 
-			echo $_GET["page"];
-		} 
-		?>
 		<div class="container">
 			<div id="#body">
 				<div class="masthead">
@@ -193,7 +187,7 @@
 				<?php if ($_GET["page"] == "editListings") { ?>
 					<script type='text/javascript'> 
 						$(document).ready(function() {
-							$("editListings").click();
+							$("#editListings").click();
 						});
 					</script>
 				<?php } ?>
