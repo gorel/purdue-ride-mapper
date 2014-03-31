@@ -136,12 +136,6 @@
 				</div>
 
 				<script type="text/javascript">
-					<?php
-						if("editListings" ==  $_GET['page'])
-						{
-							echo $( "#content" ).load( "modules/editListings/editListings.php" );
-						}						
-					?>
 					$("#editListings").click(function()
 					{
 						$( "#content" ).load( "modules/editListings/editListings.php" );
