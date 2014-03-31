@@ -78,7 +78,7 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title" id="myModalLabel">Edit Listing</h4>
 				</div>
-				<form action="modules/editListings/editListingsProc.php" method="post" onsubmit="return confirm('Are you sure you want to delete this listing?')">
+				<form action="modules/editListings/editListingsProc.php" method="post">
 					<div class="modal-body">
 						<input type="hidden" name="listingID" id="listingID" value=""/>						
 						<div class="form-group">
@@ -101,21 +101,7 @@
 							<input id="passengersTextBox" type="text" class="form-control" placeholder="Number of Passengers" name="passengers" required autofocus disabled>
 						</div>						
 						
-						<div class="form-group">
-							<label>Date of Departure</label>
-							<div class='input-group date' id='datetimepicker1'>								
-								<input type='text' class="form-control" name="dateTime" placeholder="Desired Departure Date" data-format="YYYY-MM-DD hh:mm:ss"/>
-								<span class="input-group-addon">
-									<span class="glyphicon glyphicon-calendar"></span>
-								</span>
-							</div>
-						</div>
 
-						<script type="text/javascript">
-							$(function () {
-								$('#datetimepicker1').datetimepicker();
-							});
-						</script>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
