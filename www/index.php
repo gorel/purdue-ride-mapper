@@ -53,7 +53,12 @@
 			}
 		</script>
 
-		<?php if("editListings" == $_GET["page"]) { echo $_GET["page"] } ?>
+		<?php 
+		if("editListings" == $_GET["page"]) 
+		{ 
+			echo $_GET["page"];
+		} 
+		?>
 		<div class="container">
 			<div id="#body">
 				<div class="masthead">
