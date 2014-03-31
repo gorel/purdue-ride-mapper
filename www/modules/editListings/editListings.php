@@ -83,7 +83,7 @@
 							<input type="hidden" name="listingID" id="listingID" value=""/>								
 							
 							<div class="form-group">
-								<div class = "col-lg-10">
+								<div class = "col-lg-10" align="center">
 								<label>Starting Address</label>
 								<input type="text" class="form-control" placeholder="Starting Location" name="startingAddress" required autofocus>
 								</div>
