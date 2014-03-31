@@ -80,15 +80,13 @@
 							<h4>Edit Listing</h4>
 						</div>
 						<div class = "modal-body">
-							<input type="hidden" name="listingID" id="listingID" value=""/>	
+							<input type="hidden" name="listingID" id="listingID" value=""/>								
 							
-							<div class = "form-group">		   
-								<label class = "col-lg-2 control-label">Starting Location:</label>
-								<div class = "col-lg-10">	   
-									<input type="text" class="form-control" placeholder="Starting Location" name="startingAddress" required autofocus>
-								</div>							   
+							<div class="form-group">
+								<label>Starting Address</label>
+								<input type="text" class="form-control" placeholder="Starting Location" name="startingAddress" required autofocus>
 							</div>
-
+							   
 
 							<div class="form-group" id="test">
 								<label>Ending Address</label>
