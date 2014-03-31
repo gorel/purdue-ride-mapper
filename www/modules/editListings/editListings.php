@@ -78,9 +78,7 @@
 				  <form class = "form-horizontal" action="modules/editListings/editListingsProc.php" method="post">
 						<div class = "modal-header">
 							<div class = "col-lg-1" />
-							<div class = "col-lg-10">
 							<h4>Edit Listing</h4>
-							</div>
 						</div>
 						<div class = "modal-body">
 							<input type="hidden" name="listingID" id="listingID" value=""/>								
