@@ -75,71 +75,71 @@
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				  <form class = "form-horizontal" action="modules/editListings/editListingsProc.php" method="post">
-						<div class = "modal-header">
+				<form class = "form-horizontal" action="modules/editListings/editListingsProc.php" method="post">
+					<div class = "modal-header">
+						<div class = "col-lg-1" />
+						<h3>Edit Listing</h3>
+					</div>
+					<div class = "modal-body">
+						<input type="hidden" name="listingID" id="listingID" value=""/>								
+						
+						<div class="form-group">
 							<div class = "col-lg-1" />
-							<h4>Edit Listing</h4>
-						</div>
-						<div class = "modal-body">
-							<input type="hidden" name="listingID" id="listingID" value=""/>								
-							
-							<div class="form-group">
-								<div class = "col-lg-1" />
-								<div class = "col-lg-10">
-									<label>Starting Address</label>
-									<input type="text" class="form-control" placeholder="Starting Location" name="startingAddress" required autofocus>
-								</div>
+							<div class = "col-lg-10">
+								<label>Starting Address</label>
+								<input type="text" class="form-control" placeholder="Starting Location" name="startingAddress" required autofocus>
 							</div>
-							   
+						</div>
+						   
 
-							<div class="form-group" id="test">
-								<div class = "col-lg-1" />
-								<div class = "col-lg-10">
-									<label>Ending Address</label>
-									<input type="text" class="form-control" placeholder="Destination" name="destinationAddress" required autofocus>
+						<div class="form-group" id="test">
+							<div class = "col-lg-1" />
+							<div class = "col-lg-10">
+								<label>Ending Address</label>
+								<input type="text" class="form-control" placeholder="Destination" name="destinationAddress" required autofocus>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class = "col-lg-1" />
+							<div class = "col-lg-10">
+								<input type="radio" name="isRequest" value="1" onClick="disablePassengers()" checked> Looking for a Ride 
+								<input type="radio" name="isRequest" value="0" onClick="enablePassengers()"> Hosting a Ride 			
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class = "col-lg-1" />
+							<div class = "col-lg-10">
+								<label>Number of Passengers</label>
+								<input id="passengersTextBox" type="text" class="form-control" placeholder="Number of Passengers" name="passengers" required autofocus disabled>
+							</div>
+						</div>						
+						
+						<div class="form-group">
+							<div class = "col-lg-1" />
+							<div class = "col-lg-10">
+								<label>Date of Departure</label>
+								<div class='input-group date' id='datetimepicker1'>								
+									<input type='text' class="form-control" name="dateTime" placeholder="Desired Departure Date" data-format="YYYY-MM-DD hh:mm:ss"/>
+									<span class="input-group-addon">
+										<span class="glyphicon glyphicon-calendar"></span>
+									</span>
 								</div>
 							</div>
-							
-							<div class="form-group">
-								<div class = "col-lg-1" />
-								<div class = "col-lg-10">
-									<input type="radio" name="isRequest" value="1" onClick="disablePassengers()" checked> Looking for a Ride 
-									<input type="radio" name="isRequest" value="0" onClick="enablePassengers()"> Hosting a Ride 			
-								</div>
-							</div>
-							
-							<div class="form-group">
-								<div class = "col-lg-1" />
-								<div class = "col-lg-10">
-									<label>Number of Passengers</label>
-									<input id="passengersTextBox" type="text" class="form-control" placeholder="Number of Passengers" name="passengers" required autofocus disabled>
-								</div>
-							</div>						
-							
-							<div class="form-group">
-								<div class = "col-lg-1" />
-								<div class = "col-lg-10">
-									<label>Date of Departure</label>
-									<div class='input-group date' id='datetimepicker1'>								
-										<input type='text' class="form-control" name="dateTime" placeholder="Desired Departure Date" data-format="YYYY-MM-DD hh:mm:ss"/>
-										<span class="input-group-addon">
-											<span class="glyphicon glyphicon-calendar"></span>
-										</span>
-									</div>
-								</div>
-							</div>
+						</div>
 
-							<script type="text/javascript">
-								$(function () {
-									$('#datetimepicker1').datetimepicker();
-								});
-							</script>						   
-						</div>
-						<div class = "modal-footer">
-                            <a class = "btn btn-default" data-dismiss = "modal">Close</a>    
-							<button class = "btn btn-primary" type = "submit">Save Changes</button>
-						</div>
-					</form>
+						<script type="text/javascript">
+							$(function () {
+								$('#datetimepicker1').datetimepicker();
+							});
+						</script>						   
+					</div>
+					<div class = "modal-footer">
+						<a class = "btn btn-default" data-dismiss = "modal">Close</a>    
+						<button class = "btn btn-primary" type = "submit">Save Changes</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
