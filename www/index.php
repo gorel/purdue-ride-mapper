@@ -186,6 +186,14 @@
 					});
 				</script>
 
+				<?php if ($_GET["page"] == "editListings") { ?>
+					<script type='text/javascript'> 
+						$(document).ready(function() {
+							$("editListings").click();
+						});
+					</script>
+				<?php } ?>
+
 
 				<!-- Site footer -->
 				<div class="footer">
