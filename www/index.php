@@ -22,9 +22,6 @@
 	</head>
 
 	<body>
-		<?php
-			echo $_GET['page'];
-		?>
 	
 		<script type="text/javascript">
 			function hideAll(sender)
@@ -139,6 +136,12 @@
 				</div>
 
 				<script type="text/javascript">
+					<?php
+						if("editListings" ==  $_GET['page'])
+						{
+							$( "#content" ).load( "modules/editListings/editListings.php" );
+						}						
+					?>
 					$("#editListings").click(function()
 					{
 						$( "#content" ).load( "modules/editListings/editListings.php" );
