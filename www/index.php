@@ -139,7 +139,7 @@
 					<?php
 						if("editListings" ==  $_GET['page'])
 						{
-							$( "#content" ).load( "modules/editListings/editListings.php" );
+							echo $( "#content" ).load( "modules/editListings/editListings.php" );
 						}						
 					?>
 					$("#editListings").click(function()
