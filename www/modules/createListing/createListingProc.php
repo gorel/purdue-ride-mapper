@@ -120,7 +120,7 @@
 				else
 				{
 					mysqli_close($con);
-					header('Location: ../../index.php');
+					header('Location: ../../index.php?page=editListings');
 					exit();
 				}		
 			}			

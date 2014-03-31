@@ -22,6 +22,10 @@
 	</head>
 
 	<body>
+		<?php
+			echo $_GET['page'];
+		?>
+	
 		<script type="text/javascript">
 			function hideAll(sender)
 			{
