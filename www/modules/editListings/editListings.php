@@ -74,40 +74,51 @@
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">Edit Listing</h4>
-				</div>
-				<form action="modules/editListings/editListingsProc.php" method="post">
-					<div class="modal-body">
-						<input type="hidden" name="listingID" id="listingID" value=""/>						
-						<div class="form-group">
-							<label>Starting Address</label>
-							<input type="text" class="form-control" placeholder="Starting Location" name="startingAddress" required autofocus>
+				  <form class = "form-horizontal" action="modules/editListings/editListingsProc.php" method="post">
+                                <div class = "modal-header">
+                                    <h4>Contact Tech Site</h4>
+                                </div>
+                                <div class = "modal-body">
+                               
+                                    <div class = "form-group">
+                                       
+                                        <label for = "contact-name" class = "col-lg-2 control-label">Name:</label>
+                                        <div class = "col-lg-10">
+                                           
+                                            <input type = "text" class = "form-control" id = "contact-name" placeholder = "Full Name">
+                                           
+                                        </div>
+                                       
+                                    </div>
+                                   
+                                    <div class = "form-group">
+                                       
+                                        <label for = "contact-email" class = "col-lg-2 control-label">Email:</label>
+                                        <div class = "col-lg-10">
+                                           
+                                            <input type = "email" class = "form-control" id = "contact-email" placeholder = "you@example.com">
+                                           
+                                        </div>
+                                       
+                                    </div>
+                                   
+                                    <div class = "form-group">
+                                       
+                                        <label for = "contact-msg" class = "col-lg-2 control-label">Message:</label>
+                                        <div class = "col-lg-10">
+                                           
+                                            <textarea class = "form-control" rows = "8"></textarea>
+                                           
+                                        </div>
+                                       
+                                    </div>
+                               
+                                </div>
+                                <div class = "modal-footer">
+                            <a class = "btn btn-default" data-dismiss = "modal">Close</a>    
+							<button class = "btn btn-primary" type = "submit">Send</button>
 						</div>
-
-						<div class="form-group" id="test">
-							<label>Ending Address</label>
-							<input type="text" class="form-control" placeholder="Destination" name="destinationAddress" required autofocus>
-						</div>
-						
-						<div class="form-group">
-							<input type="radio" name="isRequest" value="1" onClick="disablePassengers()" checked> Looking for a Ride 
-							<input type="radio" name="isRequest" value="0" onClick="enablePassengers()"> Hosting a Ride 			
-						</div>
-						
-						<div class="form-group">
-							<label>Number of Passengers</label>
-							<input id="passengersTextBox" type="text" class="form-control" placeholder="Number of Passengers" name="passengers" required autofocus disabled>
-						</div>						
-						
-
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary" type="submit">Save changes</button>
-					</div>
-				</form> 
+					</form>
 			</div>
 		</div>
 	</div>
