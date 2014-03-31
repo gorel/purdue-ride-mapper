@@ -22,7 +22,7 @@
 	</head>
 
 	<body>
-	
+		<
 		<script type="text/javascript">
 			function hideAll(sender)
 			{
@@ -54,7 +54,7 @@
 			}
 		</script>
 
-
+		<?php echo $_GET["page"] ?>
 		<div class="container">
 			<div id="#body">
 				<div class="masthead">
