@@ -105,34 +105,6 @@
 
 				//At this point the start and end Latitudes and Longitudes /should/ be correct.... if there was bad input they are 0.0. We need to handle this.//This has been temporarily removed
 
-
-				$sql="UPDATE listings (startingAddress, start_lat, start_long, endingAddress, end_lat, end_long, isRequest, passengers, dateOfDeparture, user_id)
-				VALUES
-				('$startingAddress','$startLatitude','$startLongitude','$destinationAddress','$endLatitude','$endLongitude','$isRequest','$passengers','$dateTime', '$user_id')";
-
-				$sql="UPDATE listings 
-				SET startingAddress = '$startingAddress', 
-				start_lat = '$startLatitude',
-				start_long = '$startLongitude',
-				endingAddress = '$destinationAddress',
-				end_lat = '$endLatitude',
-				end_long = '$endLongitude',
-				isRequest = '$isRequest',
-				passengers = '$passengers',
-				dateOfDeparture = '$dateTime'
-				WHERE listings_id = '$listings_id'";
-				
-				if (!mysqli_query($con,$sql))
-				{
-					die('Error: ' . mysqli_error($con));
-					mysqli_close($con);
-				}
-				else
-				{
-					mysqli_close($con);
-					header('Location: ../../index.php');
-					exit();
-				}		
 		?>
 
 	</body>
