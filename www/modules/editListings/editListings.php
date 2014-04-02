@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" />
-<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>		
+<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="js/moment.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
@@ -16,7 +16,7 @@
 		{
 			session_start();
 			$user_id = $_SESSION['user'];
-		
+
 			$sql = "SELECT * FROM listings";
 			$result = mysqli_query($con,$sql);
 			echo "<table class='table table-striped'>
@@ -47,15 +47,18 @@
 
 					echo "<td>". $row["passengers"] . "</td>";
 					echo "<td>". $row["dateOfDeparture"] . "</td>";
-					echo "<td> 
-							<button class=\"open-EditListingDialog btn btn-success\" data-id=\"". $row['listings_id'] ."\" data-toggle=\"modal\" data-target=\"#myModal\">Edit</button>	
-						</td>";
-					echo "<td> 
-							<form action=\"modules/editListings/deleteListingsProc.php\" method=\"post\" onsubmit=\"return confirm('Are you sure you want to delete this listing?')\">
-								<input type=\"hidden\" name=\"listings_id\" value=\"". $row['listings_id'] ."\">
-								<button class=\"btn btn-danger\" type=\"submit\">Delete</button>
-							</form> 
-						</td>";
+					if(!isset($_SESSION['user']))
+					{
+						echo "<td>
+								<button class=\"open-EditListingDialog btn btn-success\" data-id=\"". $row['listings_id'] ."\" data-toggle=\"modal\" data-target=\"#myModal\">Edit</button>
+							</td>";
+						echo "<td>
+								<form action=\"modules/editListings/deleteListingsProc.php\" method=\"post\" onsubmit=\"return confirm('Are you sure you want to delete this listing?')\">
+									<input type=\"hidden\" name=\"listings_id\" value=\"". $row['listings_id'] ."\">
+									<button class=\"btn btn-danger\" type=\"submit\">Delete</button>
+								</form>
+							</td>";
+					}
 					echo "</tr>";
 				}
 			}
@@ -63,14 +66,14 @@
 		}
 		mysqli_close($con);
 	?>
-	
+
 	<script type="text/javascript">
 		$(document).on("click", ".open-EditListingDialog", function () {
 			 var listingID = $(this).data('id');
 			 $(".modal-body #listingID").val( listingID );
 		});
 	</script>
-	
+
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -81,8 +84,8 @@
 						<h3>Edit Listing</h3>
 					</div>
 					<div class = "modal-body">
-						<input type="hidden" name="listingID" id="listingID" value=""/>								
-						
+						<input type="hidden" name="listingID" id="listingID" value=""/>
+
 						<div class="form-group">
 							<div class = "col-lg-1" />
 							<div class = "col-lg-10">
@@ -90,7 +93,7 @@
 								<input type="text" class="form-control" placeholder="Starting Location" name="startingAddress" required autofocus>
 							</div>
 						</div>
-						   
+
 
 						<div class="form-group" id="test">
 							<div class = "col-lg-1" />
@@ -99,28 +102,28 @@
 								<input type="text" class="form-control" placeholder="Destination" name="destinationAddress" required autofocus>
 							</div>
 						</div>
-						
+
 						<div class="form-group">
 							<div class = "col-lg-1" />
 							<div class = "col-lg-10">
-								<input type="radio" name="isRequest" value="1" onClick="disablePassengers()" checked> Looking for a Ride 
-								<input type="radio" name="isRequest" value="0" onClick="enablePassengers()"> Hosting a Ride 			
+								<input type="radio" name="isRequest" value="1" onClick="disablePassengers()" checked> Looking for a Ride
+								<input type="radio" name="isRequest" value="0" onClick="enablePassengers()"> Hosting a Ride
 							</div>
 						</div>
-						
+
 						<div class="form-group">
 							<div class = "col-lg-1" />
 							<div class = "col-lg-10">
 								<label>Number of Passengers</label>
 								<input id="passengersTextBox" type="text" class="form-control" placeholder="Number of Passengers" name="passengers" required autofocus disabled>
 							</div>
-						</div>						
-						
+						</div>
+
 						<div class="form-group">
 							<div class = "col-lg-1" />
 							<div class = "col-lg-10">
 								<label>Date of Departure</label>
-								<div class='input-group date' id='datetimepicker1'>								
+								<div class='input-group date' id='datetimepicker1'>
 									<input type='text' class="form-control" name="dateTime" placeholder="Desired Departure Date" data-format="YYYY-MM-DD hh:mm:ss"/>
 									<span class="input-group-addon">
 										<span class="glyphicon glyphicon-calendar"></span>
@@ -133,10 +136,10 @@
 							$(function () {
 								$('#datetimepicker1').datetimepicker();
 							});
-						</script>						   
+						</script>
 					</div>
 					<div class = "modal-footer">
-						<a class = "btn btn-default" data-dismiss = "modal">Close</a>    
+						<a class = "btn btn-default" data-dismiss = "modal">Close</a>
 						<button class = "btn btn-primary" type = "submit">Save Changes</button>
 					</div>
 				</form>
