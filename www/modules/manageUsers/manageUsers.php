@@ -12,6 +12,11 @@
 			session_start();
 			$user_id = $_SESSION['user'];
 
+			$sql = "SELECT * FROM users";
+			$result = mysqli_query($con, $sql);
+
+
+
 
 		}
 
