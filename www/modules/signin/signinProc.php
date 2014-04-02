@@ -32,7 +32,7 @@ $stmt = $conn->stmt_init();
 
 // check if user exist
 
-$query = "SELECT user_id, password, verified FROM users WHERE lower(email) like ?";
+$query = "SELECT user_id, password, verified , isAdmin FROM users WHERE lower(email) like ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param('s', $email);
 $stmt->execute();
@@ -46,13 +46,14 @@ if ($stmt->num_rows < 1)
 else
 {
 	echo "binding result";
-	$stmt->bind_result($user_id, $password, $verified);
+	$stmt->bind_result($user_id, $password, $verified, $isAdmin);
 	$stmt->fetch();
 
 	if (!strcmp($password, $hashpw) && $verified==1)
 	{
 		session_start();
 		$_SESSION['user']=$user_id;
+		$_SESSION['isAdmin']=$isAdmin;
 
 		echo "log in success";
 	}

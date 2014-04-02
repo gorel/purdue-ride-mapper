@@ -31,7 +31,7 @@
 			</thead>";
 			while($row = mysqli_fetch_array($result))
 			{
-				if($_SESSION['user'] == $row["user_id"])
+				if($_SESSION['user'] == $row["user_id"] || $_SESSION['isAdmin'] == 1)
 				{
 					echo "<tr>";
 					echo "<td>". $row['startingAddress'] . "</td>";
@@ -47,8 +47,7 @@
 
 					echo "<td>". $row["passengers"] . "</td>";
 					echo "<td>". $row["dateOfDeparture"] . "</td>";
-					if(!isset($_SESSION['user']))
-					{
+
 						echo "<td>
 								<button class=\"open-EditListingDialog btn btn-success\" data-id=\"". $row['listings_id'] ."\" data-toggle=\"modal\" data-target=\"#myModal\">Edit</button>
 							</td>";
@@ -58,7 +57,7 @@
 									<button class=\"btn btn-danger\" type=\"submit\">Delete</button>
 								</form>
 							</td>";
-					}
+
 					echo "</tr>";
 				}
 			}
