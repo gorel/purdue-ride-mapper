@@ -31,7 +31,7 @@
 			</thead>";
 			while($row = mysqli_fetch_array($result))
 			{
-				if($_SESSION['user'] == $row["user_id"] || $_SESSION['isAdmin'] == 1)
+				if($_SESSION['user'] == $row["user_id"] || $_SESSION['isAdmin']==1)
 				{
 					echo "<tr>";
 					echo "<td>". $row['startingAddress'] . "</td>";
