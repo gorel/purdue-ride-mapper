@@ -32,7 +32,7 @@ $stmt = $conn->stmt_init();
 
 // check if user exist
 
-$query = "SELECT user_id, password, verified , isAdmin FROM users WHERE lower(email) like ?";
+$query = "SELECT user_id, password, verified , is_admin FROM users WHERE lower(email) like ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param('s', $email);
 $stmt->execute();
