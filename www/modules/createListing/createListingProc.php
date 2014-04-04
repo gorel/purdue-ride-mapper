@@ -84,11 +84,11 @@
 				$lookupDestinationAddress = str_replace(' ', '%20', $destinationAddress);
 				
 				//If address is Purdue, add better address.
-				if(strcasecmp($startingAddress,"Purdue University") === 0)
+				if(preg_match('/Purdue(\\s*)University/i',$startingAddress) === 1)
 				{
 					$lookupStartingAddress = str_replace(' ', '%20', "1275 Third Street West Lafayette Indiana 47906");
 				}
-				if(strcasecmp($destinationAddress,"Purdue University") === 0)
+				if(preg_match('/Purdue(\\s*)University/i',$destinationAddress) === 1)
 				{
 					$lookupDestinationAddress = str_replace(' ', '%20', "1275 Third Street West Lafayette Indiana 47906");
 				}				
