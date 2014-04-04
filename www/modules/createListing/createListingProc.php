@@ -44,7 +44,7 @@
 				{
 					return false;
 				}
-				if(strpos($qualityCode,'P1') !== false || strpos($qualityCode,'A5') !== false || strpos($qualityCode,'Z1') !== false)//If the quality code indicates an exact point or city, it's good
+				if(strpos($qualityCode,'P1') !== false || strpos($qualityCode,'A5') !== false || strpos($qualityCode,'Z1') !== false || strpos($qualityCode,'L1') !== false)//If the quality code indicates an exact point or city, it's good
 				{
 					return true;
 				}
@@ -103,7 +103,7 @@
 				$mapquestResult2 = file_get_contents("http://www.mapquestapi.com/geocoding/v1/address?&key=Fmjtd%7Cluur210znh%2Cb0%3Do5-90ys0a&location=" . $lookupDestinationAddress ."");
 				$parsedResult2 = json_decode($mapquestResult2);
 				//Only parse result if the input address is good.
-				$addressQualityCode2 = $parsedResult2->results->locations[0]->geocodeQualityCode;
+				$addressQualityCode2 = $parsedResult2->results[0]->locations[0]->geocodeQualityCode;
 				if(qualityCodeCheck($addressQualityCode2) === false)//If the quality code is bad
 				{
 					//GUYS WHAT DO WE DO IF IT IS BAD?
