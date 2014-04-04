@@ -141,41 +141,44 @@
 							$result = mysqli_query($con,$sql);
 							while($row = mysqli_fetch_array($result))
 							{
-								?>
-								<tr>
-									<td>$row['listings_id']</td>
-									<td> $match </td>
-									<td> $row['startingAddress']</td>
-									<td> $row["endingAddress"]</td>
-									<td> $row["dateOfDeparture"]</td>
-									<td> $i </td>
-								</tr>
-								<script>
-									$(document).ready(function()
-									{
-										map.addMarker
-										({
-											lat: $row['start_lat'] ,
-											lng: $row['start_long'] ,
+								echo "<tr>";
+								echo '<td>'. $row['listings_id'] . '</td>';
+								echo '<td>'. $match .'</td>';
+								echo "<td>". $row['startingAddress'] . "</td>";
+								echo "<td>". $row["endingAddress"] . "</td>";
+								echo "<td>". $row["dateOfDeparture"] . "</td>";
+								echo "<td>". $i . "</td>";
+								echo "</tr>";
+								echo "<script>
+										$(document).ready(function()
+										{
+											map.addMarker
+											({
+												lat:". $row['start_lat'] . ",
+												lng:". $row['start_long'] . ",
+											});
+											map.drawRoute
+											({
+												origin: [". $row['start_lat'] .", " . $row['start_long'] . "],
+												destination: [". $row['end_lat'].", " . $row['end_long'] . "],";
+												?>
+												travelMode: 'driving',
+												strokeColor: '#0000FF',
+												strokeOpacity: 0.6,
+												strokeWeight: 6
+												<?php
+												echo "
+											});
+											map.addMarker
+											({
+												lat:". $row['end_lat'] . ",
+												lng:". $row['end_long'} . ",
+											})
 										});
-										map.drawRoute
-										({
-											origin: [ $row['start_lat'], $row['start_long']],
-											destination: [ $row['end_lat'], $row['end_long']],
-											travelMode: 'driving',
-											strokeColor: '#0000FF',
-											strokeOpacity: 0.6,
-											strokeWeight: 6
-										});
-										map.addMarker
-										({
-											lat: $row['end_lat'],
-											lng: $row['end_long'},
-										})
-									});
-									map.fitZoom();
-								</script>
-								<?php
+										map.fitZoom();
+									</script>
+									";
+
 							}
 						}
 					}
