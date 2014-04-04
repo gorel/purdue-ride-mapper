@@ -130,18 +130,6 @@
 					}
 					else
 					{
-						//Testing
-						echo "<script>
-							$(document).ready(function()
-							{
-								map.addMarker
-									({
-										lat: 40.431042,
-										lng: -86.913651,
-									});
-								});
-							</script>
-						";
 
 						//For each match
 						foreach($matches as $match)
@@ -166,10 +154,25 @@
 										{
 											map.addMarker
 											({
-												lat:". $row['end_lat'] . ",
-												lng:". $row['end_long'] . ",
+												lat:". $row['start_lat'] . ",
+												lng:". $row['start_long'] . ",
 											});
+											map.drawRoute
+											({
+												origin: [". $row['start_lat'] .", " . $row['start_long'] . "],
+												destination: [". $row['end_lat'].", " . $row['end_long'] . "],
+												travelMode: 'driving',
+												strokeColor: '#0000FF',
+												strokeOpacity: 0.6,
+												strokeWeight: 6
+											});
+											map.addMarker
+											({
+												lat:". $row['end_lat'] . ",
+												lng:". $row['end_long'} . ",
+											})
 										});
+										map.fitZoom();
 									</script>
 									";
 
