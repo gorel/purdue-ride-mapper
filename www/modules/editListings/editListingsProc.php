@@ -125,6 +125,10 @@
 				isRequest = '$isRequest',
 				passengers = '$passengers',
 				dateOfDeparture = '$dateTime'
+				start_lat = '$startLatitude'
+				start_long = '$startLongitude'
+				end_lat = '$endLatitude'
+				end_long = '$endLongitude'
 				WHERE listings_id = '$listings_id'";
 				
 				if (!mysqli_query($con,$sql))
