@@ -166,8 +166,8 @@
 										{
 											map.addMarker
 											({
-												lat:"+ $row['end_lat'] + ",
-												lng:"+ $row['end_long'] + ",
+												lat:". $row['end_lat'] . ",
+												lng:". $row['end_long'] . ",
 											});
 										});
 									</script>
