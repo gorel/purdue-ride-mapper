@@ -29,15 +29,6 @@
 			   return $data;
 			}
 			
-			function debug_to_console($data)
-			{
-				if (is_array($data))
-					$output = "<script>console.log('Debug: " . implode(', ', $data) . "');</script>";
-				else
-					$output = "<script>console.log('Debug: " . $data . "');</script>";
-				echo $output;
-			}
-
 			function qualityCodeCheck($qualityCode)
 			{
 				if(strpos($qualityCode,'C') !== false)//If the quality code contains 'C' it is bad
