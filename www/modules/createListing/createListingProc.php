@@ -112,10 +112,13 @@
 				}				
 				else//If the quality of the input is good enough
 				{
-				$endLatitude = $parsedResult2->results[0]->locations[0]->latLng->lat;//Add dat tab
-				$endLongitude = $parsedResult2->results[0]->locations[0]->latLng->lng;//Add dat tab
+					$endLatitude = $parsedResult2->results[0]->locations[0]->latLng->lat;//Add dat tab
+					$endLongitude = $parsedResult2->results[0]->locations[0]->latLng->lng;//Add dat tab
 				}
 
+				$startLatitude = $addressQualityCode;
+				$startLongitude = $addressQualityCode2;
+				
 				//At this point the start and end Latitudes and Longitudes /should/ be correct.... if there was bad input they are 0.0. We need to handle this.//This has been temporarily removed
 
 
