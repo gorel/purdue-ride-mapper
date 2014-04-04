@@ -66,7 +66,7 @@
 			{	
 
 				//THIS IS WHERE THE MAPQUEST API IS CALLED
-				//@author Evan Arnold <arnold4@purdue.edu>
+				//@author Evan Arnold <arnold44@purdue.edu>
 				//Sets the start/end lats and longs to their real-world values, and 0.0 if there is bad input (like just a state or gibberish)
 				//Start Location:
 				$lookupStartingAddress = str_replace(' ', '%20', $startingAddress);
