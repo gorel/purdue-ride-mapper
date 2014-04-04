@@ -121,14 +121,14 @@
 			
 				$sql="UPDATE listings 
 				SET startingAddress = '$startingAddress', 
+				start_lat = '$startLatitude'
+				start_long = '$startLongitude'
 				endingAddress = '$destinationAddress',
+				end_lat = '$endLatitude'
+				end_long = '$endLongitude'
 				isRequest = '$isRequest',
 				passengers = '$passengers',
 				dateOfDeparture = '$dateTime'
-				start_lat = '$startLatitude'
-				start_long = '$startLongitude'
-				end_lat = '$endLatitude'
-				end_long = '$endLongitude'
 				WHERE listings_id = '$listings_id'";
 				
 				if (!mysqli_query($con,$sql))
