@@ -131,10 +131,13 @@
 					{
 						//Testing
 						echo "<script>
-							map.addMarker
-								({
-									lat: 40.431042,
-									lng: -86.913651,
+							$(document).ready(function()
+							{
+								map.addMarker
+									({
+										lat: 40.431042,
+										lng: -86.913651,
+									});
 								});
 							</script>
 						";
