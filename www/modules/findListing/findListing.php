@@ -151,31 +151,30 @@
 									<td> $i </td>
 								</tr>
 								<script>
-										$(document).ready(function()
-										{
-											map.addMarker
-											({
-												lat: $row['start_lat'] ,
-												lng: $row['start_long'] ,
-											});
-											map.drawRoute
-											({
-												origin: [ $row['start_lat'], $row['start_long'],
-												destination: [ $row['end_lat'], $row['end_long'],
-												travelMode: 'driving',
-												strokeColor: '#0000FF',
-												strokeOpacity: 0.6,
-												strokeWeight: 6
-											});
-											map.addMarker
-											({
-												lat: $row['end_lat'],
-												lng: $row['end_long'},
-											})
+									$(document).ready(function()
+									{
+										map.addMarker
+										({
+											lat: $row['start_lat'] ,
+											lng: $row['start_long'] ,
 										});
-										map.fitZoom();
-									</script>
-									";
+										map.drawRoute
+										({
+											origin: [ $row['start_lat'], $row['start_long'],
+											destination: [ $row['end_lat'], $row['end_long'],
+											travelMode: 'driving',
+											strokeColor: '#0000FF',
+											strokeOpacity: 0.6,
+											strokeWeight: 6
+										});
+										map.addMarker
+										({
+											lat: $row['end_lat'],
+											lng: $row['end_long'},
+										})
+									});
+									map.fitZoom();
+								</script>
 								<?php
 							}
 						}
