@@ -121,11 +121,11 @@
 			
 				$sql="UPDATE listings 
 				SET startingAddress = '$startingAddress', 
-				start_lat = '$startLatitude'
-				start_long = '$startLongitude'
+				start_lat = '$startLatitude',
+				start_long = '$startLongitude',
 				endingAddress = '$destinationAddress',
-				end_lat = '$endLatitude'
-				end_long = '$endLongitude'
+				end_lat = '$endLatitude',
+				end_long = '$endLongitude',
 				isRequest = '$isRequest',
 				passengers = '$passengers',
 				dateOfDeparture = '$dateTime'
