@@ -160,22 +160,19 @@
 											map.drawRoute
 											({
 												origin: [". $row['start_lat'] .", " . $row['start_long'] . "],
-												destination: [". $row['end_lat'].", " . $row['end_long'] . "],";
-												?>
-												travelMode: 'driving',
-												strokeColor: '#0000FF',
+												destination: [". $row['end_lat'].", " . $row['end_long'] . "],
+												travelMode: \'driving\',
+												strokeColor: \'#0000FF\',
 												strokeOpacity: 0.6,
 												strokeWeight: 6
-												<?php
-												echo "
 											});
 											map.addMarker
 											({
 												lat:". $row['end_lat'] . ",
 												lng:". $row['end_long'} . ",
 											})
+											map.fitZoom();
 										});
-										map.fitZoom();
 									</script>
 									";
 
