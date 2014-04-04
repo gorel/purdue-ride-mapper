@@ -131,11 +131,25 @@
 					else
 					{
 						//Testing
+<<<<<<< HEAD
 						echo "map.addMarker
 						({
 							lat: 40.431042,
 							lng: -86.913651,
 						});";
+=======
+						echo "<script>
+							$(document).ready(function()
+							{
+								map.addMarker
+									({
+										lat: 40.431042,
+										lng: -86.913651,
+									});
+								});
+							</script>
+						";
+>>>>>>> FETCH_HEAD
 
 						//For each match
 						foreach($matches as $match)
