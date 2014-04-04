@@ -18,7 +18,7 @@
 			</form>
 		</div>
 		<br>
-		
+
 		<div>
 			<h2 class="form-signin-heading">Match a ride:</h2>
 			<form class="form-inline" role="form">
@@ -29,8 +29,9 @@
 			</form>
 		</div>
 		<br>
-		
+
 		<script>
+			var map;
 			function loadParameter(key, val)
 			{
 				if (isNaN(val))
@@ -38,23 +39,23 @@
 				else
 					$("#content").load("modules/findListing/findListing.php?" + key + "=" + val);
 			}
-		
+
 			function calcRoute()
 			{
 				console.log('Not yet implemented.');
 			}
-			
+
 			function matchListing()
 			{
 				var listing_id = parseInt(document.getElementById('listing_id_field').value);
 				loadParameter("matchValue", listing_id);
 			}
-		
+
 			//This script create the map with a default address.
 			//Its current location is somewhere by College Station
 			$(document).ready(function ()
 			{
-				var map = new GMaps
+				 map = new GMaps
 				({
 					div: '#map_canvas',
 					lat: 40.431042,
@@ -68,9 +69,10 @@
 				});
 			});
 		</script>
-		
+
+
 	<div id='matcher_wrapper'></div>
-	
+
 	<div>
 	<?php
 		session_start();
@@ -97,7 +99,7 @@
 			}
 			else
 			{
-				
+
 				//Find matches to this listing
 				if (isset($_GET['matchValue']))
 				{
@@ -111,7 +113,7 @@
 					<th> Date of Departure </th>
 					</tr>
 					</thead>";
-				
+
 					$matchNum = htmlspecialchars($_GET['matchValue']);
 					echo "<h1> Listings matched to Listing ID #" . $matchNum . ":</h1>";
 					$matches = explode('\n', exec('python ../../../src/matcher.py '. $matchNum));
@@ -134,8 +136,8 @@
 							lat: 40.431042,
 							lng: -86.913651,
 						});";
-						
-						//For each match	
+
+						//For each match
 						foreach($matches as $match)
 						{
 							$val = explode(' ', $match);
@@ -161,10 +163,10 @@
 				{
 					if (isset($_GET['NaNerror']))
 						echo "<div style='color: red; font-size: 14pt;'>Error: Value is not a number.</div>";
-					
+
 					$sql = "SELECT * FROM listings";
 					$result = mysqli_query($con,$sql);
-				
+
 					echo "<h1>All listings:</h1>";
 					echo "<table class='table table-striped'>
 					<thead>
@@ -196,14 +198,14 @@
 						echo "<td>". $row["dateOfDeparture"] . "</td>";
 						echo "<td>". $row['listings_id'] . "</td>";
 						echo "</tr>";
-					
+
 						$start_lat1[]= $row["start_lat"];
 						$end_lon1[]= $row["start_long"];
 						$start_lat2[] = $row["end_lat"];
 						$end_lon2[] = $row["end_long"];
 					}
 					echo "</table>";
-				
+
 				}
 			}
 			mysqli_close($con);
