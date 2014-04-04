@@ -28,6 +28,15 @@
 			   $data = htmlspecialchars($data);
 			   return $data;
 			}
+			
+			function debug_to_console($data)
+			{
+				if (is_array($data))
+					$output = "<script>console.log('Debug: " . implode(', ', $data) . "');</script>";
+				else
+					$output = "<script>console.log('Debug: " . $data . "');</script>";
+				echo $output;
+			}
 
 			function qualityCodeCheck($qualityCode)
 			{
@@ -74,6 +83,7 @@
 				$lookupDestinationAddress = str_replace(' ', '%20', $destinationAddress);
 				$mapquestResult = file_get_contents("http://www.mapquestapi.com/geocoding/v1/address?&key=Fmjtd%7Cluur210znh%2Cb0%3Do5-90ys0a&location=" . $lookupStartingAddress ."");
 				$parsedResult = json_decode($mapquestResult);
+				debug_to_console($parsedResult);
 				//Only parse result if the input address is good.
 				$addressQualityCode = $parsedResult->results->locations[0]->geocodeQualityCode;
 				if(qualityCodeCheck($addressQualityCode) === false)//If the quality code is bad
