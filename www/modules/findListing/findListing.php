@@ -55,7 +55,7 @@
 			//Its current location is somewhere by College Station
 			$(document).ready(function ()
 			{
-			   	map = new GMaps
+				 map = new GMaps
 				({
 					div: '#map_canvas',
 					lat: 40.431042,
