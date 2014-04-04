@@ -118,7 +118,7 @@
 					$endLatitude = $parsedResult2->results[0]->locations[0]->latLng->lat;//Add dat tab
 					$endLongitude = $parsedResult2->results[0]->locations[0]->latLng->lng;//Add dat tab
 				}				
-				//At this point the start and end Latitudes and Longitudes /should/ be correct.... if there was bad input they are 0.0. We need to handle this.//This has been temporarily removed
+				//At this point the start and end Latitudes and Longitudes /should/ be correct.... if there was bad input they are 0.0. We need to handle 0.0 though.
 
 
 				$sql="INSERT INTO listings (startingAddress, start_lat, start_long, endingAddress, end_lat, end_long, isRequest, passengers, dateOfDeparture, user_id)
