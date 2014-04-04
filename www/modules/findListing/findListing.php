@@ -145,8 +145,8 @@
 								echo '<td>'. $row['listings_id'] . '</td>';
 								echo '<td>'. $match .'</td>';
 								echo "<td>". $row['startingAddress'] . "</td>";
-								echo "<td>". $row["endingAddress"] . "</td>";
-								echo "<td>". $row["dateOfDeparture"] . "</td>";
+								echo "<td>". $row['endingAddress'] . "</td>";
+								echo "<td>". $row['dateOfDeparture'] . "</td>";
 								echo "<td>". $i . "</td>";
 								echo "</tr>";
 								echo "<script>
@@ -215,15 +215,15 @@
 							echo "<td>Requesting Ride</td>";
 						}
 
-						echo "<td>". $row["passengers"] . "</td>";
-						echo "<td>". $row["dateOfDeparture"] . "</td>";
+						echo "<td>". $row['passengers'] . "</td>";
+						echo "<td>". $row['dateOfDeparture'] . "</td>";
 						echo "<td>". $row['listings_id'] . "</td>";
 						echo "</tr>";
 
-						$start_lat1[]= $row["start_lat"];
-						$end_lon1[]= $row["start_long"];
-						$start_lat2[] = $row["end_lat"];
-						$end_lon2[] = $row["end_long"];
+						$start_lat1[]= $row['start_lat'];
+						$end_lon1[]= $row['start_long'];
+						$start_lat2[] = $row['end_lat'];
+						$end_lon2[] = $row['end_long'];
 					}
 					echo "</table>";
 
