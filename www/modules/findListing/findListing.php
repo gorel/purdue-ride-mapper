@@ -161,6 +161,18 @@
 								echo "<td>". $row["dateOfDeparture"] . "</td>";
 								echo "<td>". $i . "</td>";
 								echo "</tr>";
+								echo "<script>
+										$(document).ready(function()
+										{
+											map.addMarker
+											({
+												lat:"+ $row['end_lat'] + ",
+												lng:"+ $row['end_long'] + ",
+											});
+										});
+									</script>
+									";
+
 							}
 						}
 					}
