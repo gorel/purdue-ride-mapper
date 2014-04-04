@@ -72,6 +72,19 @@
 			 $(".modal-body #listingID").val( listingID );
 		});
 	</script>
+	
+	<script>
+		function disablePassengers()
+		{
+			var passengers = document.getElementById('passengersTextBox');
+			passengers.disabled = true;
+		}
+		function enablePassengers()
+		{
+			var passengers = document.getElementById('passengersTextBox');
+			passengers.disabled = false;
+		}
+	</script>
 
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
