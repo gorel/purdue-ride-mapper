@@ -44,7 +44,7 @@
 				{
 					return false;
 				}
-				if(strpos($qualityCode,'P1') !== false || strpos($qualityCode,'A5') !== false || strpos($qualityCode,'Z') !== false || strpos($qualityCode,'L1') !== false || strpos($qualityCode,'B') !== false)//If the quality code indicates an exact point or city, it's good
+				if(strpos($qualityCode,'P1') !== false || strpos($qualityCode,'A5') !== false || strpos($qualityCode,'Z') !== false || strpos($qualityCode,'B') !== false)//If the quality code indicates an exact point or city, it's good
 				{
 					return true;
 				}
