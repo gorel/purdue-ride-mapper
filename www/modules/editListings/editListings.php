@@ -38,11 +38,11 @@
 					echo "<td>". $row["endingAddress"] . "</td>";
 					if($row["isRequest"] == 0)
 					{
-						echo "<td> No </td>";
+						echo "<td> Yes </td>";
 					}
 					else
 					{
-						echo "<td> Yes </td>";
+						echo "<td> No </td>";
 					}
 
 					echo "<td>". $row["passengers"] . "</td>";
