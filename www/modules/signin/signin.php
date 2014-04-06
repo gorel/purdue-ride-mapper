@@ -1,5 +1,11 @@
 <!-- Bootstrap core CSS -->
 <link href="css/bootstrap.css" rel="stylesheet">
+ 
+<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+
 
 <!-- Custom styles for this template -->
 <link href="signin.css" rel="stylesheet">
@@ -16,7 +22,44 @@
 
 	function forgotPassword()
 	{
-		location.replace("forgotPassword.html");
+		//location.replace("forgotPassword.html");
+		$('#modalPwReset').modal('show');
+		
+	}
+
+	function sendResetLink()
+	{
+		var elm = document.getElementById('txtEmail');
+		var patt = /[A-Za-z0-9]+@([A-Za-z0-9]+\.[A-Za-z0-9])+/i
+
+		if (txtEmail.value.trim() == "") {
+			alert("Please enter an email address");
+			return;
+		}
+
+		if (! patt.test(txtEmail.value)) {
+			alert("Please enter a valid email address!");
+			return;
+		}
+
+		$.ajax({ 
+		    type: "POST",
+        	    url: "/modules/signin/sendResetLink.php", 
+                    dataType: 'json',
+                    data: {"email" : txtEmail.value.trim()}, 
+		    success: function(data) {
+
+        	    if (data.retval == "ERR") {
+                	alert("Error: No such email / database connection failed");
+        	        $('#modalPwReset').modal('hide');
+			return;
+        	    }
+		    alert("An email has been sent to your account, please check for details");
+        	    $('#modalPwReset').modal('hide');
+           }
+    }); 
+		
+
 	}
 
 	function validateEmail(sender)
@@ -107,9 +150,34 @@
 				</div>
 
 				<div class="form-group">
-					<button class="btn btn-lg btn-primary btn-block" onclick="forgotPassword" type="text" id="forgotPassword">Forgot Password?</button>
 				</div>
 			</form>
+					<button class="btn btn-lg btn-primary btn-block" onclick="forgotPassword()" type="text" id="forgotPassword">Forgot Password?</button>
 		</div> <!-- col-md-4 -->
 	</div> <!-- row -->
 </div> <!-- /container -->
+
+
+<!-- Dirty fix for pw recovery -->
+
+<div class="modal fade" id="modalPwReset" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Send Reset Password Link</h4>
+      </div>
+      <div class="modal-body">
+        <form id="editForm" action="/modules/manageUsers/editUserProc.php" method="POST">
+        <b>Email</b>      <input type="text" class="form-control" name="email" id="txtEmail"><br>
+                          <input type="text" hidden="true" id="txtUid">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onClick="sendResetLink()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
