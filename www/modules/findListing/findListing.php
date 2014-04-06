@@ -219,11 +219,32 @@
 						echo "<td>". $row['dateOfDeparture'] . "</td>";
 						echo "<td>". $row['listings_id'] . "</td>";
 						echo "</tr>";
-
-						$start_lat1[]= $row['start_lat'];
-						$end_lon1[]= $row['start_long'];
-						$start_lat2[] = $row['end_lat'];
-						$end_lon2[] = $row['end_long'];
+						echo "<script>
+										$(document).ready(function()
+										{
+											map.addMarker
+											({
+												lat:". $row['start_lat'] . ",
+												lng:". $row['start_long'] . ",
+											});
+											map.drawRoute
+											({
+												origin: [". $row['start_lat'] .", " . $row['start_long'] . "],
+												destination: [". $row['end_lat'].", " . $row['end_long'] . "],
+												travelMode: 'driving',
+												strokeColor: '#0000FF',
+												strokeOpacity: 0.6,
+												strokeWeight: 6
+											});
+											map.addMarker
+											({
+												lat:". $row['end_lat'] . ",
+												lng:". $row['end_long'] . ",
+											})
+											map.fitZoom();
+										});
+									</script>
+									";
 					}
 					echo "</table>";
 
