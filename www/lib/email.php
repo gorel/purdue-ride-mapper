@@ -59,6 +59,38 @@ function sendRegMail($rcpt, $fname, $uid, $token)
 
 /**
  * 
+ * Send a registration mail containing an activation link
+ *
+ * @param	string $rcpt   new user's email
+ * @param	string $fname  user's first name           
+ * @param	string $uid    user id
+ * @param	string $token  generated token for activation
+ *
+ */
+function sendPwResetMail($rcpt, $link)
+{
+        global $orgEmail,$orgName, $headers;
+
+        $vlink = "http://collegecarpool.us/modules/signin/changePass.php?" .
+                 "link=$link";
+
+        $subject = "College Carpool Password Reset";
+
+        $msg = "<html><body>" .
+                   "Dear user,<br><br>" .
+                   "You have requested to reset your password<br><br>" .
+                   "Please do so by visiting the linke below:<br><br>" . 
+                   "<a href=\"$vlink\">$vlink</a><br><br><br>" . 
+                   "Purdue Ride Mapper Team" .
+                   "</body></html>";
+
+        mail($rcpt, $subject, $msg, $headers);
+}
+
+
+
+/**
+ * 
  * Send an email to administrators (Contact us)
  *
  * @param	string $from   user's email
