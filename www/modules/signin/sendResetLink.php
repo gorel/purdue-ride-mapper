@@ -26,6 +26,7 @@ if ($stmt->num_rows > 0)
 {
   sendPwResetMail($email, $hash);		
   echo json_encode(array('retval' => 'OK'));
+  return;
 }
 
 $hash=saltedHash($email);
