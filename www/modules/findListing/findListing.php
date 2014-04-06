@@ -138,6 +138,7 @@
 						//For each match
 						foreach($matches as $match)
 						{
+							debug_to_console($match);
 							$val = explode(' ', $match);
 							$match = $val[0];
 							$id = $val[1];
