@@ -15,7 +15,7 @@
 				<div class="form-group">
 					<input id='ending_address_field' type="text" class="form-control" placeholder="Destination Address">
 				</div>
-				<button type="submit" class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button>
+				<button type="submit" class="btn btn-default" onclick="calcRoute(); return false;" >Search</button>
 			</form>
 		</div>
 		<br>
@@ -39,6 +39,11 @@
 					$("#content").load("modules/findListing/findListing.php?NaNerror");
 				else
 					$("#content").load("modules/findListing/findListing.php?" + key + "=" + val);
+			}
+
+			function calcRoute()
+			{
+				console.log("Not yet implemented.");
 			}
 
 			function matchListing()
@@ -182,10 +187,6 @@
 							}
 						}
 					}
-				}
-				else if (isset($_GET['starting_address']))
-				{
-				
 				}
 				else
 				{
