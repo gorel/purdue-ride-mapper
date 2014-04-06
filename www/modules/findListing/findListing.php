@@ -120,8 +120,8 @@
 
 					$matchNum = htmlspecialchars($_GET['matchValue']);
 					echo "<h1> Listings matched to Listing ID #" . $matchNum . ":</h1>";
+					debug_to_console(exec('python ../../../src/matcher.py '. $matchNum));
 					$matches = explode('\n', exec('python ../../../src/matcher.py '. $matchNum));
-					debug_to_console($matches);
 
 					//If len(output) == 0, print "no matches"
 					if (strlen($matches[0]) == 0)
