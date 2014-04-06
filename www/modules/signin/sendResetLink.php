@@ -21,14 +21,14 @@ $stmt = $conn->prepare($query);
 $stmt->bind_result($hash);
 $stmt->execute();
 $stmt->store_result();
-
+/*
 if ($stmt->num_rows > 0) 
 {
   sendPwResetMail($email, $hash);		
   echo json_encode(array('retval' => 'OK'));
   return;
 }
-
+*/
 $hash=saltedHash($email);
 
 $query = "INSERT into password_reset (email, link) VALUES (?, ?)";
