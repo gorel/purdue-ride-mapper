@@ -120,6 +120,7 @@
 
 					$matchNum = htmlspecialchars($_GET['matchValue']);
 					echo "<h1> Listings matched to Listing ID #" . $matchNum . ":</h1>";
+					$matches = array();
 					exec('python ../../../src/matcher.py'. $matchNum, $matches);
 					$matches = explode('\n', $matches);
 
