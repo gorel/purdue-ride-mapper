@@ -6,7 +6,7 @@
 		<div id="map_canvas" style="height: 400px; width: 100%"></div>
 		<hr class="featurette-divider">
 		<div>
-		<!-- TODO: Allow search by destination
+		<!-- TODO: Allow search by destination -->
 			<h2 class="form-signin-heading">Search for a ride:</h2>
 			<form class="form-inline" role="form">
 				<div class="form-group">
@@ -17,7 +17,6 @@
 				</div>
 				<button type="submit" class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button>
 			</form>
-		-->
 		</div>
 		<br>
 
