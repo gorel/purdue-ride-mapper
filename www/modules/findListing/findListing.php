@@ -6,16 +6,18 @@
 		<div id="map_canvas" style="height: 400px; width: 100%"></div>
 		<hr class="featurette-divider">
 		<div>
+		<!-- TODO: Allow search by destination
 			<h2 class="form-signin-heading">Search for a ride:</h2>
 			<form class="form-inline" role="form">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Starting Address">
+					<input id='starting_address_field' type="text" class="form-control" placeholder="Starting Address">
 				</div>
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Destination Address">
+					<input id='ending_address_field' type="text" class="form-control" placeholder="Destination Address">
 				</div>
-				<button type="submit" class="btn btn-default" onclick="calcRoute(); return false;" >Search</button>
+				<button type="submit" class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button>
 			</form>
+		-->
 		</div>
 		<br>
 
@@ -40,15 +42,17 @@
 					$("#content").load("modules/findListing/findListing.php?" + key + "=" + val);
 			}
 
-			function calcRoute()
-			{
-				console.log('Not yet implemented.');
-			}
-
 			function matchListing()
 			{
 				var listing_id = parseInt(document.getElementById('listing_id_field').value);
 				loadParameter("matchValue", listing_id);
+			}
+
+			function matchNewAddress()
+			{
+				var starting_address = document.getElementById('starting_address_field').value;
+				var ending_address = document.getElementById('ending_address_field').value;
+				$("#content").load("modules/findListing/findListing.php?starting_address=" + starting_address + "&ending_address=" + ending_address;
 			}
 
 			//This script create the map with a default address.
@@ -179,6 +183,10 @@
 							}
 						}
 					}
+				}
+				else if (isset($_GET['starting_address']))
+				{
+				
 				}
 				else
 				{
