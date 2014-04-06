@@ -71,7 +71,7 @@ function sendPwResetMail($rcpt, $link)
 {
         global $orgEmail,$orgName, $headers;
 
-        $vlink = "http://collegecarpool.us/modules/signin/changePass.php?" .
+        $vlink = "http://collegecarpool.us/modules/signin/changePassword.php?" .
                  "link=$link";
 
         $subject = "College Carpool Password Reset";
