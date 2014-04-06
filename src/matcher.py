@@ -153,7 +153,10 @@ class Matcher:
 		return sorted(scores, key=lambda score: score[0], reverse=True)
 
 	def datesWithinDays(self, date1, date2, N):
-		return abs(date1 - date2) < datetime.timedelta(days=N)
+		try:
+			return abs(date1 - date2) < datetime.timedelta(days=N)
+		except:
+			return False
 
 	def startLocProximity(self, lat1, lon1, lat2, lon2):
 		dlon = lon2 - lon1
