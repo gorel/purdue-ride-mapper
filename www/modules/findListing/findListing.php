@@ -122,7 +122,6 @@
 					echo "<h1> Listings matched to Listing ID #" . $matchNum . ":</h1>";
 					$matches = array();
 					exec('python ../../../src/matcher.py'. $matchNum, $matches);
-					$matches = explode('\n', $matches);
 
 					//If len(output) == 0, print "no matches"
 					if (strlen($matches[0]) == 0)
