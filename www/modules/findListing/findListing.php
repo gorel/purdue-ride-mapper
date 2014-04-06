@@ -54,9 +54,9 @@
 
 			function matchNewAddress()
 			{
-				var starting_address = document.getElementById('starting_address_field').value;
-				var ending_address = document.getElementById('ending_address_field').value;
-				$("#content").load("modules/findListing/findListing.php?starting_address=" + starting_address + "&ending_address=" + ending_address;
+				//var starting_address = document.getElementById('starting_address_field').value;
+				//var ending_address = document.getElementById('ending_address_field').value;
+				//$("#content").load("modules/findListing/findListing.php?starting_address=" + starting_address + "&ending_address=" + ending_address;
 			}
 
 			//This script create the map with a default address.
