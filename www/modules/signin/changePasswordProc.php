@@ -17,13 +17,26 @@ if ($conn->connect_errno)
 
 $stmt = $conn->stmt_init();
 $pass = saltedHash($_POST["password"]);
-$query = "delete from password_reset where email like \"$email\"";
+$query = "delete from password_reset where email like '$email'";
 $stmt = $conn->prepare($query);
-$stmt->execute();
-$query = "UPDATE users set password=\"$pass\" where email like \"$email\"";
-$stmt = $conn->prepare($query);
-$stmt->execute();
-echo json_encode(array('retval' => 'OK'));
+$ret = $stmt->execute();
 
+if (! $ret) 
+{
+	echo json_encode(array('retval' => 'ERR'));
+	die();
+}
+
+$query = "UPDATE users set password='$pass' where email like '$email'";
+$stmt = $conn->prepare($query);
+$ret = $stmt->execute();
+
+if (! $ret) 
+{
+	echo json_encode(array('retval' => 'ERR'));
+	die();
+}
+
+echo json_encode(array('retval' => 'OK'));
 
 ?>
