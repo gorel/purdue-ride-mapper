@@ -1,3 +1,6 @@
+<!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.css" rel="stylesheet">
+
 <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="/js/moment.min.js"></script>
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
@@ -30,19 +33,54 @@ if ($stmt->num_rows <= 0) {
   die("Password reset link does not exist");
 }
 $stmt->fetch();
-echo "<input type=\"text\" name=\"$email\" id=\"txtEmail\" hidden=\"true\" value=\"$email\">";
+
+echo "<p id=\"email\" hidden=true>$email</p>";
 
 ?>
 
 
+<div class="container">
+	<form class="form-horizontal">
+	<fieldset>
 
-<script>
-$('#content').load("/modules/signin/signin.php");
-$('#modalResetPw').modal('show');
-</script>
+		<!-- Form Name -->
+		<p id="title"></>
+
+		<!-- Password input-->
+		<div class="control-group">
+	  		<label class="control-label" for="password">Password</label>
+	  		<div class="controls">
+	    			<input id="password" name="password" type="password" placeholder="" class="input-xlarge">
+  	  		</div>
+		</div>
+
+		<!-- Password input-->
+		<div class="control-group">
+			<label class="control-label" for="confirm_password">Confirm Password</label>
+  			<div class="controls">
+    				<input id="confirm_password" name="confirm_password" type="password" placeholder="" class="input-xlarge">
+  			</div>
+		</div>
+
+		<!-- Button -->
+		<div class="control-group">
+  			<label class="control-label" for="submitPassword"></label>
+  			<div class="controls">
+    				<button type="button" id="submitPassword" name="submitPassword" onClick="validatePass()" class="btn btn-primary">Submit</button>
+  			</div>
+		</div>
+
+	</fieldset>
+	</form>
+
+</div>
 
 
-<script>
+<script type="text/javascript">
+
+var title = document.getElementById('title');
+var val = document.getElementById('email');
+title.innerHTML = "<h3><b>Password reset for " + val.innerHTML + "</b></h3><hr>";
 
 function validatePass()
 {
@@ -74,27 +112,5 @@ function validatePass()
 
 
 </script>
-<!-- Modal to change password -->
-
-<div class="modal fade" id="modalResetPw" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Reset Password</h4>
-      </div>
-      <div class="modal-body">
-        Password: <input type="Password" id="password" class="form-control">
-        Confirm Password:<input type="Password" id="confirm_password" class="form-control">
-	
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" onClick="validatePass()">Submit</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
 
 

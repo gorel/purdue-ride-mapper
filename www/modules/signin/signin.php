@@ -20,44 +20,56 @@
 		location.replace("modules/register/register.php");
 	}
 
-	function forgotPassword()
+	/**
+	* showPwModal()
+	*
+	* bring up the modal to submit email for resetting password
+	*/
+	function showPwModal()
 	{
-		//location.replace("forgotPassword.html");
 		$('#modalPwReset').modal('show');
-		
 	}
 
-	function sendResetLink()
+	/**
+	* submitEmail
+	*
+	* process the email to inform user how to reset the password
+	*/
+	function submitEmail()
 	{
 		var elm = document.getElementById('txtEmail');
 		var patt = /[A-Za-z0-9]+@([A-Za-z0-9]+\.[A-Za-z0-9])+/i
 
-		if (txtEmail.value.trim() == "") {
+		if (txtEmail.value.trim() == "") 
+		{
 			alert("Please enter an email address");
 			return;
 		}
 
-		if (! patt.test(txtEmail.value)) {
+		if (! patt.test(txtEmail.value)) 
+		{
 			alert("Please enter a valid email address!");
 			return;
 		}
 
-		$.ajax({ 
-		    type: "POST",
-        	    url: "/modules/signin/sendResetLink.php", 
-                    dataType: 'json',
-                    data: {"email" : txtEmail.value.trim()}, 
-		    success: function(data) {
+		$.ajax ({ 
+			type: "POST",
+        	    	url: "/modules/signin/forgotPassword.php", 
+                    	dataType: 'json',
+                    	data: {"email" : txtEmail.value.trim()}, 
+		    	success: function(data) {
 
-        	    if (data.retval == "ERR") {
-                	alert("Error: No such email / database connection failed");
-        	        $('#modalPwReset').modal('hide');
-			return;
-        	    }
-		    alert("An email has been sent to your account, please check for details");
-        	    $('#modalPwReset').modal('hide');
-           }
-    }); 
+        	    		if (data.retval == "ERR") 
+				{
+                			alert("Error: No such email / database connection failed");
+        	        		$('#modalPwReset').modal('hide');
+					return;
+        	    		}
+
+		    		alert("An email has been sent to your account, please check for details");
+        	    		$('#modalPwReset').modal('hide');
+           		}	
+    		}); 
 		
 
 	}
@@ -152,13 +164,14 @@
 				<div class="form-group">
 				</div>
 			</form>
-					<button class="btn btn-lg btn-primary btn-block" onclick="forgotPassword()" type="text" id="forgotPassword">Forgot Password?</button>
+
+			<button class="btn btn-lg btn-primary btn-block" onclick="showPwModal()" type="text" id="pwModalButton">Forgot Password?</button>
 		</div> <!-- col-md-4 -->
 	</div> <!-- row -->
 </div> <!-- /container -->
 
 
-<!-- Dirty fix for pw recovery -->
+<!-- Password reset modal -->
 
 <div class="modal fade" id="modalPwReset" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -168,14 +181,11 @@
         <h4 class="modal-title" id="myModalLabel">Send Reset Password Link</h4>
       </div>
       <div class="modal-body">
-        <form id="editForm" action="/modules/manageUsers/editUserProc.php" method="POST">
         <b>Email</b>      <input type="text" class="form-control" name="email" id="txtEmail"><br>
-                          <input type="text" hidden="true" id="txtUid">
-        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onClick="sendResetLink()">Submit</button>
+        <button type="button" class="btn btn-primary" onClick="submitEmail()">Submit</button>
       </div>
     </div>
   </div>

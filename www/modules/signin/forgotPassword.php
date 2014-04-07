@@ -1,69 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="">
-		<meta name="author" content="">
+<?php
 
-		<title>Password Recovery</title>
+require '../../lib/hash.php';
+require '../../lib/email.php';
 
-		<!-- Bootstrap core CSS -->
-		<link href="css/bootstrap.css" rel="stylesheet">
+//TODO Replace jscript alerts with friendly div elements
 
-		<!-- Custom styles for this template -->
-		<link href="signin.css" rel="stylesheet">
-	</head>
-	<script>
-	var emailValid = false;
-	
-	function validateEmail(sender) 
-	{
-        var parent = sender.parentNode;		
-		var textBoxValue = sender.value;
-		var atPos= textBoxValue.indexOf("@");
-		var dotPos= textBoxValue.lastIndexOf(".");
-		var edu = textBoxValue.split(".").pop();
-		
-		if (atPos < 1 || dotPos < atPos + 2 || dotPos + 2 >= textBoxValue.length || edu != "edu")
-		{
-			parent.className = "form-group has-error";
-			emailValid = false;
-			validateForm();
-		}
-		else
-		{
-			parent.className = "form-group has-success";
-			emailValid = true;
-			validateForm();
-		}
-	}
-	
-	function submitClicked()
-	{
-		window.alert("Email has been sent to reset your password!");
-	}
-	</script>
-	
-	<body>
-		<div class="container" >
-			<div class="row">
-			
-				<div class="col-md-4">
-				</div>				
-				
-				<div class="col-md-4">
-					<form class="form-signin" role="form" id="registerForm">
-						<h2 class="form-signin-heading">Type your email here</h2>
-						<div class="form-group has-error" id="test">
-							<input type="text" class="form-control" placeholder="Email" onkeyup="validateEmail(this);" required autofocus>
-						</div>	
-					<button class="btn btn-lg btn-primary btn-block" type="submit" id="submitButton" onlick="submitClicked()">Submit</button>						
-					</form>
-				</div> <!-- col-md-4 -->
-				
-			</div> <!-- row -->
-		</div> <!-- /container -->
-	</body>
-</html>
+//TODO CHANGE BACK
+$conn = new mysqli("collegecarpool.us", "root", "collegecarpool", "purdue_test");
+
+if ($conn->connect_errno)
+{
+        echo json_encode(array('retval' => 'ERR'));
+        die();
+}
+
+// Hash the email to produce the link to change the password
+
+$email = $_POST['email'];
+$query = "SELECT link from password_reset where email like ?";
+
+$stmt = $conn->stmt_init();
+$stmt = $conn->prepare($query);
+$stmt->bind_param('s', $email);
+$stmt->bind_result($hash);
+$stmt->execute();
+$stmt->store_result();
+
+if ($stmt->num_rows > 0) 
+{
+  sendPwResetMail($email, $hash);		
+  echo json_encode(array('retval' => 'OK'));
+  return;
+}
+
+$hash = saltedHash($email);
+
+$query = "INSERT into password_reset (email, link) VALUES (?, ?)";
+$stmt = $conn->prepare($query);
+$stmt->bind_param('ss', $email, $hash);
+$stmt->execute();
+sendPwResetMail($email, $hash);
+echo json_encode(array('retval' => 'OK'));
+
+?>
+
