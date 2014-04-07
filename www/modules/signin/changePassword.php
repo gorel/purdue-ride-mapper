@@ -86,7 +86,7 @@ function validatePass()
 {
 	var pass = document.getElementById('password');
 	var cpass = document.getElementById('confirm_password');
-	var email = document.getElementById('txtEmail');
+	var email = document.getElementById('email');
 
 	if ((pass.value != cpass.value) || pass.value.trim() == "" || cpass.value.trim() =="") {
 		alert("Passwords must match and must not be empty");
