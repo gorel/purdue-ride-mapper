@@ -97,7 +97,7 @@ function validatePass()
         type: "POST",
         url: "/modules/signin/changePasswordProc.php", 
         dataType: 'json',
-        data: {"password" : pass.value, "email" : txtEmail.value}, 
+        data: {"password" : pass.value, "email" : email.value}, 
         success: function(data) {
 
         if (data.retval == "ERR") {
