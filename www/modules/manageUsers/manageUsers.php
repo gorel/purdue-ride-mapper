@@ -5,7 +5,17 @@
 
 <hr class="featurette-divider">
 
-<div class="container" >
+	<div class="container" >
+
+
+		<form class="form=inline" role="form">
+			<div class="form-group">
+				<input id='keyword_field' type="text" class="form-control" placeholder="Search..." required autofocus>
+				<input type="radio" name="sex" value="fname">First Name<input type="radio" name="lname" value="female">Last Name<input type="radio" name="email" value="E-Mail" required checked>E-mail
+			</div>
+			<button type="submit" class="btn" id="search" disabled>Search</button>
+		</form>
+
 	<?php
 		session_start();
 		$user_id = $_SESSION['user'];
@@ -29,15 +39,6 @@
 			die("Failed to connect to MySQL: " . mysqli_connect_error());
 
 		}
-
-		<form class="form=inline" role="form">
-			<div class="form-group">
-				<input id='keyword_field' type="text" class="form-control" placeholder="Search..." required autofocus>
-				<input type="radio" name="sex" value="fname">First Name<input type="radio" name="lname" value="female">Last Name<input type="radio" name="email" value="E-Mail" required checked>E-mail
-			</div>
-			<button type="submit" class="btn" id="search" disabled>Search</button>
-		</form>
-
 
 		$query = "SELECT " .
 		         "user_id, email, first_name, verified, enabled, is_admin, last_name " .
