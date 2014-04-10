@@ -10,7 +10,7 @@
 		session_start();
 		$user_id = $_SESSION['user'];
 
-		if (!$_SESSION['isAdmin']) 
+		if (!$_SESSION['isAdmin'])
 		{
 			// TODO: Need to find a better way to redirect
 			echo "<script type='text/javascript'>
@@ -27,11 +27,20 @@
 		if($conn->connect_errno)
 		{
 			die("Failed to connect to MySQL: " . mysqli_connect_error());
-		
+
 		}
-		
+
+		<form class="form=inline" role="form">
+			<div class="form-group">
+				<input id='keyword_field' type="text" class="form-control" placeholder="Search..." required autofocus>
+				<input type="radio" name="sex" value="fname">First Name<input type="radio" name="lname" value="female">Last Name<input type="radio" name="email" value="E-Mail" required checked>E-mail
+			</div>
+			<button type="submit" class="btn" id="search" disabled>Search</button>
+		</form>
+
+
 		$query = "SELECT " .
-		         "user_id, email, first_name, verified, enabled, is_admin, last_name " . 
+		         "user_id, email, first_name, verified, enabled, is_admin, last_name " .
 		         "FROM users";
 
 		$stmt = $conn->stmt_init();
@@ -53,7 +62,7 @@
 			<thead>";
 
 		echo "</tbody>";
-		while ($stmt->fetch()) 
+		while ($stmt->fetch())
 		{
 			$verified_text = "No";
 			$enabled_text = "No";
@@ -74,9 +83,9 @@
 			        <td id=$uid"."_verified_text> $verified_text </td>
 			        <td id=$uid"."_enabled_text> $enabled_text </td>
 			        <td id=$uid"."_is_admin_text> $is_admin_text </td>
-				<td> <button class=\"btn btn-success btn-small\" 
+				<td> <button class=\"btn btn-success btn-small\"
 					onclick=\"editUser($uid)\">Edit</button>
-				 <button class=\"btn btn-danger\" 
+				 <button class=\"btn btn-danger\"
 					onclick=\"updateDelId($uid)\">Delete</button></td>
 			      </tr>";
 		}
@@ -91,27 +100,27 @@
 <!-- User Management Functions -->
 
 <script type="text/javascript">
-  
+
 
   // Delete user
-  
+
   function updateDelId(uid)
   {
     var elm = document.getElementById('toDelId');
     elm.value = uid;
 
-    $('#modalDeleteUser').modal('show'); 
+    $('#modalDeleteUser').modal('show');
   }
 
   function delUser()
   {
     var elm = document.getElementById('toDelId');
-     
+
     $.ajax ({
 	type: "POST",
-	url: "/modules/manageUsers/delUserProc.php", 
+	url: "/modules/manageUsers/delUserProc.php",
 	dataType: 'json',
-	data: {"uid" : elm.value}, 
+	data: {"uid" : elm.value},
 	success: function(data) {
 
 	if (data.retval == "ERR") {
@@ -174,13 +183,13 @@
     }
 
     var patt = /[A-Za-z0-9]+@([A-Za-z0-9]+\.[A-Za-z0-9])+/i
-    
-    if (! patt.test(txtEmail.value)) 
+
+    if (! patt.test(txtEmail.value))
     {
        alert("Please enter a valid email address!");
        return;
     }
-    
+
     var fname = txtFname.value.trim();
     var lname = txtLname.value.trim();
     var email = txtEmail.value.trim();
@@ -201,9 +210,9 @@
 
     $.ajax ({
 	type: "POST",
-	url: "/modules/manageUsers/editUserProc.php", 
+	url: "/modules/manageUsers/editUserProc.php",
 	dataType: 'json',
-	data: {"fname" : fname, "lname" : lname, "email" : email, "admin" : admin, "enabled" : enabled, "uid" : uid}, 
+	data: {"fname" : fname, "lname" : lname, "email" : email, "admin" : admin, "enabled" : enabled, "uid" : uid},
 	success: function(data) {
 
 	if (data.retval == "ERR") {
@@ -212,10 +221,10 @@
 	$('#modalEditUser').modal('hide');
 	$("#content").load("/modules/manageUsers/manageUsers.php");
            }
-    }); 
+    });
 }
 
-  
+
 </script>
 
 <!-- Modal to edit user-->
@@ -232,9 +241,9 @@
         <b>First Name</b> <input type="text" class="form-control" name="fname" id="txtFname"><br>
         <b>Last Name</b>  <input type="text" class="form-control" name="lname" id="txtLname"><br>
         <b>Email</b>      <input type="text" class="form-control" name="email" id="txtEmail"><br>
-	<b>Admin</b><br>  <input type="radio" name="admin" id="radAdmin" value="1"> Yes 
+	<b>Admin</b><br>  <input type="radio" name="admin" id="radAdmin" value="1"> Yes
 	                  <input type="radio" name="admin" id="radNoAdmin"value="0"> No<br>
-	<b>Enabled</b><br><input type="radio" name="enabled" id="radEnabled" value="1"> Yes 
+	<b>Enabled</b><br><input type="radio" name="enabled" id="radEnabled" value="1"> Yes
 	                  <input type="radio" name="enabled" id="radDisabled" value="0"> No<br>
 			  <input type="text" hidden="true" id="txtUid">
         </form>
