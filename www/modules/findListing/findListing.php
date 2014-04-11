@@ -221,19 +221,10 @@
 
 					$starting_address = htmlspecialchars($_GET['starting_address']);
 					$ending_address = htmlspecialchars($_GET['ending_address']);
+					$date = htmlspecialchars($_GET['date']);
 					$matches = array();
 
-					if (isset($_GET['date']))
-					{
-						$date = htmlspecialchars($_GET['date']);
-						echo '<h1>Executing '. 'python ../../../src/matcher2.py "'. $starting_address . '" "' . $ending_address . '" "' . $date . '"' . '</h1>';
-						exec('python ../../../src/matcher2.py "'. $starting_address . '" "' . $ending_address . '" "' . $date . '"', $matches);
-					}
-					else
-					{
-						echo '<h1>Executing '. 'python ../../../src/matcher2.py "'. $starting_address . '" "' . $ending_address . '"' . '</h1>';
-						exec('python ../../../src/matcher2.py "'. $starting_address . '" "' . $ending_address . '"', $matches);
-					}
+					exec('python ../../../src/matcher2.py "'. $starting_address . '" "' . $ending_address . '" "' . $date . '"', $matches);
 
 					//TODO: Split on OFFERS
 					//If len(output) == 0, print "no matches"
