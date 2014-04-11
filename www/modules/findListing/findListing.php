@@ -240,10 +240,9 @@
 					{
 						foreach($matches as $match)
 						{
-							debug_to_console($match);
 							if ($match === "OFFERS")
 							{
-								debug_to_console("Made it here!");
+								echo "</table>";
 								echo "<br>";
 								echo "<h2>Offers that match your search:</h2>";
 								echo "<table class=table table-striped'>
@@ -304,6 +303,7 @@
 							}
 							
 						}
+						echo "</table>";
 					}
 
 				}
