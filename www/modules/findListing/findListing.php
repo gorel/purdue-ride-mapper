@@ -6,7 +6,6 @@
 		<div id="map_canvas" style="height: 400px; width: 100%"></div>
 		<hr class="featurette-divider">
 		<div>
-		<!-- TODO: Allow search by destination
 			<h2 class="form-signin-heading">Search for a ride:</h2>
 			<form class="form-inline" role="form">
 				<div class="form-group">
@@ -15,9 +14,12 @@
 				<div class="form-group">
 					<input id='ending_address_field' type="text" class="form-control" placeholder="Destination Address">
 				</div>
+				<div class="form-group">
+					<input id='date_field' type="text" class="form-control" placeholder="Departure Date (optional)" data-format="YYYY-MM-DD hh:mm:ss"/>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				</div>
 				<button type="submit" class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button>
 			</form>
-		-->
 		</div>
 		<br>
 
@@ -52,7 +54,8 @@
 			{
 				var starting_address = document.getElementById('starting_address_field').value;
 				var ending_address = document.getElementById('ending_address_field').value;
-				$("#content").load("modules/findListing/findListing.php?starting_address=" + starting_address + "&ending_address=" + ending_address);
+				var departure_date = document.getElementById('date_field').value;
+				$("#content").load("modules/findListing/findListing.php?starting_address=" + starting_address + "&ending_address=" + ending_address + "&date=" + departure_date;
 			}
 
 			//This script create the map with a default address.
