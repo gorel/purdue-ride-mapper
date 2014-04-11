@@ -127,6 +127,7 @@
 				if (isset($_GET['matchValue']))
 				{
 					$matchNum = htmlspecialchars($_GET['matchValue']);
+					echo "<h2>Trying to match rides to this listing:</h2>";
 					echo "<table class='table table-striped'>
 					<thead>
 					<tr>
@@ -149,6 +150,7 @@
 						echo "<td>Offering Ride</td>";
 					else
 						echo "<td>Requesting Ride</td>";
+					echo "</table>";
 
 					echo "<table class='table table-striped'>
 					<thead>
@@ -161,7 +163,7 @@
 					</tr>
 					</thead>";
 
-					echo "<h1> Listings matched to Listing ID #" . $matchNum . ":</h1>";
+					echo "<h2>Matching listings:</h2>";
 					$matches = array();
 					exec('python ../../../src/matcher.py '. $matchNum, $matches);
 
