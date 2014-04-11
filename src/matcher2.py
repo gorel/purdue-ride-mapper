@@ -188,7 +188,7 @@ class Matcher:
 		return result
 
 def address2Coordinate(address):
-	if re.match('Purdue(\\s+)University/i', address):
+	if re.match('Purdue(\\s+)University', address, re.IGNORECASE):
 		address = '1275 Third St West Lafayette Indiana 47906'
 	address = address.replace(' ', '%20')
 	mapquest = 'http://www.mapquestapi.com/geocoding/v1/address?&key=Fmjtd%7Cluur210znh%2Cb0%3Do5-90ys0a&location='
