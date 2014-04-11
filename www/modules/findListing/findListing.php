@@ -227,11 +227,11 @@
 					if (isset($_GET['date']))
 					{
 						$date = htmlspecialchars($_GET['date']);
-						exec('python ../../../src/matcher2.py '. $starting_address . ' ' . $ending_address . ' ' . $date, $matches);
+						exec('python ../../../src/matcher2.py "'. $starting_address . '" "' . $ending_address . '" "' . $date . '"', $matches);
 					}
 					else
 					{
-						exec('python ../../../src/matcher2.py '. $starting_address . ' ' . $ending_address, $matches);
+						exec('python ../../../src/matcher2.py "'. $starting_address . '" "' . $ending_address . '"', $matches);
 					}
 
 					//TODO: Split on OFFERS
