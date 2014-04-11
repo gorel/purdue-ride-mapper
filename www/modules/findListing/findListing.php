@@ -55,7 +55,7 @@
 				var starting_address = document.getElementById('starting_address_field').value;
 				var ending_address = document.getElementById('ending_address_field').value;
 				var departure_date = document.getElementById('date_field').value;
-				$("#content").load("modules/findListing/findListing.php?starting_address=" + starting_address + "&ending_address=" + ending_address + "&date=" + departure_date;
+				$("#content").load("modules/findListing/findListing.php?starting_address=" + starting_address + "&ending_address=" + ending_address + "&date=" + departure_date);
 			}
 
 			//This script create the map with a default address.
