@@ -194,7 +194,7 @@ def address2Coordinate(address):
 	vals = json.loads(html)
 	lat_long = vals['results'][0]['locations'][0]['latLng'];
 	print lat_long
-	return [lat_long['lat'], lat_long['long']]
+	return [lat_long['lat'], lat_long['lng']]
 
 
 def main():
