@@ -189,7 +189,7 @@ def address2Coordinate(address):
 		address = '1275 Third St West Lafayette Indiana 47906'
 	address = address.replace(' ', '%20')
 	mapquest = 'http://www.mapquestapi.com/geocoding/v1/address?&key=Fmjtd%7Cluur210znh%2Cb0%3Do5-90ys0a&location='
-	mapquest_result = urllib2.urlopen(mapquest + start_address)
+	mapquest_result = urllib2.urlopen(mapquest + address)
 	html = mapquest_result.read()
 	vals = json.loads(html)
 	lat_long = vals['results'][0]['locations'][0]['latLng'];
