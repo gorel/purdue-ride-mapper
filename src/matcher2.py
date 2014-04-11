@@ -100,7 +100,7 @@ class Matcher:
 		return request_matches + ['OFFERS'] + offer_matches
 		
 	def match_request_to_offer(self, request):
-		circle = Circle(request.end_lat, request.end_lon, request.rad, None)
+		circle = Circle(request.end_lat, request.end_lon, None)
 		cursor = self.db.cursor()
 		cursor.execute('SELECT * FROM listings WHERE isRequest=0')
 		offers = []
