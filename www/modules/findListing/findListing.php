@@ -220,6 +220,7 @@
 					</thead>";
 
 					$starting_address = htmlspecialchars($_GET['starting_address']);
+					echo '<h1>Starting address is '. $starting_address . '</h1>';
 					$ending_address = htmlspecialchars($_GET['ending_address']);
 					$matches = array();
 
