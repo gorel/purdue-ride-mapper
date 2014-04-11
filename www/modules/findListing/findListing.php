@@ -15,9 +15,17 @@
 					<input id='ending_address_field' type="text" class="form-control" placeholder="Destination Address">
 				</div>
 				<div class="form-group">
-					<input id='date_field' type="text" class="form-control" placeholder="Departure Date (optional)" data-format="YYYY-MM-DD hh:mm:ss"/>
-					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+					<div class='input-group date' id=datetimepicker1'>
+						<input id='date_field' type="text" class="form-control" placeholder="Departure Date (optional)" data-format="YYYY-MM-DD hh:mm:ss"/>
+						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+					</div>
 				</div>
+				<script type='text/javascript'>
+					$(function ) {
+						$('#datetimepicker').datetimepicker();
+					});
+				</script>
+
 				<button type="submit" class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button>
 			</form>
 		</div>
