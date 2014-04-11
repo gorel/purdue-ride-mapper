@@ -209,6 +209,8 @@ def main():
 	if len(sys.argv) == 4:
 		try:
 			date = datetime.strptime(sys.argv[3], '%Y-%m-%d %I:%M:%S')
+		except:
+			date = None
 
 	startcoords = address2Coordinate(start_address)
 	endcoords = address2Coordinate(end_address)
