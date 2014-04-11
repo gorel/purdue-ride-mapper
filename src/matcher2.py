@@ -207,7 +207,8 @@ def main():
 	end_address = sys.argv[2]
 	date = None
 	if len(sys.argv) == 4:
-		date = datetime.strptime(sys.argv[3], '%Y-%m-%d %I:%M:%S')
+		try:
+			date = datetime.strptime(sys.argv[3], '%Y-%m-%d %I:%M:%S')
 
 	startcoords = address2Coordinate(start_address)
 	endcoords = address2Coordinate(end_address)
