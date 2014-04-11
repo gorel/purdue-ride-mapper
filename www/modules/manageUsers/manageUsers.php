@@ -8,7 +8,7 @@
 	<div class="container" >
 
 
-		<form class="form=inline" role="form">
+		<form class="form-inline" role="form">
 			<div class="form-group">
 				<input id='keyword_field' type="text" class="form-control" placeholder="Search..." required autofocus>
 				<input type="radio" name="sex" value="fname">First Name<input type="radio" name="lname" value="female">Last Name<input type="radio" name="email" value="E-Mail" required checked>E-mail
