@@ -145,7 +145,7 @@
 					echo "<td>" . $row['listings_id'] . "</td>";
 					echo "<td>" . $row['startingAddress'] . "</td>";
 					echo "<td>" . $row['endingAddress'] . "</td>";
-					echo "<td>" . $row['listings_id'] . "</td>";
+					echo "<td>" . $row['dateOfDeparture'] . "</td>";
 					if ($row['isRequest'] === 0)
 						echo "<td>Offering Ride</td>";
 					else
@@ -236,7 +236,7 @@
 					$date = htmlspecialchars($_GET['date']);
 					$matches = array();
 					
-					echo "<h1>Finding matches starting near ". $starting_address . " and ending near ". $ending_address . "</h1>";
+					echo "<h2>Finding matches starting near ". $starting_address . " and ending near ". $ending_address . "</h2>";
 
 					echo "<h2>Requests that match your search:</h2>";
 					echo "<table class='table table-striped'>
