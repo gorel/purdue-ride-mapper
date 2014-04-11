@@ -150,6 +150,7 @@ class Matcher:
 		a = math.sin(dlat / 2.0) ** 2 + math.cos(lat1) * math.cos(lat2) * (math.sin(dlon / 2.0) ** 2)
 		c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
 		d = 100 * c
+		print 'Location proximity:', d
 		return d
 
 	def dist(self, circle, line):
