@@ -207,7 +207,7 @@
 				}
 				else if (isset($_GET['starting_address']))
 				{
-					echo "<h2>Requests that match your search:</h2>"
+					echo "<h2>Requests that match your search:</h2>";
 					echo "<table class='table table-striped'>
 					<thead>
 					<tr>
