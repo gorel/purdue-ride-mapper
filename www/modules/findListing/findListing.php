@@ -207,7 +207,7 @@
 				}
 				else if (isset($_GET['starting_address']))
 				{
-					
+					echo "<div style='color: red; font-size: 14pt;'>It worked!</div>";
 				}
 				else
 				{
