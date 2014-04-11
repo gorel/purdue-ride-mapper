@@ -95,8 +95,8 @@ class Matcher:
 				print int(match[0] * 100), int(match[1])
 	
 	def match_to_any(self, user):
-		request_matches = self.match_offer_to_request(self, user)
-		offer_matches = self.match_request_to_offer(self, user)
+		request_matches = self.match_offer_to_request(user)
+		offer_matches = self.match_request_to_offer(user)
 		return request_matches + ['OFFERS'] + offer_matches
 		
 	def match_request_to_offer(self, request):
