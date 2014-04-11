@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 import json
 import math
 import operator
@@ -56,7 +56,7 @@ class Line:
 			self.end_lon += 1
 
 class User:
-	def __init__(self, start_lat, start_lon, end_lat, end_lon):
+	def __init__(self, start_lat, start_lon, end_lat, end_lon, date):
 		if start_lat is not None:
 			self.start_lat = start_lat
 		else:
@@ -77,14 +77,15 @@ class User:
 		else:
 			self.end_lon = 0
 
+		self.date = date
 
 class Matcher:
 	def __init__(self):
 		#self.db = mysql.connect('localhost', 'collegecarpool', 'collegecarpool', 'purdue_test')
 		self.db = mysql.connect('collegecarpool.us', 'root', 'collegecarpool', 'purdue_test')
 	
-	def get(self, start_coords, end_coords):
-		return User(start_coords[0], start_coords[1], end_coords[0], end_coords[1])
+	def get(self, start_coords, end_coords, date):
+		return User(start_coords[0], start_coords[1], end_coords[0], end_coords[1], date)
 	
 	def match(self, user):
 		matches = self.match_to_any(user)
@@ -112,10 +113,11 @@ class Matcher:
 		scores = []
 		for offer in offers:
 			# Only look at matches if the start locations are close and the departure dates are within one day of each other
-			if self.startLocProximity(request.start_lat, request.start_lon, offer[2], offer[3]) < 2 * circle.rad:
-				line = Line(offer[2], offer[3], offer[5], offer[6])
-				score = self.score(self.dist(circle, line), circle.rad)
-				scores.append([score, offer[0]])
+			if request.date is None or offer[9] is None or abs(request.date, offer[9]) < datetime.timedelta(days=1):
+				if self.startLocProximity(request.start_lat, request.start_lon, offer[2], offer[3]) < 2 * circle.rad:
+					line = Line(offer[2], offer[3], offer[5], offer[6])
+					score = self.score(self.dist(circle, line), circle.rad)
+					scores.append([score, offer[0]])
 		return sorted(scores, key=lambda score: score[0], reverse=True)
 	
 	def match_offer_to_request(self, offer):
@@ -131,13 +133,14 @@ class Matcher:
 		scores = []
 		for request in requests:
 			# Only look at matches if the start locations are close and the departure dates are within one day of each other
-			radius = request[8] * 3
-			if radius == 0:
-				radius = 10 * 3
-			if self.startLocProximity(request[2], request[3], offer.start_lat, offer.start_lon) < 2 * radius:
-				circle = Circle(request[5], request[6], request[8])
-				score = self.score(self.dist(circle, line), circle.rad)
-				scores.append([score, request[0]])
+			if offer.date is None or request[9] is None or abs(offer.date, request[9]) < datetime.timedelta(days=1):
+				radius = request[8] * 3
+				if radius == 0:
+					radius = 10 * 3
+				if self.startLocProximity(request[2], request[3], offer.start_lat, offer.start_lon) < 2 * radius:
+					circle = Circle(request[5], request[6], request[8])
+					score = self.score(self.dist(circle, line), circle.rad)
+					scores.append([score, request[0]])
 		return sorted(scores, key=lambda score: score[0], reverse=True)
 
 	def startLocProximity(self, lat1, lon1, lat2, lon2):
@@ -197,17 +200,20 @@ def address2Coordinate(address):
 
 
 def main():
-	if len(sys.argv) != 3:
-		sys.exit('Usage: python matcher.py <starting location> <ending location>')
+	if len(sys.argv) != 3 || len(sys.argv) != 4:
+		sys.exit('Usage: python matcher.py <starting location> <ending location> <optional: date string>')
 	
 	start_address = sys.argv[1]
 	end_address = sys.argv[2]
+	date = None
+	if len(sys.argv) == 4:
+		date = datetime.strptime(sys.argv[3], '%Y-%B-%d %I:%M:%S')
 
 	startcoords = address2Coordinate(start_address)
 	endcoords = address2Coordinate(end_address)
 
 	matcher = Matcher()
-	user = matcher.get(startcoords, endcoords)
+	user = matcher.get(startcoords, endcoords, date)
 	matcher.match(user)
 
 main()
