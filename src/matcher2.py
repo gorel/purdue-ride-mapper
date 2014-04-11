@@ -95,8 +95,8 @@ class Matcher:
 				print int(match[0] * 100), int(match[1])
 	
 	def match_to_any(self, user):
-		request_matches = match_offer_to_request(self, user)
-		offer_matches = match_request_to_offer(self, user)
+		request_matches = self.match_offer_to_request(self, user)
+		offer_matches = self.match_request_to_offer(self, user)
 		return request_matches + ['OFFERS'] + offer_matches
 		
 	def match_request_to_offer(self, request):
@@ -193,7 +193,6 @@ def address2Coordinate(address):
 	html = mapquest_result.read()
 	vals = json.loads(html)
 	lat_long = vals['results'][0]['locations'][0]['latLng'];
-	print lat_long
 	return [lat_long['lat'], lat_long['lng']]
 
 
