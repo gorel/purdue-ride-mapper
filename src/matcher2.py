@@ -185,7 +185,7 @@ class Matcher:
 		return result
 
 def address2Coordinate(address):
-	if re.match('Purdue(\\s+)University/i'):
+	if re.match('Purdue(\\s+)University/i', address):
 		address = '1275 Third St West Lafayette Indiana 47906'
 	address = address.replace(' ', '%20')
 	mapquest = 'http://www.mapquestapi.com/geocoding/v1/address?&key=Fmjtd%7Cluur210znh%2Cb0%3Do5-90ys0a&location='
@@ -200,9 +200,6 @@ def main():
 	if len(sys.argv) != 3:
 		sys.exit('Usage: python matcher.py <starting location> <ending location>')
 	
-	print sys.argv[1]
-	print sys.argv[2]
-
 	start_address = sys.argv[1]
 	end_address = sys.argv[2]
 
