@@ -158,7 +158,6 @@
 						//For each match
 						foreach($matches as $match)
 						{
-							debug_to_console($match);
 							$val = explode(' ', $match);
 							$match = $val[0];
 							$id = $val[1];
@@ -236,6 +235,73 @@
 						echo "<td> </td>";
 						echo "<td> </td>";
 						echo "</tr>";
+					}
+					else
+					{
+						foreach($matches as $match)
+						{
+							if ($match === "OFFERS")
+							{
+								echo "<br>";
+								echo "<h2>Offers that match your search:</h2>";
+								echo "<table class=table table-striped'>
+								<thead>
+								<tr>
+								<th> Listing ID </th>
+								<th> Match % </th>
+								<th> Starting Address </th>
+								<th> Ending Address </th>
+								<th> Date of Departure </th>
+								</tr>
+								</thead>";
+								continue;
+							}
+
+							$val = explode(' ', $match);
+							$match = $val[0];
+							$id = $val[1];
+							$sql = "SELECT * FROM listings WHERE listings_id=$id";
+							$result = mysqli_query($con,$sql);
+							while($row = mysqli_fetch_array($result))
+							{
+								echo "<tr>";
+								echo '<td>'. $row['listings_id'] . '</td>';
+								echo '<td>'. $match .'</td>';
+								echo "<td>". $row['startingAddress'] . "</td>";
+								echo "<td>". $row['endingAddress'] . "</td>";
+								echo "<td>". $row['dateOfDeparture'] . "</td>";
+								echo "<td>". $i . "</td>";
+								echo "</tr>";
+								echo "<script>
+										$(document).ready(function()
+										{
+											map.addMarker
+											({
+												lat:". $row['start_lat'] . ",
+												lng:". $row['start_long'] . ",
+											});
+											map.drawRoute
+											({
+												origin: [". $row['start_lat'] .", " . $row['start_long'] . "],
+												destination: [". $row['end_lat'].", " . $row['end_long'] . "],
+												travelMode: 'driving',
+												strokeColor: '#0000FF',
+												strokeOpacity: 0.6,
+												strokeWeight: 6
+											});
+											map.addMarker
+											({
+												lat:". $row['end_lat'] . ",
+												lng:". $row['end_long'] . ",
+											})
+											map.fitZoom();
+										});
+									</script>
+									";
+
+							}
+							
+						}
 					}
 
 				}
