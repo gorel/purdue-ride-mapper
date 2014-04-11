@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
 import math
 import operator
@@ -113,7 +113,7 @@ class Matcher:
 		scores = []
 		for offer in offers:
 			# Only look at matches if the start locations are close and the departure dates are within one day of each other
-			if request.date is None or offer[9] is None or abs(request.date, offer[9]) < datetime.timedelta(days=1):
+			if request.date is None or offer[9] is None or abs(request.date - offer[9]) < timedelta(days=1, hours=12):
 				if self.startLocProximity(request.start_lat, request.start_lon, offer[2], offer[3]) < 2 * circle.rad:
 					line = Line(offer[2], offer[3], offer[5], offer[6])
 					score = self.score(self.dist(circle, line), circle.rad)
@@ -133,7 +133,7 @@ class Matcher:
 		scores = []
 		for request in requests:
 			# Only look at matches if the start locations are close and the departure dates are within one day of each other
-			if offer.date is None or request[9] is None or abs(offer.date, request[9]) < datetime.timedelta(days=1):
+			if offer.date is None or request[9] is None or abs(offer.date - request[9]) < timedelta(days=1, hours=12):
 				radius = request[8] * 3
 				if radius == 0:
 					radius = 10 * 3
@@ -200,14 +200,14 @@ def address2Coordinate(address):
 
 
 def main():
-	if len(sys.argv) != 3 || len(sys.argv) != 4:
+	if len(sys.argv) != 3 and len(sys.argv) != 4:
 		sys.exit('Usage: python matcher.py <starting location> <ending location> <optional: date string>')
 	
 	start_address = sys.argv[1]
 	end_address = sys.argv[2]
 	date = None
 	if len(sys.argv) == 4:
-		date = datetime.strptime(sys.argv[3], '%Y-%B-%d %I:%M:%S')
+		date = datetime.strptime(sys.argv[3], '%Y-%m-%d %I:%M:%S')
 
 	startcoords = address2Coordinate(start_address)
 	endcoords = address2Coordinate(end_address)

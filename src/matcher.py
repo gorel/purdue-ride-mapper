@@ -154,7 +154,7 @@ class Matcher:
 
 	def datesWithinDays(self, date1, date2, N):
 		try:
-			return abs(date1 - date2) < datetime.timedelta(days=N)
+			return abs(date1 - date2) < datetime.timedelta(days=N, hours=12)
 		except:
 			return False
 
