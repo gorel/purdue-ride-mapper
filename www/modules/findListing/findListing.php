@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
 <body>
+<!-- Scripts for the datetimepicker -->
+<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" />
+<script type='text/javascript' src='js/jquery-1.11.0.min.js'></script>
+<script type='text/javascript' src='js/moment.min.js'></script>
+<script type='text/javascript' src='js/bootstrap.min.js'></script>
+<script type='text/javascript' src='js/bootstrap-datetimepicker.min.js'></script>
+
 <hr class="featurette-divider">
 <div class="row">
 		<div id="map_canvas" style="height: 400px; width: 100%"></div>
