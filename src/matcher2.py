@@ -200,11 +200,11 @@ def main():
 	if len(sys.argv) != 3:
 		sys.exit('Usage: python matcher.py <starting location> <ending location>')
 	
-	print argv[1]
-	print argv[2]
+	print sys.argv[1]
+	print sys.argv[2]
 
-	start_address = argv[1]
-	end_address = argv[2]
+	start_address = sys.argv[1]
+	end_address = sys.argv[2]
 
 	startcoords = address2Coordinate(start_address)
 	endcoords = address2Coordinate(end_address)
