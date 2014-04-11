@@ -220,17 +220,18 @@
 					</thead>";
 
 					$starting_address = htmlspecialchars($_GET['starting_address']);
-					echo '<h1>Starting address is '. $starting_address . '</h1>';
 					$ending_address = htmlspecialchars($_GET['ending_address']);
 					$matches = array();
 
 					if (isset($_GET['date']))
 					{
 						$date = htmlspecialchars($_GET['date']);
+						echo '<h1>Executing '. 'python ../../../src/matcher2.py "'. $starting_address . '" "' . $ending_address . '" "' . $date . '"' . '</h1>';
 						exec('python ../../../src/matcher2.py "'. $starting_address . '" "' . $ending_address . '" "' . $date . '"', $matches);
 					}
 					else
 					{
+						echo '<h1>Executing '. 'python ../../../src/matcher2.py "'. $starting_address . '" "' . $ending_address . '"' . '</h1>';
 						exec('python ../../../src/matcher2.py "'. $starting_address . '" "' . $ending_address . '"', $matches);
 					}
 
