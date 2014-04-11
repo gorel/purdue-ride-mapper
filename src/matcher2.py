@@ -193,6 +193,7 @@ def address2Coordinate(address):
 	html = mapquest_result.read()
 	vals = json.loads(html)
 	lat_long = vals['results'][0]['locations'][0]['latLng'];
+	print lat_long
 	return [lat_long['lat'], lat_long['long']]
 
 
