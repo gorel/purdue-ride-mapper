@@ -207,7 +207,44 @@
 				}
 				else if (isset($_GET['starting_address']))
 				{
-					echo "<div style='color: red; font-size: 14pt;'>It worked!</div>";
+					echo "<h2>Requests that match your search:</h2>"
+					echo "<table class='table table-striped'>
+					<thead>
+					<tr>
+					<th> Listing ID </th>
+					<th> Match % </th>
+					<th> Starting Address </th>
+					<th> Ending Address </th>
+					<th> Date of Departure </th>
+					</tr>
+					</thead>";
+
+					$starting_address = htmlspecialchars($_GET['starting_address']);
+					$ending_address = htmlspecialchars($_GET['ending_address']);
+					$matches = array();
+
+					if (isset($_GET['date']))
+					{
+						$date = htmlspecialchars($_GET['date']);
+						exec('python ../../../src/matcher2.py '. $starting_address . ' ' . $ending_address . ' ' . $date, $matches);
+					}
+					else
+					{
+						exec('python ../../../src/matcher2.py '. $starting_address . ' ' . $ending_address, $matches);
+					}
+
+					//TODO: Split on OFFERS
+					//If len(output) == 0, print "no matches"
+					if (strlen($matches[0]) == 0)
+					{
+						echo "<tr>";
+						echo '<td> </td>';
+						echo "<td>No matches found.</td>";
+						echo "<td> </td>";
+						echo "<td> </td>";
+						echo "</tr>";
+					}
+
 				}
 				else
 				{
