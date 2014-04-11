@@ -135,11 +135,9 @@ class Matcher:
 			if radius == 0:
 				radius = 10 * 3
 			if self.startLocProximity(request[2], request[3], offer.start_lat, offer.start_lon) < 2 * radius:
-				print 'Start location is close.'
 				circle = Circle(request[5], request[6], request[8])
 				score = self.score(self.dist(circle, line), circle.rad)
 				scores.append([score, request[0]])
-				print 'Score:', score
 		return sorted(scores, key=lambda score: score[0], reverse=True)
 
 	def startLocProximity(self, lat1, lon1, lat2, lon2):
@@ -150,7 +148,6 @@ class Matcher:
 		a = math.sin(dlat / 2.0) ** 2 + math.cos(lat1) * math.cos(lat2) * (math.sin(dlon / 2.0) ** 2)
 		c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
 		d = 100 * c
-		print 'Location proximity:', d
 		return d
 
 	def dist(self, circle, line):
