@@ -126,6 +126,30 @@
 				//Find matches to this listing
 				if (isset($_GET['matchValue']))
 				{
+					$matchNum = htmlspecialchars($_GET['matchValue']);
+					echo "<table class='table table-striped'>
+					<thead>
+					<tr>
+					<th> Listing ID </th>
+					<th> Starting Address </th>
+					<th> Ending Address </th>
+					<th> Date of Departure </th>
+					<th> Type </th>
+					</thead>";
+
+					$sql = "SELECT * FROM listings WHERE listings_id=$matchNum";
+					$result = mysqli_query($con, $sql);
+					$row = mysqli_fetch_array($result);
+					echo "<tr>";
+					echo "<td>" . $row['listings_id'] . "</td>";
+					echo "<td>" . $row['startingAddress'] . "</td>";
+					echo "<td>" . $row['endingAddress'] . "</td>";
+					echo "<td>" . $row['listings_id'] . "</td>";
+					if ($row['isRequest'] === 0)
+						echo "<td>Offering Ride</td>";
+					else
+						echo "<td>Requesting Ride</td>";
+
 					echo "<table class='table table-striped'>
 					<thead>
 					<tr>
@@ -137,7 +161,6 @@
 					</tr>
 					</thead>";
 
-					$matchNum = htmlspecialchars($_GET['matchValue']);
 					echo "<h1> Listings matched to Listing ID #" . $matchNum . ":</h1>";
 					$matches = array();
 					exec('python ../../../src/matcher.py '. $matchNum, $matches);
@@ -206,6 +229,13 @@
 				}
 				else if (isset($_GET['starting_address']))
 				{
+					$starting_address = htmlspecialchars($_GET['starting_address']);
+					$ending_address = htmlspecialchars($_GET['ending_address']);
+					$date = htmlspecialchars($_GET['date']);
+					$matches = array();
+					
+					echo "<h1>Finding matches starting near ". $starting_address . " and ending near ". $ending_address . "</h1>";
+
 					echo "<h2>Requests that match your search:</h2>";
 					echo "<table class='table table-striped'>
 					<thead>
@@ -217,11 +247,6 @@
 					<th> Date of Departure </th>
 					</tr>
 					</thead>";
-
-					$starting_address = htmlspecialchars($_GET['starting_address']);
-					$ending_address = htmlspecialchars($_GET['ending_address']);
-					$date = htmlspecialchars($_GET['date']);
-					$matches = array();
 
 					exec('python ../../../src/matcher2.py "'. $starting_address . '" "' . $ending_address . '" "' . $date . '"', $matches);
 
