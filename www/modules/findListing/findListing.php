@@ -240,6 +240,7 @@
 					{
 						foreach($matches as $match)
 						{
+							debug_to_console($match);
 							if ($match === "OFFERS")
 							{
 								echo "<br>";
