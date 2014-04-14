@@ -395,7 +395,7 @@
 												origin: [". $row['start_lat'] .", " . $row['start_long'] . "],
 												destination: [". $row['end_lat'].", " . $row['end_long'] . "],
 												travelMode: 'driving',
-												strokeColor: ". getRandomColor() .",
+												strokeColor: ". $colors[rand(0,8)] .",
 												strokeOpacity: 0.6,
 												strokeWeight: 6
 											});
