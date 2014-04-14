@@ -91,6 +91,15 @@
 					panControl : false,
 				});
 			});
+			
+			function getRandomColor() {
+				var letters = '0123456789ABCDEF'.split('');
+				var color = '#';
+				for (var i = 0; i < 6; i++ ) {
+					color += letters[Math.round(Math.random() * 15)];
+				}
+				return color;
+			}
 		</script>
 
 
@@ -386,7 +395,7 @@
 												origin: [". $row['start_lat'] .", " . $row['start_long'] . "],
 												destination: [". $row['end_lat'].", " . $row['end_long'] . "],
 												travelMode: 'driving',
-												strokeColor: ". $colors[rand(0,8)] .",
+												strokeColor: ". getRandomColor() .",
 												strokeOpacity: 0.6,
 												strokeWeight: 6
 											});
