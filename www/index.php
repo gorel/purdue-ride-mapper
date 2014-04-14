@@ -68,15 +68,12 @@
 							session_start();
 							if (!isset($_SESSION['user']))
 							{
+								echo '<li><a href="#" id="loginModal" data-toggle="modal" data-target="#basicModal">Log In Modal</a></li>';
 								echo '<li><a href="#" id="login" onclick="hideAll(this);">Log In</a></li>';
 							}
 							else
 							{
-								//if(isAdmin)
-								//{
-									echo '<li><a href="#" id="manageUsers" onclick="hideAll(this);">Manage Users</a></li>';
-								//}
-								
+								echo '<li><a href="#" id="manageUsers" onclick="hideAll(this);">Manage Users</a></li>';
 								echo '<li><a href="#" id="editListings" onclick="hideAll(this);">My Listings</a></li>';
 								echo '<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>';
 								echo '<li><a href="#" id="logout" onclick="location.href = \'modules/signin/signoutProc.php\';">Log Out</a></li>';
@@ -134,6 +131,9 @@
 				</div>
 
 				<script type="text/javascript">
+					$("#loginModal").click(function() {
+						$(this).modal();
+					});
 					$("#editListings").click(function()
 					{
 						$( "#content" ).load( "modules/editListings/editListings.php" );
@@ -199,5 +199,23 @@
 				</div>
 			</div>
 		</div> <!-- /container -->
+		
+		<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&amp;times;</button>
+					<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+					</div>
+					<div class="modal-body">
+						<h3>Modal Body</h3>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		  </div>
+		</div>
 	</body>
 </html>
