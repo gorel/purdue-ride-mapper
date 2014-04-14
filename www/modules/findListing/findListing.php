@@ -91,15 +91,6 @@
 					panControl : false,
 				});
 			});
-			
-			function getRandomColor() {
-				var letters = '0123456789ABCDEF'.split('');
-				var color = '#';
-				for (var i = 0; i < 6; i++ ) {
-					color += letters[Math.round(Math.random() * 15)];
-				}
-				return color;
-			}
 		</script>
 
 
@@ -107,6 +98,15 @@
 
 	<div>
 	<?php
+	
+		function random_color_part() {
+			return str_pad( dechex( mt_rand( 0, 255 ) ), 2, '0', STR_PAD_LEFT);
+		}
+
+		function random_color() {
+			return random_color_part() . random_color_part() . random_color_part();
+		}
+
 		session_start();
 
 		function debug_to_console($data)
@@ -395,7 +395,7 @@
 												origin: [". $row['start_lat'] .", " . $row['start_long'] . "],
 												destination: [". $row['end_lat'].", " . $row['end_long'] . "],
 												travelMode: 'driving',
-												strokeColor: ". $colors[rand(0,8)] .",
+												strokeColor: ". random_color(); .",
 												strokeOpacity: 0.6,
 												strokeWeight: 6
 											});
