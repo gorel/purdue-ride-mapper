@@ -220,7 +220,7 @@
 												origin: [". $row['start_lat'] .", " . $row['start_long'] . "],
 												destination: [". $row['end_lat'].", " . $row['end_long'] . "],
 												travelMode: 'driving',
-												strokeColor: '#0000FF',
+												strokeColor: '". random_color() ."',
 												strokeOpacity: 0.6,
 												strokeWeight: 6
 											});
@@ -322,7 +322,7 @@
 												origin: [". $row['start_lat'] .", " . $row['start_long'] . "],
 												destination: [". $row['end_lat'].", " . $row['end_long'] . "],
 												travelMode: 'driving',
-												strokeColor: '#0000FF',
+												strokeColor: '". random_color() ."',
 												strokeOpacity: 0.6,
 												strokeWeight: 6
 											});
