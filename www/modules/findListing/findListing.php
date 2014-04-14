@@ -211,7 +211,7 @@
 												origin: [". $row['start_lat'] .", " . $row['start_long'] . "],
 												destination: [". $row['end_lat'].", " . $row['end_long'] . "],
 												travelMode: 'driving',
-												strokeColor: '". $colors[0] "',
+												strokeColor: '#0000FF',
 												strokeOpacity: 0.6,
 												strokeWeight: 6
 											});
@@ -313,7 +313,7 @@
 												origin: [". $row['start_lat'] .", " . $row['start_long'] . "],
 												destination: [". $row['end_lat'].", " . $row['end_long'] . "],
 												travelMode: 'driving',
-												strokeColor: '". $colors[0] "',
+												strokeColor: '#0000FF',
 												strokeOpacity: 0.6,
 												strokeWeight: 6
 											});
@@ -386,7 +386,7 @@
 												origin: [". $row['start_lat'] .", " . $row['start_long'] . "],
 												destination: [". $row['end_lat'].", " . $row['end_long'] . "],
 												travelMode: 'driving',
-												strokeColor: '". $colors[0] "',
+												strokeColor: '#0000FF',
 												strokeOpacity: 0.6,
 												strokeWeight: 6
 											});
