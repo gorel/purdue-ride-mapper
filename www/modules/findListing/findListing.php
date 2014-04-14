@@ -122,7 +122,7 @@
 			}
 			else
 			{
-
+				$colors=array("#000000","#FF0000","#00FF00","#0000FF","#FFFF00","#00FFFF","#FF00FF","#C0C0C0");
 				//Find matches to this listing
 				if (isset($_GET['matchValue']))
 				{
@@ -211,7 +211,7 @@
 												origin: [". $row['start_lat'] .", " . $row['start_long'] . "],
 												destination: [". $row['end_lat'].", " . $row['end_long'] . "],
 												travelMode: 'driving',
-												strokeColor: '#0000FF',
+												strokeColor: '". $colors[0] "',
 												strokeOpacity: 0.6,
 												strokeWeight: 6
 											});
@@ -313,7 +313,7 @@
 												origin: [". $row['start_lat'] .", " . $row['start_long'] . "],
 												destination: [". $row['end_lat'].", " . $row['end_long'] . "],
 												travelMode: 'driving',
-												strokeColor: '#0000FF',
+												strokeColor: '". $colors[0] "',
 												strokeOpacity: 0.6,
 												strokeWeight: 6
 											});
@@ -386,7 +386,7 @@
 												origin: [". $row['start_lat'] .", " . $row['start_long'] . "],
 												destination: [". $row['end_lat'].", " . $row['end_long'] . "],
 												travelMode: 'driving',
-												strokeColor: '#0000FF',
+												strokeColor: '". $colors[0] "',
 												strokeOpacity: 0.6,
 												strokeWeight: 6
 											});
