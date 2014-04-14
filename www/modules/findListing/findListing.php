@@ -131,7 +131,6 @@
 			}
 			else
 			{
-				$colors=array("'#000000'","'#FF0000'","'#00FF00'","'#0000FF'","'#FFFF00'","'#00FFFF'","'#FF00FF'","'#C0C0C0'");
 				//Find matches to this listing
 				if (isset($_GET['matchValue']))
 				{
