@@ -228,7 +228,11 @@
 		function showPwModal()
 		{
 			$('#signInModal').modal('hide');
-			$('#signInModal').modal('show');			
+			var delay=1000;//1 seconds
+			setTimeout(function(){
+				$('#signInModal').modal('show');
+			},delay); 
+			
 		}
 
 		/**
