@@ -222,10 +222,8 @@
 						<h4 class="modal-title" id="myModalLabel">Sign In</h4>
 					</div>
 					<div class = "modal-body">
-						<div class="row">
-							<div>
+
 								<div class="form-group has-error">
-								<div class = "col-lg-1" />
 									<input type="text" class="form-control" name="email" placeholder="Email" onkeyup="validateEmail(this)" required autofocus>
 								</div>
 
@@ -251,8 +249,6 @@
 								</div>
 									
 								<button class="btn btn-lg btn-primary btn-block" onclick="showPwModal()" type="text" id="pwModalButton">Forgot Password?</button>
-							</div> <!-- col-md-4 -->
-						</div> <!-- row -->
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
