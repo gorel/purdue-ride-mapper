@@ -205,6 +205,9 @@
 								echo "<td>". $row['endingAddress'] . "</td>";
 								echo "<td>". $row['dateOfDeparture'] . "</td>";
 								echo "<td>". $i . "</td>";
+								echo "<td>
+										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\">View</button>
+									</td>";
 								echo "</tr>";
 								echo "<script>
 										$(document).ready(function()
@@ -232,9 +235,6 @@
 										});
 									</script>
 									";
-								echo "<td>
-										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\">View</button>
-									</td>";
 							}
 						}
 					}
@@ -309,6 +309,10 @@
 								echo "<td>". $row['endingAddress'] . "</td>";
 								echo "<td>". $row['dateOfDeparture'] . "</td>";
 								echo "<td>". $i . "</td>";
+								echo "<td>
+										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\">View</button>
+									</td>";
+
 								echo "</tr>";
 								echo "<script>
 										$(document).ready(function()
@@ -336,9 +340,6 @@
 										});
 									</script>
 									";
-								echo "<td>
-										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\">View</button>
-									</td>";
 
 							}
 							
