@@ -33,9 +33,9 @@
 		<script type="text/javascript">
 			function showModal()
 			{
-				alert("Hello");
 				$('#myModal').modal('show');
 			}
+			
 			function hideAll(sender)
 			{
 				if (document.getElementById("about")) {
