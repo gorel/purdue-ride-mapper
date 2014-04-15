@@ -328,7 +328,7 @@
 			<div class="modal-content">
 				<form class="form-signin" action="/modules/signin/signinProc.php" method="post" role="form">		
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h3>Please Sign In</h3>
 					</div>
 					<div class = "modal-body">
@@ -392,7 +392,7 @@
 			<div class="modal-content">
 				<form class="form-signin" action="/modules/register/registerProc.php" role="form" method="post" id="registerForm">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h3>Register</h3>
 					</div>
 					<div class = "modal-body">
