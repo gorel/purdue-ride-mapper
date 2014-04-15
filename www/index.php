@@ -222,33 +222,35 @@
 						<h4 class="modal-title" id="myModalLabel">Sign In</h4>
 					</div>
 					<div class = "modal-body">
+						<div class="form-group has-error">
+							<div class = "col-lg-1" />
+							<div class = "col-lg-10">
+								<input type="text" class="form-control" name="email" placeholder="Email" onkeyup="validateEmail(this)" required autofocus>
+							</div>
+						</div>
 
-								<div class="form-group has-error">
-									<input type="text" class="form-control" name="email" placeholder="Email" onkeyup="validateEmail(this)" required autofocus>
-								</div>
+						<div class="form-group has-error">
+							<input type="password" class="form-control" name="pass" placeholder="Password" onkeyup="validatePassword(this)" required>
+						</div>
 
-								<div class="form-group has-error">
-									<input type="password" class="form-control" name="pass" placeholder="Password" onkeyup="validatePassword(this)" required>
-								</div>
+						<div class="form-group">
+							<label class="checkbox">
+								<input type="checkbox" value="remember-me">Remember me
+							</label>
+						</div>
 
-								<div class="form-group">
-									<label class="checkbox">
-										<input type="checkbox" value="remember-me">Remember me
-									</label>
-								</div>
+						<div class="form-group">
+							<button class="btn btn-lg btn-primary btn-block" type="submit" id="loginButton" disabled>Sign in</button>
+						</div>
 
-								<div class="form-group">
-									<button class="btn btn-lg btn-primary btn-block" type="submit" id="loginButton" disabled>Sign in</button>
-								</div>
+						<div class="form-group">
+							<button class="btn btn-lg btn-primary btn-block" onclick="registerRedirect()" type = "button" id="registerButton">Register</button>
+						</div>
 
-								<div class="form-group">
-									<button class="btn btn-lg btn-primary btn-block" onclick="registerRedirect()" type = "button" id="registerButton">Register</button>
-								</div>
-
-								<div class="form-group">
-								</div>
-									
-								<button class="btn btn-lg btn-primary btn-block" onclick="showPwModal()" type="text" id="pwModalButton">Forgot Password?</button>
+						<div class="form-group">
+						</div>
+							
+						<button class="btn btn-lg btn-primary btn-block" onclick="showPwModal()" type="text" id="pwModalButton">Forgot Password?</button>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
