@@ -206,7 +206,7 @@
 								echo "<td>". $row['dateOfDeparture'] . "</td>";
 								echo "<td>". $i . "</td>";
 								echo "<td>
-										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\">View</button>
+										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal();\">View</button>
 									</td>";
 								echo "</tr>";
 								echo "<script>
@@ -310,7 +310,7 @@
 								echo "<td>". $row['dateOfDeparture'] . "</td>";
 								echo "<td>". $i . "</td>";
 								echo "<td>
-										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\">View</button>
+										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal();\">View</button>
 									</td>";
 
 								echo "</tr>";
@@ -387,7 +387,7 @@
 						echo "<td>". $row['dateOfDeparture'] . "</td>";
 						echo "<td>". $row['listings_id'] . "</td>";
 						echo "<td>
-							<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\">View</button>
+							<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal();\">View</button>
 							</td>";
 						echo "</tr>";
 						echo "<script>
@@ -424,6 +424,32 @@
 			mysqli_close($con);
 		}
 	?>
+	</div>
+	
+	<script>
+		function showRouteModal()
+		{
+			$('#routeModal').modal('show');
+		}
+	</script>
+	
+		<!-- view route modal -->
+	<div class="modal fade" id="routeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Send Reset Password Link</h4>
+				</div>
+				<div class="modal-body">
+					<b>Email</b>      <input type="text" class="form-control" name="email" id="txtEmail"><br>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Submit</button>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
