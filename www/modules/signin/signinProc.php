@@ -49,6 +49,9 @@ else
 	$stmt->bind_result($user_id, $password, $verified, $isAdmin);
 	$stmt->fetch();
 
+
+	// TODO: what to do with users who have been banned
+
 	if (!strcmp($password, $hashpw) && $verified==1)
 	{
 		session_start();
