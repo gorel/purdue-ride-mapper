@@ -222,11 +222,8 @@
 						<h4 class="modal-title" id="myModalLabel">Sign In</h4>
 					</div>
 					<div class = "modal-body">
-						<div class="form-group has-error">
-							<div class = "col-lg-1" />
-							<div class = "col-lg-10">
-								<input type="text" class="form-control" name="email" placeholder="Email" onkeyup="validateEmail(this)" required autofocus>
-							</div>
+						<div class="form-group has-error">	
+							<input type="text" class="form-control" name="email" placeholder="Email" onkeyup="validateEmail(this)" required autofocus>
 						</div>
 
 						<div class="form-group has-error">
