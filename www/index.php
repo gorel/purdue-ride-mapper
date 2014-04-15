@@ -135,9 +135,6 @@
 				</div>
 
 				<script type="text/javascript">
-					$("#loginModal").click(function() {
-						$(this).modal();
-					});
 					$("#editListings").click(function()
 					{
 						$( "#content" ).load( "modules/editListings/editListings.php" );
