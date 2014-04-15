@@ -23,6 +23,10 @@
 
 	<body>
 		<script type="text/javascript">
+		  function showModal()
+		  {
+				$('#basicModal').modal('show')
+		  }
 			function hideAll(sender)
 			{
 				if (document.getElementById("about")) {
@@ -68,7 +72,7 @@
 							session_start();
 							if (!isset($_SESSION['user']))
 							{
-								echo '<li><a href="#" id="loginModal" data-toggle="modal" data-target="#basicModal">Log In Modal</a></li>';
+								echo '<li><a href="#" id="loginModal" onclick="showModal()">Log In Modal</a></li>';
 								echo '<li><a href="#" id="login" onclick="hideAll(this);">Log In</a></li>';
 							}
 							else
