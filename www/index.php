@@ -215,9 +215,9 @@
 		var emailValid = false;
 		var passwordValid = false;
 
-		function registerRedirect()
+		function showRegisterModal()
 		{
-			location.replace("modules/register/register.php");
+			$('#registerModal').modal('hide');
 		}
 
 		/**
@@ -359,7 +359,7 @@
 						</div>
 
 						<div class="form-group">
-							<button class="btn btn-lg btn-primary btn-block" type="reset" onclick="registerRedirect()" type = "button" id="registerButton">Register</button>
+							<button class="btn btn-lg btn-primary btn-block" type="reset" onclick="showRegisterModal()" type = "button" id="registerButton">Register</button>
 						</div>
 
 						<div class="form-group">
@@ -390,6 +390,52 @@
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					<button type="button" class="btn btn-primary" onClick="submitEmail()">Submit</button>
 				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- register modal -->
+	<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form class="form-signin" action="/modules/signin/signinProc.php" method="post" role="form">		
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+						<h3>Register</h3>
+					</div>
+					<div class = "modal-body">
+						<div class="form-group has-error">
+							<input type="text" class="form-control" name="fname" placeholder="First Name" onkeyup="validateFirstName(this);" required autofocus>
+						</div>
+
+						<div class="form-group has-error">
+							<input type="text" class="form-control" name="lname" placeholder="Last Name" onkeyup="validateLastName(this);" required autofocus>
+						</div>
+
+						<div class="form-group has-error" id="test">
+							<input type="text" class="form-control" name="email" placeholder="Email" onkeyup="validateEmail(this);" required autofocus>
+						</div>
+						
+						<div class="form-group has-error">
+							<input type="password" class="form-control" name="pass" placeholder="Password" id="password" onkeyup="validatePassword(this);" required autofocus>
+						</div>
+						
+						<div class="form-group has-error">
+							<input type="password" class="form-control" placeholder="Retype Password" onkeyup="validatePasswordMatcher(this);" required autofocus>
+						</div>
+						
+						<div class="form-group has-error">
+							<label class="checkbox">
+								<input type="checkbox" value="agree" onclick="validateTermsOfService(this);">Agree to Terms of Service
+							</label>		
+						</div>	
+						
+						<button class="btn btn-lg btn-primary btn-block" type="submit" id="submitButton" disabled>Submit</button>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
