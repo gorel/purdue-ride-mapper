@@ -468,8 +468,7 @@
 					</div>
 					<div class="col-md-6">
 						<h2>Contact:<h2>
-						<br>
-						<form enctype="application/x-www-form-urlencoded" class="form-horizontal" action="/modules/contact/contactProc.php" method="POST"><div class="padded">
+						<form enctype="application/x-www-form-urlencoded" class="form-horizontal" action="/modules/contact/contactProc.php" method="POST">
 							<div class="control-group"><label for="text" class="control-label required">Message</label>
 								<div class="controls">
 									<textarea name="text" id="text" rows="6" class="form-control" cols="80"></textarea>
