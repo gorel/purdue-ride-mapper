@@ -365,7 +365,7 @@
 						<div class="form-group">
 						</div>
 							
-						<button class="btn btn-lg btn-primary btn-block" onclick="showPwModal()" type="text" id="pwModalButton">Forgot Password?</button>
+						<button class="btn btn-lg btn-primary btn-block" type="cancel" onclick="showPwModal()" type="text" id="pwModalButton">Forgot Password?</button>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
