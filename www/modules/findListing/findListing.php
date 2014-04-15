@@ -386,6 +386,9 @@
 						echo "<td>". $row['passengers'] . "</td>";
 						echo "<td>". $row['dateOfDeparture'] . "</td>";
 						echo "<td>". $row['listings_id'] . "</td>";
+						echo "<td>
+							<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\">View</button>
+							</td>";
 						echo "</tr>";
 						echo "<script>
 										$(document).ready(function()
