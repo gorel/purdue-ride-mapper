@@ -217,16 +217,13 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<form class="form-signin" action="/modules/signin/signinProc.php" method="post" role="form">		
-					<div class = "modal-header">
-						<div class = "col-lg-1" />
-						<h3>Sign In</h3>
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&amp;times;</button>
+						<h4 class="modal-title" id="myModalLabel">Sign In</h4>
 					</div>
 					<div class = "modal-body">
 						<div class="row">
 							<div>
-								
-									<h2 class="form-signin-heading">Please Sign In</h2>
-
 									<div class="form-group has-error">
 										<input type="text" class="form-control" name="email" placeholder="Email" onkeyup="validateEmail(this)" required autofocus>
 									</div>
@@ -253,9 +250,11 @@
 									</div>
 									
 								<button class="btn btn-lg btn-primary btn-block" onclick="showPwModal()" type="text" id="pwModalButton">Forgot Password?</button>
-								<a class = "btn btn-default" data-dismiss = "modal">Close</a>
 							</div> <!-- col-md-4 -->
 						</div> <!-- row -->
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					</div>
 				</form>
 			</div>
