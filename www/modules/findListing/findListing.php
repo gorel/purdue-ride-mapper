@@ -442,34 +442,35 @@
 					<h4 class="modal-title" id="myModalLabel">Ride Details</h4>
 				</div>
 				<div class="modal-body">
-					<div class="col-lg6">
-						<table class="table table-striped">
-							<tr>
-								<td><b>Starting Address:</b></td>
-								<td>Foobar Drive</td>
-							</tr>
-							<tr>
-								<td><b>Ending Address:</b></td>
-								<td>Foobar Drive</td>
-							</tr>
-							<tr>
-								<td><b>Ending Address:</b></td>
-								<td>Foobar Drive</td>
-							</tr>
-							<tr>
-								<td><b>Ending Address:</b></td>
-								<td>Foobar Drive</td>
-							</tr>
-							<tr>
-								<td><b>Ending Address:</b></td>
-								<td>Foobar Drive</td>
-							</tr>
-						</table>
+					<div class="row">
+						<div class="span6">
+							<table class="table table-striped">
+								<tr>
+									<td><b>Starting Address:</b></td>
+									<td>Foobar Drive</td>
+								</tr>
+								<tr>
+									<td><b>Ending Address:</b></td>
+									<td>Foobar Drive</td>
+								</tr>
+								<tr>
+									<td><b>Ending Address:</b></td>
+									<td>Foobar Drive</td>
+								</tr>
+								<tr>
+									<td><b>Ending Address:</b></td>
+									<td>Foobar Drive</td>
+								</tr>
+								<tr>
+									<td><b>Ending Address:</b></td>
+									<td>Foobar Drive</td>
+								</tr>
+							</table>
+						</div>
+						<div class="span6">
+							<p>Test</p>
+						</div>
 					</div>
-					<div class="col-lg6">
-						<p>Test</p>
-					</div>
-
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
