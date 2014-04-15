@@ -5,11 +5,6 @@
 <script type="text/javascript" src="js/moment.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-
-
-<!-- Custom styles for this template -->
-<link href="signin.css" rel="stylesheet">
-
 <hr class="featurette-divider">
 <script>
 	var emailValid = false;
