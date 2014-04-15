@@ -223,11 +223,7 @@
 					</div>
 					<div class = "modal-body">
 						<div class="row">
-
-							<div class="col-md-4">
-							</div>
-
-							<div class="col-md-4">
+							<div>
 								
 									<h2 class="form-signin-heading">Please Sign In</h2>
 
@@ -257,12 +253,9 @@
 									</div>
 									
 								<button class="btn btn-lg btn-primary btn-block" onclick="showPwModal()" type="text" id="pwModalButton">Forgot Password?</button>
+								<a class = "btn btn-default" data-dismiss = "modal">Close</a>
 							</div> <!-- col-md-4 -->
 						</div> <!-- row -->
-					</div>
-					<div class = "modal-footer">
-						<a class = "btn btn-default" data-dismiss = "modal">Close</a>
-						<button class = "btn btn-primary" type = "submit">Save Changes</button>
 					</div>
 				</form>
 			</div>
