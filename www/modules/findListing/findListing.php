@@ -441,37 +441,36 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title" id="myModalLabel">Ride Details</h4>
 				</div>
-				<div class="modal-body">
-					<div class="row">
-						<div class="span6">
-							<table class="table table-striped">
-								<tr>
-									<td><b>Starting Address:</b></td>
-									<td>Foobar Drive</td>
-								</tr>
-								<tr>
-									<td><b>Ending Address:</b></td>
-									<td>Foobar Drive</td>
-								</tr>
-								<tr>
-									<td><b>Ending Address:</b></td>
-									<td>Foobar Drive</td>
-								</tr>
-								<tr>
-									<td><b>Ending Address:</b></td>
-									<td>Foobar Drive</td>
-								</tr>
-								<tr>
-									<td><b>Ending Address:</b></td>
-									<td>Foobar Drive</td>
-								</tr>
-							</table>
-						</div>
-						<div class="span6">
-							<p>Test</p>
-						</div>
+				<div class="modal-body row">
+					<div class="col-md-6">
+						<table class="table table-striped">
+							<tr>
+								<td><b>Starting Address:</b></td>
+								<td>Foobar Drive</td>
+							</tr>
+							<tr>
+								<td><b>Ending Address:</b></td>
+								<td>Foobar Drive</td>
+							</tr>
+							<tr>
+								<td><b>Ending Address:</b></td>
+								<td>Foobar Drive</td>
+							</tr>
+							<tr>
+								<td><b>Ending Address:</b></td>
+								<td>Foobar Drive</td>
+							</tr>
+							<tr>
+								<td><b>Ending Address:</b></td>
+								<td>Foobar Drive</td>
+							</tr>
+						</table>
+					</div>
+					<div class="col-md-6">
+						<p>Test</p>
 					</div>
 				</div>
+				
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
