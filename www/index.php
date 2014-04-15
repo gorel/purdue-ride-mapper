@@ -218,7 +218,7 @@
 		function showRegisterModal()
 		{
 			$('#signInModal').modal('hide');
-			$('#registerModal').modal('hide');
+			$('#modalPwReset').modal('hide');
 		}
 
 		/**
