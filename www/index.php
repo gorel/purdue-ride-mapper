@@ -228,7 +228,11 @@
 		function showPwModal()
 		{
 			$('#signInModal').modal('hide');
-			$('#modalPwReset').modal('show');
+			var delay=1000;//1 seconds
+			setTimeout(function(){
+				$('#modalPwReset').modal('show');
+			},delay); 
+			
 		}
 
 		/**
@@ -365,7 +369,7 @@
 						<div class="form-group">
 						</div>
 							
-						<button class="btn btn-lg btn-primary btn-block" onclick="showPwModal()" type="text" id="pwModalButton">Forgot Password?</button>
+					u
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
