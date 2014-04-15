@@ -218,40 +218,49 @@
 			<div class="modal-content">
 				<form class="form-signin" action="/modules/signin/signinProc.php" method="post" role="form">		
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&amp;times;</button>
-						<h4 class="modal-title" id="myModalLabel">Sign In</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+						<div class = "col-lg-1" />
+						<h3>Sign In</h3>
 					</div>
 					<div class = "modal-body">
-						<div class="row">
-							<div>
-									<div class="form-group has-error">
-										<input type="text" class="form-control" name="email" placeholder="Email" onkeyup="validateEmail(this)" required autofocus>
-									</div>
+						<div class="form-group has-error">
+							<div class = "col-lg-1" />
+							<div class = "col-lg-10">
+								<input type="text" class="form-control" name="email" placeholder="Email" onkeyup="validateEmail(this)" required autofocus>
+							</div>
+						</div>
 
-									<div class="form-group has-error">
-										<input type="password" class="form-control" name="pass" placeholder="Password" onkeyup="validatePassword(this)" required>
-									</div>
+						<div class="form-group has-error">
+							<div class = "col-lg-1" />
+							<div class = "col-lg-10">
+							<input type="password" class="form-control" name="pass" placeholder="Password" onkeyup="validatePassword(this)" required>
+						</div>
 
-									<div class="form-group">
-										<label class="checkbox">
-											<input type="checkbox" value="remember-me">Remember me
-										</label>
-									</div>
+						<div class="form-group">
+							<div class = "col-lg-1" />
+							<div class = "col-lg-10">
+								<label class="checkbox">
+									<input type="checkbox" value="remember-me">Remember me
+								</label>
+							</div>
+						</div>
 
-									<div class="form-group">
-										<button class="btn btn-lg btn-primary btn-block" type="submit" id="loginButton" disabled>Sign in</button>
-									</div>
+						<div class="form-group">
+							<div class = "col-lg-1" />
+							<div class = "col-lg-10">
+								<button class="btn btn-lg btn-primary btn-block" type="submit" id="loginButton" disabled>Sign in</button>
+							</div>
+						</div>
 
-									<div class="form-group">
-										<button class="btn btn-lg btn-primary btn-block" onclick="registerRedirect()" type = "button" id="registerButton">Register</button>
-									</div>
+						<div class="form-group">
+							<div class = "col-lg-1" />
+							<div class = "col-lg-10">
+								<button class="btn btn-lg btn-primary btn-block" onclick="registerRedirect()" type = "button" id="registerButton">Register</button>
+							</div>
+						</div>
+							
+						<button class="btn btn-lg btn-primary btn-block" onclick="showPwModal()" type="text" id="pwModalButton">Forgot Password?</button>
 
-									<div class="form-group">
-									</div>
-									
-								<button class="btn btn-lg btn-primary btn-block" onclick="showPwModal()" type="text" id="pwModalButton">Forgot Password?</button>
-							</div> <!-- col-md-4 -->
-						</div> <!-- row -->
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
