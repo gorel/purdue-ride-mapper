@@ -33,7 +33,7 @@
 		<script type="text/javascript">
 			function showModal()
 			{
-				$('#myModal').modal('show');
+				$('#signInModal').modal('show');
 			}
 			
 			function hideAll(sender)
@@ -227,6 +227,7 @@
 		*/
 		function showPwModal()
 		{
+			$('#signInModal').modal('hide');
 			$('#modalPwReset').modal('show');
 		}
 
@@ -330,7 +331,7 @@
 	</script>
 
 	<!-- Login Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<form class="form-signin" action="/modules/signin/signinProc.php" method="post" role="form">		
