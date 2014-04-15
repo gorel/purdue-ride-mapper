@@ -328,7 +328,7 @@
 			<div class="modal-content">
 				<form class="form-signin" action="/modules/signin/signinProc.php" method="post" role="form">		
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 						<h3>Please Sign In</h3>
 					</div>
 					<div class = "modal-body">
