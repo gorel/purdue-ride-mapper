@@ -450,24 +450,36 @@
 							</tr>
 							<tr>
 								<td><b>Ending Address:</b></td>
-								<td>Foobar Drive</td>
+								<td>Foobar Road</td>
 							</tr>
 							<tr>
-								<td><b>Ending Address:</b></td>
-								<td>Foobar Drive</td>
+								<td><b>Listing Type:</b></td>
+								<td>Hosting a Ride</td>
 							</tr>
 							<tr>
-								<td><b>Ending Address:</b></td>
-								<td>Foobar Drive</td>
+								<td><b>Number of Passengers</b></td>
+								<td>3</td>
 							</tr>
 							<tr>
-								<td><b>Ending Address:</b></td>
-								<td>Foobar Drive</td>
+								<td><b>Date of Departure:</b></td>
+								<td>2014-03-26 08:01:00</td>
 							</tr>
 						</table>
 					</div>
 					<div class="col-md-6">
-						<p>Test</p>
+						<h2>Contact:<h2>
+						<br>
+						<form enctype="application/x-www-form-urlencoded" class="form-horizontal" action="/modules/contact/contactProc.php" method="POST"><div class="padded">
+							<div class="control-group"><label for="text" class="control-label required">Message</label>
+								<div class="controls">
+									<textarea name="text" id="text" rows="6" class="form-control" cols="80"></textarea>
+								</div>
+							</div>
+							<br>
+							<div class="form-actions">
+								<button class="btn btn-lg btn-primary btn-block" id="sendButton">Send</button>
+							</div>
+						</form>
 					</div>
 				</div>
 				
