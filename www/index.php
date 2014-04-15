@@ -25,7 +25,7 @@
 		<script type="text/javascript">
 		  function showModal()
 		  {
-				$('#myModal').modal('show')
+				$('#myModal').modal('show');
 		  }
 			function hideAll(sender)
 			{
