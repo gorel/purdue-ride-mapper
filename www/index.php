@@ -22,16 +22,11 @@
 		<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="js/moment.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-
-
-
-<!-- Custom styles for this template -->
-<link href="signin.css" rel="stylesheet">
 	</head>
 
 	<body>
 		<script type="text/javascript">
-			function showModal()
+			function showSignInModal()
 			{
 				$('#signInModal').modal('show');
 			}
@@ -81,7 +76,7 @@
 							session_start();
 							if (!isset($_SESSION['user']))
 							{
-								echo '<li><a href="#" id="loginModal" onclick="showModal()">Log In</a></li>';
+								echo '<li><a href="#" id="loginModal" onclick="showSignInModal()">Log In</a></li>';
 								//echo '<li><a href="#" id="login" onclick="hideAll(this);">Log In</a></li>';
 							}
 							else
@@ -218,7 +213,7 @@
 		function showRegisterModal()
 		{
 			$('#signInModal').modal('hide');
-			$('#registerModal').modal('hide');
+			$('#registerModal').modal('show');
 		}
 
 		/**
