@@ -217,6 +217,7 @@
 
 		function showRegisterModal()
 		{
+			$('#signInModal').modal('hide');
 			$('#registerModal').modal('hide');
 		}
 
@@ -359,7 +360,7 @@
 						</div>
 
 						<div class="form-group">
-							<button class="btn btn-lg btn-primary btn-block" type="reset" onclick="showRegisterModal()" type = "button" id="registerButton">Register</button>
+							<button class="btn btn-lg btn-primary btn-block" type="reset" onclick="showRegisterModal()" type = "text" id="registerButton">Register</button>
 						</div>
 
 						<div class="form-group">
