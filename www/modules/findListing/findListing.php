@@ -360,8 +360,8 @@
 					echo "<table class='table table-striped'>
 					<thead>
 					<tr>
-					<th> StartingAddress </th>
-					<th> EndingAddress </th>
+					<th> Starting Address </th>
+					<th> Ending Address </th>
 					<th> Ride Type </th>
 					<th> Passengers </th>
 					<th> Date of Departure </th>
@@ -439,14 +439,40 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">Send Reset Password Link</h4>
+					<h4 class="modal-title" id="myModalLabel">Ride Details</h4>
 				</div>
 				<div class="modal-body">
-					<b>Email</b>      <input type="text" class="form-control" name="email" id="txtEmail"><br>
+					<div class="col-lg6">
+						<table class="table table-striped">
+							<tr>
+								<td><b>Starting Address:</b></td>
+								<td>Foobar Drive</td>
+							</tr>
+							<tr>
+								<td><b>Ending Address:</b></td>
+								<td>Foobar Drive</td>
+							</tr>
+							<tr>
+								<td><b>Ending Address:</b></td>
+								<td>Foobar Drive</td>
+							</tr>
+							<tr>
+								<td><b>Ending Address:</b></td>
+								<td>Foobar Drive</td>
+							</tr>
+							<tr>
+								<td><b>Ending Address:</b></td>
+								<td>Foobar Drive</td>
+							</tr>
+						</table>
+					</div>
+					<div class="col-lg6">
+						<p>Test</p>
+					</div>
+
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Submit</button>
 				</div>
 			</div>
 		</div>
