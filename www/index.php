@@ -219,7 +219,6 @@
 				<form class="form-signin" action="/modules/signin/signinProc.php" method="post" role="form">		
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-						<div class = "col-lg-1" />
 						<h3>Sign In</h3>
 					</div>
 					<div class = "modal-body">
