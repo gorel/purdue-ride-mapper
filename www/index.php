@@ -252,15 +252,15 @@
 							data: {"email" : txtEmail.value.trim()}, 
 					success: function(data) {
 
-							if (data.retval == "ERR") 
+					if (data.retval == "ERR") 
 					{
-								alert("Error: No such email / database connection failed");
-								$('#modalPwReset').modal('hide');
+						alert("Error: No such email / database connection failed");
+						$('#modalPwReset').modal('hide');
 						return;
-							}
+					}
 
 						alert("An email has been sent to your account, please check for details");
-							$('#modalPwReset').modal('hide');
+						$('#modalPwReset').modal('hide');
 					}	
 				}); 
 			
@@ -313,6 +313,7 @@
 			var button =  document.getElementById('loginButton');
 			if(emailValid && passwordValid)
 			{
+				alert("BAM!");
 				button.disabled = false;
 			}
 			else
