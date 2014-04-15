@@ -20,6 +20,17 @@
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 		<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
 		<script src="js/gmaps.js"></script>
+		
+		<link href="css/bootstrap.css" rel="stylesheet">
+ 
+<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+
+
+<!-- Custom styles for this template -->
+<link href="signin.css" rel="stylesheet">
 	</head>
 
 	<body>
