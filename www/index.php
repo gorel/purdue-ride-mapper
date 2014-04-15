@@ -219,7 +219,7 @@
 				<form class="form-signin" action="/modules/signin/signinProc.php" method="post" role="form">		
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-						<h4 class="modal-title" id="myModalLabel">Sign In</h4>
+						<h3>Sign In</h3>
 					</div>
 					<div class = "modal-body">
 						<div class="form-group has-error">	
