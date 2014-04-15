@@ -232,7 +232,9 @@
 										});
 									</script>
 									";
-
+								echo "<td>
+										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\">View</button>
+									</td>";
 							}
 						}
 					}
