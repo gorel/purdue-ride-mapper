@@ -81,8 +81,8 @@
 							session_start();
 							if (!isset($_SESSION['user']))
 							{
-								echo '<li><a href="#" id="loginModal" onclick="showModal()">Log In Modal</a></li>';
-								echo '<li><a href="#" id="login" onclick="hideAll(this);">Log In</a></li>';
+								echo '<li><a href="#" id="loginModal" onclick="showModal()">Log In</a></li>';
+								//echo '<li><a href="#" id="login" onclick="hideAll(this);">Log In</a></li>';
 							}
 							else
 							{
