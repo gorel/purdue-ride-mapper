@@ -203,8 +203,8 @@
 	</body>
 	
 	<script>
-		var emailValid = false;
-		var passwordValid = false;
+		var signInEmailValid = false;
+		var signInPasswordValid = false;
 
 		function showRegisterModal()
 		{
@@ -259,7 +259,7 @@
 						return;
 					}
 
-						alert("An email has been sent to your account, please check for details");
+						alert("An email has been sent to your account, please check for details.");
 						$('#modalPwReset').modal('hide');
 					}	
 				}); 
@@ -267,7 +267,7 @@
 
 		}
 
-		function validateEmail(sender)
+		function validateSignInEmail(sender)
 		{
 			var parent = sender.parentNode;
 			var textBoxValue = sender.value;
@@ -278,18 +278,18 @@
 			if (atPos < 1 || dotPos < atPos + 2 || dotPos + 2 >= textBoxValue.length || edu != "edu")
 			{
 				parent.className = "form-group has-error";
-				emailValid = false;
-				validateForm();
+				signInEmailValid = false;
+				validateSignInForm();
 			}
 			else
 			{
 				parent.className = "form-group has-success";
-				emailValid = true;
-				validateForm();
+				signInEmailValid = true;
+				validateSignInForm();
 			}
 		}
 
-		function validatePassword(sender)
+		function validateSignInPassword(sender)
 		{
 			var parent = sender.parentNode;
 			var textBoxValue = sender.value;
@@ -297,23 +297,22 @@
 			if(textBoxValue.length >= 6 && textBoxValue.length <= 24)
 			{
 				parent.className = "form-group has-success";
-				passwordValid = true;
-				validateForm();
+				signInPasswordValid = true;
+				validateSignInForm();
 			}
 			else
 			{
 				parent.className = "form-group has-error";
-				passwordValid = false;
-				validateForm();
+				signInPasswordValid = false;
+				validateSignInForm();
 			}
 		}
 
-		function validateForm()
+		function validateSignInForm()
 		{
 			var button =  document.getElementById('loginButton');
-			if(emailValid && passwordValid)
+			if(signInEmailValid && signInPasswordValid)
 			{
-				alert("BAM!");
 				button.disabled = false;
 			}
 			else
@@ -334,11 +333,11 @@
 					</div>
 					<div class = "modal-body">
 						<div class="form-group has-error">	
-							<input type="text" class="form-control" name="email" placeholder="Email" onkeyup="validateEmail(this)" required autofocus>
+							<input type="text" class="form-control" name="email" placeholder="Email" onkeyup="validateSignInEmail(this)" required autofocus>
 						</div>
 
 						<div class="form-group has-error">
-							<input type="password" class="form-control" name="pass" placeholder="Password" onkeyup="validatePassword(this)" required>
+							<input type="password" class="form-control" name="pass" placeholder="Password" onkeyup="validateSignInPassword(this)" required>
 						</div>
 
 						<div class="form-group">
