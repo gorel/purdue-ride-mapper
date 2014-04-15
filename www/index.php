@@ -109,7 +109,7 @@
 						College Carpool is here to make it easier!
 						</p>
 
-						<p><a class="btn btn-lg btn-success" id="register" href="#" role="button" onclick="hideAll(this);">Register Now!</a></p>
+						<p><a class="btn btn-lg btn-success" id="register" href="#" role="button" onclick="showRegisterModal();">Register Now!</a></p>
 					</div>
 
 					<!-- Example row of columns -->
@@ -182,10 +182,6 @@
 					$("#about").click(function()
 					{
 						$( "#content" ).load( "modules/about/about.php" );
-					});
-					$("#register").click(function()
-					{
-						$( "#content" ).load( "modules/register/register.php" );
 					});
 				</script>
 
