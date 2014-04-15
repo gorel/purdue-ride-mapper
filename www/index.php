@@ -202,6 +202,8 @@
 		</div> <!-- /container -->
 	</body>
 	
+	
+	<!-- SignIn Form Validation -->
 	<script>
 		var signInEmailValid = false;
 		var signInPasswordValid = false;
@@ -320,6 +322,147 @@
 				button.disabled = true;
 			}
 		}
+	</script>
+	
+	<!-- Register Form Validation -->
+	<script>
+		var emailValid = false;
+		var firstNameValid = false;
+		var lastNameValid = false;
+		var passwordValid = false;
+		var passwordRepeatValid = false;
+		var termsOfServiceValid = false;
+		
+		function validateEmail(sender) 
+		{
+			var parent = sender.parentNode;		
+			var textBoxValue = sender.value;
+			var atPos= textBoxValue.indexOf("@");
+			var dotPos= textBoxValue.lastIndexOf(".");
+			var edu = textBoxValue.split(".").pop();
+			
+			if (atPos < 1 || dotPos < atPos + 2 || dotPos + 2 >= textBoxValue.length || edu != "edu")
+			{
+				parent.className = "form-group has-error";
+				emailValid = false;
+				validateForm();
+			}
+			else
+			{
+				parent.className = "form-group has-success";
+				emailValid = true;
+				validateForm();
+			}
+		}
+		
+		function validateFirstName(sender)
+		{
+			var parent = sender.parentNode;		
+			var textBoxValue = sender.value;
+			
+			if(textBoxValue.length != 0)
+			{
+				parent.className = "form-group has-success";
+				firstNameValid = true;
+				validateForm();
+			}
+			else
+			{
+				parent.className = "form-group has-error";
+				firstNameValid = false;
+				validateForm();
+			}
+		}
+		
+		function validateLastName(sender)
+		{
+			var parent = sender.parentNode;		
+			var textBoxValue = sender.value;
+			
+			if(textBoxValue.length != 0)
+			{
+				parent.className = "form-group has-success";
+				lastNameValid = true;
+				validateForm();
+			}
+			else
+			{
+				parent.className = "form-group has-error";
+				lastNameValid = false;
+				validateForm();
+			}
+		}
+		
+		function validatePassword(sender)
+		{
+			var parent = sender.parentNode;		
+			var textBoxValue = sender.value;
+			
+			if(textBoxValue.length >= 6 && textBoxValue.length <= 24)
+			{
+				parent.className = "form-group has-success";
+				passwordValid = true;
+				validateForm();
+			}
+			else
+			{
+				parent.className = "form-group has-error";
+				passwordValid = false;
+				validateForm();
+			}
+		}
+
+		function validatePasswordMatcher(sender)
+		{
+			var parent = sender.parentNode;		
+			var textBoxValue = sender.value;
+			var textBoxValueTwo =  document.getElementById('password').value;
+			
+			if(textBoxValue == textBoxValueTwo)
+			{
+				parent.className = "form-group has-success";
+				passwordRepeatValid = true;
+				validateForm();
+			}
+			else
+			{
+				parent.className = "form-group has-error";
+				passwordRepeatValid = false;
+				validateForm();
+			}
+		}
+		
+		function validateTermsOfService(sender)
+		{
+			var parent = sender.parentNode.parentNode;		
+			if(sender.checked)
+			{
+				parent.className = "form-group has-success";
+				termsOfServiceValid = true;
+				validateForm();
+			}
+			else
+			{
+				parent.className = "form-group has-error";
+				termsOfServiceValid = false;
+				validateForm();
+			}
+		}
+		
+		function validateForm()
+		{
+			var button =  document.getElementById('submitButton');
+			
+			if(termsOfServiceValid && passwordRepeatValid && firstNameValid && lastNameValid && emailValid && passwordValid)
+			{
+				button.disabled = false;
+			}
+			else
+			{
+				button.disabled = true;
+			}
+		}
+	
 	</script>
 
 	<!-- Login Modal -->
