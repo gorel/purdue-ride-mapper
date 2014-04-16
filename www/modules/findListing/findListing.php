@@ -555,6 +555,15 @@
 			var endLat = document.getElementById(listingID + '_End_Lat');	
 			var endLong = document.getElementById(listingID + '_End_Long');	
 			
+			modalMap.addMarker({
+			  lat: -12.043333,
+			  lng: -77.028333,
+			  title: 'Lima',
+			  click: function(e) {
+				alert('You clicked in this marker');
+			  }
+			});
+			/*
 			modalMap.addMarker
 			({
 				lat:startLat,
@@ -573,7 +582,7 @@
 			({
 				lat:endLat,
 				lng:endLong,
-			})
+			})*/
 			modalMap.fitZoom();
 		});
 	</script>
