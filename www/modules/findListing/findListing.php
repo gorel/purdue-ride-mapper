@@ -532,15 +532,11 @@
 			var rideTypeModal = document.getElementById('rideTypeModal');
 			var numberOfPassengersModal = document.getElementById('numberOfPassengersModal');
 			
-			console.log(listingID + "_Starting_Address");
-			console.log(document.getElementById(listingID + "_Starting_Address").innerHTML.trim());
-			
-			startingAddressModal.innerHTML = "Hello World";
-			//startingAddressModal.value = document.getElementById(listingID + "_Starting_Address").innerHTML.trim();
-			endingAddressModal.value = document.getElementById(listingID + "_Ending_Address").innerHTML.trim();
-			dateOfDepartureModal.value = document.getElementById(listingID + "_Date_Of_Departure").innerHTML.trim();
-			rideTypeModal.value = document.getElementById(listingID + "_Ride_Type").innerHTML.trim();
-			numberOfPassengersModal.value = document.getElementById(listingID + "_Passengers").innerHTML.trim();
+			startingAddressModal.innerHTML = document.getElementById(listingID + "_Starting_Address").innerHTML.trim();
+			endingAddressModal.innerHTML = document.getElementById(listingID + "_Ending_Address").innerHTML.trim();
+			dateOfDepartureModal.innerHTML = document.getElementById(listingID + "_Date_Of_Departure").innerHTML.trim();
+			rideTypeModal.innerHTML = document.getElementById(listingID + "_Ride_Type").innerHTML.trim();
+			numberOfPassengersModal.innerHTML = document.getElementById(listingID + "_Passengers").innerHTML.trim();
 		});
 	</script>
 
