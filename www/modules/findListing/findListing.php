@@ -63,7 +63,7 @@
 							<br>							
 						</form>
 						<div>
-							<button class="btn btn-lg btn-primary btn-block" id="sendButton" onclick="sendMessage()">Send</button>
+							<button class="btn btn-lg btn-primary btn-block" id="sendButton">Send</button>
 						</div>
 					</div>
 				</div>					
@@ -538,37 +538,6 @@
 			$('#routeModal').modal('show');
 		}
 		
-		function sendMessage()
-		{	
-			var message = document.getElementById('modalMessage').value;
-			var from_uid = <?php echo $_SESSION['user']; ?>;
-			if (message.length == 0)
-			{
-				alert("Please enter a message!");
-				return;
-			}		/*
-			$.ajax ({
-				type: "POST",
-				url: "findListingContactProc.php",
-				dataType: "json",
-				beforeSend: function() {
-					console.log("beforesend");
-				},
-				
-				complete: function() {
-					console.log("complete");
-				},
-				
-				data: {"from_uid" : from_uid},
-				success: function(data) {
-					console.log("success");
-				},
-				error: function(xhr, status, error) {
-					alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
-					alert("responseText: "+xhr.responseText);
-				}
-			});*/
-		}
 
 		$('#routeModal').on('shown.bs.modal', function() {
 			var modalMap = new GMaps
