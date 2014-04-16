@@ -554,12 +554,12 @@
 			var startLong = document.getElementById(listingID + '_Start_Long');	
 			var endLat = document.getElementById(listingID + '_End_Lat');	
 			var endLong = document.getElementById(listingID + '_End_Long');	
-			console.log(startLat);
-			console.log(startLong);
+			console.log(startLat.value);
+			console.log(startLong.value);
 			
 			modalMap.addMarker({
-			  lat: startLat,
-			  lng: startLong,
+			  lat: startLat.value,
+			  lng: startLong.value,
 			  title: 'Lima',
 			  click: function(e) {
 				alert('You clicked in this marker');
