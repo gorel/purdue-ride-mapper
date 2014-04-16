@@ -509,7 +509,7 @@
 		}
 		
 		$('#routeModal').on('shown', function () {
-			console.log("Ping");
+			alert("hi");
 			google.maps.event.trigger(modalMap, "resize");
 		});
 	</script>
