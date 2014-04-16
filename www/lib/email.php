@@ -116,7 +116,19 @@ function sendContactMail($from, $cat, $msg)
 
 	mail($tmpEmail, $sub, $msg, $headers);
 }
- 
+
+function sendUserMail($rcpt, $msg, $from)
+{
+        global $orgEmail, $orgName, $headers;
+
+        $subject = "College Carpool Contact Request";
+		
+		$content = "<html><body>" .
+                   "Send on behalf of: ".$from."<br><br>".$msg.
+                   "<br><br>Please reply to: ".$from."</body></html>";
+				   
+        mail($rcpt, $subject, $content, $headers);
+}
 
 ?>
 

@@ -29,38 +29,37 @@
 						<table class="table table-striped">
 							<tr>
 								<td><b>Starting Address:</b></td>
-								<td id="startingAddressModal">Foobar Drive</td>
+								<td id="startingAddressModal"></td>
 							</tr>
 							<tr>
 								<td><b>Ending Address:</b></td>
-								<td id="endingAddressModal">Foobar Road</td>
+								<td id="endingAddressModal"></td>
 							</tr>
 							<tr>
 								<td><b>Listing Type:</b></td>
-								<td id="rideTypeModal">Hosting a Ride</td>
+								<td id="rideTypeModal"></td>
 							</tr>
 							<tr>
 								<td><b>Number of Passengers</b></td>
-								<td id="numberOfPassengersModal">3</td>
+								<td id="numberOfPassengersModal"></td>
 							</tr>
 							<tr>
 								<td><b>Date of Departure:</b></td>
-								<td id="dateOfDepartureModal">2014-03-26 08:01:00</td>
+								<td id="dateOfDepartureModal"></td>
 							</tr>
 						</table>
 					</div>
 					<div class="col-md-6">
 						<p><b>Send them a message!</b></p>
-						<p>To: johndoe@purdue.edu</p>
-						<form enctype="application/x-www-form-urlencoded" class="form-horizontal" action="/modules/contact/contactProc.php" method="POST">
+						<form enctype="application/x-www-form-urlencoded" class="form-horizontal">
 							<div class="control-group">
 								<div class="controls">
-									<textarea name="text" id="text" rows="6" class="form-control" cols="80"></textarea>
+									<textarea name="text" id="modalMessage" rows="6" class="form-control" cols="80"></textarea>
 								</div>
 							</div>
 							<br>
-							<div class="form-actions">
-								<button class="btn btn-lg btn-primary btn-block" id="sendButton">Send</button>
+							<div>
+								<button class="btn btn-lg btn-primary btn-block" id="sendButton" onclick="sendMail()">Send</button>
 							</div>
 						</form>
 					</div>
@@ -515,6 +514,9 @@
 	<script>
 		var modalMap;
 		var listingID;
+		var from;
+		var to;
+		var msg;
 		
 		function showRouteModal(listing_ID)
 		{		
@@ -533,6 +535,71 @@
 			numberOfPassengersModal.innerHTML = document.getElementById(listingID + "_Passengers").innerHTML.trim();
 			
 			$('#routeModal').modal('show');
+		}
+		
+		function sendMail()
+		{	
+			var message = document.getElementById('modalMessage').value;
+			
+			if (message.length == 0)
+			{
+				alert("Please enter a message!");
+				return;
+			}
+			
+			
+			$.ajax ({
+				type: "POST",
+				url: "findListingContactProc.php",
+				dataType: "json",
+				beforeSend: function() {
+					console.log("beforesend");
+				},
+				
+				complete: function() {
+					console.log("complete");
+				},
+				
+				data: {"to_uid" : msg, "from_uid" : to, "message" : message},
+				success: function(data) {
+					console.log("success");
+					console.log(data.referralLink);
+					
+					if (data.status == "FOUND")
+					{
+						console.log("found!");	
+						console.log(data.completed);
+						console.log(data.queue);
+						console.log(data.percentCompleted);
+						document.getElementById('completed').innerHTML = data.completed;
+						document.getElementById('queue').innerHTML = data.queue;
+						if(data.estimate == 0)
+						{
+							document.getElementById('eta').innerHTML = "Completed";
+							document.getElementById('progressBar').className = "progress-bar progress-bar-success";
+						}
+						else
+						{
+							document.getElementById('eta').innerHTML = (data.estimate - 1) + " - " + data.estimate + " Days";
+						}
+						
+						var valeur = data.percentCompleted;
+						$('.progress-bar').css('width', valeur+'%').attr('aria-valuenow', valeur);    
+					}
+					else {
+						alert("Could not find referral link: " + data.referralLink + ". Please check your link and try again.");
+						document.getElementById('completed').innerHTML = "0";
+						document.getElementById('queue').innerHTML = "0";
+						document.getElementById('eta').innerHTML = "0 Days";							
+						var valeur = 0;
+						$('.progress-bar').css('width', valeur+'%').attr('aria-valuenow', valeur);    
+					}
+				},
+				error: function(xhr, status, error) {
+					alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+					alert("responseText: "+xhr.responseText);
+				}
+			});
 		}
 
 		$('#routeModal').on('shown.bs.modal', function() {
