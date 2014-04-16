@@ -538,30 +538,33 @@
 		}
 		
 		$('#sendButton').on('click', function()
-		{	
+		{				
+			sendMessage();
+		});
+		
+		function sendMessage()
+		{
 			var message = document.getElementById('modalMessage').value;
 			var from_uid = <?php echo $_SESSION['user']; ?>;
 			if (message.length == 0)
 			{
 				alert("Please enter a message!");
 				return;
-			}				
-		});
+			}							
 		
-		function testFunction()
-		{
 			$.ajax ({
 				  type: "POST",
-				  url: "/modules/settings/changePassword.php",
+				  url: "/modules/findListing/findListingContactProc.php",
 				  dataType: "json",
 				  beforeSend: function() {
-
+						console.log("before send");
 				  },
 				  complete: function() {
+					console.log("complete");
 				  },
 				  data: {"listingID" : listingID},
 				  success: function(data) {					
-
+					console.log("success");
 				  } 
 				});
 		}
