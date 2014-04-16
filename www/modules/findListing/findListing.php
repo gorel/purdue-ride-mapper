@@ -279,7 +279,7 @@
 								echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
 								echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
 								echo '<td>'.$i.'</td>';
-								echo '<input id="testHiddenText" type="text" value="foobar">';
+								echo '<input id="testHiddenText" type="hidden" value="foobar">';
 								echo "<td>
 										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
 									</td>";
@@ -384,7 +384,7 @@
 								echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
 								echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
 								echo "<td>". $i . "</td>";
-								echo '<input id="testHiddenText" type="text" value="foobar">';
+								echo '<input id="testHiddenText" type="hidden" value="foobar">';
 								echo "<td>
 										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
 									</td>";
@@ -465,7 +465,7 @@
 						echo "<td>
 							<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
 							</td>";
-						echo '<input id="testHiddenText" type="text" value="foobar">';
+						echo '<input id="testHiddenText" type="hidden" value="foobar">';
 						echo "</tr>";
 						echo "<script>										
 										$(document).ready(function()
