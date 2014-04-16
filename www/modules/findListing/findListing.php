@@ -509,6 +509,8 @@
 		
 		function showRouteModal(listing_ID)
 		{		
+			listingID = listing_ID;
+			
 			var startingAddressModal = document.getElementById('startingAddressModal');
 			var endingAddressModal = document.getElementById('endingAddressModal');
 			var dateOfDepartureModal = document.getElementById('dateOfDepartureModal');
@@ -523,7 +525,7 @@
 			
 			$('#routeModal').modal('show');
 			var startLat = document.getElementById(listing_ID + '_Start_Lat');
-			console.log(startLat);
+			console.log(startLat.value);
 		}
 
 		$('#routeModal').on('shown.bs.modal', function() {
