@@ -219,10 +219,10 @@
 					$result = mysqli_query($con, $sql);
 					$row = mysqli_fetch_array($result);
 					echo '<tr id="'.$row['listings_id'].'">';
-					echo "<td>" . $row['listings_id'] . "</td>";
-					echo "<td>" . $row['startingAddress'] . "</td>";
-					echo "<td>" . $row['endingAddress'] . "</td>";
-					echo "<td>" . $row['dateOfDeparture'] . "</td>";
+					echo '<td id="'.$row['listings_id'].'_Listing_ID">'.$row['listings_id'].'</td>';
+					echo '<td id="'.$row['listings_id'].'_Starting_Address">'.$row['startingAddress'].'</td>';
+					echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
+					echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
 					if ($row['isRequest'] === 0)
 						echo "<td>Offering Ride</td>";
 					else
@@ -267,21 +267,6 @@
 							$result = mysqli_query($con,$sql);
 							while($row = mysqli_fetch_array($result))
 							{
-								/*
-								echo 	"<tr id=usr_$uid>
-										<td id=$uid"."_uid> $uid </td>
-										<td id=$uid"."_email> $email </td>
-										<td id=$uid"."_fname> $fname </td>
-										<td id=$uid"."_lname> $lname </td>
-										<td id=$uid"."_verified_text> $verified_text </td>
-										<td id=$uid"."_enabled_text> $enabled_text </td>
-										<td id=$uid"."_is_admin_text> $is_admin_text </td>
-									<td> <button class=\"btn btn-success btn-small\"
-										onclick=\"editUser($uid)\">Edit</button>
-									 <button class=\"btn btn-danger\"
-										onclick=\"updateDelId($uid)\">Delete</button></td>
-									  </tr>";
-				  */
 								echo '<tr id="'.$row['listings_id'].'">';
 								echo '<td id="'.$row['listings_id'].'_Listing_ID">'.$row['listings_id'].'</td>';
 								echo '<td id="'.$row['listings_id'].'_Match">'.$match.'</td>';
@@ -387,11 +372,11 @@
 							while($row = mysqli_fetch_array($result))
 							{
 								echo '<tr id="'.$row['listings_id'].'">';
-								echo '<td>'. $row['listings_id'] . '</td>';
-								echo '<td>'. $match .'</td>';
-								echo "<td>". $row['startingAddress'] . "</td>";
-								echo "<td>". $row['endingAddress'] . "</td>";
-								echo "<td>". $row['dateOfDeparture'] . "</td>";
+								echo '<td id="'.$row['listings_id'].'_Listing_ID">'.$row['listings_id'].'</td>';
+								echo '<td id="'.$row['listings_id'].'_Match">'.$match.'</td>';
+								echo '<td id="'.$row['listings_id'].'_Starting_Address">'.$row['startingAddress'].'</td>';
+								echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
+								echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
 								echo "<td>". $i . "</td>";
 								echo "<td>
 										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal();\">View</button>
@@ -456,8 +441,8 @@
 					while($row = mysqli_fetch_array($result))
 					{
 						echo '<tr id="'.$row['listings_id'].'">';
-						echo "<td>". $row['startingAddress'] . "</td>";
-						echo "<td>". $row["endingAddress"] . "</td>";
+						echo '<td id="'.$row['listings_id'].'_Starting_Address">'.$row['startingAddress'].'</td>';
+						echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
 						if($row["isRequest"] == 0)
 						{
 							echo "<td>Offering Ride</td>";
@@ -467,8 +452,8 @@
 							echo "<td>Requesting Ride</td>";
 						}
 
-						echo "<td>". $row['passengers'] . "</td>";
-						echo "<td>". $row['dateOfDeparture'] . "</td>";
+						echo '<td id="'.$row['listings_id'].'_Passengers">'.$row['passengers'].'</td>';
+						echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
 						echo "<td>". $row['listings_id'] . "</td>";
 						echo "<td>
 							<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal();\">View</button>
