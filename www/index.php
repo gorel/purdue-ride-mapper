@@ -7,7 +7,6 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 
-
 		<title>College Carpool</title>
 
 		<!-- Bootstrap core CSS -->
