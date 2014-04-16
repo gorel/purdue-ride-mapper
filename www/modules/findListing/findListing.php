@@ -10,6 +10,9 @@
 <script type='text/javascript' src='js/moment.min.js'></script>
 <script type='text/javascript' src='js/bootstrap.min.js'></script>
 <script type='text/javascript' src='js/bootstrap-datetimepicker.min.js'></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+
 
 <!-- VIEW ROUTE MODAL -->
 <div class="modal fade" id="routeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -544,7 +547,6 @@
 				alert("Please enter a message!");
 				return;
 			}		
-			/*
 			$.ajax ({
 				type: "POST",
 				url: "findListingContactProc.php",
@@ -557,16 +559,15 @@
 					console.log("complete");
 				},
 				
-				data: {"from_uid" from_uid: , "listing_id" : listingID, "message" : message},
+				data: {"from_uid" : from_uid},
 				success: function(data) {
 					console.log("success");
-
 				},
 				error: function(xhr, status, error) {
 					alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
 					alert("responseText: "+xhr.responseText);
 				}
-			});*/
+			});
 		});
 
 		$('#routeModal').on('shown.bs.modal', function() {
