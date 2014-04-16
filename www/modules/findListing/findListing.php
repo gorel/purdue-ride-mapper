@@ -467,10 +467,10 @@
 						</table>
 					</div>
 					<div class="col-md-6">
-						<h3>Contact:</h3>
+						<p>Send them a message!:</p>
 						<p>To: johndoe@purdue.edu</p>
 						<form enctype="application/x-www-form-urlencoded" class="form-horizontal" action="/modules/contact/contactProc.php" method="POST">
-							<div class="control-group"><label for="text" class="control-label required">Message:</label>
+							<div class="control-group">
 								<div class="controls">
 									<textarea name="text" id="text" rows="6" class="form-control" cols="80"></textarea>
 								</div>
