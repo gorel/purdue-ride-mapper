@@ -8,6 +8,68 @@
 <script type='text/javascript' src='js/bootstrap.min.js'></script>
 <script type='text/javascript' src='js/bootstrap-datetimepicker.min.js'></script>
 
+<!-- view route modal -->
+<div class="modal fade" id="routeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">Ride Details</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div id="mini_map_canvas" style="height: 400px; width: 100%"></div>
+				</div>
+				<div class="row">
+				<div class="col-md-6">
+					<table class="table table-striped">
+						<tr>
+							<td><b>Starting Address:</b></td>
+							<td>Foobar Drive</td>
+						</tr>
+						<tr>
+							<td><b>Ending Address:</b></td>
+							<td>Foobar Road</td>
+						</tr>
+						<tr>
+							<td><b>Listing Type:</b></td>
+							<td>Hosting a Ride</td>
+						</tr>
+						<tr>
+							<td><b>Number of Passengers</b></td>
+							<td>3</td>
+						</tr>
+						<tr>
+							<td><b>Date of Departure:</b></td>
+							<td>2014-03-26 08:01:00</td>
+						</tr>
+					</table>
+				</div>
+				<div class="col-md-6">
+					<p><b>Send them a message!</b></p>
+					<p>To: johndoe@purdue.edu</p>
+					<form enctype="application/x-www-form-urlencoded" class="form-horizontal" action="/modules/contact/contactProc.php" method="POST">
+						<div class="control-group">
+							<div class="controls">
+								<textarea name="text" id="text" rows="6" class="form-control" cols="80"></textarea>
+							</div>
+						</div>
+						<br>
+						<div class="form-actions">
+							<button class="btn btn-lg btn-primary btn-block" id="sendButton">Send</button>
+						</div>
+					</form>
+				</div>
+				</div>					
+			</div>
+			
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <hr class="featurette-divider">
 <div class="row">
 	<div id="map_canvas" style="height: 400px; width: 100%"></div>
@@ -446,66 +508,5 @@
 		}
 	</script>
 	
-		<!-- view route modal -->
-	<div class="modal fade" id="routeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">Ride Details</h4>
-				</div>
-				<div class="modal-body">
-					<div class="row">
-						<div id="mini_map_canvas" style="height: 400px; width: 100%"></div>
-					</div>
-					<div class="row">
-					<div class="col-md-6">
-						<table class="table table-striped">
-							<tr>
-								<td><b>Starting Address:</b></td>
-								<td>Foobar Drive</td>
-							</tr>
-							<tr>
-								<td><b>Ending Address:</b></td>
-								<td>Foobar Road</td>
-							</tr>
-							<tr>
-								<td><b>Listing Type:</b></td>
-								<td>Hosting a Ride</td>
-							</tr>
-							<tr>
-								<td><b>Number of Passengers</b></td>
-								<td>3</td>
-							</tr>
-							<tr>
-								<td><b>Date of Departure:</b></td>
-								<td>2014-03-26 08:01:00</td>
-							</tr>
-						</table>
-					</div>
-					<div class="col-md-6">
-						<p><b>Send them a message!</b></p>
-						<p>To: johndoe@purdue.edu</p>
-						<form enctype="application/x-www-form-urlencoded" class="form-horizontal" action="/modules/contact/contactProc.php" method="POST">
-							<div class="control-group">
-								<div class="controls">
-									<textarea name="text" id="text" rows="6" class="form-control" cols="80"></textarea>
-								</div>
-							</div>
-							<br>
-							<div class="form-actions">
-								<button class="btn btn-lg btn-primary btn-block" id="sendButton">Send</button>
-							</div>
-						</form>
-					</div>
-					</div>					
-				</div>
-				
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				</div>
-			</div>
-		</div>
-	</div>
 </body>
 </html>
