@@ -91,6 +91,24 @@
 					panControl : false,
 				});
 			});
+			
+			//This script create the map with a default address.
+			//Its current location is somewhere by College Station
+			$(document).ready(function ()
+			{
+				 map = new GMaps
+				({
+					div: '#mini_map_canvas',
+					lat: 40.431042,
+					lng: -86.913651,
+					zoomControl : true,
+					zoomControlOpt:
+					{
+						style : 'SMALL',
+					},
+					panControl : false,
+				});
+			});
 		</script>
 
 
@@ -442,6 +460,7 @@
 					<h4 class="modal-title" id="myModalLabel">Ride Details</h4>
 				</div>
 				<div class="modal-body row">
+					<div id="mini_map_canvas" style="height: 400px; width: 100%"></div>
 					<div class="col-md-6">
 						<table class="table table-striped">
 							<tr>
