@@ -223,10 +223,15 @@
 					echo '<td id="'.$row['listings_id'].'_Starting_Address">'.$row['startingAddress'].'</td>';
 					echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
 					echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
-					if ($row['isRequest'] === 0)
-						echo "<td>Offering Ride</td>";
+					if($row["isRequest"] == 0)
+					{
+						echo '<td id="'.$row['listings_id'].'_Ride_Type">Offering Ride</td>';
+					}
 					else
-						echo "<td>Requesting Ride</td>";
+					{
+						echo '<td id="'.$row['listings_id'].'_Ride_Type">Requesting Ride</td>';
+					}
+					
 					echo "</table>";
 
 					echo "<table class='table table-striped'>
@@ -445,11 +450,11 @@
 						echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
 						if($row["isRequest"] == 0)
 						{
-							echo "<td>Offering Ride</td>";
+							echo '<td id="'.$row['listings_id'].'_Ride_Type">Offering Ride</td>';
 						}
 						else
 						{
-							echo "<td>Requesting Ride</td>";
+							echo '<td id="'.$row['listings_id'].'_Ride_Type">Requesting Ride</td>';
 						}
 
 						echo '<td id="'.$row['listings_id'].'_Passengers">'.$row['passengers'].'</td>';
