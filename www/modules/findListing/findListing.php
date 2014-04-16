@@ -283,12 +283,12 @@
 									  </tr>";
 				  */
 								echo '<tr id="'.$row['listings_id'].'">';
-								echo "<td>". $row['listings_id'] . "</td>";
-								echo "<td>". $match ."</td>";
-								echo "<td>". $row['startingAddress'] . "</td>";
-								echo "<td>". $row['endingAddress'] . "</td>";
-								echo "<td>". $row['dateOfDeparture'] . "</td>";
-								echo "<td>". $i . "</td>";
+								echo '<td id="'.$row['listings_id'].'_Listing_ID">'.$row['listings_id'].'</td>';
+								echo '<td id="'.$row['listings_id'].'_Match">'.$match.'</td>';
+								echo '<td id="'.$row['listings_id'].'_Starting_Address">'.$row['startingAddress'].'</td>';
+								echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
+								echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
+								echo '<td>'.$i.'</td>';
 								echo "<td>
 										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal();\">View</button>
 									</td>";
