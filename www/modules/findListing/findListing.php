@@ -489,9 +489,9 @@
 	</div>
 	
 	<script>
+		var modalMap;
 		function showRouteModal()
-		{
-			var modalMap;
+		{			
 			$('#routeModal').modal('show');
 			
 			modalMap = new GMaps
@@ -507,6 +507,11 @@
 					panControl : false,
 				});
 		}
+		
+		$('#routeModal').on('shown', function () {
+			console.log("Ping");
+			google.maps.event.trigger(modalMap, "resize");
+		});
 	</script>
 </body>
 </html>
