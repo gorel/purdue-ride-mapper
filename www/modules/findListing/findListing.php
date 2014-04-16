@@ -280,6 +280,9 @@
 								echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
 								echo '<td>'.$i.'</td>';
 								echo '<input id="'.$row['listings_id'].'_Start_Lat" type="hidden" value="'.$row['start_lat'].'">';
+								echo '<input id="'.$row['listings_id'].'_Start_Long" type="hidden" value="'.$row['start_long'].'">';
+								echo '<input id="'.$row['listings_id'].'_End_Lat" type="hidden" value="'.$row['end_lat'].'">';
+								echo '<input id="'.$row['listings_id'].'_End_Long" type="hidden" value="'.$row['end_long'].'">';
 								echo "<td>
 										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
 									</td>";
@@ -385,6 +388,9 @@
 								echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
 								echo "<td>". $i . "</td>";
 								echo '<input id="'.$row['listings_id'].'_Start_Lat" type="hidden" value="'.$row['start_lat'].'">';
+								echo '<input id="'.$row['listings_id'].'_Start_Long" type="hidden" value="'.$row['start_long'].'">';
+								echo '<input id="'.$row['listings_id'].'_End_Lat" type="hidden" value="'.$row['end_lat'].'">';
+								echo '<input id="'.$row['listings_id'].'_End_Long" type="hidden" value="'.$row['end_long'].'">';
 								echo "<td>
 										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
 									</td>";
@@ -466,6 +472,9 @@
 							<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
 							</td>";
 						echo '<input id="'.$row['listings_id'].'_Start_Lat" type="hidden" value="'.$row['start_lat'].'">';
+						echo '<input id="'.$row['listings_id'].'_Start_Long" type="hidden" value="'.$row['start_long'].'">';
+						echo '<input id="'.$row['listings_id'].'_End_Lat" type="hidden" value="'.$row['end_lat'].'">';
+						echo '<input id="'.$row['listings_id'].'_End_Long" type="hidden" value="'.$row['end_long'].'">';
 						echo "</tr>";
 						echo "<script>										
 										$(document).ready(function()
@@ -524,8 +533,6 @@
 			numberOfPassengersModal.innerHTML = document.getElementById(listingID + "_Passengers").innerHTML.trim();
 			
 			$('#routeModal').modal('show');
-			var startLat = document.getElementById(listing_ID + '_Start_Lat');
-			console.log(startLat.value);
 		}
 
 		$('#routeModal').on('shown.bs.modal', function() {
@@ -541,7 +548,33 @@
 					},
 					panControl : false,
 				});
-			google.maps.event.trigger(modalMap, "resize");		
+			google.maps.event.trigger(modalMap, "resize");	
+
+			var startLat = document.getElementById(listingID + '_Start_Lat');	
+			var startLong = document.getElementById(listingID + '_Start_Long');	
+			var endLat = document.getElementById(listingID + '_End_Lat');	
+			var endLong = document.getElementById(listingID + '_End_Long');	
+			
+			modalMap.addMarker
+			({
+				lat:startLat,
+				lng:startLong,
+			});
+			modalMap.drawRoute
+			({
+				origin: [startLat, startLong],
+				destination: [endLat, endLong],
+				travelMode: 'driving',
+				strokeColor: random_color(),
+				strokeOpacity: 0.6,
+				strokeWeight: 6
+			});
+			modalMap.addMarker
+			({
+				lat:endLat,
+				lng:endLong,
+			})
+			modalMap.fitZoom();
 		});
 	</script>
 
