@@ -51,6 +51,7 @@
 
 		<script>
 			var map;
+			var modalMap;
 			function loadParameter(key, val)
 			{
 				if (isNaN(val))
@@ -78,9 +79,22 @@
 			//Its current location is somewhere by College Station
 			$(document).ready(function ()
 			{
-				 map = new GMaps
+				map = new GMaps
 				({
 					div: '#map_canvas',
+					lat: 40.431042,
+					lng: -86.913651,
+					zoomControl : true,
+					zoomControlOpt:
+					{
+						style : 'SMALL',
+					},
+					panControl : false,
+				});
+				
+				modalMap = new GMaps
+				({
+					div: '#modal_map_canvas',
 					lat: 40.431042,
 					lng: -86.913651,
 					zoomControl : true,
@@ -443,7 +457,7 @@
 				</div>
 				<div class="modal-body">
 					<div class="row">
-						<div id="modal_map_canvas" style="height: 400px; width: 100%"></div>
+						<div id="modal_map_canvas" style="height: 300px; width: 100%"></div>
 					</div>
 					<div class="row">
 						<div class="col-md-6">
