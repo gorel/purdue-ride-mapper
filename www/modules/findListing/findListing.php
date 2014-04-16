@@ -522,7 +522,8 @@
 			numberOfPassengersModal.innerHTML = document.getElementById(listingID + "_Passengers").innerHTML.trim();
 			
 			$('#routeModal').modal('show');
-			console.log(document.getElementById(listing_ID + "_Start_Lat").value);
+			var startLat = document.getElementById(listing_ID + '_Start_Lat');
+			console.log(startLat);
 		}
 
 		$('#routeModal').on('shown.bs.modal', function() {
