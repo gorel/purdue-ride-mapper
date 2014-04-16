@@ -513,5 +513,6 @@
 			google.maps.event.trigger(modalMap, "resize");
 		});
 	</script>
+
 </body>
 </html>
