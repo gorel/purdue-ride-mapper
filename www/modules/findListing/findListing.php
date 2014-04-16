@@ -538,14 +538,14 @@
 		$('#sendButton').on('click', function()
 		{	
 			var message = document.getElementById('modalMessage').value;
-			var from_uid = <?php echo $_SESSION['user']; ?>;
+			//var from_uid = <?php echo $_SESSION['user']; ?>;
 			if (message.length == 0)
 			{
 				alert("Please enter a message!");
 				return;
 			}			
 			
-			console.log(from_uid);
+			/*console.log(from_uid);
 			return;
 			$.ajax ({
 				type: "POST",
@@ -577,7 +577,7 @@
 					alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
 					alert("responseText: "+xhr.responseText);
 				}
-			});
+			});*/
 		});
 
 		$('#routeModal').on('shown.bs.modal', function() {
