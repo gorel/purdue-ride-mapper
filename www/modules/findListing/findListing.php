@@ -218,7 +218,7 @@
 					$sql = "SELECT * FROM listings WHERE listings_id=$matchNum";
 					$result = mysqli_query($con, $sql);
 					$row = mysqli_fetch_array($result);
-					echo "<tr id=/" . $row['listings_id'] . /">";
+					echo "<tr id=\" . $row['listings_id'] . \">";
 					echo "<td>" . $row['listings_id'] . "</td>";
 					echo "<td>" . $row['startingAddress'] . "</td>";
 					echo "<td>" . $row['endingAddress'] . "</td>";
@@ -282,7 +282,7 @@
 										onclick=\"updateDelId($uid)\">Delete</button></td>
 									  </tr>";
 				  */
-								echo "<tr id=/" . $row['listings_id'] . /">";
+								echo "<tr id=\" . $row['listings_id'] . \">";
 								echo "<td>". $row['listings_id'] . "</td>";
 								echo "<td>". $match ."</td>";
 								echo "<td>". $row['startingAddress'] . "</td>";
@@ -386,7 +386,7 @@
 							$result = mysqli_query($con,$sql);
 							while($row = mysqli_fetch_array($result))
 							{
-								echo "<tr id=/" . $row['listings_id'] . /">";
+								echo "<tr id=\" . $row['listings_id'] . \">";
 								echo '<td>'. $row['listings_id'] . '</td>';
 								echo '<td>'. $match .'</td>';
 								echo "<td>". $row['startingAddress'] . "</td>";
@@ -455,7 +455,7 @@
 					$i = 0;
 					while($row = mysqli_fetch_array($result))
 					{
-						echo "<tr>";
+						echo "<tr id=\" . $row['listings_id'] . \">";
 						echo "<td>". $row['startingAddress'] . "</td>";
 						echo "<td>". $row["endingAddress"] . "</td>";
 						if($row["isRequest"] == 0)
