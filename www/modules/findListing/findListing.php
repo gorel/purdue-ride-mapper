@@ -85,23 +85,25 @@
 				<div class="form-group">
 					<input id='starting_address_field' type="text" class="form-control" placeholder="Starting Address">
 				</div>
+				
 				<div class="form-group">
 					<input id='ending_address_field' type="text" class="form-control" placeholder="Destination Address">
 				</div>
+				
 				<div class="form-group">
 					<div class='input-group date' id="datetimepicker2">
 						<input type='text' class="form-control" name="dateTime" placeholder="Desired Departure Date" data-format="YYYY-MM-DD hh:mm:ss"/>
 						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
 					</div>
 				</div>
+				
 				<script type='text/javascript'>
 					$(function () {
 						$('#datetimepicker2').datetimepicker();
 					});
-				</script>
-
-				<button type="submit" class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button>
+				</script>				
 			</form>
+			<button class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button>
 		</div>
 		<br>
 
