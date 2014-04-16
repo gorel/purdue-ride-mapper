@@ -11,12 +11,11 @@
 */
 require '../../lib/email.php';
 
-$cat   = $_POST["from_uid"];
-$email = strtolower($_POST["email"]);
-$msg   = $_POST["text"];
+$from_uid   = $_POST["from_uid"];
+$message   = $_POST["message"];
+$listingID   = $_POST["listingID"];
 
-sendContactMail($email, $cat, $msg);
-
-header("Location:../../index.php");
-
+echo json_encode(array('status' => "$found", 'referralLink' => "$referralLink", 'length' => "$length",
+							'completed' => "$completed", 'queue' => "$queue", 'percentCompleted' => "$percentCompleted",
+							'estimate' => "$estimate")); 
 ?>
