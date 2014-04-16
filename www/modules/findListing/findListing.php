@@ -544,7 +544,7 @@
 				alert("Please enter a message!");
 				return;
 			}			
-			console.log(from_uid);
+			alert(from_uid);
 			/*console.log(from_uid);
 			return;
 			$.ajax ({
