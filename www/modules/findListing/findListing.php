@@ -210,7 +210,7 @@
 					</tr>
 					</thead>";
 
-					exec('python ../../../src/matcher2.py "'. $starting_address . '" "' . $ending_address . '" "' . $date . '"', $matches);
+					exec('python ../../../src/matcher.py "'. $starting_address . '" "' . $ending_address . '" "' . $date . '"', $matches);
 
 					//TODO: Split on OFFERS
 					//If len(output) == 0, print "no matches"
