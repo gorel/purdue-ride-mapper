@@ -566,7 +566,7 @@
 				origin: [startLat, startLong],
 				destination: [endLat, endLong],
 				travelMode: 'driving',
-				strokeColor: '#FFFFFF',
+				strokeColor: '#000000',
 				strokeOpacity: 0.6,
 				strokeWeight: 6
 			});
