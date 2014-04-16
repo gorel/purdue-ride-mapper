@@ -546,8 +546,8 @@
 			{
 				alert("Please enter a message!");
 				return;
-			}	
-			
+			}		
+			/*
 			$.ajax ({
 				type: "POST",
 				url: "findListingContactProc.php",
@@ -569,7 +569,7 @@
 					alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
 					alert("responseText: "+xhr.responseText);
 				}
-			});
+			});*/
 		});
 
 		$('#routeModal').on('shown.bs.modal', function() {
