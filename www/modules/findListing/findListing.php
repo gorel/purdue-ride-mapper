@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+<?php session_start(); // TODO: need to handle logged in/out cases - tim ?>
+
 <html>
 <body>
 <!-- Scripts for the datetimepicker -->
@@ -112,6 +115,7 @@
 		</div>
 		<br>
 
+		
 
 		<script>
 			var map;
@@ -162,7 +166,6 @@
 
 	<div>
 	<?php
-	
 		function random_color_part() {
 			return str_pad( dechex( mt_rand( 0, 255 ) ), 2, '0', STR_PAD_LEFT);
 		}
@@ -171,7 +174,6 @@
 			return random_color_part() . random_color_part() . random_color_part();
 		}
 
-		session_start();
 
 		function debug_to_console($data)
 		{
@@ -182,12 +184,15 @@
 			echo $output;
 		}
 
+		// matcher can now be taken out of the if-else condition. There was a
+                // php session error and I moved the call to start session to the top - tim
+
 		if (!isset($_SESSION['user']))
 		{
 		}
 		else
 		{
-			$con=mysqli_connect("localhost","collegecarpool","collegecarpool","purdue_test");
+			$con=mysqli_connect("localhost","root","collegecarpool","purdue_test");
 
 			if(mysqli_connect_errno())
 			{
