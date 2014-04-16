@@ -498,7 +498,6 @@
 		}
 
 		$('#routeModal').on('shown.bs.modal', function() {
-			alert("hi");
 			var modalMap = new GMaps
 				({
 					div: '#modal_map_canvas',
