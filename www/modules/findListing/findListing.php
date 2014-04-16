@@ -113,7 +113,6 @@
 
 		<script>
 			var map;
-			var modalMap;
 			function loadParameter(key, val)
 			{
 				if (isNaN(val))
@@ -152,20 +151,7 @@
 						style : 'SMALL',
 					},
 					panControl : false,
-				});
-				
-				modalMap = new GMaps
-				({
-					div: '#modal_map_canvas',
-					lat: 40.431042,
-					lng: -86.913651,
-					zoomControl : true,
-					zoomControlOpt:
-					{
-						style : 'SMALL',
-					},
-					panControl : false,
-				});
+				});							
 			});
 		</script>
 
@@ -505,7 +491,21 @@
 	<script>
 		function showRouteModal()
 		{
+			var modalMap;
 			$('#routeModal').modal('show');
+			
+			modalMap = new GMaps
+				({
+					div: '#modal_map_canvas',
+					lat: 40.431042,
+					lng: -86.913651,
+					zoomControl : true,
+					zoomControlOpt:
+					{
+						style : 'SMALL',
+					},
+					panControl : false,
+				});
 		}
 	</script>
 </body>
