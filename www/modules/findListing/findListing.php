@@ -496,7 +496,7 @@
 		}
 	</script>
 	<script type="text/javascript">
-		$('#routeModal').on('shown', function () {
+		$('#routeModal').on('shown.bs.modal', function() {
 			alert("hi");
 			var modalMap = new GMaps
 				({
