@@ -10,6 +10,7 @@
 <script type='text/javascript' src='js/moment.min.js'></script>
 <script type='text/javascript' src='js/bootstrap.min.js'></script>
 <script type='text/javascript' src='js/bootstrap-datetimepicker.min.js'></script>
+<link href="/css/bootstrap.css" rel="stylesheet">
 
 
 <!-- VIEW ROUTE MODAL -->
@@ -544,31 +545,26 @@
 			{
 				alert("Please enter a message!");
 				return;
-			}		
-			/*
-			$.ajax ({
-				type: "POST",
-				url: "findListingContactProc.php",
-				dataType: "json",
-				beforeSend: function() {
-					console.log("beforesend");
-				},
-				
-				complete: function() {
-					console.log("complete");
-				},
-				
-				data: {"from_uid" from_uid: , "listing_id" : listingID, "message" : message},
-				success: function(data) {
-					console.log("success");
-
-				},
-				error: function(xhr, status, error) {
-					alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
-					alert("responseText: "+xhr.responseText);
-				}
-			});*/
+			}				
 		});
+		
+		function testFunction()
+		{
+			$.ajax ({
+				  type: "POST",
+				  url: "/modules/settings/changePassword.php",
+				  dataType: "json",
+				  beforeSend: function() {
+
+				  },
+				  complete: function() {
+				  },
+				  data: {"listingID" : listingID},
+				  success: function(data) {					
+
+				  } 
+				});
+		}
 
 		$('#routeModal').on('shown.bs.modal', function() {
 			var modalMap = new GMaps
