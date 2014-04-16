@@ -10,46 +10,102 @@
 
 <hr class="featurette-divider">
 <div class="row">
-		<div id="map_canvas" style="height: 400px; width: 100%"></div>
-		<hr class="featurette-divider">
-		<div>
-			<h2 class="form-signin-heading">Search for a ride:</h2>
-			<form class="form-inline" role="form">
-				<div class="form-group">
-					<input id='starting_address_field' type="text" class="form-control" placeholder="Starting Address">
+	<div id="map_canvas" style="height: 400px; width: 100%"></div>
+	<hr class="featurette-divider">
+	<div>
+		<h2 class="form-signin-heading">Search for a ride:</h2>
+		<form class="form-inline" role="form">
+			<div class="form-group">
+				<input id='starting_address_field' type="text" class="form-control" placeholder="Starting Address">
+			</div>
+			<div class="form-group">
+				<input id='ending_address_field' type="text" class="form-control" placeholder="Destination Address">
+			</div>
+			<div class="form-group">
+				<div class='input-group date' id=datetimepicker'>
+					<input id='date_field' type="text" class="form-control" placeholder="Departure Date (optional)" data-format="YYYY-MM-DD hh:mm:ss"/>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 				</div>
-				<div class="form-group">
-					<input id='ending_address_field' type="text" class="form-control" placeholder="Destination Address">
-				</div>
-				<div class="form-group">
-					<div class='input-group date' id=datetimepicker'>
-						<input id='date_field' type="text" class="form-control" placeholder="Departure Date (optional)" data-format="YYYY-MM-DD hh:mm:ss"/>
-						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-					</div>
-				</div>
-				<script type='text/javascript'>
-					$(function () {
-						$('#datetimepicker').datetimepicker();
-					});
-				</script>
+			</div>
+			<script type='text/javascript'>
+				$(function () {
+					$('#datetimepicker').datetimepicker();
+				});
+			</script>
 
-				<button type="submit" class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button>
-			</form>
-		</div>
-		<br>
+			<button type="submit" class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button>
+		</form>
+	</div>
+	<br>
 
-		<div>
-			<h2 class="form-signin-heading">Match a ride:</h2>
-			<form class="form-inline" role="form">
-				<div class="form-group">
-					<input id='listing_id_field' type="text" class="form-control" placeholder="Listing ID">
-				</div>
-				<button type="submit" class="btn btn-default" onclick="matchListing(); return false;" >Match</button>
-			</form>
-		</div>
-		<br>
+	<div>
+		<h2 class="form-signin-heading">Match a ride:</h2>
+		<form class="form-inline" role="form">
+			<div class="form-group">
+				<input id='listing_id_field' type="text" class="form-control" placeholder="Listing ID">
+			</div>
+			<button type="submit" class="btn btn-default" onclick="matchListing(); return false;" >Match</button>
+		</form>
+	</div>
+	<br>
 
-		
+			
+	<script>
+		var map;
+		function loadParameter(key, val)
+		{
+			if (isNaN(val))
+				$("#content").load("modules/findListing/findListing.php?NaNerror");
+			else
+				$("#content").load("modules/findListing/findListing.php?" + key + "=" + val);
+		}
+
+		function matchListing()
+		{
+			var listing_id = parseInt(document.getElementById('listing_id_field').value);
+			loadParameter("matchValue", listing_id);
+		}
+
+		function matchNewAddress()
+		{
+			var starting_address = document.getElementById('starting_address_field').value.split(' ').join('+');
+			var ending_address = document.getElementById('ending_address_field').value.split(' ').join('+');
+			var departure_date = document.getElementById('date_field').value.split(' ').join('+');
+
+			$("#content").load("modules/findListing/findListing.php?starting_address=" + starting_address + "&ending_address=" + ending_address + "&date=" + departure_date);
+		}
+
+		//This script create the map with a default address.
+		//Its current location is somewhere by College Station
+		$(document).ready(function ()
+		{
+			map = new GMaps
+			({
+				div: '#map_canvas',
+				lat: 40.431042,
+				lng: -86.913651,
+				zoomControl : true,
+				zoomControlOpt:
+				{
+					style : 'SMALL',
+				},
+				panControl : false,
+			});
+			
+			map = new GMaps
+			({
+				div: '#mini_map_canvas',
+				lat: 40.431042,
+				lng: -86.913651,
+				zoomControl : true,
+				zoomControlOpt:
+				{
+					style : 'SMALL',
+				},
+				panControl : false,
+			});
+		});
+	</script>
 
 	<div id='matcher_wrapper'></div>
 
@@ -451,63 +507,5 @@
 			</div>
 		</div>
 	</div>
-	
-	<script>
-		var map;
-		function loadParameter(key, val)
-		{
-			if (isNaN(val))
-				$("#content").load("modules/findListing/findListing.php?NaNerror");
-			else
-				$("#content").load("modules/findListing/findListing.php?" + key + "=" + val);
-		}
-
-		function matchListing()
-		{
-			var listing_id = parseInt(document.getElementById('listing_id_field').value);
-			loadParameter("matchValue", listing_id);
-		}
-
-		function matchNewAddress()
-		{
-			var starting_address = document.getElementById('starting_address_field').value.split(' ').join('+');
-			var ending_address = document.getElementById('ending_address_field').value.split(' ').join('+');
-			var departure_date = document.getElementById('date_field').value.split(' ').join('+');
-
-			$("#content").load("modules/findListing/findListing.php?starting_address=" + starting_address + "&ending_address=" + ending_address + "&date=" + departure_date);
-		}
-
-		//This script create the map with a default address.
-		//Its current location is somewhere by College Station
-		$(document).ready(function ()
-		{
-			map = new GMaps
-			({
-				div: '#map_canvas',
-				lat: 40.431042,
-				lng: -86.913651,
-				zoomControl : true,
-				zoomControlOpt:
-				{
-					style : 'SMALL',
-				},
-				panControl : false,
-			});
-			
-			map = new GMaps
-			({
-				div: '#mini_map_canvas',
-				lat: 40.431042,
-				lng: -86.913651,
-				zoomControl : true,
-				zoomControlOpt:
-				{
-					style : 'SMALL',
-				},
-				panControl : false,
-			});
-		});
-	</script>
-
 </body>
 </html>
