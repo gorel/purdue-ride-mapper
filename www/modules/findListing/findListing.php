@@ -52,14 +52,16 @@
 					<div class="col-md-6">
 						<p><b>Send them a message!</b></p>
 						<form class="form-horizontal" role="form">
-							<div class="form-group">
-								<div class="form-group">
+							<div class="control-group">
+								<div class="controls">
 									<textarea name="text" id="modalMessage" rows="6" class="form-control" cols="80"></textarea>
 								</div>
 							</div>
-							<br>
-							<button class="btn btn-primary" id="sendButton">Send</button>
+							<br>							
 						</form>
+						<div>
+							<button class="btn btn-lg btn-primary btn-block" id="sendButton">Send</button>
+						</div>
 					</div>
 				</div>					
 			</div>
@@ -558,6 +560,7 @@
 				data: {"from_uid" from_uid: , "listing_id" : listingID, "message" : message},
 				success: function(data) {
 					console.log("success");
+
 				},
 				error: function(xhr, status, error) {
 					alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
