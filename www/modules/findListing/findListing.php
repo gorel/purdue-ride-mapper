@@ -51,7 +51,7 @@
 					</div>
 					<div class="col-md-6">
 						<p><b>Send them a message!</b></p>
-						<form enctype="application/x-www-form-urlencoded" class="form-horizontal">
+						<form class="form-horizontal" role="form">
 							<div class="control-group">
 								<div class="controls">
 									<textarea name="text" id="modalMessage" rows="6" class="form-control" cols="80"></textarea>
@@ -514,8 +514,6 @@
 	<script>
 		var modalMap;
 		var listingID;
-		var from;
-		var to;
 		var msg;
 		
 		function showRouteModal(listing_ID)
@@ -537,17 +535,18 @@
 			$('#routeModal').modal('show');
 		}
 		
-		function sendMail()
+		$('#sendButton').on('click', function()
 		{	
 			var message = document.getElementById('modalMessage').value;
-			
+			var from_uid = <?php echo $_SESSION['user']; ?>;
 			if (message.length == 0)
 			{
 				alert("Please enter a message!");
 				return;
-			}
+			}			
 			
-			
+			console.log(from_uid);
+			return;
 			$.ajax ({
 				type: "POST",
 				url: "findListingContactProc.php",
@@ -560,39 +559,18 @@
 					console.log("complete");
 				},
 				
-				data: {"to_uid" : msg, "from_uid" : to, "message" : message},
+				data: {"from_uid" from_uid: , "listing_id" : listingID, "message" : message},
 				success: function(data) {
 					console.log("success");
 					console.log(data.referralLink);
 					
-					if (data.status == "FOUND")
+					if (data.status == "SENT")
 					{
-						console.log("found!");	
-						console.log(data.completed);
-						console.log(data.queue);
-						console.log(data.percentCompleted);
-						document.getElementById('completed').innerHTML = data.completed;
-						document.getElementById('queue').innerHTML = data.queue;
-						if(data.estimate == 0)
-						{
-							document.getElementById('eta').innerHTML = "Completed";
-							document.getElementById('progressBar').className = "progress-bar progress-bar-success";
-						}
-						else
-						{
-							document.getElementById('eta').innerHTML = (data.estimate - 1) + " - " + data.estimate + " Days";
-						}
-						
-						var valeur = data.percentCompleted;
-						$('.progress-bar').css('width', valeur+'%').attr('aria-valuenow', valeur);    
+						console.log("message sent");
 					}
-					else {
-						alert("Could not find referral link: " + data.referralLink + ". Please check your link and try again.");
-						document.getElementById('completed').innerHTML = "0";
-						document.getElementById('queue').innerHTML = "0";
-						document.getElementById('eta').innerHTML = "0 Days";							
-						var valeur = 0;
-						$('.progress-bar').css('width', valeur+'%').attr('aria-valuenow', valeur);    
+					else 
+					{
+						console.log("message not sent");
 					}
 				},
 				error: function(xhr, status, error) {
@@ -600,7 +578,7 @@
 					alert("responseText: "+xhr.responseText);
 				}
 			});
-		}
+		});
 
 		$('#routeModal').on('shown.bs.modal', function() {
 			var modalMap = new GMaps

@@ -11,7 +11,7 @@
 */
 require '../../lib/email.php';
 
-$cat   = $_POST["category"];
+$cat   = $_POST["from_uid"];
 $email = strtolower($_POST["email"]);
 $msg   = $_POST["text"];
 
