@@ -461,6 +461,9 @@
 				</div>
 				<div class="modal-body">
 					<div class="row">
+						<p>Test Test Test Test Test Test Test Test</p>
+					</div>
+					<div class="row">
 					<div class="col-md-6">
 						<table class="table table-striped">
 							<tr>
