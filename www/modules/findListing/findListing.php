@@ -467,7 +467,7 @@
 						</table>
 					</div>
 					<div class="col-md-6">
-						<p>Send them a message!:</p>
+						<p><b>Send them a message!</b></p>
 						<p>To: johndoe@purdue.edu</p>
 						<form enctype="application/x-www-form-urlencoded" class="form-horizontal" action="/modules/contact/contactProc.php" method="POST">
 							<div class="control-group">
