@@ -166,8 +166,6 @@
 <hr class="featurette-divider">
 
 <button class="btn btn-success btn-small" onclick="initFields()">CLICK</button>
-<button class="btn btn-success btn-small" onclick="initFields()">CLICK</button>
-<a href="" onclick="initFields()">TEST</a>
 
 
 <?php
