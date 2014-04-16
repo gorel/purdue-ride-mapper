@@ -279,11 +279,12 @@
 								echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
 								echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
 								echo '<td>'.$i.'</td>';
+								echo '<input id="testHiddenText" type="text" value="foobar">';
 								echo "<td>
 										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
 									</td>";
 								echo "</tr>";
-								echo "<script>
+								echo "<script>										
 										$(document).ready(function()
 										{
 											map.addMarker
@@ -383,6 +384,7 @@
 								echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
 								echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
 								echo "<td>". $i . "</td>";
+								echo '<input id="testHiddenText" type="text" value="foobar">';
 								echo "<td>
 										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
 									</td>";
@@ -463,8 +465,9 @@
 						echo "<td>
 							<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
 							</td>";
+						echo '<input id="testHiddenText" type="text" value="foobar">';
 						echo "</tr>";
-						echo "<script>
+						echo "<script>										
 										$(document).ready(function()
 										{
 											map.addMarker
@@ -505,10 +508,21 @@
 		var listingID;
 		
 		function showRouteModal(listing_ID)
-		{			
+		{		
+			var startingAddressModal = document.getElementById('startingAddressModal');
+			var endingAddressModal = document.getElementById('endingAddressModal');
+			var dateOfDepartureModal = document.getElementById('dateOfDepartureModal');
+			var rideTypeModal = document.getElementById('rideTypeModal');
+			var numberOfPassengersModal = document.getElementById('numberOfPassengersModal');
+			
+			startingAddressModal.innerHTML = document.getElementById(listingID + "_Starting_Address").innerHTML.trim();
+			endingAddressModal.innerHTML = document.getElementById(listingID + "_Ending_Address").innerHTML.trim();
+			dateOfDepartureModal.innerHTML = document.getElementById(listingID + "_Date_Of_Departure").innerHTML.trim();
+			rideTypeModal.innerHTML = document.getElementById(listingID + "_Ride_Type").innerHTML.trim();
+			numberOfPassengersModal.innerHTML = document.getElementById(listingID + "_Passengers").innerHTML.trim();
+			
 			$('#routeModal').modal('show');
-			listingID = listing_ID;
-			console.log(listingID);
+			console.log(document.getElementById('testHiddenText').value);
 		}
 
 		$('#routeModal').on('shown.bs.modal', function() {
@@ -524,19 +538,7 @@
 					},
 					panControl : false,
 				});
-			google.maps.event.trigger(modalMap, "resize");			
-			
-			var startingAddressModal = document.getElementById('startingAddressModal');
-			var endingAddressModal = document.getElementById('endingAddressModal');
-			var dateOfDepartureModal = document.getElementById('dateOfDepartureModal');
-			var rideTypeModal = document.getElementById('rideTypeModal');
-			var numberOfPassengersModal = document.getElementById('numberOfPassengersModal');
-			
-			startingAddressModal.innerHTML = document.getElementById(listingID + "_Starting_Address").innerHTML.trim();
-			endingAddressModal.innerHTML = document.getElementById(listingID + "_Ending_Address").innerHTML.trim();
-			dateOfDepartureModal.innerHTML = document.getElementById(listingID + "_Date_Of_Departure").innerHTML.trim();
-			rideTypeModal.innerHTML = document.getElementById(listingID + "_Ride_Type").innerHTML.trim();
-			numberOfPassengersModal.innerHTML = document.getElementById(listingID + "_Passengers").innerHTML.trim();
+			google.maps.event.trigger(modalMap, "resize");		
 		});
 	</script>
 
