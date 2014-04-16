@@ -279,7 +279,7 @@
 								echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
 								echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
 								echo '<td>'.$i.'</td>';
-								echo '<input id="testHiddenText" type="hidden" value="'.$row['start_lat'].'">';
+								echo '<input id="'.$row['listings_id'].'_Start_Lat" type="hidden" value="'.$row['start_lat'].'">';
 								echo "<td>
 										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
 									</td>";
@@ -384,7 +384,7 @@
 								echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
 								echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
 								echo "<td>". $i . "</td>";
-								echo '<input id="testHiddenText" type="hidden" value="'.$row['start_lat'].'">';
+								echo '<input id="'.$row['listings_id'].'_Start_Lat" type="hidden" value="'.$row['start_lat'].'">';
 								echo "<td>
 										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
 									</td>";
@@ -465,7 +465,7 @@
 						echo "<td>
 							<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
 							</td>";
-						echo '<input id="testHiddenText" type="hidden" value="'.$row['start_lat'].'">';
+						echo '<input id="'.$row['listings_id'].'_Start_Lat" type="hidden" value="'.$row['start_lat'].'">';
 						echo "</tr>";
 						echo "<script>										
 										$(document).ready(function()
@@ -522,7 +522,7 @@
 			numberOfPassengersModal.innerHTML = document.getElementById(listingID + "_Passengers").innerHTML.trim();
 			
 			$('#routeModal').modal('show');
-			console.log(document.getElementById('testHiddenText').value);
+			console.log(document.getElementById(listing_ID + "_Start_Lat").value);
 		}
 
 		$('#routeModal').on('shown.bs.modal', function() {
