@@ -20,6 +20,7 @@
 				<div class="row">
 					<div id="modal_map_canvas" style="height: 400px; width: 100%"></div>
 				</div>
+				<hr class="featurette-divider">
 				<div class="row">
 					<div class="col-md-6">
 						<table class="table table-striped">
@@ -490,12 +491,12 @@
 	
 	<script>
 		var modalMap;
+		
 		function showRouteModal()
 		{			
 			$('#routeModal').modal('show');
 		}
-	</script>
-	<script type="text/javascript">
+
 		$('#routeModal').on('shown.bs.modal', function() {
 			alert("hi");
 			var modalMap = new GMaps
