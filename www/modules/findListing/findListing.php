@@ -10,9 +10,6 @@
 <script type='text/javascript' src='js/moment.min.js'></script>
 <script type='text/javascript' src='js/bootstrap.min.js'></script>
 <script type='text/javascript' src='js/bootstrap-datetimepicker.min.js'></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-
 
 <!-- VIEW ROUTE MODAL -->
 <div class="modal fade" id="routeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -538,6 +535,39 @@
 			$('#routeModal').modal('show');
 		}
 		
+		$('#sendButton').on('click', function()
+		{	
+			var message = document.getElementById('modalMessage').value;
+			var from_uid = <?php echo $_SESSION['user']; ?>;
+			if (message.length == 0)
+			{
+				alert("Please enter a message!");
+				return;
+			}		
+			/*
+			$.ajax ({
+				type: "POST",
+				url: "findListingContactProc.php",
+				dataType: "json",
+				beforeSend: function() {
+					console.log("beforesend");
+				},
+				
+				complete: function() {
+					console.log("complete");
+				},
+				
+				data: {"from_uid" from_uid: , "listing_id" : listingID, "message" : message},
+				success: function(data) {
+					console.log("success");
+
+				},
+				error: function(xhr, status, error) {
+					alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+					alert("responseText: "+xhr.responseText);
+				}
+			});*/
+		});
 
 		$('#routeModal').on('shown.bs.modal', function() {
 			var modalMap = new GMaps
