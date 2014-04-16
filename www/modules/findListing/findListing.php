@@ -49,68 +49,7 @@
 		</div>
 		<br>
 
-		<script>
-			var map;
-			function loadParameter(key, val)
-			{
-				if (isNaN(val))
-					$("#content").load("modules/findListing/findListing.php?NaNerror");
-				else
-					$("#content").load("modules/findListing/findListing.php?" + key + "=" + val);
-			}
-
-			function matchListing()
-			{
-				var listing_id = parseInt(document.getElementById('listing_id_field').value);
-				loadParameter("matchValue", listing_id);
-			}
-
-			function matchNewAddress()
-			{
-				var starting_address = document.getElementById('starting_address_field').value.split(' ').join('+');
-				var ending_address = document.getElementById('ending_address_field').value.split(' ').join('+');
-				var departure_date = document.getElementById('date_field').value.split(' ').join('+');
-
-				$("#content").load("modules/findListing/findListing.php?starting_address=" + starting_address + "&ending_address=" + ending_address + "&date=" + departure_date);
-			}
-
-			//This script create the map with a default address.
-			//Its current location is somewhere by College Station
-			$(document).ready(function ()
-			{
-				 map = new GMaps
-				({
-					div: '#map_canvas',
-					lat: 40.431042,
-					lng: -86.913651,
-					zoomControl : true,
-					zoomControlOpt:
-					{
-						style : 'SMALL',
-					},
-					panControl : false,
-				});
-			});
-			
-			//This script create the map with a default address.
-			//Its current location is somewhere by College Station
-			$(document).ready(function ()
-			{
-				 map = new GMaps
-				({
-					div: '#mini_map_canvas',
-					lat: 40.431042,
-					lng: -86.913651,
-					zoomControl : true,
-					zoomControlOpt:
-					{
-						style : 'SMALL',
-					},
-					panControl : false,
-				});
-			});
-		</script>
-
+		
 
 	<div id='matcher_wrapper'></div>
 
@@ -512,5 +451,63 @@
 			</div>
 		</div>
 	</div>
+	
+	<script>
+		var map;
+		function loadParameter(key, val)
+		{
+			if (isNaN(val))
+				$("#content").load("modules/findListing/findListing.php?NaNerror");
+			else
+				$("#content").load("modules/findListing/findListing.php?" + key + "=" + val);
+		}
+
+		function matchListing()
+		{
+			var listing_id = parseInt(document.getElementById('listing_id_field').value);
+			loadParameter("matchValue", listing_id);
+		}
+
+		function matchNewAddress()
+		{
+			var starting_address = document.getElementById('starting_address_field').value.split(' ').join('+');
+			var ending_address = document.getElementById('ending_address_field').value.split(' ').join('+');
+			var departure_date = document.getElementById('date_field').value.split(' ').join('+');
+
+			$("#content").load("modules/findListing/findListing.php?starting_address=" + starting_address + "&ending_address=" + ending_address + "&date=" + departure_date);
+		}
+
+		//This script create the map with a default address.
+		//Its current location is somewhere by College Station
+		$(document).ready(function ()
+		{
+			map = new GMaps
+			({
+				div: '#map_canvas',
+				lat: 40.431042,
+				lng: -86.913651,
+				zoomControl : true,
+				zoomControlOpt:
+				{
+					style : 'SMALL',
+				},
+				panControl : false,
+			});
+			
+			map = new GMaps
+			({
+				div: '#mini_map_canvas',
+				lat: 40.431042,
+				lng: -86.913651,
+				zoomControl : true,
+				zoomControlOpt:
+				{
+					style : 'SMALL',
+				},
+				panControl : false,
+			});
+		});
+	</script>
+
 </body>
 </html>
