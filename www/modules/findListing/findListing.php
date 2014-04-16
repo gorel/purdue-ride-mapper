@@ -460,7 +460,7 @@
 					<h4 class="modal-title" id="myModalLabel">Ride Details</h4>
 				</div>
 				<div class="modal-body row">
-					<div id="mini_map_canvas" style="height: 400px; width: 100%"></div>
+					<div class="row">Test</div>
 					<div class="col-md-6">
 						<table class="table table-striped">
 							<tr>
