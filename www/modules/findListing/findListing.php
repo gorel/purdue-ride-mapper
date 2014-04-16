@@ -92,18 +92,7 @@
 					panControl : false,
 				});
 				
-				modalMap = new GMaps
-				({
-					div: '#modal_map_canvas',
-					lat: 40.431042,
-					lng: -86.913651,
-					zoomControl : true,
-					zoomControlOpt:
-					{
-						style : 'SMALL',
-					},
-					panControl : false,
-				});
+
 			});
 		</script>
 
