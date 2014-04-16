@@ -551,7 +551,9 @@
 				alert("Please enter a message!");
 				return;
 			}							
-		
+			console.log(message);
+			console.log(from_uid);
+			console.log(listingID);
 			$.ajax ({
 				  type: "POST",
 				  url: "/modules/findListing/findListingContactProc.php",
@@ -562,7 +564,7 @@
 				  complete: function() {
 					console.log("complete");
 				  },
-				  data: {"listingID" : listingID},
+				  data: {"listingID" : listingID, "message" : message, "from_uid" : from_uid},
 				  success: function(data) {					
 					console.log("success");
 				  } 
