@@ -11,7 +11,7 @@
 <script type='text/javascript' src='js/bootstrap.min.js'></script>
 <script type='text/javascript' src='js/bootstrap-datetimepicker.min.js'></script>
 
-<!-- view route modal -->
+<!-- VIEW ROUTE MODAL -->
 <div class="modal fade" id="routeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -218,7 +218,7 @@
 					$sql = "SELECT * FROM listings WHERE listings_id=$matchNum";
 					$result = mysqli_query($con, $sql);
 					$row = mysqli_fetch_array($result);
-					echo "<tr>";
+					echo "<tr id=$row['listings_id']>";
 					echo "<td>" . $row['listings_id'] . "</td>";
 					echo "<td>" . $row['startingAddress'] . "</td>";
 					echo "<td>" . $row['endingAddress'] . "</td>";
@@ -267,9 +267,24 @@
 							$result = mysqli_query($con,$sql);
 							while($row = mysqli_fetch_array($result))
 							{
-								echo "<tr>";
-								echo '<td>'. $row['listings_id'] . '</td>';
-								echo '<td>'. $match .'</td>';
+								/*
+								echo 	"<tr id=usr_$uid>
+										<td id=$uid"."_uid> $uid </td>
+										<td id=$uid"."_email> $email </td>
+										<td id=$uid"."_fname> $fname </td>
+										<td id=$uid"."_lname> $lname </td>
+										<td id=$uid"."_verified_text> $verified_text </td>
+										<td id=$uid"."_enabled_text> $enabled_text </td>
+										<td id=$uid"."_is_admin_text> $is_admin_text </td>
+									<td> <button class=\"btn btn-success btn-small\"
+										onclick=\"editUser($uid)\">Edit</button>
+									 <button class=\"btn btn-danger\"
+										onclick=\"updateDelId($uid)\">Delete</button></td>
+									  </tr>";
+				  */
+								echo "<tr id=$row['listings_id']>";
+								echo "<td>". $row['listings_id'] . "</td>";
+								echo "<td>". $match ."</td>";
 								echo "<td>". $row['startingAddress'] . "</td>";
 								echo "<td>". $row['endingAddress'] . "</td>";
 								echo "<td>". $row['dateOfDeparture'] . "</td>";
@@ -371,7 +386,7 @@
 							$result = mysqli_query($con,$sql);
 							while($row = mysqli_fetch_array($result))
 							{
-								echo "<tr>";
+								echo "<tr id=$row['listings_id']>";
 								echo '<td>'. $row['listings_id'] . '</td>';
 								echo '<td>'. $match .'</td>';
 								echo "<td>". $row['startingAddress'] . "</td>";
