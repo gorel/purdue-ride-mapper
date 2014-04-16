@@ -493,8 +493,12 @@
 		function showRouteModal()
 		{			
 			$('#routeModal').modal('show');
-			
-			modalMap = new GMaps
+		}
+	</script>
+	<script type="text/javascript">
+		$('#routeModal').on('shown', function () {
+			alert("hi");
+			var modalMap = new GMaps
 				({
 					div: '#modal_map_canvas',
 					lat: 40.431042,
@@ -506,10 +510,6 @@
 					},
 					panControl : false,
 				});
-		}
-		
-		$('#routeModal').on('shown', function () {
-			alert("hi");
 			google.maps.event.trigger(modalMap, "resize");
 		});
 	</script>
