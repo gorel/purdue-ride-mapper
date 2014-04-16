@@ -91,24 +91,6 @@
 					panControl : false,
 				});
 			});
-			
-			//This script create the map with a default address.
-			//Its current location is somewhere by College Station
-			$(document).ready(function ()
-			{
-				 map = new GMaps
-				({
-					div: '#mini_map_canvas',
-					lat: 40.431042,
-					lng: -86.913651,
-					zoomControl : true,
-					zoomControlOpt:
-					{
-						style : 'SMALL',
-					},
-					panControl : false,
-				});
-			});
 		</script>
 
 
@@ -459,10 +441,7 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title" id="myModalLabel">Ride Details</h4>
 				</div>
-				<div class="modal-body">
-					<div class="row">
-					</div>
-					<div class="row">
+				<div class="modal-body row">
 					<div class="col-md-6">
 						<table class="table table-striped">
 							<tr>
@@ -488,7 +467,7 @@
 						</table>
 					</div>
 					<div class="col-md-6">
-						<p><b>Send them a message!</b></p>
+						<p>Send them a message!:</p>
 						<p>To: johndoe@purdue.edu</p>
 						<form enctype="application/x-www-form-urlencoded" class="form-horizontal" action="/modules/contact/contactProc.php" method="POST">
 							<div class="control-group">
@@ -502,7 +481,6 @@
 							</div>
 						</form>
 					</div>
-					</div>					
 				</div>
 				
 				<div class="modal-footer">
