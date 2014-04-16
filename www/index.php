@@ -23,7 +23,6 @@
 		<script type="text/javascript" src="js/moment.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	</head>
-
 	<body>
 
 		<script type="text/javascript">
