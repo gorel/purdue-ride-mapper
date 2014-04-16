@@ -531,10 +531,11 @@
 			var dateOfDepartureModal = document.getElementById('dateOfDepartureModal');
 			var rideTypeModal = document.getElementById('rideTypeModal');
 			var numberOfPassengersModal = document.getElementById('numberOfPassengersModal');
+			
 			console.log(listingID + "_Starting_Address");
 			console.log(document.getElementById(listingID + "_Starting_Address").innerHTML.trim());
 			
-			startingAddressModal.innerHTML.value = "Hello World";
+			startingAddressModal.innerHTML = "Hello World";
 			//startingAddressModal.value = document.getElementById(listingID + "_Starting_Address").innerHTML.trim();
 			endingAddressModal.value = document.getElementById(listingID + "_Ending_Address").innerHTML.trim();
 			dateOfDepartureModal.value = document.getElementById(listingID + "_Date_Of_Departure").innerHTML.trim();
