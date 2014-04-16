@@ -457,7 +457,7 @@
 				</div>
 				<div class="modal-body">
 					<div class="row">
-						<div id="modal_map_canvas" style="height: 300px; width: 100%"></div>
+						<div id="modal_map_canvas" style="height: 400px; width: 100%"></div>
 					</div>
 					<div class="row">
 						<div class="col-md-6">
