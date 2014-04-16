@@ -63,7 +63,7 @@
 							<br>							
 						</form>
 						<div>
-							<button class="btn btn-lg btn-primary btn-block" id="sendButton">Send</button>
+							<button class="btn btn-lg btn-primary btn-block" id="sendButton" onclick="sendMessage()">Send</button>
 						</div>
 					</div>
 				</div>					
@@ -538,7 +538,7 @@
 			$('#routeModal').modal('show');
 		}
 		
-		$('#sendButton').on('click', function()
+		function sendMessage()
 		{	
 			var message = document.getElementById('modalMessage').value;
 			var from_uid = <?php echo $_SESSION['user']; ?>;
@@ -568,7 +568,7 @@
 					alert("responseText: "+xhr.responseText);
 				}
 			});
-		});
+		}
 
 		$('#routeModal').on('shown.bs.modal', function() {
 			var modalMap = new GMaps
