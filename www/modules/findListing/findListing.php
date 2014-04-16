@@ -550,22 +550,12 @@
 				});
 			google.maps.event.trigger(modalMap, "resize");	
 
-			var startLat = document.getElementById(listingID + '_Start_Lat');	
-			var startLong = document.getElementById(listingID + '_Start_Long');	
-			var endLat = document.getElementById(listingID + '_End_Lat');	
-			var endLong = document.getElementById(listingID + '_End_Long');	
-			console.log(startLat.value);
-			console.log(startLong.value);
+			var startLat = document.getElementById(listingID + '_Start_Lat').value;	
+			var startLong = document.getElementById(listingID + '_Start_Long').value;	
+			var endLat = document.getElementById(listingID + '_End_Lat').value;	
+			var endLong = document.getElementById(listingID + '_End_Long').value;				
+
 			
-			modalMap.addMarker({
-			  lat: startLat.value,
-			  lng: startLong.value,
-			  title: 'Lima',
-			  click: function(e) {
-				alert('You clicked in this marker');
-			  }
-			});
-			/*
 			modalMap.addMarker
 			({
 				lat:startLat,
@@ -576,7 +566,7 @@
 				origin: [startLat, startLong],
 				destination: [endLat, endLong],
 				travelMode: 'driving',
-				strokeColor: '#FF0000',
+				strokeColor: '#FFFFFF',
 				strokeOpacity: 0.6,
 				strokeWeight: 6
 			});
@@ -584,7 +574,7 @@
 			({
 				lat:endLat,
 				lng:endLong,
-			})*/
+			})
 			modalMap.fitZoom();
 		});
 	</script>
