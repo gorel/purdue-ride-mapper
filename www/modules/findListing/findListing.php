@@ -89,7 +89,7 @@
 					<input id='ending_address_field' type="text" class="form-control" placeholder="Destination Address">
 				</div>
 				<div class="form-group">
-					<div class='input-group date' id=datetimepicker2'>
+					<div class='input-group date' id="datetimepicker2">
 						<input type='text' class="form-control" name="dateTime" placeholder="Desired Departure Date" data-format="YYYY-MM-DD hh:mm:ss"/>
 						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
 					</div>
