@@ -52,15 +52,13 @@
 					<div class="col-md-6">
 						<p><b>Send them a message!</b></p>
 						<form class="form-horizontal" role="form">
-							<div class="control-group">
-								<div class="controls">
+							<div class="form-group">
+								<div class="form-group">
 									<textarea name="text" id="modalMessage" rows="6" class="form-control" cols="80"></textarea>
 								</div>
 							</div>
 							<br>
-							<div>
-								<button class="btn btn-lg btn-primary btn-block" id="sendButton" onclick="sendMail()">Send</button>
-							</div>
+							<button class="btn btn-primary" id="sendButton">Send</button>
 						</form>
 					</div>
 				</div>					
@@ -543,10 +541,8 @@
 			{
 				alert("Please enter a message!");
 				return;
-			}			
-			alert(from_uid);
-			/*console.log(from_uid);
-			return;
+			}		
+			
 			$.ajax ({
 				type: "POST",
 				url: "findListingContactProc.php",
@@ -562,22 +558,12 @@
 				data: {"from_uid" from_uid: , "listing_id" : listingID, "message" : message},
 				success: function(data) {
 					console.log("success");
-					console.log(data.referralLink);
-					
-					if (data.status == "SENT")
-					{
-						console.log("message sent");
-					}
-					else 
-					{
-						console.log("message not sent");
-					}
 				},
 				error: function(xhr, status, error) {
 					alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
 					alert("responseText: "+xhr.responseText);
 				}
-			});*/
+			});
 		});
 
 		$('#routeModal').on('shown.bs.modal', function() {
