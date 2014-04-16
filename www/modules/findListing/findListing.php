@@ -280,7 +280,7 @@
 								echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
 								echo '<td>'.$i.'</td>';
 								echo "<td>
-										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal();\">View</button>
+										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
 									</td>";
 								echo "</tr>";
 								echo "<script>
@@ -384,7 +384,7 @@
 								echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
 								echo "<td>". $i . "</td>";
 								echo "<td>
-										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal();\">View</button>
+										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
 									</td>";
 
 								echo "</tr>";
@@ -461,7 +461,7 @@
 						echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
 						echo "<td>". $row['listings_id'] . "</td>";
 						echo "<td>
-							<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal();\">View</button>
+							<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
 							</td>";
 						echo "</tr>";
 						echo "<script>
@@ -502,10 +502,13 @@
 	
 	<script>
 		var modalMap;
+		var listingID;
 		
-		function showRouteModal()
+		function showRouteModal(listing_ID)
 		{			
 			$('#routeModal').modal('show');
+			listingID = listing_ID;
+			console.log(listingID);
 		}
 
 		$('#routeModal').on('shown.bs.modal', function() {
