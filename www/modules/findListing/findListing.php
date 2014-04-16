@@ -29,23 +29,23 @@
 						<table class="table table-striped">
 							<tr>
 								<td><b>Starting Address:</b></td>
-								<td>Foobar Drive</td>
+								<td id="startingAddressModal">Foobar Drive</td>
 							</tr>
 							<tr>
 								<td><b>Ending Address:</b></td>
-								<td>Foobar Road</td>
+								<td id="endingAddressModal">Foobar Road</td>
 							</tr>
 							<tr>
 								<td><b>Listing Type:</b></td>
-								<td>Hosting a Ride</td>
+								<td id="rideTypeModal">Hosting a Ride</td>
 							</tr>
 							<tr>
 								<td><b>Number of Passengers</b></td>
-								<td>3</td>
+								<td id="numberOfPassengersModal">3</td>
 							</tr>
 							<tr>
 								<td><b>Date of Departure:</b></td>
-								<td>2014-03-26 08:01:00</td>
+								<td id="dateOfDepartureModal">2014-03-26 08:01:00</td>
 							</tr>
 						</table>
 					</div>
@@ -157,7 +157,7 @@
 						style : 'SMALL',
 					},
 					panControl : false,
-				});							
+				});				
 			});
 		</script>
 
@@ -524,7 +524,20 @@
 					},
 					panControl : false,
 				});
-			google.maps.event.trigger(modalMap, "resize");
+			google.maps.event.trigger(modalMap, "resize");			
+			
+			var startingAddressModal = document.getElementById('startingAddressModal');
+			var endingAddressModal = document.getElementById('endingAddressModal');
+			var dateOfDepartureModal = document.getElementById('dateOfDepartureModal');
+			var rideTypeModal = document.getElementById('rideTypeModal');
+			var numberOfPassengersModal = document.getElementById('numberOfPassengersModal');
+			
+			
+			startingAddressModal.value = document.getElementById(listingID + "_Starting_Address").innerHTML.trim();
+			endingAddressModal.value = document.getElementById(listingID + "_Ending_Address").innerHTML.trim();
+			dateOfDepartureModal.value = document.getElementById(listingID + "_Date_Of_Departure").innerHTML.trim();
+			rideTypeModal.value = document.getElementById(listingID + "_Ride_Type").innerHTML.trim();
+			numberOfPassengersModal.value = document.getElementById(listingID + "_Passengers").innerHTML.trim();
 		});
 	</script>
 
