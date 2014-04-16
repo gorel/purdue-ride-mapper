@@ -8,166 +8,109 @@
 <script type='text/javascript' src='js/bootstrap.min.js'></script>
 <script type='text/javascript' src='js/bootstrap-datetimepicker.min.js'></script>
 
-<!-- view route modal -->
-<div class="modal fade" id="routeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">Ride Details</h4>
-			</div>
-			<div class="modal-body">
-				<div class="row">
-					<div id="mini_map_canvas" style="height: 400px; width: 100%"></div>
-				</div>
-				<div class="row">
-				<div class="col-md-6">
-					<table class="table table-striped">
-						<tr>
-							<td><b>Starting Address:</b></td>
-							<td>Foobar Drive</td>
-						</tr>
-						<tr>
-							<td><b>Ending Address:</b></td>
-							<td>Foobar Road</td>
-						</tr>
-						<tr>
-							<td><b>Listing Type:</b></td>
-							<td>Hosting a Ride</td>
-						</tr>
-						<tr>
-							<td><b>Number of Passengers</b></td>
-							<td>3</td>
-						</tr>
-						<tr>
-							<td><b>Date of Departure:</b></td>
-							<td>2014-03-26 08:01:00</td>
-						</tr>
-					</table>
-				</div>
-				<div class="col-md-6">
-					<p><b>Send them a message!</b></p>
-					<p>To: johndoe@purdue.edu</p>
-					<form enctype="application/x-www-form-urlencoded" class="form-horizontal" action="/modules/contact/contactProc.php" method="POST">
-						<div class="control-group">
-							<div class="controls">
-								<textarea name="text" id="text" rows="6" class="form-control" cols="80"></textarea>
-							</div>
-						</div>
-						<br>
-						<div class="form-actions">
-							<button class="btn btn-lg btn-primary btn-block" id="sendButton">Send</button>
-						</div>
-					</form>
-				</div>
-				</div>					
-			</div>
-			
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
-</div>
-
 <hr class="featurette-divider">
 <div class="row">
-	<div id="map_canvas" style="height: 400px; width: 100%"></div>
-	<hr class="featurette-divider">
-	<div>
-		<h2 class="form-signin-heading">Search for a ride:</h2>
-		<form class="form-inline" role="form">
-			<div class="form-group">
-				<input id='starting_address_field' type="text" class="form-control" placeholder="Starting Address">
-			</div>
-			<div class="form-group">
-				<input id='ending_address_field' type="text" class="form-control" placeholder="Destination Address">
-			</div>
-			<div class="form-group">
-				<div class='input-group date' id=datetimepicker'>
-					<input id='date_field' type="text" class="form-control" placeholder="Departure Date (optional)" data-format="YYYY-MM-DD hh:mm:ss"/>
-					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		<div id="map_canvas" style="height: 400px; width: 100%"></div>
+		<hr class="featurette-divider">
+		<div>
+			<h2 class="form-signin-heading">Search for a ride:</h2>
+			<form class="form-inline" role="form">
+				<div class="form-group">
+					<input id='starting_address_field' type="text" class="form-control" placeholder="Starting Address">
 				</div>
-			</div>
-			<script type='text/javascript'>
-				$(function () {
-					$('#datetimepicker').datetimepicker();
+				<div class="form-group">
+					<input id='ending_address_field' type="text" class="form-control" placeholder="Destination Address">
+				</div>
+				<div class="form-group">
+					<div class='input-group date' id=datetimepicker'>
+						<input id='date_field' type="text" class="form-control" placeholder="Departure Date (optional)" data-format="YYYY-MM-DD hh:mm:ss"/>
+						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+					</div>
+				</div>
+				<script type='text/javascript'>
+					$(function () {
+						$('#datetimepicker').datetimepicker();
+					});
+				</script>
+
+				<button type="submit" class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button>
+			</form>
+		</div>
+		<br>
+
+		<div>
+			<h2 class="form-signin-heading">Match a ride:</h2>
+			<form class="form-inline" role="form">
+				<div class="form-group">
+					<input id='listing_id_field' type="text" class="form-control" placeholder="Listing ID">
+				</div>
+				<button type="submit" class="btn btn-default" onclick="matchListing(); return false;" >Match</button>
+			</form>
+		</div>
+		<br>
+
+		<script>
+			var map;
+			function loadParameter(key, val)
+			{
+				if (isNaN(val))
+					$("#content").load("modules/findListing/findListing.php?NaNerror");
+				else
+					$("#content").load("modules/findListing/findListing.php?" + key + "=" + val);
+			}
+
+			function matchListing()
+			{
+				var listing_id = parseInt(document.getElementById('listing_id_field').value);
+				loadParameter("matchValue", listing_id);
+			}
+
+			function matchNewAddress()
+			{
+				var starting_address = document.getElementById('starting_address_field').value.split(' ').join('+');
+				var ending_address = document.getElementById('ending_address_field').value.split(' ').join('+');
+				var departure_date = document.getElementById('date_field').value.split(' ').join('+');
+
+				$("#content").load("modules/findListing/findListing.php?starting_address=" + starting_address + "&ending_address=" + ending_address + "&date=" + departure_date);
+			}
+
+			//This script create the map with a default address.
+			//Its current location is somewhere by College Station
+			$(document).ready(function ()
+			{
+				 map = new GMaps
+				({
+					div: '#map_canvas',
+					lat: 40.431042,
+					lng: -86.913651,
+					zoomControl : true,
+					zoomControlOpt:
+					{
+						style : 'SMALL',
+					},
+					panControl : false,
 				});
-			</script>
-
-			<button type="submit" class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button>
-		</form>
-	</div>
-	<br>
-
-	<div>
-		<h2 class="form-signin-heading">Match a ride:</h2>
-		<form class="form-inline" role="form">
-			<div class="form-group">
-				<input id='listing_id_field' type="text" class="form-control" placeholder="Listing ID">
-			</div>
-			<button type="submit" class="btn btn-default" onclick="matchListing(); return false;" >Match</button>
-		</form>
-	</div>
-	<br>
-
-			
-	<script>
-		var map;
-		function loadParameter(key, val)
-		{
-			if (isNaN(val))
-				$("#content").load("modules/findListing/findListing.php?NaNerror");
-			else
-				$("#content").load("modules/findListing/findListing.php?" + key + "=" + val);
-		}
-
-		function matchListing()
-		{
-			var listing_id = parseInt(document.getElementById('listing_id_field').value);
-			loadParameter("matchValue", listing_id);
-		}
-
-		function matchNewAddress()
-		{
-			var starting_address = document.getElementById('starting_address_field').value.split(' ').join('+');
-			var ending_address = document.getElementById('ending_address_field').value.split(' ').join('+');
-			var departure_date = document.getElementById('date_field').value.split(' ').join('+');
-
-			$("#content").load("modules/findListing/findListing.php?starting_address=" + starting_address + "&ending_address=" + ending_address + "&date=" + departure_date);
-		}
-
-		//This script create the map with a default address.
-		//Its current location is somewhere by College Station
-		$(document).ready(function ()
-		{
-			map = new GMaps
-			({
-				div: '#map_canvas',
-				lat: 40.431042,
-				lng: -86.913651,
-				zoomControl : true,
-				zoomControlOpt:
-				{
-					style : 'SMALL',
-				},
-				panControl : false,
 			});
 			
-			map = new GMaps
-			({
-				div: '#mini_map_canvas',
-				lat: 40.431042,
-				lng: -86.913651,
-				zoomControl : true,
-				zoomControlOpt:
-				{
-					style : 'SMALL',
-				},
-				panControl : false,
+			//This script create the map with a default address.
+			//Its current location is somewhere by College Station
+			$(document).ready(function ()
+			{
+				 map = new GMaps
+				({
+					div: '#mini_map_canvas',
+					lat: 40.431042,
+					lng: -86.913651,
+					zoomControl : true,
+					zoomControlOpt:
+					{
+						style : 'SMALL',
+					},
+					panControl : false,
+				});
 			});
-		});
-	</script>
+		</script>
+
 
 	<div id='matcher_wrapper'></div>
 
@@ -508,5 +451,66 @@
 		}
 	</script>
 	
+		<!-- view route modal -->
+	<div class="modal fade" id="routeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Ride Details</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div id="map_canvas" style="height: 400px; width: 100%"></div>
+					</div>
+					<div class="row">
+					<div class="col-md-6">
+						<table class="table table-striped">
+							<tr>
+								<td><b>Starting Address:</b></td>
+								<td>Foobar Drive</td>
+							</tr>
+							<tr>
+								<td><b>Ending Address:</b></td>
+								<td>Foobar Road</td>
+							</tr>
+							<tr>
+								<td><b>Listing Type:</b></td>
+								<td>Hosting a Ride</td>
+							</tr>
+							<tr>
+								<td><b>Number of Passengers</b></td>
+								<td>3</td>
+							</tr>
+							<tr>
+								<td><b>Date of Departure:</b></td>
+								<td>2014-03-26 08:01:00</td>
+							</tr>
+						</table>
+					</div>
+					<div class="col-md-6">
+						<p><b>Send them a message!</b></p>
+						<p>To: johndoe@purdue.edu</p>
+						<form enctype="application/x-www-form-urlencoded" class="form-horizontal" action="/modules/contact/contactProc.php" method="POST">
+							<div class="control-group">
+								<div class="controls">
+									<textarea name="text" id="text" rows="6" class="form-control" cols="80"></textarea>
+								</div>
+							</div>
+							<br>
+							<div class="form-actions">
+								<button class="btn btn-lg btn-primary btn-block" id="sendButton">Send</button>
+							</div>
+						</form>
+					</div>
+					</div>					
+				</div>
+				
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
