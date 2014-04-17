@@ -190,15 +190,26 @@
 			var endingAddressModal = document.getElementsByName('endingAddressModal')[0];
 			var dateOfDepartureModal = document.getElementsByName('dateOfDepartureModal')[0];
 			var numberOfPassengersModal = document.getElementsByName('numberOfPassengersModal')[0];
-			var isRequest = document.getElementsByName('isRequest')[0];
 			
 			console.log(listingID);
 			console.log(startingAddressModal.value);
 			console.log(endingAddressModal.value);
 			console.log(dateOfDepartureModal.value);
 			console.log(numberOfPassengersModal.value);
-			console.log(isRequest.value);
-
+			var isRequest = 0;
+			
+			if(numberOfPassengersModal.disabled)
+			{
+				isRequest = 1;
+			}
+			else
+			{
+				isRequest = 0;
+			}
+			
+			console.log(isRequest);
+			
+			return;
 			$.ajax ({
 				type: "POST",
 				url: "/modules/editListings/editListingsProc.php",
@@ -210,7 +221,7 @@
 					console.log("complete");
 				},
 				data: {"listingID" : listingID, "startingAddress" : startingAddressModal.value, "destinationAddress" : endingAddressModal.value,
-						"passengers" : numberOfPassengersModal.value, "dateTime" : dateOfDepartureModal.value, "isRequest" : isRequest.value},
+						"passengers" : numberOfPassengersModal.value, "dateTime" : dateOfDepartureModal.value, "isRequest" : isRequest},
 				success: function(data) {					
 					console.log("success");	
 					if(data.success == "SUCCESS")
