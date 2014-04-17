@@ -238,11 +238,16 @@
 						echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
 
 						if ($print_offer)
+						{
 							echo '<td id="'.$row['listings_id'].'_Ride_Type">Offering Ride</td>';
+						}
 						else
+						{
 							echo '<td id="'.$row['listings_id'].'_Ride_Type">Requesting Ride</td>';
-
-						echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
+						}
+							
+						echo '<td id="'.$row['listings_id'].'_Passengers">'.$row['passengers'].'</td>';
+						echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';						
 						echo '<input id="'.$row['listings_id'].'_Start_Lat" type="hidden" value="'.$row['start_lat'].'">';
 						echo '<input id="'.$row['listings_id'].'_Start_Long" type="hidden" value="'.$row['start_long'].'">';
 						echo '<input id="'.$row['listings_id'].'_End_Lat" type="hidden" value="'.$row['end_lat'].'">';
