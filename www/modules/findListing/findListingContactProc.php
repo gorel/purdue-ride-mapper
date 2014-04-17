@@ -45,7 +45,7 @@ else
 	
 	mysqli_close($con);
 	
-	sendUserMail($rcpt, $message, $from)
+	//sendUserMail($rcpt, $message, $from)
 }			
 
 echo json_encode(array('success' => "$success", 'rcpt' => "$rcpt", 'from' => "$from")); 
