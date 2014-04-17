@@ -246,9 +246,17 @@
 					if(data.success == "SUCCESS")
 					{
 						console.log("Edit successful");
+
+						document.getElementById(listingID + "_Starting_Address").innerHTML = startingAddressModal.value;
+						document.getElementById(listingID + "_Ending_Address").innerHTML = endingAddressModal.value;
+						document.getElementById(listingID + "_Date_Of_Departure").innerHTML = dateOfDepartureModal.value;
+						document.getElementById(listingID + "_Passengers").innerHTML = numberOfPassengersModal.value
+						
+						$('#editListingsModal').modal('hide');
 					}
 					else
 					{
+						alert("An error has occured. Please try again.");
 						console.log("Edit failed");
 					}
 					enableAllCntl();
