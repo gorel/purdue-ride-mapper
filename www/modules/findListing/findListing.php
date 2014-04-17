@@ -296,6 +296,7 @@
 					$ending_address = htmlspecialchars($_GET['ending_address']);
 					$date = htmlspecialchars($_GET['date']);
 					$mtype = htmlspecialchars($_GET['mtype']);
+					debug_to_console("mtype: $mtype");
 					$matches = array();
 					
 					echo "<h2>Finding matches starting near ". $starting_address . " and ending near ". $ending_address . "</h2>";

@@ -93,7 +93,7 @@ class Matcher:
 	
 	def match(self, user, mtype):
 		if mtype == REQUESTS:
-			matches = self.match_offers_to_request(user)
+			matches = self.match_offer_to_request(user)
 		elif mtype == OFFERS:
 			matches = self.match_request_to_offer(user)
 		else:
