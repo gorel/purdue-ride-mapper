@@ -102,8 +102,8 @@
 						$('#datetimepicker2').datetimepicker();
 					});
 				</script>
-				<button class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button>				
 			</form>
+			<button class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button>				
 			
 		</div>
 		<br>
