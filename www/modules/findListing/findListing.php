@@ -503,6 +503,8 @@
 				  data: {"listingID" : listingID, "message" : message, "from_uid" : from_uid},
 				  success: function(data) {					
 					console.log("success");
+					console.log(data.success);
+					console.log(data.rcpt_id);
 				  } 
 				});
 		}
