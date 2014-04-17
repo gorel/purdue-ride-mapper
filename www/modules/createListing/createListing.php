@@ -23,6 +23,34 @@
 		passengers.disabled = false;
 	}
 </script>
+<script type="text/javascript">
+
+  function checkForm(form)
+  {
+    // regular expression to match required date format
+    re = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+
+    if(form.startdate.value != '' && !form.startdate.value.match(re)) {
+      alert("Invalid date format: " + form.startdate.value);
+      form.startdate.focus();
+      return false;
+    }
+
+    // regular expression to match required time format
+    re = /^\d{1,2}:\d{2}([ap]m)?$/;
+
+    if(form.starttime.value != '' && !form.starttime.value.match(re)) {
+      alert("Invalid time format: " + form.starttime.value);
+      form.starttime.focus();
+      return false;
+    }
+
+    alert("All input fields have been validated!");
+    return true;
+  }
+
+</script>
+
 
 
 <hr class="featurette-divider">
@@ -55,7 +83,7 @@
 				
 				<div class="form-group">
 					<div class='input-group date' id='datetimepicker1'>
-						<input type='text' class="form-control" name="dateTime" placeholder="Desired Departure Date" data-format="YYYY-MM-DD hh:mm:ss"/>
+						<input type='text' class="form-control" name="dateTime" placeholder="Desired Departure Date" data-format="YYYY-MM-DD hh:mm:ss" required autofocus>
 						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
 						</span>
 					</div>
