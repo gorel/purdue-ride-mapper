@@ -509,7 +509,6 @@
 					if(data.success == "TRUE)
 					{
 						alert("Your message has been sent successfully.");
-						document.getElementById('modalMessage').value = "";
 					}
 					else
 					{
