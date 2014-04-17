@@ -92,7 +92,7 @@
 				
 				<div class="form-group">
 					<div class='input-group date' id="datetimepicker2">
-						<input type='text' id='date_field' class="form-control" name="dateTime" placeholder="Desired Departure Date" data-format="YYYY-MM-DD hh:mm:ss"/>
+						<input type='text' class="form-control" name="dateTime" placeholder="Desired Departure Date" data-format="YYYY-MM-DD hh:mm:ss"/>
 						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
 					</div>
 				</div>
@@ -110,25 +110,11 @@
 
 		<script>
 			var map;
-			function loadParameter(key, val)
-			{
-				if (isNaN(val))
-					$("#content").load("modules/findListing/findListing.php?NaNerror");
-				else
-					$("#content").load("modules/findListing/findListing.php?" + key + "=" + val);
-			}
-
-			function matchListing()
-			{
-				var listing_id = parseInt(document.getElementById('listing_id_field').value);
-				loadParameter("matchValue", listing_id);
-			}
-
 			function matchNewAddress()
 			{
 				var starting_address = document.getElementById('starting_address_field').value.split(' ').join('+');
 				var ending_address = document.getElementById('ending_address_field').value.split(' ').join('+');
-				var departure_date = document.getElementById('date_field').value.split(' ').join('+');
+				var departure_date = document.getElementByName('dateTime').value.split(' ').join('+');
 				console.log("modules/findListing/findListing.php?starting_address=" + starting_address + "&ending_address=" + ending_address + "&date=" + departure_date);
 
 
