@@ -197,10 +197,15 @@
 			}
 			else
 			{
+				$print_offer = false;
+				$has_offer = false;
 				foreach($matches as $match)
 				{
+					debug_to_console("Next match: $match");
 					if ($match === "OFFERS")
 					{
+						$print_offer = true;
+
 						echo "</table>";
 						
 						echo "<br>";
@@ -217,6 +222,9 @@
 						</thead>";
 						continue;
 					}
+
+					if ($print_offer)
+						$has_offer = true;
 
 					$val = explode(' ', $match);
 					$match = $val[0];
@@ -268,6 +276,16 @@
 							</script>
 							";
 					}
+
+					if ($print_offer && !$has_offer)
+					{
+						echo "<tr>";
+						echo '<td> </td>';
+						echo "<td>No matches found.</td>";
+						echo "<td> </td>";
+						echo "<td> </td>";
+						echo "</tr>";
+					}
 				}
 				echo "</table>";
 			}
@@ -296,7 +314,6 @@
 					$ending_address = htmlspecialchars($_GET['ending_address']);
 					$date = htmlspecialchars($_GET['date']);
 					$mtype = htmlspecialchars($_GET['mtype']);
-					debug_to_console("mtype: $mtype");
 					$matches = array();
 					
 					echo "<h2>Finding matches starting near ". $starting_address . " and ending near ". $ending_address . "</h2>";
@@ -316,7 +333,7 @@
 						</tr>
 						</thead>";
 					}
-					else if ($mtype === 'requests')
+					else
 					{
 						echo "<h3>Requests that match your search:</h3>";
 						echo "<table class='table table-striped'>
