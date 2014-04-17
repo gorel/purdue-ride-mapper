@@ -41,9 +41,7 @@ else
 	$sql="SELECT email FROM users WHERE user_id = $from_uid";
 	$result = mysqli_query($con, $sql);
 	$row = mysqli_fetch_array($result);
-	$from = $row['email']
-	
-	
+	$from = $row['email'];	
 	
 	mysqli_close($con);
 	
