@@ -107,7 +107,7 @@
 			{
 				if($_SESSION['user'] == $row["user_id"] || $_SESSION['isAdmin']==1)
 				{
-					echo "<tr>";
+					echo '<tr id="'.$row['listings_id'].'_Row">';
 					echo '<td id="'.$row['listings_id'].'_Starting_Address">'. $row['startingAddress'] . '</td>';
 					echo '<td id="'.$row['listings_id'].'_Ending_Address">'. $row["endingAddress"] . '</td>';
 					if($row["isRequest"] == 0)
@@ -168,12 +168,12 @@
 					if(data.success == "SUCCESS")
 					{
 						console.log("Delete successful");
+						var row = document.getElementById(listingID + "_Row");
+						row.parentNode.removeChild(row);						
 					}
 					else
 					{
 						alert("An error has occured. Please try again.");
-						console.log("Delete failed");
-						console.log(data.success);
 					}
 				} 
 			});
