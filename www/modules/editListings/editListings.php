@@ -9,7 +9,7 @@
 <div class="modal fade" id="editListingsModal" tabindex="-1" role="dialog" aria-labelledby="editListingsModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form class = "form-horizontal" action="modules/editListings/editListingsProc.php" method="post">
+			<form class = "form-horizontal"><!--action="modules/editListings/editListingsProc.php" method="post"-->
 				<div class = "modal-header">
 					<div class = "col-lg-1" />
 					<h3>Edit Listing</h3>
@@ -69,11 +69,11 @@
 						});
 					</script>
 				</div>
-				<div class = "modal-footer">
-					<a class = "btn btn-default" data-dismiss = "modal">Close</a>
-					<button class = "btn btn-primary" type = "submit">Save Changes</button>
-				</div>
 			</form>
+			<div class = "modal-footer">
+				<a class = "btn btn-default" data-dismiss="modal">Close</a>
+				<button class = "btn btn-primary" id="saveButton">Save Changes</button>
+			</div>
 		</div>
 	</div>
 </div>
@@ -178,11 +178,13 @@
 				
 			$('#editListingsModal').modal('show');
 		}
+		
 		function disablePassengers()
 		{
 			var passengers = document.getElementsByName('numberOfPassengersModal')[0];
 			passengers.disabled = true;
 		}
+		
 		function enablePassengers()
 		{
 			var passengers = document.getElementsByName('numberOfPassengersModal')[0];
