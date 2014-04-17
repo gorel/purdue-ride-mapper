@@ -15,6 +15,11 @@
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/bootstrap.css" rel="stylesheet">
 		<link href="css/justified-nav.css" rel="stylesheet">
+                <style>
+                  .err { color:#FF0000; font-weight:bold; }
+                  .ok  { color:#397D02; font-weight:bold; }
+                </style>
+
 		
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
@@ -206,69 +211,111 @@
 	
 	<!-- SignIn Form Validation -->
 	<script>
-		var signInEmailValid = false;
-		var signInPasswordValid = false;
+          var signInEmailValid = false;
+	  var signInPasswordValid = false;
 
-		function showRegisterModal()
-		{
-			$('#signInModal').modal('hide');
-			$('#registerModal').modal('show');
-		}
+	  function showRegisterModal()
+	  {
+            $('#signInModal').modal('hide');
+	    $('#registerModal').modal('show');
+	  }
 
-		/**
-		* showPwModal()
-		*
-		* bring up the modal to submit email for resetting password
-		*/
-		function showPwModal()
-		{
-			$('#signInModal').modal('hide');
-			$('#modalPwReset').modal('show');			
-		}
+	  /**
+           * showPwModal()
+	   *
+	   * bring up the modal to submit email for resetting password
+	   */
+	   function showPwModal()
+	   {
+	     $('#signInModal').modal('hide');
+	     $('#modalPwReset').modal('show');			
+	   }
 
-		/**
-		* submitEmail
-		*
-		* process the email to inform user how to reset the password
-		*/
-		function submitEmail()
-		{
-			var elm = document.getElementById('txtEmail');
-			var patt = /[A-Za-z0-9]+@([A-Za-z0-9]+\.[A-Za-z0-9])+/i
+	   /**
+	    * submitEmail
+	    *
+	    * process the email to inform user how to reset the password
+	    */
+	    function submitEmail()
+	    {
+	      var elm = document.getElementById('txtForgotPwEmail');
+	      var patt = /[A-Za-z0-9]+@([A-Za-z0-9]+\.[A-Za-z0-9])+/i
 
-			if (txtEmail.value.trim() == "") 
-			{
-				alert("Please enter an email address");
-				return;
-			}
+	      if (txtForgotPwEmail.value.trim() == "") 
+	      {
+	        alert("Please enter an email address");
+		return;
+	      }
 
-			if (! patt.test(txtEmail.value)) 
-			{
-				alert("Please enter a valid email address!");
-				return;
-			}
+	      if (! patt.test(txtForgotPwEmail.value)) 
+	      {
+		alert("Please enter a valid email address!");
+		return;
+	      }
 
-			$.ajax ({ 
-				type: "POST",
-						url: "/modules/signin/forgotPassword.php", 
-							dataType: 'json',
-							data: {"email" : txtEmail.value.trim()}, 
-					success: function(data) {
+              $.ajax ({ 
+	        type: "POST",
+		url: "/modules/signin/forgotPassword.php", 
+		dataType: 'json',
+		data: {"email" : txtForgotPwEmail.value.trim()}, 
+		success: function(data) {
 
-					if (data.retval == "ERR") 
-					{
-						alert("Error: No such email / database connection failed");
-						$('#modalPwReset').modal('hide');
-						return;
-					}
+		  if (data.retval == "ERR") 
+		  {
+		      alert("Error: No such email / database connection failed");
+		      $('#modalPwReset').modal('hide');
+		      return;
+		  }
 
-						alert("An email has been sent to your account, please check for details.");
-						$('#modalPwReset').modal('hide');
-					}	
-				}); 
+		  alert("An email has been sent to your account, please check for details.");
+		  $('#modalPwReset').modal('hide');
+		}	
+	      }); 
 			
 
-		}
+	    }
+	    
+            /******
+             * signIn()
+             *
+             */
+             function signIn()
+             {
+               var email = $('#txtEmail').val().trim(); 
+               var password = $('#txtPassword').val().trim();
+
+               $.ajax ({
+                 type: "POST",
+                 url: "/modules/signin/signinProc.php",
+                 dataType: 'json',
+                 data: {"email" : email, "password" : password },
+                 success: function(data) {
+		   console.log("Function returned with success");
+                   var errMsg = $('#errAuth');
+
+                   if (data.retval == "AUTH_FAILED_PW") 
+                   {
+                     errMsg.text("Authentication failed. Please retype your password");
+                        
+                   } else if (data.retval == "AUTH_NO_USER") 
+                   {
+                     errMsg.text("Account does not exist. Please register :)");
+
+                   } else if (data.retval == "AUTH_OK")
+                   {
+		     window.location.replace("/");	
+
+                   } else 
+                   { 
+                     errMsg.text("An unexpected error occurred");  
+                   }
+                   
+                   errMsg.show();
+    
+                 }
+               }); 
+               
+             }
 
 		function validateSignInEmail(sender)
 		{
@@ -470,19 +517,20 @@
 	<div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form class="form-signin" action="/modules/signin/signinProc.php" method="post" role="form">		
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h3>Please Sign In</h3>
 					</div>
 					<div class = "modal-body">
+                                                <form id="loginform">
 						<div class="form-group has-error">	
-							<input type="text" class="form-control" name="email" placeholder="Email" onkeyup="validateSignInEmail(this)" required autofocus>
+							<input type="text" class="form-control" name="email" id="txtEmail" placeholder="Email" onkeyup="validateSignInEmail(this)" required autofocus>
 						</div>
 
 						<div class="form-group has-error">
-							<input type="password" class="form-control" name="pass" placeholder="Password" onkeyup="validateSignInPassword(this)" required>
+							<input type="password" class="form-control" name="pass" id="txtPassword" placeholder="Password" onkeyup="validateSignInPassword(this)" required>
 						</div>
+						<label id="errAuth" class="err" hidden="true"></label>
 
 						<div class="form-group">
 							<label class="checkbox">
@@ -491,7 +539,8 @@
 						</div>
 
 						<div class="form-group">
-							<button class="btn btn-lg btn-primary btn-block" type="submit" id="loginButton" disabled>Sign in</button>
+							<button class="btn btn-lg btn-primary btn-block" onclick="signIn(); return false;" id="loginButton" disabled>Sign in</button>
+
 						</div>
 
 						<div class="form-group">
@@ -503,10 +552,10 @@
 							
 						<button class="btn btn-lg btn-primary btn-block" type="reset" onclick="showPwModal()" type="text" id="pwModalButton">Forgot Password?</button>
 					</div>
+</form>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					</div>
-				</form>
 			</div>
 		</div>
 	</div>
@@ -520,7 +569,7 @@
 					<h4 class="modal-title" id="myModalLabel">Send Reset Password Link</h4>
 				</div>
 				<div class="modal-body">
-					<b>Email</b>      <input type="text" class="form-control" name="email" id="txtEmail"><br>
+					<b>Email</b>      <input type="text" class="form-control" name="email" id="txtForgotPwEmail"><br>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

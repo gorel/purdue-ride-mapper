@@ -17,7 +17,7 @@ require '../../lib/email.php';
 // assumes valid input
 
 $email = strtolower($_POST["email"]);
-$hashpw = saltedHash($_POST["pass"]);
+$hashpw = saltedHash($_POST["password"]);
 
 $dbName = 'purdue_test';
 
@@ -42,7 +42,7 @@ $stmt->store_result();
 
 if ($stmt->num_rows < 1)
 {
-	echo "E-Mail is incorrect or it doesn't exist";
+        echo json_encode(array("retval" => "AUTH_NO_USER"));
 	die;
 }
 else
@@ -57,15 +57,16 @@ else
 	{
 		$_SESSION['user']=$user_id;
 		$_SESSION['isAdmin']=$isAdmin;
-		header("Location:../../index.php");
+                echo json_encode(array("retval" => "AUTH_OK"));
 		
 	}
 	else if(!strcmp($password, $hashpw) && $verified==0)
 	{
 		// TODO
 	}
-	else
+	else if (strcmp($password, $hashpw))
 	{
+                echo json_encode(array("retval" => "AUTH_FAILED_PW"));
 		// TODO
 	}
 }
