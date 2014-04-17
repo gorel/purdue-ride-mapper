@@ -117,10 +117,10 @@
 				var ending_address = document.getElementById('ending_address_field').value.split(' ').join('+');
 				console.log(ending_address);
 				var departure_date;
-				//if (document.getElementByName('dateTime') === 'undefined')
-				//	departure_date = document.getElementByName('dateTime').value.split(' ').join('+');
-				//else
-					departure_date="No";
+				if (document.getElementsByName('dateTime')[0] === 'undefined')
+					departure_date = document.getElementsByName('dateTime')[0].value.split(' ').join('+');
+				else
+					departure_date="None";
 				console.log(departure_date);
 
 				console.log("modules/findListing/findListing.php?starting_address=" + starting_address + "&ending_address=" + ending_address + "&date=" + departure_date);
