@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php 
+session_start(); 
+require 'modules/settings/settings.php'; 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -91,6 +95,7 @@
 								echo '<li><a href="#" id="manageUsers" onclick="hideAll(this);">Manage Users</a></li>';
 								echo '<li><a href="#" id="editListings" onclick="hideAll(this);">My Listings</a></li>';
 								echo '<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>';
+								echo '<li><a href="#" id="settings" onclick="hideAll(this);">Settings</a></li>';
 								echo '<li><a href="#" id="logout" onclick="location.href = \'modules/signin/signoutProc.php\';">Log Out</a></li>';
 							}
 
@@ -146,6 +151,7 @@
 				</div>
 
 				<script type="text/javascript">
+                                        
 					$("#editListings").click(function()
 					{
 						$( "#content" ).load( "modules/editListings/editListings.php" );
@@ -189,6 +195,12 @@
 					$("#about").click(function()
 					{
 						$( "#content" ).load( "modules/about/about.php" );
+					});
+
+                                        $("#settings").click(function()
+					{
+						//$( "#content" ).load( "modules/settings/settings.php" );
+						initFields();
 					});
 				</script>
 

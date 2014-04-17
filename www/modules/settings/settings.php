@@ -20,19 +20,18 @@
   <script>
 
   $('#tabs a').click(function (e) {
-    e.preventDefault()
-    $(this).tab('show')
-  })
-
-  $(document).ready(function() {	
-    hideAllPwMsg();
-    fillPref();
+    e.preventDefault();
+    $(this).tab('show');
   });
+  
 
   function initFields()
   {
+        hideAllPwMsg();
 	resetPasswordTab();
-        $('#modalSettings').modal('show')
+        hideAllPrefMsg();
+        fillPref();
+        $('#modalSettings').modal('show');
   }
 
   /**
@@ -158,18 +157,41 @@
   /**
    * Preferences functions
    */
+  function hideAllPrefMsg()
+  {
+    $('#errPref').hide();
+    $('#okPref').hide();
+  }
+
+  function enableAllPrefCntl()
+  {
+      $('#txtAltEmail').prop('disabled', false);
+      $('#txtAltEmail').prop('disabled', false);
+  }
+
+  function disableAllPrefCntl()
+  {
+      $('#txtAltEmail').prop('disabled', true);
+      $('#txtAltEmail').prop('disabled', true);
+  }
+
   function fillPref()
   {
-    var haveAltEmail = $('#default_have_alt_email').val();
-    var altEmail = $('#default_alt_email').val();
+    var haveAltEmail = $('#default_have_alt_email').text();
+    var altEmail = $('#default_alt_email').text();
 
     var txtAltEmail = $('#txtAltEmail');
     var cbAltEmail = $('#cbAltEmail');
 
-    if (haveAltEmail)
+    if (haveAltEmail == 1)
     {
       cbAltEmail.prop('checked', true);
       txtAltEmail.val(altEmail);
+    }
+    else
+    {
+      cbAltEmail.prop('checked', false);
+      txtAltEmail.prop('disabled', true);
     }
   }
 
@@ -180,9 +202,10 @@
 
     if (cbAltEmail.is(':checked'))
     {
-      if (! validateEduMail(txtAltEmail.val()))
+      if (! validateAltMail(txtAltEmail.val()))
       {
-        console.log(txtAltEmail.val() + " is invalid");
+        $('#errPref').text("Please enter a valid email address");
+        $('#errPref').show();
         return false;
       }
     }
@@ -194,10 +217,10 @@
   {
     if ($('#cbAltEmail').prop('checked')) {
       $('#txtAltEmail').prop('disabled', false);
-      $('#default_have_alt_email').val("1");
+      $('#default_have_alt_email').text("1");
     } else {
       $('#txtAltEmail').prop('disabled', true);
-      $('#default_have_alt_email').val("0");
+      $('#default_have_alt_email').text("0");
     }
   }
 
@@ -209,46 +232,47 @@
     var defaultHaveAltEmail = $('#default_have_alt_email');
     var defaultAltEmail = $('#default_alt_email');
 
+    hideAllPrefMsg();
+
     if (validatePref())
     {
       if ($('#cbAltEmail').is(':checked'))
-        defaultAltEmail.val(txtAltEmail.val());
+        defaultAltEmail.text(txtAltEmail.val());
       else
-        defaultAltEmail.val("");
+        defaultAltEmail.text("");
 
       $.ajax ({
         type: "POST",
         url: "/modules/settings/savePref.php",
         dataType: "json",
         beforeSend: function() {
-	  console.log("beforesend");
-          console.log(defaultHaveAltEmail.val());
-          console.log(defaultAltEmail.val());
-          console.log(window.uid);
+          disableAllPrefCntl();
 
         },
-        complete: function() {
-	  console.log("completed");
-
-        },
-        data: {"have_alt_email" : defaultHaveAltEmail.val(), "alt_email" : defaultAltEmail.val(), "uid" : window.uid},
+        data: {"have_alt_email" : defaultHaveAltEmail.text(), "alt_email" : defaultAltEmail.text(), "uid" : window.uid},
         success: function(data) {
-          if (data.status == "AUTH_FAILED")
+          if (data.retval == "DB_ERR")
           {
-	    $('#errCurrPw').text("Wrong Password. Please retype your current password");
-            $('#errCurrPw').show(5,function() {$('#txtCurrPw').focus()});
+            $('#errPref').text("An unexpected DB error occurred");
+            $('#errPref').show();
           }
-          else {
-     	    resetPasswordTab();
-            $('#okNewPw').text("Password updated successfully");
-            $('#okNewPw').show();
+          else 
+          {
+            $('#okPref').text("Your preferences have been saved");
+            $('#okPref').show();
+  
           }  
+          enableAllPrefCntl();
 
         } 
       });
     }
   }
-   
+
+  $(document).ready(function() {
+//    initFields();
+  });
+
   </script>
 
 </head>
@@ -256,11 +280,7 @@
 
 <hr class="featurette-divider">
 
-<button class="btn btn-success btn-small" onclick="initFields()">CLICK</button>
-
-
 <?php
-  session_start();
 			
   if (!isset($_SESSION['user'])) 
   {
@@ -328,15 +348,17 @@
 	          </div>
 
 	          <div class='tab-pane' id='preferences'>
-                    <div class='form-horizontal'>
+                    <form class='form-horizontal'>
                       <input type='checkbox' id='cbAltEmail' onclick='toggleAltEmail()'>
 			<label class='control-label' for='cbAltEmail'>I want to be contacted by users through an alternate email</label>
 	                <input class='form-control' type='text' id='txtAltEmail'>
-			<input type='text' value='$have_alt_email' id='default_have_alt_email'/>
-			<input type='text' value='$alt_email' id='default_alt_email'/>
+                        <label class='err' id='errPref' hidden='true'></label>
+                        <label class='ok' id='okPref' hidden='true'></label>
+			<label id='default_have_alt_email' hidden='true'>$have_alt_email</label>
+			<label id='default_alt_email' hidden='true'>$alt_email</label>
                         <br>
-                        <button class='btn btn-primary form-control' id='btnChangePw', onClick='savePref()'; return false;'>Save Preferences</button>
-                    </div>
+                        <button class='btn btn-primary form-control' id='btnSavePref' onClick='savePref(); return false;'>Save Preferences</button>
+                    </form>
                   </div>
 
 	          <div class='tab-pane active' id='changepw'>
@@ -361,7 +383,6 @@
             </div>
       <div class='modal-footer'>
         <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-        <button type='button' class='btn btn-primary' onClick=''>Save changes</button>
       </div>
     </div>
   </div>
