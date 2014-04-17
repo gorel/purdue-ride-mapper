@@ -25,33 +25,29 @@
 </script>
 <script type="text/javascript">
 
-  function checkForm(form)
-  {
-    // regular expression to match required date format
-    re = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+function checkForm(form)
+{
+	// regular expression to match required date format
+	re = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
 
-    if(form.startdate.value != '' && !form.startdate.value.match(re)) {
-      alert("Invalid date format: " + form.startdate.value);
-      form.startdate.focus();
-      return false;
-    }
-
-    // regular expression to match required time format
-    re = /^\d{1,2}:\d{2}([ap]m)?$/;
-
-    if(form.starttime.value != '' && !form.starttime.value.match(re)) {
-      alert("Invalid time format: " + form.starttime.value);
-      form.starttime.focus();
-      return false;
-    }
-
-    alert("All input fields have been validated!");
-    return true;
-  }
+	if(form.startdate.value != '' && !form.startdate.value.match(re)) 
+	{
+		alert("Invalid date format: " + form.startdate.value);
+		form.startdate.focus();
+		return false;
+	}
+	return true;
+}
 
 </script>
+<script type="text/javascript">
 
+function doFunction()
+{
+	alert("Test");
+}
 
+</script>
 
 <hr class="featurette-divider">
 <div class="container" >
@@ -95,7 +91,7 @@
 					});
 				</script>
 
-				<button class="btn btn-lg btn-primary btn-block" type="submit" id="submitButton">Submit</button>
+				<button class="btn btn-lg btn-primary btn-block" type="submit" id="submitButton"  onclick="doFunction();">Submit</button>
 			</form>
 		</div> <!-- col-md-4 -->
 	</div> <!-- row -->
