@@ -48,5 +48,5 @@ else
 	//sendUserMail($rcpt, $message, $from)
 }			
 
-echo json_encode(array('success' => '$success', 'rcpt_id' => "$rcpt_id")); 
+echo json_encode(array('success' => "$success", 'rcpt_id' => "$rcpt_id")); 
 ?>

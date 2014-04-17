@@ -504,7 +504,7 @@
 				  success: function(data) {					
 					console.log("success");
 					console.log(data.success);
-					console.log(data.rcpt_id);
+					console.log(data.rcpt);
 				  } 
 				});
 		}
