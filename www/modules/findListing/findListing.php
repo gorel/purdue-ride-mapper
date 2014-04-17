@@ -214,6 +214,7 @@
 						<th> Match % </th>
 						<th> Starting Address </th>
 						<th> Ending Address </th>
+						<th> Type </th>
 						<th> Date of Departure </th>
 						</tr>
 						</thead>";
@@ -230,16 +231,18 @@
 					$result = mysqli_query($con,$sql);
 					while($row = mysqli_fetch_array($result))
 					{
-						if ($print_offer)
-							echo '<div id="'.$row['listings_id'].'_Ride_Type">Offering Ride</div>';
-						else
-							echo '<div id="'.$row['listings_id'].'_Ride_Type">Requesting Ride</div>';
 
 						echo '<tr id="'.$row['listings_id'].'">';
 						echo '<td id="'.$row['listings_id'].'_Listing_ID">'.$row['listings_id'].'</td>';
 						echo '<td id="'.$row['listings_id'].'_Match">'.$match.'</td>';
 						echo '<td id="'.$row['listings_id'].'_Starting_Address">'.$row['startingAddress'].'</td>';
 						echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
+
+						if ($print_offer)
+							echo '<td id="'.$row['listings_id'].'_Ride_Type">Offering Ride</td>';
+						else
+							echo '<td id="'.$row['listings_id'].'_Ride_Type">Requesting Ride</td>';
+
 						echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
 						echo '<input id="'.$row['listings_id'].'_Start_Lat" type="hidden" value="'.$row['start_lat'].'">';
 						echo '<input id="'.$row['listings_id'].'_Start_Long" type="hidden" value="'.$row['start_long'].'">';
@@ -330,6 +333,7 @@
 						<th> Match % </th>
 						<th> Starting Address </th>
 						<th> Ending Address </th>
+						<th> Type </th>
 						<th> Date of Departure </th>
 						</tr>
 						</thead>";
@@ -344,6 +348,7 @@
 						<th> Match % </th>
 						<th> Starting Address </th>
 						<th> Ending Address </th>
+						<th> Type </th>
 						<th> Date of Departure </th>
 						</tr>
 						</thead>";
