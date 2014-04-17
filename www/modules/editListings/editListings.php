@@ -179,6 +179,16 @@
 			$('#editListingsModal').modal('show');
 		}
 		
+		$('#saveButton').on('click', function()
+		{				
+			saveListing();
+		});
+		
+		function saveListing()
+		{
+			alert("Save listing!");
+		}
+		
 		function disablePassengers()
 		{
 			var passengers = document.getElementsByName('numberOfPassengersModal')[0];
