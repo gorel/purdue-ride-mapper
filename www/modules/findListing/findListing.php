@@ -181,7 +181,7 @@
 			echo $output;
 		}
 
-		function display_output($matches)
+		function display_output($con, $matches)
 		{
 			debug_to_console($matches);
 
@@ -351,7 +351,7 @@
 
 					}
 
-					display_output($matches);
+					display_output($con, $matches);
 				}
 				else
 				{
