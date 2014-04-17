@@ -209,7 +209,6 @@
 						echo "<table class=table table-striped'>
 						<thead>
 						<tr>
-						<th> Listing ID </th>
 						<th> Match % </th>
 						<th> Starting Address </th>
 						<th> Ending Address </th>
@@ -232,7 +231,6 @@
 					{
 
 						echo '<tr id="'.$row['listings_id'].'">';
-						echo '<td id="'.$row['listings_id'].'_Listing_ID">'.$row['listings_id'].'</td>';
 						echo '<td id="'.$row['listings_id'].'_Match">'.$match.'</td>';
 						echo '<td id="'.$row['listings_id'].'_Starting_Address">'.$row['startingAddress'].'</td>';
 						echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
@@ -328,7 +326,6 @@
 						echo "<table class='table table-striped'>
 						<thead>
 						<tr>
-						<th> Listing ID </th>
 						<th> Match % </th>
 						<th> Starting Address </th>
 						<th> Ending Address </th>
@@ -343,7 +340,6 @@
 						echo "<table class='table table-striped'>
 						<thead>
 						<tr>
-						<th> Listing ID </th>
 						<th> Match % </th>
 						<th> Starting Address </th>
 						<th> Ending Address </th>
@@ -385,7 +381,6 @@
 					<th> Ride Type </th>
 					<th> Passengers </th>
 					<th> Date of Departure </th>
-					<th> Listing ID </th>
 					</tr>
 					</thead>";
 					while($row = mysqli_fetch_array($result))
@@ -406,7 +401,7 @@
 						echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
 						echo "<td>". $row['listings_id'] . "</td>";
 						echo "<td>
-							<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
+								<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
 							</td>";
 						echo '<input id="'.$row['listings_id'].'_Start_Lat" type="hidden" value="'.$row['start_lat'].'">';
 						echo '<input id="'.$row['listings_id'].'_Start_Long" type="hidden" value="'.$row['start_long'].'">';
