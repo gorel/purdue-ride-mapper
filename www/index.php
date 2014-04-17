@@ -35,6 +35,7 @@
 		<script type="text/javascript">
 			function showSignInModal()
 			{
+				clrLoginCntl();
 				$('#signInModal').modal('show');
 			}
 			
@@ -275,47 +276,53 @@
 
 	    }
 	    
-            /******
+            /**
              * signIn()
              *
              */
-             function signIn()
-             {
-               var email = $('#txtEmail').val().trim(); 
-               var password = $('#txtPassword').val().trim();
+            function signIn()
+            {
+              var email = $('#txtEmail').val().trim(); 
+              var password = $('#txtPassword').val().trim();
 
-               $.ajax ({
-                 type: "POST",
-                 url: "/modules/signin/signinProc.php",
-                 dataType: 'json',
-                 data: {"email" : email, "password" : password },
-                 success: function(data) {
-		   console.log("Function returned with success");
-                   var errMsg = $('#errAuth');
+              $.ajax ({
+                type: "POST",
+                url: "/modules/signin/signinProc.php",
+                dataType: 'json',
+                data: {"email" : email, "password" : password },
+                success: function(data) {
+                  var errMsg = $('#errAuth');
 
-                   if (data.retval == "AUTH_FAILED_PW") 
-                   {
-                     errMsg.text("Authentication failed. Please retype your password");
-                        
-                   } else if (data.retval == "AUTH_NO_USER") 
-                   {
-                     errMsg.text("Account does not exist. Please register :)");
+                  if (data.retval == "AUTH_FAILED_PW") 
+                  {
+                    errMsg.text("Authentication failed. Please retype your password");
+                       
+                  } else if (data.retval == "AUTH_NO_USER") 
+                  {
+                    errMsg.text("Account does not exist. Please register :)");
 
-                   } else if (data.retval == "AUTH_OK")
-                   {
-		     window.location.replace("/");	
+                  } else if (data.retval == "AUTH_OK")
+                  {
+        	    window.location.replace("/");	
 
-                   } else 
-                   { 
-                     errMsg.text("An unexpected error occurred");  
-                   }
+                  } else 
+                  { 
+                    errMsg.text("An unexpected error occurred");  
+                  }
                    
-                   errMsg.show();
+                  errMsg.show();
     
-                 }
-               }); 
+                }
+              }); 
                
-             }
+            }
+
+            function clrLoginCntl()
+            {
+              $('errAuth').hide();
+              $('#txtEmail').val("");
+              $('#txtPassword').val("");
+            }
 
 		function validateSignInEmail(sender)
 		{
