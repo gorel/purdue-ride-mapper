@@ -168,10 +168,12 @@
 			if(document.getElementById(listingID + "_Ride_Type").innerHTML.trim() == "Requesting Ride")
 			{
 				requestRadio.click();
+				numberOfPassengersModal.disabled = true;
 			}
 			else
 			{
 				offerRadio.click();
+				numberOfPassengersModal.disabled = false;
 			}
 				
 			$('#editListingsModal').modal('show');
