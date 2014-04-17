@@ -183,6 +183,8 @@
 
 		function display_output($matches)
 		{
+			debug_to_console($matches);
+
 			//If len(output) == 0, print "no matches"
 			if (strlen($matches[0]) === 0 || $matches[0] === "OFFERS")
 			{
