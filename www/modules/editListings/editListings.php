@@ -98,8 +98,8 @@
 			<tr>
 			<th> Starting Address </th>
 			<th> Ending Address </th>
-			<th> Hosting </th>
-			<th> Number of Passengers </th>
+			<th> Ride Type </th>
+			<th> Passengers </th>
 			<th> Date of Departure </th>
 			</tr>
 			</thead>";
