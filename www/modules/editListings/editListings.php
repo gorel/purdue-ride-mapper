@@ -21,7 +21,7 @@
 						<div class = "col-lg-1" />
 						<div class = "col-lg-10">
 							<label>Starting Address</label>
-							<input type="text" class="form-control" placeholder="Starting Location" name="startingAddressModal" required autofocus>
+							<input type="text" class="form-control" placeholder="Starting Location" name="startingAddressModal" id="startingAddressModal"required autofocus>
 						</div>
 					</div>
 
@@ -30,7 +30,7 @@
 						<div class = "col-lg-1" />
 						<div class = "col-lg-10">
 							<label>Ending Address</label>
-							<input type="text" class="form-control" placeholder="Destination" name="endingAddressModal" required autofocus>
+							<input type="text" class="form-control" placeholder="Destination" name="endingAddressModal"  id="endingAddressModal" required autofocus>
 						</div>
 					</div>
 
@@ -46,7 +46,7 @@
 						<div class = "col-lg-1" />
 						<div class = "col-lg-10">
 							<label>Number of Passengers</label>
-							<input type="text" class="form-control" placeholder="Number of Passengers" name="numberOfPassengersModal" required autofocus disabled>
+							<input type="text" class="form-control" placeholder="Number of Passengers" name="numberOfPassengersModal" id="numberOfPassengersModal" required autofocus disabled>
 						</div>
 					</div>
 
@@ -55,7 +55,7 @@
 						<div class = "col-lg-10">
 							<label>Date of Departure</label>
 							<div class='input-group date' id='datetimepicker1'>
-								<input type='text' class="form-control" name="dateOfDepartureModal" placeholder="Desired Departure Date" data-format="YYYY-MM-DD hh:mm:ss"/>
+								<input type='text' class="form-control" name="dateOfDepartureModal" id="dateOfDepartureModal" placeholder="Desired Departure Date" data-format="YYYY-MM-DD hh:mm:ss"/>
 								<span class="input-group-addon">
 									<span class="glyphicon glyphicon-calendar"></span>
 								</span>
