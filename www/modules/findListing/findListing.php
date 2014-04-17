@@ -299,7 +299,7 @@
 					$matches = array();
 					
 					echo "<h2>Finding matches starting near ". $starting_address . " and ending near ". $ending_address . "</h2>";
-					exec("python ../../../src/matcher.py $starting_address $ending_address $date $mtype", $matches);
+					exec("python ../../../src/matcher.py \"$starting_address\" \"$ending_address\" \"$date\" \"$mtype\"", $matches);
 
 					if ($mtype === 'offers')
 					{
