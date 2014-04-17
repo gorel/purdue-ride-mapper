@@ -282,19 +282,6 @@
 
 <?php
 			
-  if (!isset($_SESSION['user'])) 
-  {
-  // TODO: Need to find a better way to redirect
-  /*
-    echo "<script type='text/javascript'>
-            $(\"#content\").load(\"/home.php\");
-            document.getElementById('manageUsers').parentNode.className = \"inactive\";
-            document.getElementById('home').parentNode.className = \"active\";
-          </script>";
-	*/
-    echo "Not logged in";
-    die();
-  }
 
   $uid = $_SESSION['user'];
   echo "<script> window.uid=$uid;</script>";
@@ -387,20 +374,5 @@
     </div>
   </div>
 </div>"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
 

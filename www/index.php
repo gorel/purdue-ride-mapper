@@ -1,7 +1,4 @@
-<?php 
-session_start(); 
-require 'modules/settings/settings.php'; 
-?>
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -199,7 +196,6 @@ require 'modules/settings/settings.php';
 
                                         $("#settings").click(function()
 					{
-						//$( "#content" ).load( "modules/settings/settings.php" );
 						initFields();
 					});
 				</script>
@@ -644,3 +640,4 @@ require 'modules/settings/settings.php';
 		</div>
 	</div>
 </html>
+<?php require 'modules/settings/settings.php' ?>
