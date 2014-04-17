@@ -117,7 +117,7 @@
 				var ending_address = document.getElementById('ending_address_field').value.split(' ').join('+');
 				console.log(ending_address);
 				var departure_date;
-				if (document.getElementByName('dateTime').value.length != 0)
+				if (document.getElementByName('dateTime').value === 'undefined')
 					departure_date = document.getElementByName('dateTime').value.split(' ').join('+');
 				else
 					departure_date="";
