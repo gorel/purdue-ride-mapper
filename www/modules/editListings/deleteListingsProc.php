@@ -4,7 +4,7 @@
 
 	if(mysqli_connect_errno())
 	{
-		echo json_encode(array('success' => "FAILURE"));
+		echo json_encode(array('success' => "FAILURE1"));
 	}
 	else
 	{
@@ -12,7 +12,7 @@
 		if (!mysqli_query($con,$sql))
 		{
 			mysqli_close($con);
-			echo json_encode(array('success' => "FAILURE"));
+			echo json_encode(array('success' => "FAILURE2"));
 		}
 		else
 		{

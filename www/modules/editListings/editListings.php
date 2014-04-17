@@ -161,7 +161,7 @@
 				complete: function() {
 					console.log("complete");
 				},
-				data: {"listingID" : listingID},
+				data: {"listingsID" : listingID},
 				success: function(data) {					
 					console.log("success");	
 
@@ -173,6 +173,7 @@
 					{
 						alert("An error has occured. Please try again.");
 						console.log("Delete failed");
+						console.log(data.success);
 					}
 				} 
 			});
