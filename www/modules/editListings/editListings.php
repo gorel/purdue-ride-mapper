@@ -168,6 +168,7 @@
 					if(data.success == "SUCCESS")
 					{
 						console.log("Delete successful");
+						alert("The listing was successfully deleted.");
 						var row = document.getElementById(listingID + "_Row");
 						row.parentNode.removeChild(row);						
 					}
