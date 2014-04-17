@@ -233,6 +233,7 @@
 					$result = mysqli_query($con,$sql);
 					while($row = mysqli_fetch_array($result))
 					{
+						debug_to_console("Printing the row!");
 						echo '<tr id="'.$row['listings_id'].'">';
 						echo '<td id="'.$row['listings_id'].'_Listing_ID">'.$row['listings_id'].'</td>';
 						echo '<td id="'.$row['listings_id'].'_Match">'.$match.'</td>';
