@@ -31,7 +31,7 @@ else
 	$row = mysqli_fetch_array($result);
 	$rcpt_id = $row['user_id'];
 
-	$sql="SELECT email FROM users WHERE user_id = $rcpt_id";
+	$sql="SELECT email FROM users WHERE user_id = 90";
 	$result = mysqli_query($con, $sql);
 	$row = mysqli_fetch_array($result);
 	$rcpt = $row['email'];
