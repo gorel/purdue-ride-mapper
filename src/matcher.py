@@ -83,6 +83,13 @@ class User:
 
 		self.date = date
 
+	def __str__(self):
+		s =	"start_lat: " + start_lat + " end_lat: " + end_lat +
+			" start_lon: " + start_lon + " end_lon: " + end_lon + 
+			"date: " + date
+		return s
+			
+
 class Matcher:
 	def __init__(self):
 		#self.db = mysql.connect('localhost', 'collegecarpool', 'collegecarpool', 'purdue_test')
@@ -92,6 +99,8 @@ class Matcher:
 		return User(start_coords[0], start_coords[1], end_coords[0], end_coords[1], date)
 	
 	def match(self, user, mtype):
+		print user
+		print mtype
 		if mtype == REQUESTS:
 			matches = self.match_offers_to_request(user)
 		elif mtype == OFFERS:
