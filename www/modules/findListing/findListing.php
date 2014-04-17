@@ -119,6 +119,9 @@
 					departure_date = document.getElementByName('dateTime').value.split(' ').join('+');
 				else
 					departure_date="";
+				console.log(starting_address);
+				console.log(ending_address);
+				console.log(departure_date);
 
 				console.log("modules/findListing/findListing.php?starting_address=" + starting_address + "&ending_address=" + ending_address + "&date=" + departure_date);
 
