@@ -89,6 +89,12 @@
 				<div class="form-group">
 					<input id='ending_address_field' type="text" class="form-control" placeholder="Destination Address">
 				</div>
+
+				<div class="form-group">
+					<input type='radio' name='mtype' value='requests'>Requests
+					<input type='radio' name='mtype' value='offers'>Offers
+					<input type='radio' name='mtype' value='both' checked>Both<br>
+				</div>
 				
 				<div class="form-group">
 					<div class='input-group date' id="datetimepicker2">
@@ -114,14 +120,23 @@
 			{
 				var starting_address = document.getElementById('starting_address_field').value.split(' ').join('+');
 				var ending_address = document.getElementById('ending_address_field').value.split(' ').join('+');
+
+				var mtypes = document.getElementsByName('mtype');
+				var mtype;
+				for (var i = 0; i < mtypes.length; i++)
+					if (mtypes[i].checked)
+					{
+						mtype = mtypes[i].value;
+						break;
+					}
+
 				var departure_date;
 				if (!(document.getElementsByName('dateTime')[0] === 'undefined'))
 					departure_date = document.getElementsByName('dateTime')[0].value.split(' ').join('+');
 				else
 					departure_date="None";
 
-				console.log("modules/findListing/findListing.php?starting_address=" + starting_address + "&ending_address=" + ending_address + "&date=" + departure_date);
-				$("#content").load("modules/findListing/findListing.php?starting_address=" + starting_address + "&ending_address=" + ending_address + "&date=" + departure_date);
+				$("#content").load("modules/findListing/findListing.php?starting_address=" + starting_address + "&ending_address=" + ending_address + "&date=" + departure_date + "&mtype=" + mtype);
 			}
 
 			//This script create the map with a default address.
@@ -166,6 +181,96 @@
 			echo $output;
 		}
 
+		function display_output($matches)
+		{
+			//If len(output) == 0, print "no matches"
+			if (strlen($matches[0]) === 0 || $matches[0] === "OFFERS")
+			{
+				echo "<tr>";
+				echo '<td> </td>';
+				echo "<td>No matches found.</td>";
+				echo "<td> </td>";
+				echo "<td> </td>";
+				echo "</tr>";
+			}
+			else
+			{
+				foreach($matches as $match)
+				{
+					if ($match === "OFFERS")
+					{
+						echo "</table>";
+						
+						echo "<br>";
+						echo "<h3>Offers that match your search:</h3>";
+						echo "<table class=table table-striped'>
+						<thead>
+						<tr>
+						<th> Listing ID </th>
+						<th> Match % </th>
+						<th> Starting Address </th>
+						<th> Ending Address </th>
+						<th> Date of Departure </th>
+						</tr>
+						</thead>";
+						continue;
+					}
+
+					$val = explode(' ', $match);
+					$match = $val[0];
+					$id = $val[1];
+					$sql = "SELECT * FROM listings WHERE listings_id=$id";
+					$result = mysqli_query($con,$sql);
+					while($row = mysqli_fetch_array($result))
+					{
+						echo '<tr id="'.$row['listings_id'].'">';
+						echo '<td id="'.$row['listings_id'].'_Listing_ID">'.$row['listings_id'].'</td>';
+						echo '<td id="'.$row['listings_id'].'_Match">'.$match.'</td>';
+						echo '<td id="'.$row['listings_id'].'_Starting_Address">'.$row['startingAddress'].'</td>';
+						echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
+						echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
+						echo "<td>". $i . "</td>";
+						echo '<input id="'.$row['listings_id'].'_Start_Lat" type="hidden" value="'.$row['start_lat'].'">';
+						echo '<input id="'.$row['listings_id'].'_Start_Long" type="hidden" value="'.$row['start_long'].'">';
+						echo '<input id="'.$row['listings_id'].'_End_Lat" type="hidden" value="'.$row['end_lat'].'">';
+						echo '<input id="'.$row['listings_id'].'_End_Long" type="hidden" value="'.$row['end_long'].'">';
+						echo "<td>
+								<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
+							</td>";
+
+						echo "</tr>";
+						echo "<script>
+								$(document).ready(function()
+								{
+									map.addMarker
+									({
+										lat:". $row['start_lat'] . ",
+										lng:". $row['start_long'] . ",
+									});
+									map.drawRoute
+									({
+										origin: [". $row['start_lat'] .", " . $row['start_long'] . "],
+										destination: [". $row['end_lat'].", " . $row['end_long'] . "],
+										travelMode: 'driving',
+										strokeColor: '". random_color() ."',
+										strokeOpacity: 0.6,
+										strokeWeight: 6
+									});
+									map.addMarker
+									({
+										lat:". $row['end_lat'] . ",
+										lng:". $row['end_long'] . ",
+									})
+									map.fitZoom();
+								});
+							</script>
+							";
+					}
+				}
+				echo "</table>";
+			}
+		}
+
 		// matcher can now be taken out of the if-else condition. There was a
                 // php session error and I moved the call to start session to the top - tim
 
@@ -188,118 +293,46 @@
 					$starting_address = htmlspecialchars($_GET['starting_address']);
 					$ending_address = htmlspecialchars($_GET['ending_address']);
 					$date = htmlspecialchars($_GET['date']);
+					$mtype = htmlspecialchars($_GET['mtype']);
 					$matches = array();
 					
 					echo "<h2>Finding matches starting near ". $starting_address . " and ending near ". $ending_address . "</h2>";
+					exec("python ../../../src/matcher.py $starting_address $ending_address $date $mtype", $matches);
 
-					echo "<h2>Requests that match your search:</h2>";
-					echo "<table class='table table-striped'>
-					<thead>
-					<tr>
-					<th> Listing ID </th>
-					<th> Match % </th>
-					<th> Starting Address </th>
-					<th> Ending Address </th>
-					<th> Date of Departure </th>
-					</tr>
-					</thead>";
-
-					exec('python ../../../src/matcher.py "'. $starting_address . '" "' . $ending_address . '" "' . $date . '"', $matches);
-
-					//TODO: Split on OFFERS
-					//If len(output) == 0, print "no matches"
-					if (strlen($matches[0]) == 0)
+					if ($mtype === 'offers')
 					{
-						echo "<tr>";
-						echo '<td> </td>';
-						echo "<td>No matches found.</td>";
-						echo "<td> </td>";
-						echo "<td> </td>";
-						echo "</tr>";
+						echo "<h3>Offers that match your search:</h3>";
+						echo "<table class='table table-striped'>
+						<thead>
+						<tr>
+						<th> Listing ID </th>
+						<th> Match % </th>
+						<th> Starting Address </th>
+						<th> Ending Address </th>
+						<th> Date of Departure </th>
+						</tr>
+						</thead>";
 					}
-					else
+					else if ($mtype === 'requests')
 					{
-						foreach($matches as $match)
-						{
-							if ($match === "OFFERS")
-							{
-								echo "</table>";
-								echo "<br>";
-								echo "<h2>Offers that match your search:</h2>";
-								echo "<table class=table table-striped'>
-								<thead>
-								<tr>
-								<th> Listing ID </th>
-								<th> Match % </th>
-								<th> Starting Address </th>
-								<th> Ending Address </th>
-								<th> Date of Departure </th>
-								</tr>
-								</thead>";
-								continue;
-							}
+						echo "<h3>Requests that match your search:</h3>";
+						echo "<table class='table table-striped'>
+						<thead>
+						<tr>
+						<th> Listing ID </th>
+						<th> Match % </th>
+						<th> Starting Address </th>
+						<th> Ending Address </th>
+						<th> Date of Departure </th>
+						</tr>
+						</thead>";
 
-							$val = explode(' ', $match);
-							$match = $val[0];
-							$id = $val[1];
-							$sql = "SELECT * FROM listings WHERE listings_id=$id";
-							$result = mysqli_query($con,$sql);
-							while($row = mysqli_fetch_array($result))
-							{
-								echo '<tr id="'.$row['listings_id'].'">';
-								echo '<td id="'.$row['listings_id'].'_Listing_ID">'.$row['listings_id'].'</td>';
-								echo '<td id="'.$row['listings_id'].'_Match">'.$match.'</td>';
-								echo '<td id="'.$row['listings_id'].'_Starting_Address">'.$row['startingAddress'].'</td>';
-								echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
-								echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
-								echo "<td>". $i . "</td>";
-								echo '<input id="'.$row['listings_id'].'_Start_Lat" type="hidden" value="'.$row['start_lat'].'">';
-								echo '<input id="'.$row['listings_id'].'_Start_Long" type="hidden" value="'.$row['start_long'].'">';
-								echo '<input id="'.$row['listings_id'].'_End_Lat" type="hidden" value="'.$row['end_lat'].'">';
-								echo '<input id="'.$row['listings_id'].'_End_Long" type="hidden" value="'.$row['end_long'].'">';
-								echo "<td>
-										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
-									</td>";
-
-								echo "</tr>";
-								echo "<script>
-										$(document).ready(function()
-										{
-											map.addMarker
-											({
-												lat:". $row['start_lat'] . ",
-												lng:". $row['start_long'] . ",
-											});
-											map.drawRoute
-											({
-												origin: [". $row['start_lat'] .", " . $row['start_long'] . "],
-												destination: [". $row['end_lat'].", " . $row['end_long'] . "],
-												travelMode: 'driving',
-												strokeColor: '". random_color() ."',
-												strokeOpacity: 0.6,
-												strokeWeight: 6
-											});
-											map.addMarker
-											({
-												lat:". $row['end_lat'] . ",
-												lng:". $row['end_long'] . ",
-											})
-											map.fitZoom();
-										});
-									</script>
-									";
-
-							}
-							
-						}
-						echo "</table>";
 					}
 
+					display_output($matches);
 				}
 				else
 				{
-					if (isset($_GET['NaNerror']))
-						echo "<div style='color: red; font-size: 14pt;'>Error: Value is not a number.</div>";
 
 					$sqlCount = "SELECT COUNT(listings_id) FROM listings";
 					$countRes = mysqli_query($con,$sqlCount);

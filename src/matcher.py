@@ -7,6 +7,10 @@ import sys
 import MySQLdb as mysql
 import urllib2
 
+REQUESTS = 0
+OFFERS = 1
+BOTH = 2
+
 # Circle class to represent a geometric Circle object
 class Circle:
 	def __init__(self, lat, lon, rad):
@@ -87,8 +91,13 @@ class Matcher:
 	def get(self, start_coords, end_coords, date):
 		return User(start_coords[0], start_coords[1], end_coords[0], end_coords[1], date)
 	
-	def match(self, user):
-		matches = self.match_to_any(user)
+	def match(self, user, mtype):
+		if mtype == REQUESTS:
+			matches = self.match_offers_to_request(user)
+		elif mtype == OFFERS:
+			matches = self.match_request_to_offer(user)
+		else:
+			matches = self.match_to_any(user)
 		for match in matches:
 			if match == 'OFFERS':
 				print match
@@ -194,25 +203,36 @@ def address2Coordinate(address):
 	lat_long = vals['results'][0]['locations'][0]['latLng'];
 	return [lat_long['lat'], lat_long['lng']]
 
+def str2type(string):
+	if string == 'requests':
+		return REQUESTS
+	elif string == 'offers':
+		return OFFERS
+	else:
+		return BOTH
+
 
 def main():
-	if len(sys.argv) != 3 and len(sys.argv) != 4:
+	if len(sys.argv) != 3 and len(sys.argv) != 4 and len(sys.argv) != 5:
 		sys.exit('Usage: python matcher.py <starting location> <ending location> <optional: date string>')
 	
 	start_address = sys.argv[1]
 	end_address = sys.argv[2]
 	date = None
-	if len(sys.argv) == 4:
+	mtype = None
+	if len(sys.argv) > 3:
 		try:
 			date = datetime.strptime(sys.argv[3], '%Y-%m-%d %I:%M:%S')
 		except:
 			date = None
+	if len(sys.argv) > 4:
+			mtype = str2type(sys.argv[4])
 
 	startcoords = address2Coordinate(start_address)
 	endcoords = address2Coordinate(end_address)
 
 	matcher = Matcher()
 	user = matcher.get(startcoords, endcoords, date)
-	matcher.match(user)
+	matcher.match(user, mtype)
 
 main()
