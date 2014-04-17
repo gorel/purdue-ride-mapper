@@ -247,7 +247,7 @@
 							echo '<td id="'.$row['listings_id'].'_Ride_Type">Requesting Ride</td>';
 						}
 							
-						echo '<td id="'.$row['listings_id'].'_Passengers">'.$row['passengers'].'</td>';
+						//echo '<td id="'.$row['listings_id'].'_Passengers">'.$row['passengers'].'</td>';
 						echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';						
 						echo '<input id="'.$row['listings_id'].'_Start_Lat" type="hidden" value="'.$row['start_lat'].'">';
 						echo '<input id="'.$row['listings_id'].'_Start_Long" type="hidden" value="'.$row['start_long'].'">';
@@ -355,7 +355,6 @@
 						<th> Starting Address </th>
 						<th> Ending Address </th>
 						<th> Type </th>
-						<th> Passengers </th>
 						<th> Date of Departure </th>
 						</tr>
 						</thead>";
