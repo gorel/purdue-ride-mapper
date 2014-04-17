@@ -15,6 +15,7 @@ $from_uid   = $_POST["from_uid"];
 $message   = $_POST["message"];
 $listingID   = $_POST["listingID"];
 $success = "";
+$rcpt = "";
 
 $con=mysqli_connect("localhost", "collegecarpool", "collegecarpool", "purdue_test");
 
