@@ -184,6 +184,26 @@
 			saveListing();
 		});
 		
+		  function disableAllCntl()
+		  {
+			$('#startingAddressModal').prop('disabled', true);
+			$('#endingAddressModal').prop('disabled', true);
+			$('#dateOfDepartureModal').prop('disabled', true);
+			$('#numberOfPassengersModal').prop('disabled', true);
+			$('#requestRadio').prop('disabled', true);
+			$('#offerRadio').prop('disabled', true);
+		  }
+
+		  function enableAllCntl()
+		  {
+			$('#startingAddressModal').prop('disabled', false);
+			$('#endingAddressModal').prop('disabled', false);
+			$('#dateOfDepartureModal').prop('disabled', false);
+			$('#numberOfPassengersModal').prop('disabled', false);
+			$('#requestRadio').prop('disabled', false);
+			$('#offerRadio').prop('disabled', false);
+		  }
+				
 		function saveListing()
 		{
 			var startingAddressModal = document.getElementsByName('startingAddressModal')[0];
@@ -208,7 +228,7 @@
 			}
 			
 			console.log(isRequest);
-
+			disableAllCntl();
 			$.ajax ({
 				type: "POST",
 				url: "/modules/editListings/editListingsProc.php",
@@ -231,6 +251,7 @@
 					{
 						console.log("Edit failed");
 					}
+					enableAllCntl();
 				} 
 			});
 		}
