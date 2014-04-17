@@ -9,7 +9,7 @@
 <div class="modal fade" id="editListingsModal" tabindex="-1" role="dialog" aria-labelledby="editListingsModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form class = "form-horizontal"><!--action="modules/editListings/editListingsProc.php" method="post"-->
+			<form class = "form-horizontal">
 				<div class = "modal-header">
 					<div class = "col-lg-1" />
 					<h3>Edit Listing</h3>
@@ -186,7 +186,33 @@
 		
 		function saveListing()
 		{
-			alert("Save listing!");
+			var startingAddressModal = document.getElementsByName('startingAddressModal')[0];
+			var endingAddressModal = document.getElementsByName('endingAddressModal')[0];
+			var dateOfDepartureModal = document.getElementsByName('dateOfDepartureModal')[0];
+			var numberOfPassengersModal = document.getElementsByName('numberOfPassengersModal')[0];
+			
+			console.log(listingID);
+			console.log(startingAddressModal.value);
+			console.log(endingAddressModal.value);
+			console.log(dateOfDepartureModal.value);
+			console.log(numberOfPassengersModal.value);
+			return;
+			$.ajax ({
+				  type: "POST",
+				  url: "/modules/editListings/editListingsProc.php",
+				  dataType: "json",
+				  beforeSend: function() {
+						console.log("before send");
+				  },
+				  complete: function() {
+					console.log("complete");
+				  },
+				  data: {"listingID" : listingID, "startingAddress" : startingAddress, "destinationAddress" : destinationAddress,
+							"passengers" : passengers, "dateTime" : dateTime, "isRequest" : isRequest},
+				  success: function(data) {					
+					console.log("success");					
+				  } 
+				});
 		}
 		
 		function disablePassengers()
