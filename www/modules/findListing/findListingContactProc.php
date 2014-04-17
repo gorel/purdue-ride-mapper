@@ -16,6 +16,7 @@ $message   = $_POST["message"];
 $listingID   = $_POST["listingID"];
 $success = "";
 $rcpt = "";
+$from = "";
 
 $con=mysqli_connect("localhost", "collegecarpool", "collegecarpool", "purdue_test");
 
@@ -32,16 +33,16 @@ else
 	$row = mysqli_fetch_array($result);
 	$rcpt_id = $row['user_id'];
 
-	$sql="SELECT email FROM users WHERE user_id = 90";
+	$sql="SELECT email FROM users WHERE user_id = $rcpt_id";
 	$result = mysqli_query($con, $sql);
 	$row = mysqli_fetch_array($result);
 	$rcpt = $row['email'];
-	/*
+	
 	$sql="SELECT email FROM users WHERE user_id = $from_uid";
 	$result = mysqli_query($con, $sql);
 	$row = mysqli_fetch_array($result);
 	$from = $row['email']
-	*/
+	
 	
 	
 	mysqli_close($con);
@@ -49,5 +50,5 @@ else
 	//sendUserMail($rcpt, $message, $from)
 }			
 
-echo json_encode(array('success' => "$success", 'rcpt' => "$rcpt")); 
+echo json_encode(array('success' => "$success", 'rcpt' => "$rcpt", 'from' => "$from")); 
 ?>
