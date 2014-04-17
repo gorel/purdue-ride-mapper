@@ -301,7 +301,7 @@
 					if (isset($_GET['NaNerror']))
 						echo "<div style='color: red; font-size: 14pt;'>Error: Value is not a number.</div>";
 
-					$sqlCount = "SELECT COUNT(listings_id) FROM listings";
+					$sqlCount = "SELECT COUNT(listings_id) FROM listings LIMIT 10";
 					$countRes = mysqli_query($con,$sqlCount);
 					$rowCount = mysqli_fetch_row($countRes);
 					
@@ -314,25 +314,6 @@
 					//Keep track of previous page number
 					$prev = ceil($total/$page_rows);
 					
-					//boundary check
-					if($prev < 1) { $prev = 1;}
-					
-					$pagenum = 1;
-					
-					//Get page number from URLs if present, else it is = 1
-					if(isset($_GET['pn']))
-					{
-						$pagenum = preg_replace('#[^0-9#','',$_GET['pn']);
-					}
-					
-					// This makes sure the page number isn't below 1, or more than our $prev page
-					if ($pagenum < 1) { 
-						$pagenum = 1; 
-					} else if ($pagenum > $prev) { 
-						$pagenum = $prev; 
-					}
-					// This sets the range of rows to query for the chosen $pagenum
-					$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
 					
 					$sql = "SELECT * FROM listings";
 					$result = mysqli_query($con,$sql);
