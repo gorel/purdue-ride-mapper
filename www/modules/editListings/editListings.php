@@ -180,12 +180,12 @@
 		}
 		function disablePassengers()
 		{
-			var passengers = document.getElementById('passengersTextBox');
+			var passengers = document.getElementsByName('numberOfPassengersModal')[0];
 			passengers.disabled = true;
 		}
 		function enablePassengers()
 		{
-			var passengers = document.getElementById('passengersTextBox');
+			var passengers = document.getElementsByName('numberOfPassengersModal')[0];
 			passengers.disabled = false;
 		}
 	</script>
