@@ -230,6 +230,7 @@
 					$match = $val[0];
 					$id = $val[1];
 					$sql = "SELECT * FROM listings WHERE listings_id=$id";
+					debug_to_console("SQL is $sql");
 					$result = mysqli_query($con,$sql);
 					while($row = mysqli_fetch_array($result))
 					{
