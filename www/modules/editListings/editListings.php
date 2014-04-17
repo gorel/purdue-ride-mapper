@@ -208,8 +208,7 @@
 			}
 			
 			console.log(isRequest);
-			
-			return;
+
 			$.ajax ({
 				type: "POST",
 				url: "/modules/editListings/editListingsProc.php",
