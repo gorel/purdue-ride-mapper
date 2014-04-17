@@ -190,12 +190,14 @@
 			var endingAddressModal = document.getElementsByName('endingAddressModal')[0];
 			var dateOfDepartureModal = document.getElementsByName('dateOfDepartureModal')[0];
 			var numberOfPassengersModal = document.getElementsByName('numberOfPassengersModal')[0];
+			var isRequest = document.getElementsByName('isRequest')[0];
 			
 			console.log(listingID);
 			console.log(startingAddressModal.value);
 			console.log(endingAddressModal.value);
 			console.log(dateOfDepartureModal.value);
 			console.log(numberOfPassengersModal.value);
+			console.log(isRequest.value);
 			return;
 			$.ajax ({
 				  type: "POST",
