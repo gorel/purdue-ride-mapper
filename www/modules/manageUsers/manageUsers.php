@@ -1,6 +1,7 @@
-<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="js/moment.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<?php session_start() ?>
+<script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="/js/moment.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 
 
 <hr class="featurette-divider">
@@ -17,7 +18,6 @@
 		</form>
 
 	<?php
-		session_start();
 		$user_id = $_SESSION['user'];
 
 		if (!$_SESSION['isAdmin'])

@@ -1,6 +1,5 @@
-<!DOCTYPE html>
-
 <?php session_start(); // TODO: need to handle logged in/out cases - tim ?>
+<!DOCTYPE html>
 
 <html>
 <body>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 /**
  *
@@ -7,6 +8,7 @@
  */
 
 // include login info
+ob_start();
 
 require '/var/dbcredentials.php';
 require '../../lib/hash.php';
@@ -45,7 +47,6 @@ if ($stmt->num_rows < 1)
 }
 else
 {
-	echo "binding result";
 	$stmt->bind_result($user_id, $password, $verified, $isAdmin);
 	$stmt->fetch();
 
@@ -54,19 +55,18 @@ else
 
 	if (!strcmp($password, $hashpw) && $verified==1)
 	{
-		session_start();
 		$_SESSION['user']=$user_id;
 		$_SESSION['isAdmin']=$isAdmin;
-
-		echo "log in success";
+		header("Location:../../index.php");
+		
 	}
 	else if(!strcmp($password, $hashpw) && $verified==0)
 	{
-		header("Location:passwordError.php");
+		// TODO
 	}
 	else
 	{
-		header("Location:verifiedError.php");
+		// TODO
 	}
 }
 
@@ -74,6 +74,5 @@ else
 
 $stmt->close();
 
-header("Location:../../index.php");
 
 ?>

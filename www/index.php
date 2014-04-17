@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -74,7 +75,6 @@
 						<li><a href="#" id="contact" onclick="hideAll(this);">Contact Us</a></li>
 						<li><a href="#" id="findARide" onclick="hideAll(this);">Find a Ride</a></li>
 						<?php
-							session_start();
 							if (!isset($_SESSION['user']))
 							{
 								echo '<li><a href="#" id="loginModal" onclick="showSignInModal()">Log In</a></li>';
