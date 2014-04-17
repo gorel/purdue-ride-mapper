@@ -34,29 +34,29 @@
 				if($_SESSION['user'] == $row["user_id"] || $_SESSION['isAdmin']==1)
 				{
 					echo "<tr>";
-					echo "<td>". $row['startingAddress'] . "</td>";
-					echo "<td>". $row["endingAddress"] . "</td>";
+					echo '<td id="'.$row['listings_id'].'_Starting_Address">'. $row['startingAddress'] . '</td>';
+					echo '<td id="'.$row['listings_id'].'_Ending_Address">'. $row["endingAddress"] . '</td>';
 					if($row["isRequest"] == 0)
 					{
-						echo "<td> Yes </td>";
+						echo '<td id="'.$row['listings_id'].'_Ride_Type">Offering Ride</td>';
 					}
 					else
 					{
-						echo "<td> No </td>";
+						echo '<td id="'.$row['listings_id'].'_Ride_Type">Requesting Ride</td>';
 					}
 
-					echo "<td>". $row["passengers"] . "</td>";
-					echo "<td>". $row["dateOfDeparture"] . "</td>";
+					echo '<td id="'.$row['listings_id'].'_Passengers">'.$row['passengers'].'</td>';
+					echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
 
-						echo "<td>
-								<button class=\"open-EditListingDialog btn btn-success\" data-id=\"". $row['listings_id'] ."\" data-toggle=\"modal\" data-target=\"#myModal\">Edit</button>
-							</td>";
-						echo "<td>
-								<form action=\"modules/editListings/deleteListingsProc.php\" method=\"post\" onsubmit=\"return confirm('Are you sure you want to delete this listing?')\">
-									<input type=\"hidden\" name=\"listings_id\" value=\"". $row['listings_id'] ."\">
-									<button class=\"btn btn-danger\" type=\"submit\">Delete</button>
-								</form>
-							</td>";
+					echo "<td>
+							<button class=\"open-EditListingDialog btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showEditListingModal(".$row['listings_id'].")\">Edit</button>
+						</td>";
+					echo "<td>
+							<form action=\"modules/editListings/deleteListingsProc.php\" method=\"post\" onsubmit=\"return confirm('Are you sure you want to delete this listing?')\">
+								<input type=\"hidden\" name=\"listings_id\" value=\"". $row['listings_id'] ."\">
+								<button class=\"btn btn-danger\" type=\"submit\">Delete</button>
+							</form>
+						</td>";
 
 					echo "</tr>";
 				}
@@ -74,6 +74,10 @@
 	</script>
 	
 	<script>
+		function showEditListingModal(listing_ID)
+		{
+			alert(listing_ID);
+		}
 		function disablePassengers()
 		{
 			var passengers = document.getElementById('passengersTextBox');
@@ -86,7 +90,7 @@
 		}
 	</script>
 
-	<!-- Modal -->
+	<!-- Edit Listings Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
