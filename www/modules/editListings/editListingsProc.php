@@ -112,15 +112,14 @@
 		WHERE listings_id = '$listings_id'";
 		
 		if (!mysqli_query($con,$sql))
-		{
-			die('Error: ' . mysqli_error($con));
+		{			
 			mysqli_close($con);
+			echo json_encode(array('success' => "FAILURE"));
 		}
 		else
 		{
 			mysqli_close($con);
-			header('Location: ../../index.php?page=editListings');
-			exit();
+			echo json_encode(array('success' => "SUCCESS"));
 		}	
 	}			
 ?>

@@ -198,23 +198,31 @@
 			console.log(dateOfDepartureModal.value);
 			console.log(numberOfPassengersModal.value);
 			console.log(isRequest.value);
-			return;
+
 			$.ajax ({
-				  type: "POST",
-				  url: "/modules/editListings/editListingsProc.php",
-				  dataType: "json",
-				  beforeSend: function() {
-						console.log("before send");
-				  },
-				  complete: function() {
+				type: "POST",
+				url: "/modules/editListings/editListingsProc.php",
+				dataType: "json",
+				beforeSend: function() {
+					console.log("before send");
+				},
+				complete: function() {
 					console.log("complete");
-				  },
-				  data: {"listingID" : listingID, "startingAddress" : startingAddress, "destinationAddress" : destinationAddress,
-							"passengers" : passengers, "dateTime" : dateTime, "isRequest" : isRequest},
-				  success: function(data) {					
-					console.log("success");					
-				  } 
-				});
+				},
+				data: {"listingID" : listingID, "startingAddress" : startingAddressModal.value, "destinationAddress" : endingAddressModal.value,
+						"passengers" : numberOfPassengersModal.value, "dateTime" : dateOfDepartureModal.value, "isRequest" : isRequest.value},
+				success: function(data) {					
+					console.log("success");	
+					if(data.success == "SUCCESS")
+					{
+						console.log("Edit successful");
+					}
+					else
+					{
+						console.log("Edit failed");
+					}
+				} 
+			});
 		}
 		
 		function disablePassengers()
