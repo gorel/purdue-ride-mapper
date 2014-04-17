@@ -37,8 +37,8 @@
 					<div class="form-group">
 						<div class = "col-lg-1" />
 						<div class = "col-lg-10">
-							<input type="radio" name="isRequest" value="1" onClick="disablePassengers()" checked> Looking for a Ride
-							<input type="radio" name="isRequest" value="0" onClick="enablePassengers()"> Hosting a Ride
+							<input type="radio" name="isRequest" id="requestRadio" value="1" onClick="disablePassengers()" checked> Looking for a Ride
+							<input type="radio" name="isRequest" id="offerRadio" value="0" onClick="enablePassengers()"> Hosting a Ride
 						</div>
 					</div>
 
@@ -157,11 +157,22 @@
 			var endingAddressModal = document.getElementsByName('endingAddressModal')[0];
 			var dateOfDepartureModal = document.getElementsByName('dateOfDepartureModal')[0];
 			var numberOfPassengersModal = document.getElementsByName('numberOfPassengersModal')[0];
+			var requestRadio = document.getElementById('requestRadio');
+			var offerRadio = document.getElementById('offerRadio');
 			
 			startingAddressModal.value = document.getElementById(listingID + "_Starting_Address").innerHTML.trim();
 			endingAddressModal.value = document.getElementById(listingID + "_Ending_Address").innerHTML.trim();
 			dateOfDepartureModal.value = document.getElementById(listingID + "_Date_Of_Departure").innerHTML.trim();
 			numberOfPassengersModal.value = document.getElementById(listingID + "_Passengers").innerHTML.trim();
+			
+			if(document.getElementById(listingID + "_Ride_Type").innerHTML.trim() == "Requesting Ride")
+			{
+				requestRadio.click();
+			}
+			else
+			{
+				offerRadio.click();
+			}
 				
 			$('#editListingsModal').modal('show');
 		}
