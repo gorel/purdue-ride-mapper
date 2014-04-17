@@ -95,7 +95,7 @@ require 'modules/settings/settings.php';
 								echo '<li><a href="#" id="manageUsers" onclick="hideAll(this);">Manage Users</a></li>';
 								echo '<li><a href="#" id="editListings" onclick="hideAll(this);">My Listings</a></li>';
 								echo '<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>';
-								echo '<li><a href="#" id="settings" onclick="hideAll(this);">Settings</a></li>';
+								echo '<li><a href="#" id="settings" onclick="">Settings</a></li>';
 								echo '<li><a href="#" id="logout" onclick="location.href = \'modules/signin/signoutProc.php\';">Log Out</a></li>';
 							}
 
