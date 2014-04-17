@@ -254,12 +254,12 @@
 						if(isRequest)
 						{
 							document.getElementById(listingID + "_Passengers").innerHTML = "0";
-							document.getElementById(listingID + "_Ride_Type").innerHTML == "Requesting Ride";
+							document.getElementById(listingID + "_Ride_Type").innerHTML = "Requesting Ride";
 						}
 						else
 						{
 							document.getElementById(listingID + "_Passengers").innerHTML = numberOfPassengersModal.value;
-							document.getElementById(listingID + "_Ride_Type").innerHTML == "Offering Ride";
+							document.getElementById(listingID + "_Ride_Type").innerHTML = "Offering Ride";
 						}
 						
 						
