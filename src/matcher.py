@@ -83,13 +83,6 @@ class User:
 
 		self.date = date
 
-	def __str__(self):
-		s =	"start_lat: " + start_lat + " end_lat: " + end_lat +
-			" start_lon: " + start_lon + " end_lon: " + end_lon + 
-			"date: " + date
-		return s
-			
-
 class Matcher:
 	def __init__(self):
 		#self.db = mysql.connect('localhost', 'collegecarpool', 'collegecarpool', 'purdue_test')
