@@ -250,7 +250,18 @@
 						document.getElementById(listingID + "_Starting_Address").innerHTML = startingAddressModal.value;
 						document.getElementById(listingID + "_Ending_Address").innerHTML = endingAddressModal.value;
 						document.getElementById(listingID + "_Date_Of_Departure").innerHTML = dateOfDepartureModal.value;
-						document.getElementById(listingID + "_Passengers").innerHTML = numberOfPassengersModal.value
+						
+						if(isRequest)
+						{
+							document.getElementById(listingID + "_Passengers").innerHTML = "0";
+							document.getElementById(listingID + "_Ride_Type").innerHTML == "Requesting Ride";
+						}
+						else
+						{
+							document.getElementById(listingID + "_Passengers").innerHTML = numberOfPassengersModal.value;
+							document.getElementById(listingID + "_Ride_Type").innerHTML == "Offering Ride";
+						}
+						
 						
 						$('#editListingsModal').modal('hide');
 					}
