@@ -183,8 +183,6 @@
 
 		function display_output($con, $matches)
 		{
-			debug_to_console($matches);
-
 			//If len(output) == 0, print "no matches"
 			if (strlen($matches[0]) === 0 || $matches[0] === "OFFERS")
 			{
@@ -201,7 +199,6 @@
 				$has_offer = false;
 				foreach($matches as $match)
 				{
-					debug_to_console("Next match: $match");
 					if ($match === "OFFERS")
 					{
 						$print_offer = true;
@@ -230,18 +227,15 @@
 					$match = $val[0];
 					$id = $val[1];
 					$sql = "SELECT * FROM listings WHERE listings_id=$id";
-					debug_to_console("SQL is $sql");
 					$result = mysqli_query($con,$sql);
 					while($row = mysqli_fetch_array($result))
 					{
-						debug_to_console("Printing the row!");
 						echo '<tr id="'.$row['listings_id'].'">';
 						echo '<td id="'.$row['listings_id'].'_Listing_ID">'.$row['listings_id'].'</td>';
 						echo '<td id="'.$row['listings_id'].'_Match">'.$match.'</td>';
 						echo '<td id="'.$row['listings_id'].'_Starting_Address">'.$row['startingAddress'].'</td>';
 						echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
 						echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
-						echo "<td>". $i . "</td>";
 						echo '<input id="'.$row['listings_id'].'_Start_Lat" type="hidden" value="'.$row['start_lat'].'">';
 						echo '<input id="'.$row['listings_id'].'_Start_Long" type="hidden" value="'.$row['start_long'].'">';
 						echo '<input id="'.$row['listings_id'].'_End_Lat" type="hidden" value="'.$row['end_lat'].'">';
@@ -385,7 +379,6 @@
 					<th> Listing ID </th>
 					</tr>
 					</thead>";
-					$i = 0;
 					while($row = mysqli_fetch_array($result))
 					{
 						echo '<tr id="'.$row['listings_id'].'">';
