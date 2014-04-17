@@ -34,7 +34,7 @@ else
 	$sql="SELECT email FROM users WHERE user_id = $rcpt_id";
 	$result = mysqli_query($con, $sql);
 	$row = mysqli_fetch_array($result);
-	$rcpt = $row['email']
+	$rcpt = $row['email'];
 	/*
 	$sql="SELECT email FROM users WHERE user_id = $from_uid";
 	$result = mysqli_query($con, $sql);
@@ -48,5 +48,5 @@ else
 	//sendUserMail($rcpt, $message, $from)
 }			
 
-echo json_encode(array('success' => "$success", 'row' => "$row")); 
+echo json_encode(array('success' => "$success", 'rcpt' => "$rcpt")); 
 ?>
