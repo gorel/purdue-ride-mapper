@@ -301,7 +301,7 @@
 					if (isset($_GET['NaNerror']))
 						echo "<div style='color: red; font-size: 14pt;'>Error: Value is not a number.</div>";
 
-					$sqlCount = "SELECT COUNT(listings_id) FROM listings LIMIT 10";
+					$sqlCount = "SELECT COUNT(listings_id) FROM listings";
 					$countRes = mysqli_query($con,$sqlCount);
 					$rowCount = mysqli_fetch_row($countRes);
 					
@@ -315,7 +315,7 @@
 					$prev = ceil($total/$page_rows);
 					
 					
-					$sql = "SELECT * FROM listings";
+					$sql = "SELECT * FROM listings LIMIT 10";
 					$result = mysqli_query($con,$sql);
 					
 					echo "<h1>All listings:</h1>";
