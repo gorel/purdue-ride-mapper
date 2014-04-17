@@ -513,7 +513,7 @@
 					}
 					else
 					{
-						alert("Message failed to send.");.
+						alert("Message failed to send.");
 					}
 					
 				  } 
