@@ -506,6 +506,16 @@
 					console.log(data.success);
 					console.log(data.rcpt);
 					console.log(data.from);
+					if(data.success == "TRUE)
+					{
+						alert("Your message has been sent successfully.");
+						document.getElementById('modalMessage').value = "";
+					}
+					else
+					{
+						alert("Message failed to send.");.
+					}
+					
 				  } 
 				});
 		}
