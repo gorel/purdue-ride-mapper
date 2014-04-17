@@ -348,7 +348,6 @@
 						<th> Starting Address </th>
 						<th> Ending Address </th>
 						<th> Type </th>
-						<th> Passengers </th>
 						<th> Date of Departure </th>
 						</tr>
 						</thead>";
