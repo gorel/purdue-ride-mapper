@@ -126,10 +126,7 @@
 							<button class=\"open-EditListingDialog btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showEditListingModal(".$row['listings_id'].")\">Edit</button>
 						</td>";
 					echo "<td>
-							<form action=\"modules/editListings/deleteListingsProc.php\" method=\"post\" onsubmit=\"return confirm('Are you sure you want to delete this listing?')\">
-								<input type=\"hidden\" name=\"listings_id\" value=\"". $row['listings_id'] ."\">
-								<button class=\"btn btn-danger\" type=\"submit\">Delete</button>
-							</form>
+							<button class=\"btn btn-danger\" onclick=\"deleteListing(".$row['listings_id'].")\">Delete</button>
 						</td>";
 
 					echo "</tr>";
@@ -149,6 +146,38 @@
 	
 	<script>
 		var listingID;
+		
+		function deleteListing(listing_ID)
+		{
+			listingID = listing_ID;
+			console.log("deleting");
+			$.ajax ({
+				type: "POST",
+				url: "/modules/editListings/deleteListingsProc.php",
+				dataType: "json",
+				beforeSend: function() {
+					console.log("before send");
+				},
+				complete: function() {
+					console.log("complete");
+				},
+				data: {"listingID" : listingID},
+				success: function(data) {					
+					console.log("success");	
+
+					if(data.success == "SUCCESS")
+					{
+						console.log("Delete successful");
+					}
+					else
+					{
+						alert("An error has occured. Please try again.");
+						console.log("Delete failed");
+					}
+				} 
+			});
+		}
+		
 		function showEditListingModal(listing_ID)
 		{
 			listingID = listing_ID;
@@ -184,25 +213,25 @@
 			saveListing();
 		});
 		
-		  function disableAllCntl()
-		  {
+		function disableAllCntl()
+		{
 			$('#startingAddressModal').prop('disabled', true);
 			$('#endingAddressModal').prop('disabled', true);
 			$('#dateOfDepartureModal').prop('disabled', true);
 			$('#numberOfPassengersModal').prop('disabled', true);
 			$('#requestRadio').prop('disabled', true);
 			$('#offerRadio').prop('disabled', true);
-		  }
+		}
 
-		  function enableAllCntl()
-		  {
+		function enableAllCntl()
+		{
 			$('#startingAddressModal').prop('disabled', false);
 			$('#endingAddressModal').prop('disabled', false);
 			$('#dateOfDepartureModal').prop('disabled', false);
 			$('#numberOfPassengersModal').prop('disabled', false);
 			$('#requestRadio').prop('disabled', false);
 			$('#offerRadio').prop('disabled', false);
-		  }
+		}
 				
 		function saveListing()
 		{
@@ -260,8 +289,7 @@
 						{
 							document.getElementById(listingID + "_Passengers").innerHTML = numberOfPassengersModal.value;
 							document.getElementById(listingID + "_Ride_Type").innerHTML = "Offering Ride";
-						}
-						
+						}						
 						
 						$('#editListingsModal').modal('hide');
 					}
