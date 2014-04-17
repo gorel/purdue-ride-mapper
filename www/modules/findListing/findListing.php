@@ -468,7 +468,15 @@
 			endingAddressModal.innerHTML = document.getElementById(listingID + "_Ending_Address").innerHTML.trim();
 			dateOfDepartureModal.innerHTML = document.getElementById(listingID + "_Date_Of_Departure").innerHTML.trim();
 			rideTypeModal.innerHTML = document.getElementById(listingID + "_Ride_Type").innerHTML.trim();
-			numberOfPassengersModal.innerHTML = document.getElementById(listingID + "_Passengers").innerHTML.trim();
+			if (numberOfPassengersModal)
+			{
+				numberOfPassengersModal.innerHTML = document.getElementById(listingID + "_Passengers").innerHTML.trim();
+			}
+			else
+			{
+				numberOfPassengersModal.innerHTML = "0";
+			}
+			
 			
 			$('#routeModal').modal('show');
 		}
