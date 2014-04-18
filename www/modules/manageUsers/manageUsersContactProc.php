@@ -41,7 +41,7 @@ else
 	
 	mysqli_close($con);
 	
-	sendUserMail($rcpt, $message, $from);
+	sendWarningMail($rcpt, $message, $from);
 }			
 
 echo json_encode(array('success' => "$success", 'rcpt' => "$rcpt", 'from' => "$from", 'to' => "$to")); 
