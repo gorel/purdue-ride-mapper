@@ -174,12 +174,14 @@
   {
       $('#txtAltEmail').prop('disabled', false);
       $('#txtAltEmail').prop('disabled', false);
+      $('#btnSavePref').prop('disabled', false);
   }
 
   function disableAllPrefCntl()
   {
       $('#txtAltEmail').prop('disabled', true);
       $('#txtAltEmail').prop('disabled', true);
+      $('#btnSavePref').prop('disabled', true);
   }
 
   function fillPref()
