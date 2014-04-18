@@ -83,11 +83,12 @@
 			        <td id=$uid"."_is_admin_text> $is_admin_text </td>
 				<td> <button class=\"btn btn-success btn-small\"
 					onclick=\"editUser($uid)\">Edit</button>
-				 <button class=\"btn btn-danger\"
+                                     <button class=\"btn btn-warning\"
+					onclick=\"warnUserModal($uid)\">Send Warning</button>
+				     <button class=\"btn btn-danger\"
 					onclick=\"updateDelId($uid)\">Delete</button>
-				<button class=\"btn btn-danger\"
-					onclick=\"warnUserModal($uid)\">Send Warning</button></td>
-			      </tr>";
+                                </td>
+		                </tr>";
 		}
 		echo "</tbody>";
 		echo "</table>";
@@ -237,7 +238,7 @@ function warnUserModal(uid)
 function warnUser()
 {
 	var message = document.getElementById('warnMessage').value;
-	var from_uid = <?php echo $_SESSION['user']; ?>
+	var from_uid = <?php echo $_SESSION['user']; ?>;
 	var to_uid = elm;
 	if (message.length === 0)
 	{
@@ -253,7 +254,7 @@ function warnUser()
 		beforeSend: function() {
 			console.log("before send");
 		},
-		complete: fuction() {
+		complete: function() {
 			console.log("complete");
 		},
 		data: {"message" : message, "from_uid" : from_uid, "to_uid" : to_uid},
@@ -272,7 +273,8 @@ function warnUser()
 			{
 				alert("Message failed to send.");
 			}
-	});
+	        }
+       });
 }
 
 
