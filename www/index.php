@@ -540,11 +540,11 @@
 					</div>
 					<div class = "modal-body">
 					<form id="loginform" >
-						<div class="form-group has-error">	
+						<div class="form-group">	
 							<input type="text" class="form-control" name="email" id="txtEmail" placeholder="Email" required autofocus>
 						</div>
 
-						<div class="form-group has-error">
+						<div class="form-group">
 							<input type="password" class="form-control" name="pass" id="txtPassword" placeholder="Password" required>
 						</div>
 						<label id="errAuth" class="err" hidden="true"></label>
@@ -556,7 +556,7 @@
 						</div>
 
 						<div class="form-group">
-							<button class="btn btn-lg btn-primary btn-block" onclick="signIn(); return false;" id="loginButton">Sign in</button>
+							<button class="btn btn-lg btn-primary btn-block" onclick="signIn(); return false;" id="loginButton" >Sign in</button>
 
 						</div>
 
