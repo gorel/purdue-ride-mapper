@@ -180,7 +180,7 @@
 			echo $output;
 		}
 
-		function display_output($con, $matches)
+		function display_output($con, $matches, $mtype)
 		{
 			//If len(output) == 0, print "no matches"
 			if (strlen($matches[0]) === 0 || $matches[0] === "OFFERS")
@@ -196,6 +196,10 @@
 			{
 				$print_offer = false;
 				$has_offer = false;
+
+				if ($mtype === 'offers')
+					$print_offer = true;
+
 				foreach($matches as $match)
 				{
 					if ($match === "OFFERS")
@@ -332,6 +336,7 @@
 						<th> Match % </th>
 						<th> Starting Address </th>
 						<th> Ending Address </th>
+						<th> Passengers </th>
 						<th> Type </th>
 						<th> Date of Departure </th>
 						</tr>
@@ -353,7 +358,7 @@
 
 					}
 
-					display_output($con, $matches);
+					display_output($con, $matches, $mtype);
 				}
 				else
 				{
