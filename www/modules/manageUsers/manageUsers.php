@@ -85,7 +85,7 @@
 					onclick=\"editUser($uid)\">Edit</button>
 				 <button class=\"btn btn-danger\"
 					onclick=\"updateDelId($uid)\">Delete</button>
-				<button class=\"btn btn-danger\"
+				<button class=\"btn btn-warning\"
 					onclick=\"warnUserModal($uid)\">Send Warning</button></td>
 			      </tr>";
 		}
