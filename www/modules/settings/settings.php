@@ -291,13 +291,13 @@
 
 <?php
 			
-
-  $uid = $_SESSION['user'];
-
-  if (!isset($uid))
+  if (!isset($_SESSION['user']))
   {
     die();
   }
+
+  $uid = $_SESSION['user'];
+
 
   echo "<script> window.uid=$uid;</script>";
 
