@@ -136,10 +136,12 @@
       dataType: "json",
       beforeSend: function() {
         disableAllCntl();
+        $('#btnChangePw').text("Changing Password...");
 
       },
       complete: function() {
         enableAllCntl();
+        $('#btnChangePw').text("Change Password");
 
       },
       data: {"currPw" : currPw, "newPw" : newPw, "uid" : window.uid},
@@ -252,7 +254,13 @@
         dataType: "json",
         beforeSend: function() {
           disableAllPrefCntl();
+          $('#btnSavePref').text("Saving Preferences...");
 
+        },
+        complete: function() {
+          enableAllPrefCntl();
+          $('#btnSavePref').text("Save Preferences");
+          
         },
         data: {"have_alt_email" : defaultHaveAltEmail.text(), "alt_email" : defaultAltEmail.text(), "uid" : window.uid},
         success: function(data) {
@@ -267,7 +275,6 @@
             $('#okPref').show();
   
           }  
-          enableAllPrefCntl();
 
         } 
       });
