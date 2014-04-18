@@ -134,10 +134,12 @@ function sendWarningMail($rcpt, $msg, $requester)
 {
 	global $orgEmail, $orgName, $headers;
 	
+	$msg = "You have received a warning for inappropriate behavior.  Here is a description of the offense:\n".$msg;
+	
 	$subject = "College Carpool Behavior Warning";
 	
 		$content = "<html><body>".
-			"Sent on behalf of: ".$requester."<br><br>".$msg.
+			"Sent on behalf of: ".$requester." [ADMIN]<br><br>".$msg.
 			"<br><br>For questions, reply to ".$requester."</body></html>";
 	
 	mail($rcpt, $subject, $content, $headers);

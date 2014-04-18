@@ -231,6 +231,8 @@ function warnUserModal(uid)
 {
     var elm = document.getElementById('toWarnId');
     elm.value = uid;
+    console.log("In warn user!");
+    console.log(uid);
 
     $('#modalWarnUser').modal('show');
 }
@@ -341,7 +343,7 @@ function warnUser()
       <div class="modal-body">
       	<input type="text" hidden="true" id="toWarnId">
       	<form id="warnForm" action="/modules/manageUsers/warnUserProc.php" method="POST">
-		<b>Warning Message (What did the user do?)</b>
+		<b>Input Your Warning Message (What did the user do?)</b>
 		<input type='textarea' class='form-control' name='message' id='warnMessage'><br>
 	</form>
       </div>
