@@ -293,6 +293,12 @@
 			
 
   $uid = $_SESSION['user'];
+
+  if (!isset($uid))
+  {
+    die();
+  }
+
   echo "<script> window.uid=$uid;</script>";
 
   // TODO: CHANGE CREDENTIALS BACK
