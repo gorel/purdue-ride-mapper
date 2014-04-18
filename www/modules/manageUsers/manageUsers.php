@@ -82,11 +82,11 @@
 			        <td id=$uid"."_enabled_text> $enabled_text </td>
 			        <td id=$uid"."_is_admin_text> $is_admin_text </td>
 				<td> <button class=\"btn btn-success btn-small\"
-					onclick=\"editUser($uid)\">Edit</button>
+					onclick=\"editUser($uid)\">Edit</button>				
 				<button class=\"btn btn-warning\"
-					onclick=\"warnUserModal($uid)\">Send Warning</button></td>
+					onclick=\"warnUserModal($uid)\">Send Warning</button>
 				<button class=\"btn btn-danger\"
-					onclick=\"updateDelId($uid)\">Delete</button>
+					onclick=\"updateDelId($uid)\">Delete</button></td>
 			      </tr>";
 		}
 		echo "</tbody>";
