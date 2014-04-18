@@ -134,13 +134,14 @@ function sendWarningMail($rcpt, $msg, $requester)
 {
 	global $orgEmail, $orgName, $headers;
 	
-	$msg = "You have received a warning for inappropriate behavior.  Here is a description of the offense:\n".$msg;
+	$msg = "Here is a description of the offense:<br><br>".$msg.
+		"<br><br>Continuing to act in this way may result in a permanent ban of your CollegeCarpool account.";
 	
 	$subject = "College Carpool Behavior Warning";
 	
 		$content = "<html><body>".
-			"Sent on behalf of: ".$requester." [ADMIN]<br><br>".$msg.
-			"<br><br>For questions, reply to ".$requester."</body></html>";
+			"Admin ".$requester." has sent you a warning based on your behavior on CollegeCarpool.us<br><br>".$msg.
+			"<br><br>For questions about this warning, reply to ".$requester."</body></html>";
 	
 	mail($rcpt, $subject, $content, $headers);
 }
