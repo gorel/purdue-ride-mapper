@@ -130,5 +130,18 @@ function sendUserMail($rcpt, $msg, $requester)
         mail($rcpt, $subject, $content, $headers);
 }
 
+function sendWarningMail($rcpt, $msg, $requester)
+{
+	global $orgEmail, $orgName, $headers;
+	
+	$subject = "College Carpool Behavior Warning";
+	
+		$content = "<html><body>".
+			"Sent on behalf of: ".$requester."<br><br>".$msg.
+			"<br><br>For questions, reply to ".$requester."</body></html>";
+	
+	mail($rcpt, $subject, $content, $headers);
+}
+
 ?>
 
