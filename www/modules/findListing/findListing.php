@@ -539,7 +539,7 @@
 						        }
 						        else
 						        {
-						        	echo "<a href='view-paginated.php?page=$i'>$i</a> ";
+						        	echo "<a href='findListing.php?page=$i'>$i</a> ";
 						        }
 						    }
 						    echo "</p>";
