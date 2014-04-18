@@ -541,7 +541,7 @@
 					<div class = "modal-body">
 					<form id="loginform">
 						<div class="form-group has-error">	
-							<input type="text" class="form-control" name="email" id="txtEmail" placeholder="Email" onchange="validateSignInEmail(this)" required autofocus>
+							<input type="text" class="form-control" name="email" id="txtEmail" placeholder="Email" onkeyup="validateSignInEmail(this)" required autofocus>
 						</div>
 
 						<div class="form-group has-error">
