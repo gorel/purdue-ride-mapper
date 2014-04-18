@@ -442,7 +442,7 @@
 					}
 					$list = '';
 					while($row = mysqli_fetch_array($result))
-					{
+					{ 
 						echo '<tr id="'.$row['listings_id'].'">';
 						echo '<td id="'.$row['listings_id'].'_Starting_Address">'.$row['startingAddress'].'</td>';
 						echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
@@ -503,12 +503,12 @@
 					{
 						if (isset($_GET['page']) && $_GET['page'] == $i)
 						{
-							//Fix this later:
+							
 							//echo "<li><a href=\"#\">". $i ."</a></li>";
 						}
 						else
 						{
-							echo "<a href='findListing.php?page=$i'>$i</a> ";
+							//echo "<a href='findListing.php?page=$i'>$i</a> ";
 						}
 					}
 					echo "<li><a href=\"#\">&raquo;</a></li>
