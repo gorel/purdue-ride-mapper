@@ -541,11 +541,11 @@
 					<div class = "modal-body">
 					<form id="loginform">
 						<div class="form-group has-error">	
-							<input type="text" class="form-control" name="email" id="txtEmail" placeholder="Email" onkeyup="validateSignInEmail(this)" required autofocus>
+							<input type="text" class="form-control" name="email" id="txtEmail" placeholder="Email" onchange="validateSignInEmail(this)" required autofocus>
 						</div>
 
 						<div class="form-group has-error">
-							<input type="password" class="form-control" name="pass" id="txtPassword" placeholder="Password" onkeyup="validateSignInPassword(this)" required>
+							<input type="password" class="form-control" name="pass" id="txtPassword" placeholder="Password" onchange="validateSignInPassword(this)" required>
 						</div>
 						<label id="errAuth" class="err" hidden="true"></label>
 
