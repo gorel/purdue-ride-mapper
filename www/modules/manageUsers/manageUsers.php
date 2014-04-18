@@ -338,9 +338,9 @@ function warnUser()
       </div>
       <div class="modal-body">
       	<input type="text" hidden="true" id="toWarnId">
-      	<form id="warnForm" action="/modules/manageUsers/warnUserProc.php" method="POST">
+      	<form id="warnForm" action="warnUser()" method="POST">
 		<b>Input Your Warning Message (What did the user do?)</b>
-		<input type='textarea' class='form-control' name='message' id='warnMessage'><br>
+		<input type='textarea' class='form-control' name='message' id='warnMessage' ><br>
 	</form>
       </div>
       <div class="modal-footer">
