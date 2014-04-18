@@ -74,7 +74,7 @@
 			<div id="#body">
 				<div class="masthead">
 					<div align=middle>
-						<img src="images/LogoHiRes.png" align="middle" width="100%" alt="College-Carpool-Banner">
+						<img src="images/LogoHiRes.png" align="middle" width="600" alt="College-Carpool-Banner">
 					</div>
 					<ul class="nav nav-justified">
 						<li class="active"><a href="#" id="home" onClick="hideAll(this);">Home</a></li>
