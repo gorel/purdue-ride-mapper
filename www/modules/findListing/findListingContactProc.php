@@ -18,7 +18,7 @@ $success = "";
 $rcpt = "";
 $from = "";
 
-$con=mysqli_connect("localhost", "collegecarpool", "collegecarpool", "purdue_test");
+$con=mysqli_connect("collegecarpool.us", "root", "collegecarpool", "purdue_test");
 
 // Check connection
 if (mysqli_connect_errno())
@@ -45,7 +45,7 @@ else
 	
 	mysqli_close($con);
 	
-	//sendUserMail($rcpt, $message, $from)
+	sendUserMail($rcpt, $message, $from)
 }			
 
 echo json_encode(array('success' => "$success", 'rcpt' => "$rcpt", 'from' => "$from")); 
