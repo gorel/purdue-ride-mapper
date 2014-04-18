@@ -307,7 +307,7 @@
 		}
 		else
 		{
-			$con=mysqli_connect("localhost","collegecarpool","collegecarpool","purdue_test");
+			$con=mysqli_connect("collegecarpool.us","root","collegecarpool","purdue_test");
 
 			if(mysqli_connect_errno())
 			{

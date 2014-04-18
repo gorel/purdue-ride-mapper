@@ -1,7 +1,9 @@
+<!--
+ Exclude these since index.php includes them
+
 <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="/js/moment.min.js"></script>
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/validation.js"></script>
 
 <head>
   <meta charset="utf-8">
@@ -10,8 +12,11 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <!-- Bootstrap core CSS -->
-  <link href="/css/bootstrap.css" rel="stylesheet">
+  <link href="/css/bootstrap.css" rel="stylesheet"> 
+-->
+
+  <script type="text/javascript" src="/js/validation.js"></script>
+
   <style>
     .err { color:#FF0000; font-weight:bold; }
     .ok  { color:#397D02; font-weight:bold; }
@@ -268,14 +273,9 @@
       });
     }
   }
-
-  $(document).ready(function() {
-//    initFields();
-  });
-
   </script>
 
-</head>
+<!-- </head> -->
 
 
 <hr class="featurette-divider">
@@ -316,13 +316,13 @@
               </div>
               <div class='modal-body'>
                 <ul class='nav nav-tabs' id='tabs'>
-	          <li class='active'><a href='#changepw' data-toggle='tab'>Change Password</a></li>
-	          <li><a href='#account' data-toggle='tab'>Account Details</a></li>
+	          <li class='active'><a href='#account' data-toggle='tab'>Account Details</a></li>
+	          <li><a href='#changepw' data-toggle='tab'>Change Password</a></li>
 	          <li><a href='#preferences' data-toggle='tab'>Preferences</a></li>
 	        </ul>
 	
 	        <div id='tabcontent' class='tab-content'>
-	          <div class='tab-pane' id='account'>
+	          <div class='tab-pane active' id='account'>
                     <form class ='form-horizontal'>
                       <label class='control-label' for ='txtFirstName'>First Name</label>
 	              <input class='form-control' type='text' id='txtFirstName' disabled='true' value=$fname>
@@ -348,7 +348,7 @@
                     </form>
                   </div>
 
-	          <div class='tab-pane active' id='changepw'>
+	          <div class='tab-pane' id='changepw'>
                     <form class='form-horizontal'>
 	              <label class='control-label' for ='txtCurrPw'>Current Password</label>
 	              <input class='form-control' type='password' id='txtCurrPw'>
