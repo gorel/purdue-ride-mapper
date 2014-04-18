@@ -495,21 +495,30 @@
 									";
 					}
 					echo "</table>";
+					echo "<ul class=\"pagination\">";
+					echo "<li><a href=\"#\">&laquo;</a></li>";
+					echo "<li><a href=\"#\">1</a></li>";
+					
+					for ($i = 1; $i <= $total_pages; $i++)
+					{
+						if (isset($_GET['page']) && $_GET['page'] == $i)
+						{
+							echo $i . " ";
+						}
+						else
+						{
+							echo "<a href='view-paginated.php?page=$i'>$i</a> ";
+						}
+					}
+					echo "<li><a href=\"#\">&raquo;</a></li>
+						  </ul>";
 				}
 			}
 			mysqli_close($con);
 		}
 	?>
 	</div>
-	<ul class="pagination">
-	  <li><a href="#">&laquo;</a></li>
-	  <li><a href="#">1</a></li>
-	  <li><a href="#">2</a></li>
-	  <li><a href="#">3</a></li>
-	  <li><a href="#">4</a></li>
-	  <li><a href="#">5</a></li>
-	  <li><a href="#">&raquo;</a></li>
-	</ul>
+
 	<script>
 		var modalMap;
 		var listingID;
