@@ -219,9 +219,6 @@
 						continue;
 					}
 
-					if ($print_offer)
-						$has_offer = true;
-
 					$val = explode(' ', $match);
 					$match = $val[0];
 					$id = $val[1];
@@ -229,6 +226,8 @@
 					$result = mysqli_query($con,$sql);
 					while($row = mysqli_fetch_array($result))
 					{
+						if ($print_offer)
+							$has_offer = true;
 
 						echo '<tr id="'.$row['listings_id'].'">';
 						echo '<td id="'.$row['listings_id'].'_Match">'.$match.'</td>';
