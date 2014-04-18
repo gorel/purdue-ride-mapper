@@ -259,11 +259,9 @@ function warnUser()
 		},
 		data: {"message" : message, "from_uid" : from_uid, "to_uid" : to_uid},
 		success: function(data) {
-			console.log("success");
-			console.log(data.success);
-			console.log(data.rcpt);
-			console.log(data.from);
-			console.log(data.to);
+			console.log("send mail success");
+			$('#modalWarnUser').modal('hide');
+			$("#content").load("/modules/manageUsers/manageUsers.php");
 			if(data.success === "TRUE")
 			{
 				alert("User has been warned.");
@@ -336,7 +334,7 @@ function warnUser()
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Message User</h4>
+        <h4 class="modal-title" id="myModalLabel">Warn User for Behavior</h4>
       </div>
       <div class="modal-body">
       	<input type="text" hidden="true" id="toWarnId">
