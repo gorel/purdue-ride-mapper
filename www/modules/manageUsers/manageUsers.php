@@ -338,7 +338,7 @@ function warnUser()
       </div>
       <div class="modal-body">
       	<input type="text" hidden="true" id="toWarnId">
-      	<form id="warnForm" onSubmit="JavaScript:warnUser(); return" method="POST">
+      	<form id="warnForm" onSubmit="JavaScript:warnUser(); return false;" method="POST">
 		<b>Input Your Warning Message (What did the user do?)</b>
 		<input type='textarea' class='form-control' name='message' id='warnMessage' ><br>
 	</form>
