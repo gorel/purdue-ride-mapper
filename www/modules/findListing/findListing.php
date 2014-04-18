@@ -499,7 +499,7 @@
 					echo "<li><a href=\"#\">&laquo;</a></li>";
 					
 					
-					for ($i = 1; $i <= $total_pages; $i++)
+					for ($i = 1; $i <= $last; $i++)
 					{
 						if (isset($_GET['page']) && $_GET['page'] == $i)
 						{
