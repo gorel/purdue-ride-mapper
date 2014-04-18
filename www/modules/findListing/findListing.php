@@ -497,17 +497,18 @@
 					echo "</table>";
 					echo "<ul class=\"pagination\">";
 					echo "<li><a href=\"#\">&laquo;</a></li>";
-					echo "<li><a href=\"#\">1</a></li>";
+					
 					
 					for ($i = 1; $i <= $total_pages; $i++)
 					{
 						if (isset($_GET['page']) && $_GET['page'] == $i)
 						{
-							echo $i . " ";
+							echo "<li><a href=\"#\">". $i ."</a></li>";
+							//echo $i . " ";
 						}
 						else
 						{
-							echo "<a href='view-paginated.php?page=$i'>$i</a> ";
+							echo "<a href='findListing.php?page=$i'>$i</a> ";
 						}
 					}
 					echo "<li><a href=\"#\">&raquo;</a></li>
