@@ -443,6 +443,7 @@
 					$list = '';
 					while($row = mysqli_fetch_array($result))
 					{
+						/*
 						$id = $row['listings_id'];
 						$start_add = $row['startingAddress'];
 						$end_add = $row['endingAddress']
@@ -458,7 +459,7 @@
 						$date = $row['dateOfDeparture'];
 						
 						$list .= '<p><a href="findListing.php?id='.$id.'">'.$start_add.' '.$end_add.' Route</a></p>';
-						
+						*/
 						echo '<tr id="'.$row['listings_id'].'">';
 						echo '<td id="'.$row['listings_id'].'_Starting_Address">'.$row['startingAddress'].'</td>';
 						echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
@@ -658,7 +659,5 @@
 			modalMap.fitZoom();
 		});
 	</script>
-  <p><?php echo $list; ?></p>
-  <div id="pagination_controls"><?php echo $paginationCtrls; ?></div>
 </body>
 </html>
