@@ -231,8 +231,6 @@ function warnUserModal(uid)
 {
     var elm = document.getElementById('toWarnId');
     elm.value = uid;
-    console.log("In warn user!");
-    console.log(uid);
 
     $('#modalWarnUser').modal('show');
 }
@@ -241,7 +239,7 @@ function warnUser()
 {
 	var message = document.getElementById('warnMessage').value;
 	var from_uid = <?php echo $_SESSION['user']; ?>;
-	var to_uid = elm;
+	var to_uid = document.getElementById('toWarnId').value;
 	if (message.length === 0)
 	{
 		alert("Please provide a non-empty message.");
