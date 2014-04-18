@@ -539,7 +539,7 @@
 						<h3>Please Sign In</h3>
 					</div>
 					<div class = "modal-body">
-					<form id="loginform">
+					<form id="loginform" autocomplete="off">
 						<div class="form-group has-error">	
 							<input type="text" class="form-control" name="email" id="txtEmail" placeholder="Email" autocomplete="off" onkeyup="validateSignInEmail(this)" required autofocus>
 						</div>
