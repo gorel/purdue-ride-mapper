@@ -503,8 +503,8 @@
 					{
 						if (isset($_GET['page']) && $_GET['page'] == $i)
 						{
-							echo "<li><a href=\"#\">". $i ."</a></li>";
-							//echo $i . " ";
+							//Fix this later:
+							//echo "<li><a href=\"#\">". $i ."</a></li>";
 						}
 						else
 						{
