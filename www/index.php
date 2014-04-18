@@ -639,5 +639,6 @@
 			</div>
 		</div>
 	</div>
+
+<?php include 'modules/settings/settings.php' ?>
 </html>
-<?php require 'modules/settings/settings.php' ?>

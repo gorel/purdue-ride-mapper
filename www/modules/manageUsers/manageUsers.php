@@ -3,19 +3,16 @@
 <script type="text/javascript" src="/js/moment.min.js"></script>
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/justified-nav.css" rel="stylesheet">
+
 
 <hr class="featurette-divider">
 
 	<div class="container" >
 
-
-		<form class="form-inline" role="form">
-			<div class="form-group">
-				<input id='keyword_field' type="text" class="form-control" placeholder="Search..." required autofocus>
-				<input type="radio" name="sex" value="fname">First Name<input type="radio" name="lname" value="female">Last Name<input type="radio" name="email" value="E-Mail" required checked>E-mail
-			</div>
-			<button type="submit" class="btn" id="search" disabled>Search</button>
-		</form>
 
 	<?php
 		$user_id = $_SESSION['user'];
@@ -48,8 +45,8 @@
 		$stmt = $conn->prepare($query);
 		$stmt->execute();
 		$stmt->bind_result($uid, $email, $fname, $verified, $enabled, $is_admin, $lname);
-
-		echo "<table class='table table-striped' id='tbl_usr'>
+                echo "<div class='table-responsive'>";
+		echo "<table class='table table-hover table-striped table-condensed' id='tbl_usr'>
 		        <thead>
 			  <tr>
 			    <th> User ID </th>
@@ -62,7 +59,7 @@
 			  </tr>
 			<thead>";
 
-		echo "</tbody>";
+		echo "<tbody>";
 		while ($stmt->fetch())
 		{
 			$verified_text = "No";
@@ -92,6 +89,7 @@
 		}
 		echo "</tbody>";
 		echo "</table>";
+                echo "</div>";
 
 		$stmt->close();
 
