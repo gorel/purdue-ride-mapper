@@ -471,11 +471,13 @@
 								}
 							}
 							$list = '';
-							for($i = $start; $i < $end; $i++)
-							//while($row = mysqli_fetch_array($result))
+							///for($i = $start; $i < $end; $i++)
+							$i = $start;
+							while($row = mysqli_fetch_array($result))
 							{
 								if($i == $total_results) { break;}
-								
+								if($i < $end) { break;}
+								else{ $i++;}
 								echo '<tr id="'.$row['listings_id'].'">';
 								echo '<td id="'.$row['listings_id'].'_Starting_Address">'.$row['startingAddress'].'</td>';
 								echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
