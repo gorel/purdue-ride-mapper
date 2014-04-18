@@ -124,7 +124,7 @@ function sendUserMail($rcpt, $msg, $requester)
         $subject = "College Carpool Contact Request";
 		
 		$content = "<html><body>" .
-                   "Sent on behalf of: ".$rideHost."<br><br>".$msg.
+                   "Sent on behalf of: ".$requester."<br><br>".$msg.
                    "<br><br>Please reply to: ".$requester."</body></html>";
 				   
         mail($rcpt, $subject, $content, $headers);
