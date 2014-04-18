@@ -539,13 +539,13 @@
 						<h3>Please Sign In</h3>
 					</div>
 					<div class = "modal-body">
-					<form id="loginform" autocomplete="off">
+					<form id="loginform" >
 						<div class="form-group has-error">	
-							<input type="text" class="form-control" name="email" id="txtEmail" placeholder="Email" autocomplete="off" onkeyup="validateSignInEmail(this)" required autofocus>
+							<input type="text" class="form-control" name="email" id="txtEmail" placeholder="Email" required autofocus>
 						</div>
 
 						<div class="form-group has-error">
-							<input type="password" class="form-control" name="pass" id="txtPassword" placeholder="Password" autocomplete="off" onkeyup="validateSignInPassword(this)" required>
+							<input type="password" class="form-control" name="pass" id="txtPassword" placeholder="Password" required>
 						</div>
 						<label id="errAuth" class="err" hidden="true"></label>
 
@@ -556,7 +556,7 @@
 						</div>
 
 						<div class="form-group">
-							<button class="btn btn-lg btn-primary btn-block" onclick="signIn(); return false;" id="loginButton" disabled>Sign in</button>
+							<button class="btn btn-lg btn-primary btn-block" onclick="signIn(); return false;" id="loginButton">Sign in</button>
 
 						</div>
 
@@ -568,11 +568,12 @@
 						</div>
 							
 						<button class="btn btn-lg btn-primary btn-block" type="reset" onclick="showPwModal()" type="text" id="pwModalButton">Forgot Password?</button>
-					</div>
-</form>
+						</div>
+					</form>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					</div>
+					
 			</div>
 		</div>
 	</div>
