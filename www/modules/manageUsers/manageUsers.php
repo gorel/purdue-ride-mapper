@@ -87,7 +87,9 @@
 				<td> <button class=\"btn btn-success btn-small\"
 					onclick=\"editUser($uid)\">Edit</button>
 				 <button class=\"btn btn-danger\"
-					onclick=\"updateDelId($uid)\">Delete</button></td>
+					onclick=\"updateDelId($uid)\">Delete</button>
+				<button class=\"btn btn-danger\"
+					onclick=\"warnUserModal($uid)\">Send Warning</button></td>
 			      </tr>";
 		}
 		echo "</tbody>";
@@ -225,6 +227,56 @@
     });
 }
 
+//Send a warning email to a user
+function warnUserModal(uid)
+{
+    var elm = document.getElementById('toWarnId');
+    elm.value = uid;
+
+    $('#modalWarnUser').modal('show');
+}
+
+function warnUser()
+{
+	var message = document.getElementById('warnMessage').value;
+	var from_uid = <?php echo $_SESSION['user']; ?>
+	var to_uid = elm;
+	if (message.length === 0)
+	{
+		alert("Please provide a non-empty message.");
+		return;
+	}
+	console.log(message);
+	console.log(from_uid);
+	$.ajax ({
+		type: "POST",
+		url: "/modules/manageUsers/manageUsersContactProc.php",
+		dataType: "json",
+		beforeSend: function() {
+			console.log("before send");
+		},
+		complete: fuction() {
+			console.log("complete");
+		},
+		data: {"message" : message, "from_uid" : from_uid, "to_uid" : to_uid},
+		success: function(data) {
+			console.log("success");
+			console.log(data.success);
+			console.log(data.rcpt);
+			console.log(data.from);
+			console.log(data.to);
+			if(data.success === "TRUE")
+			{
+				alert("User has been warned.");
+				document.getElementById('warnMessage').value = "";
+			}
+			else
+			{
+				alert("Message failed to send.");
+			}
+	});
+}
+
 
 </script>
 
@@ -276,3 +328,28 @@
     </div>
   </div>
 </div>
+
+<!-- Modal to send a warning message to a user-->
+
+<div class="modal fade" id="modalWarnUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Message User</h4>
+      </div>
+      <div class="modal-body">
+      	<form id="warnForm" action="/modules/manageUsers/warnUserProc.php" method="POST">
+		<b>Warning Message (What did the user do?)</b>
+		<input type='textarea' class='form-control' name='message' id='warnMessage'><br>
+	</form>
+      </div>
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" onClick="warnUser()">Send Warning</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
