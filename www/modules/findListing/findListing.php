@@ -212,6 +212,7 @@
 						<th> Match % </th>
 						<th> Starting Address </th>
 						<th> Ending Address </th>
+						<th> Passengers </th>
 						<th> Type </th>
 						<th> Date of Departure </th>
 						</tr>
@@ -235,7 +236,10 @@
 						echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
 
 						if ($print_offer)
+						{
+							echo 'td id="'.$row['passengers'].'_Passengers">'.$row['passengers'].'</td>';
 							echo '<td id="'.$row['listings_id'].'_Ride_Type">Offering Ride</td>';
+							}
 						else
 							echo '<td id="'.$row['listings_id'].'_Ride_Type">Requesting Ride</td>';
 
