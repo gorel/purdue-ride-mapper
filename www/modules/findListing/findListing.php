@@ -397,161 +397,102 @@
 
 					$sql = "SELECT * FROM listings $limit";
 					$result = mysqli_query($con,$sql);
-					if($result = $mysqli->query("SELECT * FROM listings"))
-					{
-						if($result->num_rows != 0)
-						{
-							$total_results = $result->num_rows;
-							$total_pages = ceil($total_result/$page_rows);
-							// check if the 'page' variable is set in the URL (ex: view-paginated.php?page=1)
-						    if (isset($_GET['page']) && is_numeric($_GET['page']))
-						    {
-						        $show_page = $_GET['page'];
-						                
-						        // make sure the $show_page value is valid
-						        if ($show_page > 0 && $show_page <= $total_pages)
-						            {
-						                $start = ($show_page -1) * $per_page;
-						                $end = $start + $per_page; 
-						            }
-						            else
-						            {
-						                // error - show first set of results
-						                $start = 0;
-						                $end = $per_page; 
-						            }               
-						    }
-						    else
-						    {
-						        // if page isn't set, show first set of results
-						        $start = 0;
-						        $end = $per_page; 
-						    }
-							echo "<h1>All listings:</h1>";
-							echo "<table class='table table-striped'>
-							<thead>
-							<tr>
-							<th> Starting Address </th>
-							<th> Ending Address </th>
-							<th> Ride Type </th>
-							<th> Passengers </th>
-							<th> Date of Departure </th>
-							</tr>
-							</thead>";
-							// Establish the $paginationCtrls variable
-							$paginationCtrls = '';
-							// If there is more than 1 page worth of results
-							if($last != 1){
-								/* First we check if we are on page one. If we are then we don't need a link to 
-								   the previous page or the first page so we do nothing. If we aren't then we
-								   generate links to the first page, and to the previous page. */
-								if ($pagenum > 1) {
-									$previous = $pagenum - 1;
-									$paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$previous.'">Previous</a> &nbsp; &nbsp; ';
-									// Render clickable number links that should appear on the left of the target page number
-									for($i = $pagenum-4; $i < $pagenum; $i++){
-										if($i > 0){
-											$paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$i.'">'.$i.'</a> &nbsp; ';
-										}
-									}
-								}
-								// Render the target page number, but without it being a link
-								$paginationCtrls .= ''.$pagenum.' &nbsp; ';
-								// Render clickable number links that should appear on the right of the target page number
-								for($i = $pagenum+1; $i <= $last; $i++){
+					echo "<h1>All listings:</h1>";
+					echo "<table class='table table-striped'>
+					<thead>
+					<tr>
+					<th> Starting Address </th>
+					<th> Ending Address </th>
+					<th> Ride Type </th>
+					<th> Passengers </th>
+					<th> Date of Departure </th>
+					</tr>
+					</thead>";
+					// Establish the $paginationCtrls variable
+					$paginationCtrls = '';
+					// If there is more than 1 page worth of results
+					if($last != 1){
+						/* First we check if we are on page one. If we are then we don't need a link to 
+						   the previous page or the first page so we do nothing. If we aren't then we
+						   generate links to the first page, and to the previous page. */
+						if ($pagenum > 1) {
+							$previous = $pagenum - 1;
+							$paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$previous.'">Previous</a> &nbsp; &nbsp; ';
+							// Render clickable number links that should appear on the left of the target page number
+							for($i = $pagenum-4; $i < $pagenum; $i++){
+								if($i > 0){
 									$paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$i.'">'.$i.'</a> &nbsp; ';
-									if($i >= $pagenum+4){
-										break;
-									}
-								}
-								// This does the same as above, only checking if we are on the last page, and then generating the "Next"
-								if ($pagenum != $last) {
-									$next = $pagenum + 1;
-									$paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next.'">Next</a> ';
 								}
 							}
-							$list = '';
-							///for($i = $start; $i < $end; $i++)
-							$i = $start;
-							while($row = mysqli_fetch_array($result))
-							{
-								//if($i == $total_results) { break;}
-								if($i < $end) { break;}
-								else{ $i++;}
-								echo '<tr id="'.$row['listings_id'].'">';
-								echo '<td id="'.$row['listings_id'].'_Starting_Address">'.$row['startingAddress'].'</td>';
-								echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
-								if($row["isRequest"] == 0)
-								{
-									echo '<td id="'.$row['listings_id'].'_Ride_Type">Offering Ride</td>';
-								}
-								else
-								{
-									echo '<td id="'.$row['listings_id'].'_Ride_Type">Requesting Ride</td>';
-								}
-
-								echo '<td id="'.$row['listings_id'].'_Passengers">'.$row['passengers'].'</td>';
-								echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
-								echo "<td>". $row['listings_id'] . "</td>";
-								echo "<td>
-										<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
-									</td>";
-								echo '<input id="'.$row['listings_id'].'_Start_Lat" type="hidden" value="'.$row['start_lat'].'">';
-								echo '<input id="'.$row['listings_id'].'_Start_Long" type="hidden" value="'.$row['start_long'].'">';
-								echo '<input id="'.$row['listings_id'].'_End_Lat" type="hidden" value="'.$row['end_lat'].'">';
-								echo '<input id="'.$row['listings_id'].'_End_Long" type="hidden" value="'.$row['end_long'].'">';
-								echo "</tr>";
-								
-								echo "<script>										
-												$(document).ready(function()
-												{
-													map.addMarker
-													({
-														lat:". $row['start_lat'] . ",
-														lng:". $row['start_long'] . ",
-													});
-													map.drawRoute
-													({
-														origin: [". $row['start_lat'] .", " . $row['start_long'] . "],
-														destination: [". $row['end_lat'].", " . $row['end_long'] . "],
-														travelMode: 'driving',
-														strokeColor: '". random_color() ."',
-														strokeOpacity: 0.6,
-														strokeWeight: 6
-													});
-													map.addMarker
-													({
-														lat:". $row['end_lat'] . ",
-														lng:". $row['end_long'] . ",
-													})
-													map.fitZoom();
-												});
-											</script>
-											";
+						}
+						// Render the target page number, but without it being a link
+						$paginationCtrls .= ''.$pagenum.' &nbsp; ';
+						// Render clickable number links that should appear on the right of the target page number
+						for($i = $pagenum+1; $i <= $last; $i++){
+							$paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$i.'">'.$i.'</a> &nbsp; ';
+							if($i >= $pagenum+4){
+								break;
 							}
-							// display pagination
-						    echo "<p><b>View Page:</b> ";
-						    for ($i = 1; $i <= $total_pages; $i++)
-						    {
-						    	if (isset($_GET['page']) && $_GET['page'] == $i)
-						    	{
-									echo $i . " ";
-						        }
-						        else
-						        {
-						        	echo "<a href='findListing.php?page=$i'>$i</a> ";
-						        }
-						    }
-						    echo "</p>";
+						}
+						// This does the same as above, only checking if we are on the last page, and then generating the "Next"
+						if ($pagenum != $last) {
+							$next = $pagenum + 1;
+							$paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next.'">Next</a> ';
+						}
+					}
+					$list = '';
+					while($row = mysqli_fetch_array($result))
+					{
+						echo '<tr id="'.$row['listings_id'].'">';
+						echo '<td id="'.$row['listings_id'].'_Starting_Address">'.$row['startingAddress'].'</td>';
+						echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
+						if($row["isRequest"] == 0)
+						{
+							echo '<td id="'.$row['listings_id'].'_Ride_Type">Offering Ride</td>';
 						}
 						else
 						{
-							echo "No results to display!";
+							echo '<td id="'.$row['listings_id'].'_Ride_Type">Requesting Ride</td>';
 						}
-					}
-					else
-					{
-						echo "Error: " . $mysqli->error;
+
+						echo '<td id="'.$row['listings_id'].'_Passengers">'.$row['passengers'].'</td>';
+						echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
+						echo "<td>". $row['listings_id'] . "</td>";
+						echo "<td>
+								<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
+							</td>";
+						echo '<input id="'.$row['listings_id'].'_Start_Lat" type="hidden" value="'.$row['start_lat'].'">';
+						echo '<input id="'.$row['listings_id'].'_Start_Long" type="hidden" value="'.$row['start_long'].'">';
+						echo '<input id="'.$row['listings_id'].'_End_Lat" type="hidden" value="'.$row['end_lat'].'">';
+						echo '<input id="'.$row['listings_id'].'_End_Long" type="hidden" value="'.$row['end_long'].'">';
+						echo "</tr>";
+						
+						echo "<script>										
+										$(document).ready(function()
+										{
+											map.addMarker
+											({
+												lat:". $row['start_lat'] . ",
+												lng:". $row['start_long'] . ",
+											});
+											map.drawRoute
+											({
+												origin: [". $row['start_lat'] .", " . $row['start_long'] . "],
+												destination: [". $row['end_lat'].", " . $row['end_long'] . "],
+												travelMode: 'driving',
+												strokeColor: '". random_color() ."',
+												strokeOpacity: 0.6,
+												strokeWeight: 6
+											});
+											map.addMarker
+											({
+												lat:". $row['end_lat'] . ",
+												lng:". $row['end_long'] . ",
+											})
+											map.fitZoom();
+										});
+									</script>
+									";
 					}
 					echo "</table>";
 				}
