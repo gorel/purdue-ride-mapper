@@ -148,7 +148,9 @@
 				</div>
 
 				<script type="text/javascript">
-                                        
+					$('#txtEmail').on('input', function() {
+						console.log("pop");
+					});            
 					$("#editListings").click(function()
 					{
 						$( "#content" ).load( "modules/editListings/editListings.php" );
@@ -537,7 +539,7 @@
 						<h3>Please Sign In</h3>
 					</div>
 					<div class = "modal-body">
-                                                <form id="loginform">
+					<form id="loginform">
 						<div class="form-group has-error">	
 							<input type="text" class="form-control" name="email" id="txtEmail" placeholder="Email" onkeyup="validateSignInEmail(this)" required autofocus>
 						</div>
