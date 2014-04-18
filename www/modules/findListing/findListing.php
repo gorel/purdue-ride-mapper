@@ -475,7 +475,7 @@
 							$i = $start;
 							while($row = mysqli_fetch_array($result))
 							{
-								if($i == $total_results) { break;}
+								//if($i == $total_results) { break;}
 								if($i < $end) { break;}
 								else{ $i++;}
 								echo '<tr id="'.$row['listings_id'].'">';
