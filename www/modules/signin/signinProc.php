@@ -54,8 +54,11 @@ else
         
 	if (!strcmp($password, $hashpw) && $verified==1 && $enabled==1)
 	{
+                if ($isAdmin)
+                {
+		        $_SESSION['isAdmin']=$isAdmin;
+                }
 		$_SESSION['user']=$user_id;
-		$_SESSION['isAdmin']=$isAdmin;
                 echo json_encode(array("retval" => "AUTH_OK"));
 		
 	}
