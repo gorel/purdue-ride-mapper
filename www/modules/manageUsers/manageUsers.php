@@ -1,4 +1,22 @@
-<?php session_start() ?>
+<?php session_start();
+
+$user_id = $_SESSION['user'];
+
+if (!isset($user_id))
+  die();
+
+if (!$_SESSION['isAdmin'])
+{
+// TODO: Need to find a better way to redirect
+  echo "<script type='text/javascript'>
+          $(\"#content\").load(\"/home.php\");
+	  document.getElementById('manageUsers').parentNode.className = \"inactive\";
+	  document.getElementById('home').parentNode.className = \"active\";
+        </script>";
+  die();
+}
+?>
+
 <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="/js/moment.min.js"></script>
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
@@ -8,95 +26,96 @@
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/justified-nav.css" rel="stylesheet">
 
+<script>
+  function doSearch()
+  {
+    var term = $('#txtSearch').val();
+    var page = $('#txtPage').val();
+    var by = $('#txtBy').val();
+    //TODO term validaiton to prevent sql injection
+
+    $.ajax ({
+      type: "POST",
+      url: "/modules/manageUsers/manageUsersSearch.php",
+      dataType: 'json',
+      data: {"by" : by, "term" : term ,"page" : page},
+      beforeSend: function() {
+          $('#tableusr').empty();
+
+      },
+      complete: function() {
+        console.log("Complete");
+      },
+      success: function(data) {
+
+	if (data.retval == "ERR") {
+		alert("Database error: Could not delete the user");
+        }
+     
+        for (var i = 0; i < data.results.length; i++) {
+          var usr = jQuery.parseJSON(data.results[i]);
+
+          var verified_text = usr.verified ? "Yes" : "No";
+          var enabled_text  = usr.enabled  ? "Yes" : "No";
+          var is_admin_text = usr.is_admin ? "Yes" : "No";
+
+          var markup = "<tr id=usr_" + usr.user_id + ">"             +
+                         "<td id=" + usr.user_id + "_uid>"           + usr.user_id    + "</td>" +
+                         "<td id=" + usr.user_id + "_email>"         + usr.email      + "</td>" +
+                         "<td id=" + usr.user_id + "_fname>"         + usr.first_name + "</td>" +
+                         "<td id=" + usr.user_id + "_lname>"         + usr.last_name  + "</td>" +
+                         "<td id=" + usr.user_id + "_verified_text>" + verified_text  + "</td>" +
+                         "<td id=" + usr.user_id + "_enabled_text>"  + enabled_text   + "</td>" +
+                         "<td id=" + usr.user_id + "_is_admin_text>" + is_admin_text  + "</td>" +
+
+                         "<td><button class='btn btn-success btn-small' onclick='editUser(" + usr.user_id + ")'>"  +
+                                 "Edit</button>"    + "     " +
+                             "<button class='btn btn-warning' onclick='warnUserModal(" + usr.user_id + ")'>" +
+                                 "Send Warning</button>" + "     " +
+		             "<button class='btn btn-danger' onclick='updateDelId(" + usr.user_id + ")'>" +
+                                 "Delete</button>"          +     "      " +
+                         "</td>" +
+                       "</tr>";
+
+          $("#tableusr").append(markup);
+        }
+      }
+    });
+  }
+
+</script>
 
 <hr class="featurette-divider">
 
 	<div class="container" >
 
-
+<!--          <form action="/modules/manageUsers/manageUsersSearch.php" method="POST"> -->
+            <input type="text" class="form-control" name="term" id="txtSearch" value="a">
+            <input type="text" class="form-control" name="by" id="txtBy" value="first_name">
+            <input type="text" class="form-control" name="page" id="txtPage" value="0">
+            <button class="form-control btn-primary" id="btnSearch" onclick="doSearch()">Search</button>
+<!--            <button class="form-control btn-primary" id="btnSearch" onclick="doSearch()">Search</button> -->
 	<?php
-		$user_id = $_SESSION['user'];
 
-		if (!$_SESSION['isAdmin'])
-		{
-			// TODO: Need to find a better way to redirect
-			echo "<script type='text/javascript'>
-				$(\"#content\").load(\"/home.php\");
-				document.getElementById('manageUsers').parentNode.className = \"inactive\";
-				document.getElementById('home').parentNode.className = \"active\";
-			     </script>";
-			die();
-		}
-
-		// TODO: CHANGE CREDENTIALS BACK
-		$conn = new mysqli("collegecarpool.us","root","collegecarpool","purdue_test");
-
-		if($conn->connect_errno)
-		{
-			die("Failed to connect to MySQL: " . mysqli_connect_error());
-
-		}
-
-		$query = "SELECT " .
-		         "user_id, email, first_name, verified, enabled, is_admin, last_name " .
-		         "FROM users";
-
-		$stmt = $conn->stmt_init();
-		$stmt = $conn->prepare($query);
-		$stmt->execute();
-		$stmt->bind_result($uid, $email, $fname, $verified, $enabled, $is_admin, $lname);
-                echo "<div class='table-responsive'>";
-		echo "<table class='table table-hover table-striped table-condensed' id='tbl_usr'>
-		        <thead>
-			  <tr>
-			    <th> User ID </th>
-			    <th> Email </th>
-			    <th> First Name </th>
-			    <th> Last Name </th>
-			    <th> Verified </th>
-			    <th> Enabled </th>
-			    <th> Admin </th>
-			  </tr>
-			<thead>";
-
-		echo "<tbody>";
-		while ($stmt->fetch())
-		{
-			$verified_text = "No";
-			$enabled_text = "No";
-			$is_admin_text = "No";
-
-			if ($verified)
-				$verified_text = "Yes";
-			if($enabled)
-				$enabled_text = "Yes";
-			if($is_admin)
-				$is_admin_text = "Yes";
-
-			echo "<tr id=usr_$uid>
-			        <td id=$uid"."_uid> $uid </td>
-			        <td id=$uid"."_email> $email </td>
-			        <td id=$uid"."_fname> $fname </td>
-			        <td id=$uid"."_lname> $lname </td>
-			        <td id=$uid"."_verified_text> $verified_text </td>
-			        <td id=$uid"."_enabled_text> $enabled_text </td>
-			        <td id=$uid"."_is_admin_text> $is_admin_text </td>
-				<td> <button class=\"btn btn-success btn-small\"
-					onclick=\"editUser($uid)\">Edit</button>
-                                     <button class=\"btn btn-warning\"
-					onclick=\"warnUserModal($uid)\">Send Warning</button>
-				     <button class=\"btn btn-danger\"
-					onclick=\"updateDelId($uid)\">Delete</button>
-                                </td>
-		                </tr>";
-		}
-		echo "</tbody>";
-		echo "</table>";
+	        echo "<div class='table-responsive'>";
+		echo   "<table class='table table-hover table-striped table-condensed'>
+		          <thead>
+			    <tr>
+			      <th> User ID </th>
+			      <th> Email </th>
+			      <th> First Name </th>
+			      <th> Last Name </th>
+			      <th> Verified </th>
+			      <th> Enabled </th>
+			      <th> Admin </th>
+			    </tr>
+			  </thead>";
+		echo      "<tbody id='tableusr'>";
+		echo      "</tbody>";
+		echo   "</table>";
                 echo "</div>";
 
-		$stmt->close();
-
-	?>
+?>
 </div> <!-- /container -->
 
 <!-- User Management Functions -->
@@ -119,19 +138,20 @@
     var elm = document.getElementById('toDelId');
 
     $.ajax ({
-	type: "POST",
-	url: "/modules/manageUsers/delUserProc.php",
-	dataType: 'json',
-	data: {"uid" : elm.value},
-	success: function(data) {
+      type: "POST",
+      url: "/modules/manageUsers/delUserProc.php",
+      dataType: 'json',
+      data: {"uid" : elm.value},
+      success: function(data) {
 
-	if (data.retval == "ERR") {
-		alert("Database error: Could not delete the user");
+        if (data.retval == "ERR") 
+        {
+	  alert("Database error: Could not delete the user");
 	}
 	$('#modalDeleteUser').modal('hide');
-	$("#content").load("/modules/manageUsers/manageUsers.php");
-           }
-	});
+        doSearch();
+      }
+    });
   }
 
   // Populate values in edit modal
@@ -211,19 +231,21 @@
 	enabled = radDisabled.value;
 
     $.ajax ({
-	type: "POST",
-	url: "/modules/manageUsers/editUserProc.php",
-	dataType: 'json',
-	data: {"fname" : fname, "lname" : lname, "email" : email, "admin" : admin, "enabled" : enabled, "uid" : uid},
-	success: function(data) {
+      type: "POST",
+      url: "/modules/manageUsers/editUserProc.php",
+      dataType: 'json',
+      data: {"fname" : fname, "lname" : lname, "email" : email, "admin" : admin, "enabled" : enabled, "uid" : uid},
+      success: function(data) {
 
-	if (data.retval == "ERR") {
-		alert("Database error: Could not update user's details");
+        if (data.retval == "ERR") 
+        {
+	  alert("Database error: Could not update user's details");
 	}
 	$('#modalEditUser').modal('hide');
-	$("#content").load("/modules/manageUsers/manageUsers.php");
-           }
-    });
+        doSearch();
+
+     }
+   });
 }
 
 //Send a warning email to a user
@@ -261,7 +283,6 @@ function warnUser()
 		success: function(data) {
 			console.log("send mail success");
 			$('#modalWarnUser').modal('hide');
-			$("#content").load("/modules/manageUsers/manageUsers.php");
 			if(data.success === "TRUE")
 			{
 				alert("User has been warned.");
