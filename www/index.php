@@ -306,6 +306,7 @@
                   if (data.retval == "AUTH_OK")
                   {
         	    window.location.replace("/");	
+                    return;
                   } 
                   else if (data.retval == "AUTH_FAILED_PW") 
                   {
