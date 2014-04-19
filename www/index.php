@@ -339,9 +339,9 @@
 
             function clrLoginCntl()
             {
-              $('errAuth').hide();
               $('#txtEmail').val("");
               $('#txtPassword').val("");
+              $('#errAuth').hide();
             }
 
 		function validateSignInEmail(sender)
