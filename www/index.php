@@ -303,19 +303,29 @@
                 success: function(data) {
                   var errMsg = $('#errAuth');
 
-                  if (data.retval == "AUTH_FAILED_PW") 
+                  if (data.retval == "AUTH_OK")
+                  {
+        	    window.location.replace("/");	
+                  } 
+                  else if (data.retval == "AUTH_FAILED_PW") 
                   {
                     errMsg.text("Authentication failed. Please retype your password");
                        
-                  } else if (data.retval == "AUTH_NO_USER") 
+                  } 
+                  else if (data.retval == "AUTH_NO_USER") 
                   {
                     errMsg.text("Account does not exist. Please register :)");
 
-                  } else if (data.retval == "AUTH_OK")
+                  } 
+                  else if (data.retval == "AUTH_UNVERIFIED")
                   {
-        	    window.location.replace("/");	
-
-                  } else 
+                    errMsg.text("Please activate your account through the link sent in your email");
+                  }
+                  else if (data.retval == "AUTH_BANNED")
+                  {
+                    errMsg.text("Your account has been banned. Please contact us for further information");
+                  }
+                  else  
                   { 
                     errMsg.text("An unexpected error occurred");  
                   }

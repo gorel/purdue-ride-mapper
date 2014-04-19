@@ -34,7 +34,7 @@ $stmt = $conn->stmt_init();
 
 // check if user exist
 
-$query = "SELECT user_id, password, verified , is_admin FROM users WHERE lower(email) like ?";
+$query = "SELECT user_id, password, verified , is_admin, enabled FROM users WHERE lower(email) like ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param('s', $email);
 $stmt->execute();
@@ -47,28 +47,30 @@ if ($stmt->num_rows < 1)
 }
 else
 {
-	$stmt->bind_result($user_id, $password, $verified, $isAdmin);
+	$stmt->bind_result($user_id, $password, $verified, $isAdmin, $enabled);
 	$stmt->fetch();
 
 
-	// TODO: what to do with users who have been banned
-
-	if (!strcmp($password, $hashpw) && $verified==1)
+        
+	if (!strcmp($password, $hashpw) && $verified==1 && $enabled==1)
 	{
 		$_SESSION['user']=$user_id;
 		$_SESSION['isAdmin']=$isAdmin;
                 echo json_encode(array("retval" => "AUTH_OK"));
 		
 	}
-	else if(!strcmp($password, $hashpw) && $verified==0)
-	{
-		// TODO
-	}
 	else if (strcmp($password, $hashpw))
 	{
                 echo json_encode(array("retval" => "AUTH_FAILED_PW"));
-		// TODO
 	}
+	else if(!strcmp($password, $hashpw) && $verified==0)
+	{
+                echo json_encode(array("retval" => "AUTH_UNVERIFIED"));
+	}
+        else if(!strcmp($password, $hashpw) && $enabled==0)
+        {
+                echo json_encode(array("retval" => "AUTH_BANNED"));
+        }
 }
 
 
