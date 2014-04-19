@@ -136,7 +136,7 @@ echo   "</table>";
 
   function doSearch()
   {
-    var term = $('#txtSearch').val();
+    var term = $('#txtSearch').val().trim();
     var page = $('#lblPage').text();
     var by = $('#lblBy').text();
 
