@@ -27,11 +27,90 @@ if (!$_SESSION['isAdmin'])
 <link href="css/justified-nav.css" rel="stylesheet">
 
 <script>
+</script>
+
+<style>
+</style>
+
+<hr class="featurette-divider">
+
+<div class="container" >
+  <div class="btn-group col-sm-3">
+    <button type="button" class="btn btn-default active" id="btnFirstName" onclick="changeSearchType(this)">First Name</button>
+    <button type="button" class="btn btn-default" id="btnLastName" onclick="changeSearchType(this)">Last Name</button>
+    <button type="button" class="btn btn-default" id="btnEmail" onclick="changeSearchType(this)">Email</button>
+  </div>
+
+  <div class="input-group col-sm-5">
+    <input type="text" class="form-control" name="term" id="txtSearch" value="">
+      <span class="input-group-btn">
+        <button class="btn btn-primary" id="btnSearch", onclick ="doSearch()", type="button">Search</button>
+          </span>
+  </div>
+
+  <label name="by" id="lblBy" hidden='true'>first_name</label>
+  <label name="page" id="lblPage" hidden='true'>0</label>
+
+<?php
+
+echo "<div class='table-responsive'>";
+echo   "<table class='table table-hover table-striped table-condensed'>
+          <thead>
+	    <tr>
+	      <th> User ID </th>
+	        <th> Email </th>
+	        <th> First Name </th>
+	        <th> Last Name </th>
+	        <th> Verified </th>
+	        <th> Enabled </th>
+	        <th> Admin </th>
+	        </tr>
+	  </thead>";
+echo     "<tbody id='tableusr'>";
+echo     "</tbody>";
+echo   "</table>";
+ echo "</div>";
+
+?>
+
+</div> <!-- /container -->
+
+<!-- User Management Functions -->
+
+<script type="text/javascript">
+  
+  // searh by different field
+  function changeSearchType(btn)
+  {
+    $('#btnFirstName').removeClass('active');
+    $('#btnLastName').removeClass('active');
+    $('#btnEmail').removeClass('active');
+    
+    if (btn.id == "btnFirstName")
+    {
+      $('#lblBy').text("first_name");  
+      $('#btnFirstName').toggleClass('active');
+    }
+    else if (btn.id == "btnLastName")
+    {
+      $('#lblBy').text("last_name");  
+      $('#btnLastName').toggleClass('active');
+
+    }
+    else if (btn.id == "btnEmail")
+    {
+      $('#lblBy').text("email");  
+      $('#btnEmail').toggleClass('active');
+    }
+  }
+  
+  // search for users
+
   function doSearch()
   {
     var term = $('#txtSearch').val();
-    var page = $('#txtPage').val();
-    var by = $('#txtBy').val();
+    var page = $('#lblPage').text();
+    var by = $('#lblBy').text();
     //TODO term validaiton to prevent sql injection
 
     $.ajax ({
@@ -40,11 +119,10 @@ if (!$_SESSION['isAdmin'])
       dataType: 'json',
       data: {"by" : by, "term" : term ,"page" : page},
       beforeSend: function() {
-          $('#tableusr').empty();
-
+	// TODO Disable all cntls
       },
       complete: function() {
-        console.log("Complete");
+	// TODO Enable all cntls
       },
       success: function(data) {
 
@@ -52,6 +130,8 @@ if (!$_SESSION['isAdmin'])
 		alert("Database error: Could not delete the user");
         }
      
+        $('#tableusr').empty();
+
         for (var i = 0; i < data.results.length; i++) {
           var usr = jQuery.parseJSON(data.results[i]);
 
@@ -82,46 +162,6 @@ if (!$_SESSION['isAdmin'])
       }
     });
   }
-
-</script>
-
-<hr class="featurette-divider">
-
-	<div class="container" >
-
-<!--          <form action="/modules/manageUsers/manageUsersSearch.php" method="POST"> -->
-            <input type="text" class="form-control" name="term" id="txtSearch" value="a">
-            <input type="text" class="form-control" name="by" id="txtBy" value="first_name">
-            <input type="text" class="form-control" name="page" id="txtPage" value="0">
-            <button class="form-control btn-primary" id="btnSearch" onclick="doSearch()">Search</button>
-<!--            <button class="form-control btn-primary" id="btnSearch" onclick="doSearch()">Search</button> -->
-	<?php
-
-	        echo "<div class='table-responsive'>";
-		echo   "<table class='table table-hover table-striped table-condensed'>
-		          <thead>
-			    <tr>
-			      <th> User ID </th>
-			      <th> Email </th>
-			      <th> First Name </th>
-			      <th> Last Name </th>
-			      <th> Verified </th>
-			      <th> Enabled </th>
-			      <th> Admin </th>
-			    </tr>
-			  </thead>";
-		echo      "<tbody id='tableusr'>";
-		echo      "</tbody>";
-		echo   "</table>";
-                echo "</div>";
-
-?>
-</div> <!-- /container -->
-
-<!-- User Management Functions -->
-
-<script type="text/javascript">
-
 
   // Delete user
 
