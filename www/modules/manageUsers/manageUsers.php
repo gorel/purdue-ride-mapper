@@ -41,15 +41,20 @@ if (!$_SESSION['isAdmin'])
     <button type="button" class="btn btn-default" id="btnEmail" onclick="changeSearchType(this)">Email</button>
   </div>
 
-  <div class="input-group col-sm-5">
-    <input type="text" class="form-control" name="term" id="txtSearch" value="">
+  <form>
+    <div class="input-group col-sm-5">
+      <input type="text" class="form-control" name="term" id="txtSearch" value="">
       <span class="input-group-btn">
-        <button class="btn btn-primary" id="btnSearch", onclick ="doSearch()", type="button">Search</button>
-          </span>
-  </div>
+        <button class="btn btn-primary" id="btnSearch", onclick ="doSearch(); return false;">Search</button>
+      </span>
+    </div>
+  </form>
 
   <label name="by" id="lblBy" hidden='true'>first_name</label>
   <label name="page" id="lblPage" hidden='true'>0</label>
+
+<hr class="featurette-divider">
+<div id="searchinfo" class="h4"></div>
 
 <?php
 
@@ -79,7 +84,30 @@ echo   "</table>";
 
 <script type="text/javascript">
   
-  // searh by different field
+  // disable all controls
+
+  function disableAllSearchCntl() 
+  {
+    $('#btnFirstName').prop('disabled', true);
+    $('#btnLastName').prop('disabled', true);
+    $('#btnEmail').prop('disabled', true);
+    $('#btnSearch').prop('disabled', true);
+    $('#txtSearch').prop('disabled', true);
+  }
+
+  // disable all controls
+
+  function enableAllSearchCntl() 
+  {
+    $('#btnFirstName').prop('disabled', false);
+    $('#btnLastName').prop('disabled', false);
+    $('#btnEmail').prop('disabled', false);
+    $('#btnSearch').prop('disabled', false);
+    $('#txtSearch').prop('disabled', false);
+  }
+
+  // search by different field
+
   function changeSearchType(btn)
   {
     $('#btnFirstName').removeClass('active');
@@ -111,7 +139,10 @@ echo   "</table>";
     var term = $('#txtSearch').val();
     var page = $('#lblPage').text();
     var by = $('#lblBy').text();
-    //TODO term validaiton to prevent sql injection
+
+    // Get rid of annoying autocomplete dropdown
+
+    $('#txtSearch').blur();
 
     $.ajax ({
       type: "POST",
@@ -119,10 +150,12 @@ echo   "</table>";
       dataType: 'json',
       data: {"by" : by, "term" : term ,"page" : page},
       beforeSend: function() {
-	// TODO Disable all cntls
+        disableAllSearchCntl();
+
       },
       complete: function() {
-	// TODO Enable all cntls
+        enableAllSearchCntl();
+
       },
       success: function(data) {
 
@@ -158,6 +191,7 @@ echo   "</table>";
                        "</tr>";
 
           $("#tableusr").append(markup);
+          $("#searchinfo").text("Found " + data.num + " result(s)");
         }
       }
     });
