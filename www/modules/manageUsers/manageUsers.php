@@ -191,8 +191,8 @@ echo   "</table>";
                        "</tr>";
 
           $("#tableusr").append(markup);
-          $("#searchinfo").text("Found " + data.num + " result(s)");
         }
+        $("#searchinfo").text("Found " + data.num + " result(s)");
       }
     });
   }
