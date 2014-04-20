@@ -1,11 +1,12 @@
 <!-- Bootstrap core CSS -->
 <link href="/css/bootstrap.css" rel="stylesheet">
+<link href="/css/custom.css" rel="stylesheet">
+
 
 <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="/js/moment.min.js"></script>
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/validation.js"></script>
-
 
 
 <?php
@@ -29,86 +30,169 @@ $stmt = $conn->prepare($query);
 $stmt->bind_result($email,$link);
 $stmt->execute();
 $stmt->store_result();
+$stmt->fetch();
 
 if ($stmt->num_rows <= 0) {
   die("Password reset link does not exist");
 }
-$stmt->fetch();
 
 echo "<p id=\"email\" hidden=true>$email</p>";
 
 ?>
 
-
+<!-- Form Name -->
 <div class="container">
-	<form class="form-horizontal">
-	<fieldset>
+<p id="title"></>
+</div>
 
-		<!-- Form Name -->
-		<p id="title"></>
+<div class="container col-sm-4 col-sm-offset-4">
+  <form class="form-horizontal" onSubmit="submitNewPw(); return false;">
+    <div class="control-group">
 
-		<!-- Password input-->
-		<div class="control-group">
-	  		<label class="control-label" for="password">Password</label>
-	  		<div class="controls">
-	    			<input id="password" name="password" type="password" placeholder="" class="input-xlarge">
-  	  		</div>
-		</div>
+      <!-- Password input-->
+      <label class="control-label" for="password">Password</label>
+      <input id="password" class="form-control" name="password" type="password" placeholder="" class="input-xlarge">
 
-		<!-- Password input-->
-		<div class="control-group">
-			<label class="control-label" for="confirm_password">Confirm Password</label>
-  			<div class="controls">
-    				<input id="confirm_password" name="confirm_password" type="password" placeholder="" class="input-xlarge">
-  			</div>
-		</div>
+      <!-- Confirm Password input-->
+      <label class="control-label" for="confirm_password">Confirm Password</label>
+      <input id="confirm_password" class="form-control" name="confirm_password" type="password" placeholder="" class="input-xlarge">
+      <div class="control-group"> 
+        <label id='errNewPwMsg' class="err"></label>
+        <label id='okNewPwMsg' class="ok"></label>
+        <div id='progressNewPw' class="waiting">Updating password... <img src="/images/load.gif"></div>
+      </div>
+      <!-- Button -->
+      <label class="control-label" for="submitPassword"></label>
+      <button class="form-control btn btn-primary" id="submitPassword" name="submitPassword">Submit</button>
+    </div>
 
-		<!-- Button -->
-		<div class="control-group">
-  			<label class="control-label" for="submitPassword"></label>
-  			<div class="controls">
-    				<button type="button" id="submitPassword" name="submitPassword" onClick="validatePass()" class="btn btn-primary">Submit</button>
-  			</div>
-		</div>
-
-	</fieldset>
-	</form>
-
+  </form>
 </div>
 
 
 <script type="text/javascript">
 
-var title = document.getElementById('title');
-var val = document.getElementById('email');
-title.innerHTML = "<h3><b>Password reset for " + val.innerHTML + "</b></h3><hr>";
 
-function validatePass()
+$(document).ready(function () {
+  var title = document.getElementById('title');
+  var val = document.getElementById('email');
+  title.innerHTML = "<h3><b>Password reset for " + val.innerHTML + "</b></h3><hr>";
+  $('#progressNewPw').hide();
+});
+
+var time_start = 0;
+var time_end = 0;
+
+/**
+ * submitNewPw
+ * 
+ * validate and submit new password
+ */
+function submitNewPw()
 {
-	var pass = document.getElementById('password');
-	var cpass = document.getElementById('confirm_password');
-	var email = document.getElementById('email');
+  hideAllNewPwMsg();
 
-	if ((! validateEduMail(pass)) {
-		alert("Passwords must be alphanumerical");
-		return;
-	}
+  var pass  = $('#password').val()
+  var cpass = $('#confirm_password').val();
+  var email = $('#email').text();
 
-        $.ajax ({
-        type: "POST",
-        url: "/modules/signin/changePasswordProc.php", 
-        dataType: 'json',
-        data: {"password" : pass.value, "email" : email.innerHTML}, 
-        success: function(data) {
+  if (! validatePass(pass)) {
+    $('#errNewPwMsg').text("Password must be alphanumerical and at least 6 characters long");
+    $('#errNewPwMsg').show();
+    return;
+  }
 
-        if (data.retval == "ERR") {
-                alert("Database error: Could not delete the user");
-		return;
-        }
-		alert("Password was successfuly changed");
-		window.location = "/index.php";
-          }
-        });
+  if (pass != cpass)
+  {
+    $('#errNewPwMsg').text("Passwords do not match");
+    $('#errNewPwMsg').show();
+    return;
+  }
+
+  $.ajax ({
+    type: "POST",
+    url: "/modules/signin/changePasswordProc.php", 
+    dataType: 'json',
+    data: {"password" : pass, "email" : email}, 
+    beforeSend: function() {
+      $('#progressNewPw').show();
+      disableAllNewPwCntl();
+
+    },
+    success: function(data) {
+      if (data.retval == "ERR") {
+        $('#errNewPwMsg').text("Database error");
+        $('#errNewPwMsg').show();
+        $('progressNewPw').hide();
+        return;
+      }
+
+      $('#okNewPwMsg').text("Password updated successfully");
+      $('#okNewPwMsg').show();
+      $('#progressNewPw').show();
+      time_start = new Date().getTime() / 1000;
+      time_end = time_start + 5;
+      setInterval(function() { countdown(); }, 1000);
+    }
+
+  });
+}
+
+/**
+ * countdown
+ *
+ * dynamically change redirecting time
+ */
+function countdown()
+{
+ time_elapsed = Math.ceil(time_end - time_start);
+ if (time_elapsed >= 0) 
+ {
+   console.log("time_elapsed");
+   text = "You will be redirected to collegecarpool.us in..." + time_elapsed + " "; 
+   $('#progressNewPw').text(text);
+   $('#progressNewPw').append("<img src='/images/load.gif'>"); 
+   time_start = new Date().getTime() / 1000;
+ } 
+ else
+   window.location = "/index.php";
+}
+
+/**
+ * hideAllNewPwMsg
+ *
+ * Hide all new password hints
+ */
+function hideAllNewPwMsg()
+{
+  $('#errNewPwMsg').hide();
+  $('#okNewPwMsg').hide();
+  $('#progressNewPw').hide();
+}
+
+/**
+ * disableAllNewPwCntl
+ *
+ * Disable all controls for the page
+ */
+function disableAllNewPwCntl()
+{
+  $('#password').prop('disabled', true);
+  $('#confirm_password').prop('disabled', true);
+  $('#email').prop('disabled', true);
+  $('#submitPassword').prop('disabled', true);
+}
+/**
+ * enableAllNewPwCntl
+ *
+ * Enable all controls for page
+ */
+function enableAllNewPwCntl()
+{
+  $('#password').prop('disabled', false);
+  $('#confirm_password').prop('disabled', false);
+  $('#email').prop('disabled', false);
+  $('#submitPassword').prop('disabled', false);
 }
 
 

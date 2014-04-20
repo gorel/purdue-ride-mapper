@@ -17,6 +17,7 @@ if ($conn->connect_errno)
 
 $stmt = $conn->stmt_init();
 $pass = saltedHash($_POST["password"]);
+
 $query = "delete from password_reset where email like '$email'";
 $stmt = $conn->prepare($query);
 $ret = $stmt->execute();

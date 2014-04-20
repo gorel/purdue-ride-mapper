@@ -14,6 +14,18 @@ function validateAltMail(text)
 
   if (! patt.test(text))
       return false;
+
+  return true;
+
+}
+
+function validatePass(text)
+{
+  var patt = /^[a-z0-9]{6,}$/i;
+
+  if (! patt.test(text))
+    return false;
+
   return true;
 
 }
