@@ -227,8 +227,126 @@
           var signInEmailValid = false;
 	  var signInPasswordValid = false;
 
+          /**
+           * register
+           *
+           * register a new account
+           */
+          function register()
+          {
+             hideAllRegMsg();
+
+             var fname = $('#txtFirstName').val();
+             var lname = $('#txtLastName').val();
+             var email = $('#txtRegEmail').val();
+             var pw = $('#txtRegPw').val();
+
+             $.ajax ({ 
+	        type: "POST",
+		url: "/modules/register/registerProc.php", 
+		dataType: 'json',
+		data: {"fname" : fname, "lname" : lname, "email" : email, "pw" : pw  }, 
+                beforeSend: function() {
+                  disableAllRegCntl();
+                  $('#progressReg').show();
+
+                },
+                complete: function() {
+                  enableAllRegCntl();
+                  $('#progressReg').hide();
+
+                },
+		success: function(data) {
+
+		  if (data.retval == "ERR") 
+		  {
+                    $('#errRegMsg').text("Database error");
+                    $('#errRegMsg').show();
+		    return;
+		  }
+                  else if (data.retval == "REG_USER_EXIST")
+                  {
+                    $('#errRegMsg').text("Email already exists in the database");
+                    $('#errRegMsg').show();
+                    return;
+                  }
+                  
+                  $('#okRegMsg').text("An email with an activation link has been sent! Please follow the instructions to activate your account");
+                  $('#okRegMsg').show();
+                  clrAllRegCntl();
+		}	
+	      }); 
+          }
+          /**
+           * hideAllRegMsg 
+           *
+           * hide all registration hints
+           */
+          function hideAllRegMsg()
+          {
+            $('#okRegMsg').hide();
+            $('#errRegMsg').hide();
+            $('#progressReg').hide();
+          }
+
+          /**
+           * disableAllRegCntl
+           *
+           * Disable all register controls
+           */
+           function disableAllRegCntl()
+           {
+            $('#txtFirstName').prop('disabled', true);
+            $('#txtLastName').prop('disabled', true);
+            $('#txtRegEmail').prop('disabled', true);
+            $('#txtRegPw').prop('disabled', true);
+            $('#txtRetypeRegPw').prop('disabled', true);
+            $('#cbAgree').prop('disabled', true);
+            $('#btnRegSubmit').prop('disabled', true);
+            $('#btnRegClose').prop('disabled', true);
+           }
+
+          /**
+           * enableAllRegCntl
+           *
+           * enable all register controls
+           */
+           function enableAllRegCntl()
+           {
+            $('#txtFirstName').prop('disabled', false);
+            $('#txtLastName').prop('disabled', false);
+            $('#txtRegEmail').prop('disabled', false);
+            $('#txtRegPw').prop('disabled', false);
+            $('#txtRetypeRegPw').prop('disabled', false);
+            $('#cbAgree').prop('disabled', false);
+            $('#btnRegSubmit').prop('disabled', false);
+            $('#btnRegClose').prop('disabled', false);
+           }
+
+          /**
+           * clrAllRegCntl
+           *
+           * clear all register controls
+           */
+          function clrAllRegCntl() 
+          {
+            $('#txtFirstName').val("");
+            $('#txtLastName').val("");
+            $('#txtRegEmail').val("");
+            $('#txtRegPw').val("");
+            $('#txtRetypeRegPw').val("");
+            $('#cbAgree').prop('checked', false);
+          }
+
+          /**
+           * showRegisterModal()
+           *
+           * Display modal for user to register
+           */
 	  function showRegisterModal()
 	  {
+            hideAllRegMsg();
+            clrAllRegCntl();
             $('#signInModal').modal('hide');
 	    $('#registerModal').modal('show');
 	  }
@@ -256,7 +374,6 @@
             $('#btnSubmitEmail').prop('disabled', false);
             $('#btnPwResetClose').prop('disabled', false);
            }
-
 
 	  /**
            * hideAllPwResetMsg()
@@ -337,6 +454,7 @@
             /**
              * hideAllSignInMsg
              *
+             * Hide sign in hints
              */
 	    function hideAllSignInMsg()
             {
@@ -347,6 +465,7 @@
             /**
              * signIn()
              *
+             * Authenticate user
              */
             function signIn()
             {
@@ -405,6 +524,11 @@
                
             }
 
+            /**
+             * clrSignInCntl
+             *
+             * Empty all control values
+             */
             function clrSignInCntl()
             {
               $('#txtEmail').val("");
@@ -556,7 +680,7 @@
 		{
 			var parent = sender.parentNode;		
 			var textBoxValue = sender.value;
-			var textBoxValueTwo =  document.getElementById('password').value;
+			var textBoxValueTwo =  document.getElementById('txtRegPw').value;
 			
 			if(textBoxValue == textBoxValueTwo)
 			{
@@ -591,7 +715,7 @@
 		
 		function validateForm()
 		{
-			var button =  document.getElementById('submitButton');
+			var button =  document.getElementById('btnRegSubmit');
 			
 			if(termsOfServiceValid && passwordRepeatValid && firstNameValid && lastNameValid && emailValid && passwordValid)
 			{
@@ -682,42 +806,45 @@
 	<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form class="form-signin" action="/modules/register/registerProc.php" role="form" method="post" id="registerForm">
+				<form class="form-signin" onSubmit="register(); return false;"role="form" id="registerForm">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h3>Register</h3>
 					</div>
 					<div class = "modal-body">
 						<div class="form-group has-error">
-							<input type="text" class="form-control" name="fname" placeholder="First Name" onkeyup="validateFirstName(this);" required autofocus>
+							<input type="text" id="txtFirstName" class="form-control" name="fname" placeholder="First Name" onkeyup="validateFirstName(this);" required autofocus>
 						</div>
 
 						<div class="form-group has-error">
-							<input type="text" class="form-control" name="lname" placeholder="Last Name" onkeyup="validateLastName(this);" required autofocus>
+							<input type="text" id="txtLastName" class="form-control" name="lname" placeholder="Last Name" onkeyup="validateLastName(this);" required autofocus>
 						</div>
 
 						<div class="form-group has-error" id="test">
-							<input type="text" class="form-control" name="email" placeholder="Email" onkeyup="validateEmail(this);" required autofocus>
+							<input type="text" id ="txtRegEmail" class="form-control" name="email" placeholder="Email" onkeyup="validateEmail(this);" required autofocus>
 						</div>
 						
 						<div class="form-group has-error">
-							<input type="password" class="form-control" name="pass" placeholder="Password" id="password" onkeyup="validatePassword(this);" required autofocus>
+							<input type="password" id="txtRegPw" class="form-control" name="pass" placeholder="Password" id="password" onkeyup="validatePassword(this);" required autofocus>
 						</div>
 						
 						<div class="form-group has-error">
-							<input type="password" class="form-control" placeholder="Retype Password" onkeyup="validatePasswordMatcher(this);" required autofocus>
+							<input type="password" id="txtRetypeRegPw" class="form-control" placeholder="Retype Password" onkeyup="validatePasswordMatcher(this);" required autofocus>
 						</div>
 						
 						<div class="form-group has-error">
 							<label class="checkbox">
-								<input type="checkbox" value="agree" onclick="validateTermsOfService(this);">Agree to Terms of Service
+								<input type="checkbox" id="cbAgree" value="agree" onclick="validateTermsOfService(this);">Agree to Terms of Service
 							</label>		
+                                                        <div class="waiting" id="progressReg">Creating account... <img src="/images/load.gif"/></div>
+                                                        <label class="ok" id="okRegMsg" hidden='true'></label>
+                                                        <label class="err" id="errRegMsg" hidden='true'></label>
 						</div>	
 						
-						<button class="btn btn-lg btn-primary btn-block" type="submit" id="submitButton" disabled>Submit</button>
+						<button class="btn btn-lg btn-primary btn-block" id="btnRegSubmit" id="submitButton" disabled>Submit</button>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-default" id="btnRegClose" data-dismiss="modal">Close</button>
 					</div>
 				</form>
 			</div>

@@ -22,7 +22,7 @@ require '../../lib/email.php';
 // assumes valid input
 
 $email    = strtolower($_POST["email"]);
-$hashpw   = saltedHash($_POST["pass"]);
+$hashpw   = saltedHash($_POST["pw"]);
 $fname    = $_POST["fname"];
 $lname    = $_POST["lname"];
 
@@ -34,7 +34,7 @@ $conn =  new mysqli($dbHost, $dbUser, $dbPass, $dbName);
 
 if ($conn->connect_errno) 
 {
-    echo  $conn->connect_errno . " " . $conn->connect_error;
+    echo json_encode(array("retval" => "ERR"));
     die;
 }
 $stmt = $conn->stmt_init();
@@ -49,7 +49,7 @@ $stmt->store_result();
 
 if ($stmt->num_rows > 0) 
 {
-    echo  "User already exists";
+    echo json_encode(array("retval" => "REG_USER_EXIST"));
     die;
 }
 $stmt->close();
@@ -75,6 +75,6 @@ $stmt->close();
 
 sendRegMail($email, $fname, $uid, $token);
 
-header("Location:../../index.php");
+echo json_encode(array("retval" => "REG_OK"));
 
 ?>
