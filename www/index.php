@@ -437,12 +437,17 @@
 
 		  if (data.retval == "ERR") 
 		  {
-                      $('#errPwResetMsg').text("Database error");
-                      $('#errPwResetMsg').show();
-		      return;
+                    $('#errPwResetMsg').text("Database error");
+                    $('#errPwResetMsg').show();
+		    return;
 		  }
-                  
-                  $('#okPwResetMsg').text("A password reset link has been set to your account. Please check your email for details");
+                  else if (data.retval == "FORGOTPW_NO_USER")
+                  {
+                    $('#errPwResetMsg').text("Account does not exist!");
+                    $('#errPwResetMsg').show();
+		    return;
+                  }
+                  $('#okPwResetMsg').text("A password reset link has been sent to your account. Please check your email for details");
                   $('#okPwResetMsg').show();
                   $('#txtForgotPwEmail').val("");
 		}	
