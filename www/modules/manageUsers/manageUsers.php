@@ -34,21 +34,26 @@ if (!$_SESSION['isAdmin'])
 
 <hr class="featurette-divider">
 
-<div class="container" >
-  <div class="btn-group col-sm-3">
-    <button type="button" class="btn btn-default active" id="btnFirstName" onclick="changeSearchType(this)">First Name</button>
-    <button type="button" class="btn btn-default" id="btnLastName" onclick="changeSearchType(this)">Last Name</button>
-    <button type="button" class="btn btn-default" id="btnEmail" onclick="changeSearchType(this)">Email</button>
+<div class="container col-sm-12">
+
+  <div class="col-sm-3">
+    <div class="btn-group">
+        <button type="button" class="btn btn-default active" id="btnFirstName" onclick="changeSearchType(this)">First Name</button>
+        <button type="button" class="btn btn-default" id="btnLastName" onclick="changeSearchType(this)">Last Name</button>
+        <button type="button" class="btn btn-default" id="btnEmail" onclick="changeSearchType(this)">Email</button>
+    </div>
   </div>
 
-  <form>
-    <div class="input-group col-sm-5">
+  <div class="col-sm-5">
+    <div class="input-group">
       <input type="text" class="form-control" name="term" id="txtSearch" value="">
       <span class="input-group-btn">
         <button class="btn btn-primary" id="btnSearch", onclick ="doSearch(); return false;">Search</button>
       </span>
     </div>
-  </form>
+  </div>
+
+</div>
 
   <label name="by" id="lblBy" hidden='true'>first_name</label>
   <label name="page" id="lblPage" hidden='true'>0</label>
