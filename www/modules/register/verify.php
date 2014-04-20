@@ -50,6 +50,7 @@ $stmt->store_result();
 if (!$stmt->num_rows ) 
 {
         echo "Activation link does not exist!";
+        die();
 }
 
 // compare token from URL and database
@@ -74,3 +75,57 @@ if ($db_token == $token)
 }
 
 ?>
+
+<!-- Bootstrap core CSS -->
+
+<html>
+<style>
+.calign { text-align:center };
+</style>
+<head>
+  <link href="/css/bootstrap.css" rel="stylesheet">
+
+  <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="/js/moment.min.js"></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/js/validation.js"></script>
+  <script>
+
+  var time_start = new Date().getTime() / 1000;
+  var time_end = time_start + 5;
+
+  /**
+   * countdown
+   *
+   * dynamically change redirecting time
+   */
+  function countdown()
+  {
+    time_elapsed = Math.ceil(time_end - time_start);
+     if (time_elapsed >= 0)
+     {
+       console.log("time_elapsed");
+       text = "You will be redirected to collegecarpool.us in..." + time_elapsed + " "; 
+       $('#msg').text(text);
+       $('#msg').append("<img src='/images/load.gif'>"); 
+       time_start = new Date().getTime() / 1000;
+     } 
+     else
+       window.location = "/index.php";
+  }
+  setInterval(function() {countdown(); }, 1000);
+  </script>
+
+  </head>
+  <body>
+    <div class="col-sm-4 col-sm-offset-4">
+      <div class="calign">
+        Thank you for activating your account!<br>
+      </div>
+      <div id="msg"class="calign"</div>
+      </div>
+</div>
+<body>
+</html>
+
+
