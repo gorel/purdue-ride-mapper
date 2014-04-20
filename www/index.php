@@ -16,10 +16,7 @@
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/bootstrap.css" rel="stylesheet">
 		<link href="css/justified-nav.css" rel="stylesheet">
-                <style>
-                  .err { color:#FF0000; font-weight:bold; }
-                  .ok  { color:#397D02; font-weight:bold; }
-                </style>
+		<link href="css/custom.css" rel="stylesheet">
 
 		
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
@@ -30,6 +27,7 @@
 		<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="js/moment.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/validation.js"></script>
 	</head>
 	<body>
 
@@ -234,7 +232,44 @@
 	    $('#registerModal').modal('show');
 	  }
 
+          /**
+           * disableAllPwResetCntl
+           *
+           * Disable all password reset controls
+           */
+           function disableAllPwResetCntl()
+           {
+            $('#txtForgotPwEmail').prop('disabled', true);
+            $('#btnSubmitEmail').prop('disabled', true);
+            $('#btnPwResetClose').prop('disabled', true);
+           }
+
+          /**
+           * enableAllPwResetCntl
+           *
+           * enable all password reset controls
+           */
+           function enableAllPwResetCntl()
+           {
+            $('#txtForgotPwEmail').prop('disabled', false);
+            $('#btnSubmitEmail').prop('disabled', false);
+            $('#btnPwResetClose').prop('disabled', false);
+           }
+
+
 	  /**
+           * hideAllPwResetMsg()
+	   *
+	   * Hide all hints
+	   */
+	   function hideAllPwResetMsg()
+	   {
+             $('#okPwResetMsg').hide();
+             $('#errPwResetMsg').hide();
+             $('#progressForgotPw').hide();
+	   }
+
+          /**
            * showPwModal()
 	   *
 	   * bring up the modal to submit email for resetting password
@@ -243,6 +278,8 @@
 	   {
 	     $('#signInModal').modal('hide');
 	     $('#modalPwReset').modal('show');			
+             $('#txtForgotPwEmail').val("");
+             hideAllPwResetMsg();
 	   }
 
 	   /**
@@ -252,18 +289,14 @@
 	    */
 	    function submitEmail()
 	    {
+              hideAllPwResetMsg();
+              $('#txtForgotPwEmail').blur();
 	      var elm = document.getElementById('txtForgotPwEmail');
-	      var patt = /[A-Za-z0-9]+@([A-Za-z0-9]+\.[A-Za-z0-9])+/i
 
-	      if (txtForgotPwEmail.value.trim() == "") 
+	      if (! validateEduMail(txtForgotPwEmail.value.trim())) 
 	      {
-	        alert("Please enter an email address");
-		return;
-	      }
-
-	      if (! patt.test(txtForgotPwEmail.value)) 
-	      {
-		alert("Please enter a valid email address!");
+                $('#errPwResetMsg').text("Please enter a valid .edu email address");
+                $('#errPwResetMsg').show();
 		return;
 	      }
 
@@ -272,17 +305,28 @@
 		url: "/modules/signin/forgotPassword.php", 
 		dataType: 'json',
 		data: {"email" : txtForgotPwEmail.value.trim()}, 
+                beforeSend: function() {
+                  disableAllPwResetCntl();
+                  $('#progressForgotPw').show();
+
+                },
+                complete: function() {
+                  enableAllPwResetCntl();
+                  $('#progressForgotPw').hide();
+
+                },
 		success: function(data) {
 
 		  if (data.retval == "ERR") 
 		  {
-		      alert("Error: No such email / database connection failed");
-		      $('#modalPwReset').modal('hide');
+                      $('#errPwResetMsg').text("Database error");
+                      $('#errPwResetMsg').show();
 		      return;
 		  }
-
-		  alert("An email has been sent to your account, please check for details.");
-		  $('#modalPwReset').modal('hide');
+                  
+                  $('#okPwResetMsg').text("A password reset link has been set to your account. Please check your email for details");
+                  $('#okPwResetMsg').show();
+                  $('#txtForgotPwEmail').val("");
 		}	
 	      }); 
 			
@@ -401,10 +445,8 @@
 				button.disabled = true;
 			}
 		}
-	</script>
 	
 	<!-- Register Form Validation -->
-	<script>
 		var emailValid = false;
 		var firstNameValid = false;
 		var lastNameValid = false;
@@ -600,18 +642,23 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title" id="myModalLabel">Send Reset Password Link</h4>
 				</div>
+                                <form>
 				<div class="modal-body">
 					<b>Email</b>      <input type="text" class="form-control" name="email" id="txtForgotPwEmail"><br>
+                                        <label class="err" id="errPwResetMsg" hidden='true'></label>
+                                        <label class="ok"id="okPwResetMsg" hidden='true'></label>
+                                        <div class="waiting" id="progressForgotPw">Generating link <img src="/images/load.gif"/></div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" onClick="submitEmail()">Submit</button>
+					<button type="button" class="btn btn-default" id="btnPwResetClose" data-dismiss="modal">Close</button>
+					<button class="btn btn-primary" id="btnSubmitEmail" onClick="submitEmail(); return false;">Submit</button>
 				</div>
+                                </form>
 			</div>
 		</div>
 	</div>
 	
-	<!-- register modal -->	<!-- Password reset modal -->
+	<!-- register modal -->
 	<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
