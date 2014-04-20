@@ -54,9 +54,6 @@
 				if (document.getElementById("listARide")) {
 					document.getElementById('listARide').parentNode.className = "inactive";
 				}
-				if (document.getElementById("login")) {
-					document.getElementById('login').parentNode.className = "inactive";
-				}
 				if (document.getElementById("home")) {
 					document.getElementById('home').parentNode.className = "inactive";
 				}
@@ -168,10 +165,6 @@
 					$("#manageUsers").click(function()
 					{
 						$( "#content" ).load( "modules/manageUsers/manageUsers.php" );
-					});
-					$("#login").click(function()
-					{
-						$( "#content" ).load( "modules/signin/signin.php" );
 					});
 					$("#contact").click(function()
 					{
