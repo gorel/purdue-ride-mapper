@@ -55,8 +55,10 @@ if (!$_SESSION['isAdmin'])
 
 </div>
 
+<div class="container">
   <label name="by" id="lblBy" hidden='true'>first_name</label>
   <label name="page" id="lblPage" hidden='true'>0</label>
+</div>
 
 <hr class="featurette-divider">
 <div id="searchinfo" class="h4"></div>
