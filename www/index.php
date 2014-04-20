@@ -34,7 +34,8 @@
 		<script type="text/javascript">
 			function showSignInModal()
 			{
-				clrLoginCntl();
+				clrSignInCntl();
+                                hideAllSignInMsg();
 				$('#signInModal').modal('show');
 			}
 			
@@ -332,13 +333,25 @@
 			
 
 	    }
-	    
+
+            /**
+             * hideAllSignInMsg
+             *
+             */
+	    function hideAllSignInMsg()
+            {
+              $('#errAuth').hide();
+              $('#progressSignIn').hide();
+            } 
+
             /**
              * signIn()
              *
              */
             function signIn()
             {
+              hideAllSignInMsg();
+
               var email = $('#txtEmail').val().trim(); 
               var password = $('#txtPassword').val().trim();
 
@@ -347,6 +360,13 @@
                 url: "/modules/signin/signinProc.php",
                 dataType: 'json',
                 data: {"email" : email, "password" : password },
+                beforeSend: function() {
+                  $('#progressSignIn').show();
+                },
+                complete: function() {
+                  $('#progressSignIn').hide();
+
+                },
                 success: function(data) {
                   var errMsg = $('#errAuth');
 
@@ -385,11 +405,10 @@
                
             }
 
-            function clrLoginCntl()
+            function clrSignInCntl()
             {
               $('#txtEmail').val("");
               $('#txtPassword').val("");
-              $('#errAuth').hide();
             }
 
 		function validateSignInEmail(sender)
@@ -604,6 +623,7 @@
 							<input type="password" class="form-control" name="pass" id="txtPassword" placeholder="Password" required>
 						</div>
 						<label id="errAuth" class="err" hidden="true"></label>
+                                                <div class="waiting" id="progressSignIn">Signing In... <img src="/images/load.gif"/></div>
 
 						<div class="form-group">
 							<label class="checkbox">
@@ -647,7 +667,7 @@
 					<b>Email</b>      <input type="text" class="form-control" name="email" id="txtForgotPwEmail"><br>
                                         <label class="err" id="errPwResetMsg" hidden='true'></label>
                                         <label class="ok"id="okPwResetMsg" hidden='true'></label>
-                                        <div class="waiting" id="progressForgotPw">Generating link <img src="/images/load.gif"/></div>
+                                        <div class="waiting" id="progressForgotPw">Generating link... <img src="/images/load.gif"/></div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" id="btnPwResetClose" data-dismiss="modal">Close</button>
