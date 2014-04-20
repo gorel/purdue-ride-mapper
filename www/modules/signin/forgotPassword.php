@@ -13,16 +13,35 @@ if ($conn->connect_errno)
         die();
 }
 
+$email = trim($_POST['email']);
+
+$stmt = $conn->stmt_init();
+
+// First check if user exists
+
+$query = "SELECT user_id from users where email like ?";
+
+$stmt = $conn->prepare($query);
+$stmt->bind_param('s', $email);
+$stmt->bind_result($uid);
+$stmt->execute();
+$stmt->store_result();
+$stmt->fetch();
+
+if ($stmt->num_rows == 0)
+{
+  echo json_encode(array('retval' => 'FORGOTPW_NO_USER'));
+  die;
+}
+
 // Hash email+time to produce the link to change the password
 
 date_default_timezone_set('EST');
 
-$email = $_POST['email'];
 $hash = saltedHash($email . date("H:i:s"));
 
 $query = "SELECT link from password_reset where email like ?";
 
-$stmt = $conn->stmt_init();
 $stmt = $conn->prepare($query);
 $stmt->bind_param('s', $email);
 $stmt->bind_result($hash);
@@ -43,13 +62,14 @@ if ($stmt->num_rows > 0)
   return;
 }
 
-$query = "INSERT into password_reset (email, link) VALUES (?, ?)";
+mysqli_stmt_reset($stmt);
+$query = "INSERT into password_reset (user_id, email, link) VALUES (?, ?, ?)";
 $stmt = $conn->prepare($query);
-$stmt->bind_param('ss', $email, $hash);
+$stmt->bind_param('dss', $uid, $email, $hash);
 $stmt->execute();
 sendPwResetMail($email, $hash);
 
-echo json_encode(array('retval' => 'OK'));
+echo json_encode(array('retval' => 'OK', "uid" => $uid));
 
 ?>
 
