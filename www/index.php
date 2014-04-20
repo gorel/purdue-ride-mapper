@@ -375,6 +375,7 @@
 	  function showRegisterModal()
 	  {
             hideAllRegMsg();
+            resetRegForm();
             clrAllRegCntl();
             $('#signInModal').modal('hide');
 	    $('#registerModal').modal('show');
