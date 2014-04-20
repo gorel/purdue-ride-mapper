@@ -88,8 +88,8 @@ function validatePass()
 	var cpass = document.getElementById('confirm_password');
 	var email = document.getElementById('email');
 
-	if ((pass.value != cpass.value) || pass.value.trim() == "" || cpass.value.trim() =="") {
-		alert("Passwords must match and must not be empty");
+	if ((! validateEduMail(pass)) {
+		alert("Passwords must be alphanumerical");
 		return;
 	}
 
