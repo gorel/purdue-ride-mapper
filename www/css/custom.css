@@ -1,0 +1,4 @@
+.err { color:#FF0000; font-weight:bold; }
+.ok  { color:#397D02; font-weight:bold; }
+.waiting { text-align:center; display:block; margin-left:auto; margin-right:auto  }
+
