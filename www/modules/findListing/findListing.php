@@ -510,8 +510,8 @@
 										";
 						
 						}
-						echo "</table>";
 					}
+					echo "</table>";
 				}
 			}
 			mysqli_close($con);
