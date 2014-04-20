@@ -508,8 +508,9 @@
 											});
 										</script>
 										";
-						echo "</table>";
+						
 						}
+						echo "</table>";
 					}
 				}
 			}
