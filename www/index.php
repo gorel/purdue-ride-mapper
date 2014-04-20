@@ -274,6 +274,7 @@
                   $('#okRegMsg').text("An email with an activation link has been sent! Please follow the instructions to activate your account");
                   $('#okRegMsg').show();
                   clrAllRegCntl();
+                  resetRegForm();
 		}	
 	      }); 
           }
@@ -288,6 +289,35 @@
             $('#errRegMsg').hide();
             $('#progressReg').hide();
           }
+
+          /**
+           * resetRegForm
+           *
+           * resets the form validation for regsistration
+           */
+           function resetRegForm()
+           {
+             $('#reg1').toggleClass('has-success');
+             $('#reg1').toggleClass('has-error');
+             $('#reg2').toggleClass('has-success');
+             $('#reg2').toggleClass('has-error');
+             $('#reg3').toggleClass('has-success');
+             $('#reg3').toggleClass('has-error');
+             $('#reg4').toggleClass('has-success');
+             $('#reg4').toggleClass('has-error');
+             $('#reg5').toggleClass('has-success');
+             $('#reg5').toggleClass('has-error');
+             $('#reg6').toggleClass('has-success');
+             $('#reg6').toggleClass('has-error');
+	     
+             emailValid = false;
+	     firstNameValid = false;
+             lastNameValid = false;
+	     passwordValid = false;
+	     passwordRepeatValid = false;
+             termsOfServiceValid = false;
+		
+           }
 
           /**
            * disableAllRegCntl
@@ -319,7 +349,6 @@
             $('#txtRegPw').prop('disabled', false);
             $('#txtRetypeRegPw').prop('disabled', false);
             $('#cbAgree').prop('disabled', false);
-            $('#btnRegSubmit').prop('disabled', false);
             $('#btnRegClose').prop('disabled', false);
            }
 
@@ -817,27 +846,27 @@
 						<h3>Register</h3>
 					</div>
 					<div class = "modal-body">
-						<div class="form-group has-error">
+						<div id="reg1" class="form-group has-error">
 							<input type="text" id="txtFirstName" class="form-control" name="fname" placeholder="First Name" onkeyup="validateFirstName(this);" required autofocus>
 						</div>
 
-						<div class="form-group has-error">
+						<div id ="reg2" class="form-group has-error">
 							<input type="text" id="txtLastName" class="form-control" name="lname" placeholder="Last Name" onkeyup="validateLastName(this);" required autofocus>
 						</div>
 
-						<div class="form-group has-error" id="test">
+						<div id="reg3" class="form-group has-error">
 							<input type="text" id ="txtRegEmail" class="form-control" name="email" placeholder="Email" onkeyup="validateEmail(this);" required autofocus>
 						</div>
 						
-						<div class="form-group has-error">
+						<div id="reg4" class="form-group has-error">
 							<input type="password" id="txtRegPw" class="form-control" name="pass" placeholder="Password" id="password" onkeyup="validatePassword(this);" required autofocus>
 						</div>
 						
-						<div class="form-group has-error">
+						<div id="reg5" class="form-group has-error">
 							<input type="password" id="txtRetypeRegPw" class="form-control" placeholder="Retype Password" onkeyup="validatePasswordMatcher(this);" required autofocus>
 						</div>
 						
-						<div class="form-group has-error">
+						<div id="reg6" class="form-group has-error">
 							<label class="checkbox">
 								<input type="checkbox" id="cbAgree" value="agree" onclick="validateTermsOfService(this);">Agree to Terms of Service
 							</label>		
