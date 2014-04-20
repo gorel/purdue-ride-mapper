@@ -23,9 +23,22 @@ $stmt = $conn->prepare($query);
 $stmt->bind_param('d', $uid);
 $stmt->execute();
 $query = "DELETE FROM listings where user_id=?";
+
 $stmt = $conn->prepare($query);
 $stmt->bind_param('d', $uid);
 $stmt->execute();
+
+$query = "DELETE FROM unverified_user_tokens where user_id=?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param('d', $uid);
+$stmt->execute();
+
+$query = "DELETE FROM password_reset where user_id=?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param('d', $uid);
+$stmt->execute();
+
+
 echo json_encode(array('retval' => 'OK'));
 
 
