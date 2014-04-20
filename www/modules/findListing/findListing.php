@@ -49,6 +49,7 @@
 								<td id="dateOfDepartureModal"></td>
 							</tr>
 						</table>
+						<div id="pagination_controls"><?php echo $paginationCtrls; ?></div>
 					</div>
 					<div class="col-md-6">
 						<p><b>Send them a message!</b></p>
@@ -440,96 +441,76 @@
 							$paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next.'">Next</a> ';
 						}
 					}
-					$list = '';
+					$count = 0;
+					$pn = 1;
 					while($row = mysqli_fetch_array($result))
 					{
-						/*
-						$id = $row['listings_id'];
-						$start_add = $row['startingAddress'];
-						$end_add = $row['endingAddress']
-						if($row["isRequest"] == 0)
+						if($count > 10)
 						{
-							$reqType = "Offering Ride";
+							echo "<ul class=\"pagination\">";
+							echo "<li><a href=\"findListing.php?pn='" .$pn. "'\">&laquo;</a></li>";
+							echo "<li><a href=\"findListing.php?pn='" .$pn. "'\">". $pn ."</a></li>";
+							echo "<li><a href=\"findListing.php?pn='" .$pn. "'\">&raquo;</a></li>
+									</ul>";
+							$count = 0;
+							$pn++;
 						}
 						else
 						{
-							$reqType = "Requesting Ride";
-						}
-						$passg = $row['passengers'];
-						$date = $row['dateOfDeparture'];
-						
-						$list .= '<p><a href="findListing.php?id='.$id.'">'.$start_add.' '.$end_add.' Route</a></p>';
-						*/
-						echo '<tr id="'.$row['listings_id'].'">';
-						echo '<td id="'.$row['listings_id'].'_Starting_Address">'.$row['startingAddress'].'</td>';
-						echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
-						if($row["isRequest"] == 0)
-						{
-							echo '<td id="'.$row['listings_id'].'_Ride_Type">Offering Ride</td>';
-						}
-						else
-						{
-							echo '<td id="'.$row['listings_id'].'_Ride_Type">Requesting Ride</td>';
-						}
+							$count++;
+							echo '<tr id="'.$row['listings_id'].'">';
+							echo '<td id="'.$row['listings_id'].'_Starting_Address">'.$row['startingAddress'].'</td>';
+							echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
+							if($row["isRequest"] == 0)
+							{
+								echo '<td id="'.$row['listings_id'].'_Ride_Type">Offering Ride</td>';
+							}
+							else
+							{
+								echo '<td id="'.$row['listings_id'].'_Ride_Type">Requesting Ride</td>';
+							}
 
-						echo '<td id="'.$row['listings_id'].'_Passengers">'.$row['passengers'].'</td>';
-						echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
-						echo "<td>". $row['listings_id'] . "</td>";
-						echo "<td>
-								<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
-							</td>";
-						echo '<input id="'.$row['listings_id'].'_Start_Lat" type="hidden" value="'.$row['start_lat'].'">';
-						echo '<input id="'.$row['listings_id'].'_Start_Long" type="hidden" value="'.$row['start_long'].'">';
-						echo '<input id="'.$row['listings_id'].'_End_Lat" type="hidden" value="'.$row['end_lat'].'">';
-						echo '<input id="'.$row['listings_id'].'_End_Long" type="hidden" value="'.$row['end_long'].'">';
-						echo "</tr>";
-						
-						echo "<script>										
-										$(document).ready(function()
-										{
-											map.addMarker
-											({
-												lat:". $row['start_lat'] . ",
-												lng:". $row['start_long'] . ",
-											});
-											map.drawRoute
-											({
-												origin: [". $row['start_lat'] .", " . $row['start_long'] . "],
-												destination: [". $row['end_lat'].", " . $row['end_long'] . "],
-												travelMode: 'driving',
-												strokeColor: '". random_color() ."',
-												strokeOpacity: 0.6,
-												strokeWeight: 6
-											});
-											map.addMarker
-											({
-												lat:". $row['end_lat'] . ",
-												lng:". $row['end_long'] . ",
-											})
-											map.fitZoom();
-										});
-									</script>
-									";
-					}
-					echo "</table>";
-					echo "<ul class=\"pagination\">";
-					echo "<li><a href=\"#\">&laquo;</a></li>";
-					
-					
-					for ($i = 1; $i <= $last; $i++)
-					{
-						if (isset($_GET['page']) && $_GET['page'] == $i)
-						{
+							echo '<td id="'.$row['listings_id'].'_Passengers">'.$row['passengers'].'</td>';
+							echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
+							echo "<td>". $row['listings_id'] . "</td>";
+							echo "<td>
+									<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
+								</td>";
+							echo '<input id="'.$row['listings_id'].'_Start_Lat" type="hidden" value="'.$row['start_lat'].'">';
+							echo '<input id="'.$row['listings_id'].'_Start_Long" type="hidden" value="'.$row['start_long'].'">';
+							echo '<input id="'.$row['listings_id'].'_End_Lat" type="hidden" value="'.$row['end_lat'].'">';
+							echo '<input id="'.$row['listings_id'].'_End_Long" type="hidden" value="'.$row['end_long'].'">';
+							echo "</tr>";
 							
-							//echo "<li><a href=\"#\">". $i ."</a></li>";
-						}
-						else
-						{
-							//echo "<a href='findListing.php?page=$i'>$i</a> ";
+							echo "<script>										
+											$(document).ready(function()
+											{
+												map.addMarker
+												({
+													lat:". $row['start_lat'] . ",
+													lng:". $row['start_long'] . ",
+												});
+												map.drawRoute
+												({
+													origin: [". $row['start_lat'] .", " . $row['start_long'] . "],
+													destination: [". $row['end_lat'].", " . $row['end_long'] . "],
+													travelMode: 'driving',
+													strokeColor: '". random_color() ."',
+													strokeOpacity: 0.6,
+													strokeWeight: 6
+												});
+												map.addMarker
+												({
+													lat:". $row['end_lat'] . ",
+													lng:". $row['end_long'] . ",
+												})
+												map.fitZoom();
+											});
+										</script>
+										";
+						echo "</table>";
 						}
 					}
-					echo "<li><a href=\"#\">&raquo;</a></li>
-						  </ul>";
 				}
 			}
 			mysqli_close($con);
