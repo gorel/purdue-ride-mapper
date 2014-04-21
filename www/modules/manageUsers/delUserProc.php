@@ -38,6 +38,10 @@ $stmt = $conn->prepare($query);
 $stmt->bind_param('d', $uid);
 $stmt->execute();
 
+$query = "DELETE FROM user_settings where user_id=?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param('d', $uid);
+$stmt->execute();
 
 echo json_encode(array('retval' => 'OK'));
 
