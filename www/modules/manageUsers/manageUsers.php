@@ -271,13 +271,13 @@ echo   "</table>";
     if ($('#' + uid + '_enabled_text').text() == "Yes")
       radEnabled.prop('checked', true);
     else
-      radEnabled.prop('checked', false);
+      radDisabled.prop('checked', true);
 
     // admin
     if ($('#' + uid + '_is_admin_text').text() == "Yes")
       radAdmin.prop('checked', true);
     else
-      radAdmin.prop('checked', false);
+      radNoAdmin.prop('checked', true);
 
     // email, alt_email, phone, first_name, last_name, warned
     txtRegEmail.val( $('#' + uid  + '_email').text()     );
