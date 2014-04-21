@@ -15,17 +15,22 @@ if ($conn->connect_errno)
 	die();
 }
 
-$fname = $_POST['fname'];
-$lname = $_POST['lname'];
-$email = $_POST['email'];
-$enabled = $_POST['enabled'];
-$admin = $_POST['admin'];
-$uid = $_POST['uid'];
+$fname =     $_POST['fname'];
+$lname =     $_POST['lname'];
+$email =     $_POST['email'];
+$alt_email = $_POST['alt_email'];
+$phone =     $_POST['phone'];
+$enabled =   $_POST['enabled'];
+$admin =     $_POST['admin'];
+$warnings =  $_POST['warnings'];
+$uid =       $_POST['uid'];
 
-$query = "UPDATE users set first_name=?,last_name=?,email=?,enabled=?,is_admin=? where user_id=?";
+$query = "UPDATE users set first_name=?, last_name=?, email=?      , " .
+                           "alt_email=?, phone=?    , enabled=?    , " .
+                           "is_admin=? , warned=? where user_id=?";
 $stmt = $conn->stmt_init();
 $stmt = $conn->prepare($query);
-$stmt->bind_param('sssddd', $fname, $lname, $email, $enabled, $admin, $uid);
+$stmt->bind_param('sssssdddd', $fname, $lname, $email, $alt_email, $phone, $enabled, $admin, $warnings, $uid);
 $stmt->execute();
 echo json_encode(array('retval' => 'OK'));
 
