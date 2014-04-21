@@ -32,7 +32,7 @@ $dbName   = 'purdue_test';
 
 $conn =  new mysqli($dbHost, $dbUser, $dbPass, $dbName);
 
-if ($conn->connect_errn)
+if ($conn->connect_errno)
 {
     echo json_encode(array("retval" => "ERR"));
     die;
@@ -63,9 +63,18 @@ $stmt->bind_param('ssss', $email, $fname, $lname, $hashpw);
 $stmt->execute();
 $stmt->close();
 
-// add a token entry for email verification
 
 $uid = $conn->insert_id;
+
+// add user settings to user_settings table
+
+$insert = "INSERT INTO user_settings (user_id, list_reg_email) values ($uid, 1)";
+$stmt = $conn->prepare($insert);
+$stmt->execute();
+$stmt->close();
+
+// add a token entry for email verification
+
 $token   = saltedHash($email . $hashpw . $fname . $lname);
 $insert = "INSERT INTO unverified_user_tokens (user_id, token) VALUES (?, ?)";
 $stmt = $conn->prepare($insert);
