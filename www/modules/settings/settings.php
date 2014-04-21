@@ -132,7 +132,7 @@
 
     $.ajax ({
       type: "POST",
-      url: "/modules/settings/changePassword.php",
+      url: "/modules/settings/settingsPassword.php",
       dataType: "json",
       beforeSend: function() {
         disableAllCntl();
@@ -311,13 +311,13 @@
 
 
   $query = "SELECT " .
-           "first_name, last_name, email, have_alt_email, alt_email " .
+           "first_name, last_name, email, alt_email " .
            "FROM users where user_id = $uid";
 
   $stmt = $conn->stmt_init();
   $stmt = $conn->prepare($query);
   $stmt->execute();
-  $stmt->bind_result($fname, $lname, $email, $have_alt_email, $alt_email);
+  $stmt->bind_result($fname, $lname, $email, $alt_email);
   $stmt->fetch();
 
   echo "<!-- Modal to edit user settings -->
