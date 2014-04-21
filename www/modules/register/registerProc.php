@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 
+ *
  * Register a new user
  *
  * Add the user to the database who will be disabled
@@ -11,7 +11,7 @@
  * @author	Timothy Thong <tthong@purdue.edu>
  * @version	1.0
  *
- */ 
+ */
 
 // include login info
 
@@ -32,7 +32,7 @@ $dbName   = 'purdue_test';
 
 $conn =  new mysqli($dbHost, $dbUser, $dbPass, $dbName);
 
-if ($conn->connect_errno) 
+if ($conn->connect_errn)
 {
     echo json_encode(array("retval" => "ERR"));
     die;
@@ -47,7 +47,7 @@ $stmt->bind_param('s', $email);
 $stmt->execute();
 $stmt->store_result();
 
-if ($stmt->num_rows > 0) 
+if ($stmt->num_rows > 0)
 {
     echo json_encode(array("retval" => "REG_USER_EXIST"));
     die;

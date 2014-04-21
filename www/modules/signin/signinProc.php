@@ -51,7 +51,7 @@ else
 	$stmt->fetch();
 
 
-        
+
 	if (!strcmp($password, $hashpw) && $verified==1 && $enabled==1)
 	{
                 if ($isAdmin)
@@ -60,7 +60,7 @@ else
                 }
 		$_SESSION['user']=$user_id;
                 echo json_encode(array("retval" => "AUTH_OK"));
-		
+
 	}
 	else if (strcmp($password, $hashpw))
 	{
