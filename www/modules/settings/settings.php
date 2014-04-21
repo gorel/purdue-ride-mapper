@@ -16,6 +16,7 @@
 -->
 
   <script type="text/javascript" src="/js/validation.js"></script>
+  <link href="/css/custom.css" rel="stylesheet">
 
   <style>
     .err { color:#FF0000; font-weight:bold; }
@@ -24,19 +25,138 @@
 
   <script>
 
-  $('#tabs a').click(function (e) {
-    e.preventDefault();
-    $(this).tab('show');
+  // preferences need to reflect latest account information
+
+  $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
+   if (e.currentTarget.id == "tab_pref")
+   {
+     fillPref();
+   }
   });
   
 
   function initFields()
   {
-        hideAllPwMsg();
-	resetPasswordTab();
-        hideAllPrefMsg();
-        fillPref();
-        $('#modalSettings').modal('show');
+    hideAllPwSettingsMsg();
+    hideAllAccntSettingsMsg();
+    resetPasswordTab();
+    resetAccountTab();
+    fillAccnt();
+    hideAllPrefMsg();
+    $('#modalSettings').modal('show');
+  }
+
+  /**
+   * Account Information
+   */
+  function fillAccnt()
+  {
+    $('#txtAltEmailSettings').val($('#setting_alt_email').text());
+    $('#txtPhoneSettings').val($('#setting_phone').text());
+  }
+
+  function resetAccountTab()
+  {
+    hideAllAccntSettingsMsg();
+    $('#txtAltEmailSettings').val("");
+    $('#txtPhoneSettings').val("");
+  }
+  
+  function hideAllAccntSettingsMsg()
+  {
+    $('#progressSaveAccnt').hide();
+    $('#errAltEmail').hide();
+    $('#errPhone').hide();
+    $('#okAccnt').hide();
+    $('#errAccnt').hide();
+  }
+
+  function disableAllAccntSettingsCntl()
+  {
+    $('#txtAltEmailSettings').prop('disabled', true);
+    $('#txtPhoneSettings').prop('disabled', true);
+    $('#btnSaveAccntSettingsClose').prop('disabled', true);
+    $('#btnSaveAccntSettings').prop('disabled', true);
+  }
+
+  function enableAllAccntSettingsCntl()
+  {
+    $('#txtAltEmailSettings').prop('disabled', false);
+    $('#txtPhoneSettings').prop('disabled', false);
+    $('#btnSaveAccntSettingsClose').prop('disabled', false);
+    $('#btnSaveAccntSettings').prop('disabled', false);
+  }
+
+  function saveAccnt()
+  {
+    hideAllAccntSettingsMsg();
+
+    var alt_email = $.trim($('#txtAltEmailSettings').val());
+    var phone = $.trim($('#txtPhoneSettings').val());
+
+    if (alt_email.length > 0) {
+    
+      if (! validateAltMail(alt_email))
+      {
+        $('#errAltEmail').text("Please enter a valid email address");
+        $('#errAltEmail').show();
+        $('#txtAltEmailSettings').focus();
+        return;
+      }
+    }  
+
+    if (phone.length > 0)
+    {
+      if (! validatePhone(phone))
+      {
+        $('#errPhone').text("Please enter a valid 10 digit phone number");
+        $('#errPhone').show();
+        $('#txtPhoneSettings').focus();
+        return;
+      }
+    }
+
+    $.ajax({
+      type: "POST",
+      url: "/modules/settings/saveAccnt.php",
+      dataType: "json",
+      beforeSend: function() {
+        disableAllAccntSettingsCntl();
+        $('#btnSaveAccntSettings').text("Saving Account Information");
+        $('#progressSaveAccnt').show();
+
+      },
+      complete: function() {
+        enableAllAccntSettingsCntl();
+        $('#btnSaveAccntSettings').text("Save Account Information");
+        $('#progressSaveAccnt').hide();
+        console.log("Complete");
+
+      },
+      data: {"alt_email" : alt_email, "phone" : phone, "uid" : window.uid},
+      success: function(data) {
+        if (data.retval == "OK")
+        {
+          $('#okAccnt').text("Updated account information successfully");
+          $('#okAccnt').show();
+
+          $('#setting_alt_email').text(alt_email);
+          $('#setting_phone').text(phone);
+          
+          if (alt_email == "")
+            $('setting_alt_email').text("0");
+
+          if (phone == "")
+            $('setting_phone').text("0");
+        }
+        else
+        {
+          $('#errAccnt').text("Updated account information successfully");
+          $('#errAccnt').show();
+
+        }
+      } 
+    });
   }
 
   /**
@@ -45,13 +165,14 @@
 
   function resetPasswordTab()
   {
-    hideAllPwMsg();
-    $('#txtCurrPw').val("");
-    $('#txtNewPw').val("");
-    $('#txtRetypeNewPw').val("");
+    hideAllPwSettingsMsg();
+    $('#txtCurrPwSettings').val("");
+    $('#txtNewPwSettings').val("");
+    $('#txtRetypeNewPwSettings').val("");
+    $('#progressChangePw').hide();
   }
 
-  function hideAllPwMsg()
+  function hideAllPwSettingsMsg()
   {
     $('#errCurrPw').hide();
     $('#errNewPw').hide();
@@ -59,41 +180,43 @@
     $('#okNewPw').hide();
   }
 
-  function disableAllCntl()
+  function disableAllPwSettingsCntl()
   {
-    $('#txtCurrPw').prop('disabled', true);
-    $('#txtNewPw').prop('disabled', true);
-    $('#txtRetypeNewPw').prop('disabled', true);
-    $('#btnChangePw').prop('disabled', true);
+    $('#txtCurrPwSettings').prop('disabled', true);
+    $('#txtNewPwSettings').prop('disabled', true);
+    $('#txtRetypeNewPwSettings').prop('disabled', true);
+    $('#btnChangePwSettings').prop('disabled', true);
+    $('#btnChangePwSettingsClose').prop('disabled', true);
   }
 
-  function enableAllCntl()
+  function enableAllPwSettingsCntl()
   {
-    $('#txtCurrPw').prop('disabled', false);
-    $('#txtNewPw').prop('disabled', false);
-    $('#txtRetypeNewPw').prop('disabled', false);
-    $('#btnChangePw').prop('disabled', false);
+    $('#txtCurrPwSettings').prop('disabled', false);
+    $('#txtNewPwSettings').prop('disabled', false);
+    $('#txtRetypeNewPwSettings').prop('disabled', false);
+    $('#btnChangePwSettings').prop('disabled', false);
+    $('#btnChangePwSettingsClose').prop('disabled', false);
   }
 
   function changePass()
   {
-    hideAllPwMsg();
+    hideAllPwSettingsMsg();
 
     // trim white spaces
 
-    $('#txtCurrPw').val($.trim($('#txtCurrPw').val()));
-    $('#txtNewPw').val($.trim($('#txtNewPw').val()));
-    $('#txtRetypeNewPw').val($.trim($('#txtRetypeNewPw').val()));
+    $('#txtCurrPwSettings').val($.trim($('#txtCurrPwSettings').val()));
+    $('#txtNewPwSettings').val($.trim($('#txtNewPwSettings').val()));
+    $('#txtRetypeNewPwSettings').val($.trim($('#txtRetypeNewPwSettings').val()));
 
-    var currPw = $('#txtCurrPw').val();
-    var newPw = $('#txtNewPw').val();
-    var retypeNewPw = $('#txtRetypeNewPw').val();
+    var currPw = $('#txtCurrPwSettings').val();
+    var newPw = $('#txtNewPwSettings').val();
+    var retypeNewPw = $('#txtRetypeNewPwSettings').val();
 
     if (currPw.length == 0)
     {
       $('#errCurrPw').text("Please enter your current password");
       $('#errCurrPw').show();
-      $('#txtCurrPw').focus();
+      $('#txtCurrPwSettings').focus();
       return;
     }
 
@@ -101,7 +224,7 @@
     {
       $('#errNewPw').text("Please enter your new password");
       $('#errNewPw').show();
-      $('#txtNewPw').focus();
+      $('#txtNewPwSettings').focus();
       return;
     }
 
@@ -109,7 +232,7 @@
     {
       $('#errNewPw').text("Please enter a minimum of 6 characters");
       $('#errNewPw').show();
-      $('#txtNewPw').focus();
+      $('#txtNewPwSettings').focus();
       return;
     }
 
@@ -117,7 +240,7 @@
     {
       $('#errRetypeNewPw').text("Please retype your new password");
       $('#errRetypeNewPw').show();
-      $('#txtRetypeNewPw').focus();
+      $('#txtRetypeNewPwSettings').focus();
       return;
 
     }
@@ -126,7 +249,7 @@
     {
       $('#errRetypeNewPw').text("New password must match");
       $('#errRetypeNewPw').show();
-      $('#txtRetypeNewPw').focus();
+      $('#txtRetypeNewPwSettings').focus();
       return;
     }
 
@@ -135,13 +258,15 @@
       url: "/modules/settings/settingsPassword.php",
       dataType: "json",
       beforeSend: function() {
-        disableAllCntl();
-        $('#btnChangePw').text("Changing Password...");
+        disableAllPwSettingsCntl();
+        $('#btnChangePwSettings').text("Changing Password...");
+        $('#progressChangePw').show();
 
       },
       complete: function() {
-        enableAllCntl();
-        $('#btnChangePw').text("Change Password");
+        enableAllPwSettingsCntl();
+        $('#btnChangePwSettings').text("Change Password");
+        $('#progressChangePw').hide();
 
       },
       data: {"currPw" : currPw, "newPw" : newPw, "uid" : window.uid},
@@ -149,7 +274,7 @@
         if (data.status == "AUTH_FAILED")
         {
 	  $('#errCurrPw').text("Wrong Password. Please retype your current password");
-          $('#errCurrPw').show(5,function() {$('#txtCurrPw').focus()});
+          $('#errCurrPw').show(5,function() {$('#txtCurrPwSettings').focus()});
         }
         else {
      	  resetPasswordTab();
@@ -168,103 +293,139 @@
   {
     $('#errPref').hide();
     $('#okPref').hide();
+    $('#progressSavePref').hide();
   }
 
   function enableAllPrefCntl()
   {
-      $('#txtAltEmail').prop('disabled', false);
-      $('#txtAltEmail').prop('disabled', false);
-      $('#btnSavePref').prop('disabled', false);
+      $('#btnSavePrefSettings').prop('disabled', false);
+      $('#btnSavePrefSettingsClose').prop('disabled', false);
   }
 
   function disableAllPrefCntl()
   {
-      $('#txtAltEmail').prop('disabled', true);
-      $('#txtAltEmail').prop('disabled', true);
-      $('#btnSavePref').prop('disabled', true);
+      $('#btnSavePrefSettings').prop('disabled', true);
+      $('#btnSavePrefSettingsClose').prop('disabled', true);
   }
 
   function fillPref()
   {
-    var haveAltEmail = $('#default_have_alt_email').text();
-    var altEmail = $('#default_alt_email').text();
+    // show latest account information
 
-    var txtAltEmail = $('#txtAltEmail');
-    var cbAltEmail = $('#cbAltEmail');
+    $('#pref_req_phone').text($('#setting_phone').text());
+    $('#pref_req_alt_email').text($('#setting_alt_email').text());
+    $('#pref_req_reg_email').text($('#setting_reg_email').text());
 
-    if (haveAltEmail == 1)
+    $('#pref_list_phone').text($('#setting_phone').text());
+    $('#pref_list_alt_email').text($('#setting_alt_email').text());
+    $('#pref_list_reg_email').text($('#setting_reg_email').text());
+
+    // check the boxes 
+
+    if ($('#setting_alt_email').text() != "")
     {
-      cbAltEmail.prop('checked', true);
-      txtAltEmail.val(altEmail);
+      $('#cbListAltEmail').prop('disabled', false);
+      $('#cbSendAltEmail').prop('disabled', false);
+
+      if ($('#setting_list_alt_email').text() == 1)
+        $('#cbListAltEmail').prop('checked', true);
+
+      if ($('#setting_send_alt_email').text() == 1)
+        $('#cbSendAltEmail').prop('checked', true);
+
     }
     else
     {
-      cbAltEmail.prop('checked', false);
-      txtAltEmail.prop('disabled', true);
+        $('#cbListAltEmail').prop('disabled', true);
+        $('#cbListAltEmail').prop('checked', false);
+
+        $('#cbSendAltEmail').prop('disabled', true);
+        $('#cbSendAltEmail').prop('checked', false);
+
     }
-  }
 
-  function validatePref()
-  {
-    var txtAltEmail = $('#txtAltEmail');
-    var cbAltEmail = $('#cbAltEmail');
-
-    if (cbAltEmail.is(':checked'))
+    if ($('#setting_phone').text() != "")
     {
-      if (! validateAltMail(txtAltEmail.val()))
-      {
-        $('#errPref').text("Please enter a valid email address");
-        $('#errPref').show();
-        return false;
-      }
+      $('#cbSendPhone').prop('disabled', false);
+      $('#cbListPhone').prop('disabled', false);
+
+      if ($('#setting_send_phone').text() == 1)
+        $('#cbSendPhone').prop('checked', true);
+
+    
+      if ($('#setting_list_phone').text() == 1)
+        $('#cbListPhone').prop('checked', true);
+   
+    }
+    else
+    {
+      $('#cbSendPhone').prop('disabled', true);
+      $('#cbSendPhone').prop('checked', false);
+
+      $('#cbListPhone').prop('disabled', true);
+      $('#cbListPhone').prop('checked', false);
     }
 
-    return true;
-  }
+    // Setting for listing registered mail cannot be changed
 
-  function toggleAltEmail()
-  {
-    if ($('#cbAltEmail').prop('checked')) {
-      $('#txtAltEmail').prop('disabled', false);
-      $('#default_have_alt_email').text("1");
-    } else {
-      $('#txtAltEmail').prop('disabled', true);
-      $('#default_have_alt_email').text("0");
-    }
+    if ($('#setting_list_reg_email').text() == 1)
+      $('#cbListRegEmail').prop('checked', true);
+        
+        
   }
 
   function savePref()
   {
-    var txtAltEmail = $('#txtAltEmail');
-    var cbAltEmail = $('#cbAltEmail');
-    
-    var defaultHaveAltEmail = $('#default_have_alt_email');
-    var defaultAltEmail = $('#default_alt_email');
-
     hideAllPrefMsg();
 
-    if (validatePref())
+    var send_phone = 0;
+    var send_alt_email = 0;
+    var list_phone = 0;
+    var list_alt_email = 0;
+    var list_reg_email = 0;
+
+    if ($('#cbSendPhone').prop('checked'))
     {
-      if ($('#cbAltEmail').is(':checked'))
-        defaultAltEmail.text(txtAltEmail.val());
-      else
-        defaultAltEmail.text("");
+      send_phone = 1; 
+    }
 
-      $.ajax ({
-        type: "POST",
-        url: "/modules/settings/savePref.php",
-        dataType: "json",
-        beforeSend: function() {
-          disableAllPrefCntl();
-          $('#btnSavePref').text("Saving Preferences...");
+    if ($('#cbSendAltEmail').prop('checked'))
+    {
+      send_alt_email = 1;
+    }
 
-        },
-        complete: function() {
-          enableAllPrefCntl();
-          $('#btnSavePref').text("Save Preferences");
+    if ($('#cbListPhone').prop('checked'))
+    {
+      list_phone = 1;
+    }
+
+    if ($('#cbListAltEmail').prop('checked'))
+    {
+      list_alt_email = 1;
+    }
+    
+    if ($('#cbListRegEmail').prop('checked'))
+    {
+      list_reg_email = 1;
+    }
+    
+    $.ajax ({
+      type: "POST",
+      url: "/modules/settings/savePref.php",
+      dataType: "json",
+      beforeSend: function() {
+        disableAllPrefCntl();
+        $('#btnSavePrefSettings').text("Saving Preferences...");
+        $('#progressSavePref').show();
+
+      },
+      complete: function() {  
+        enableAllPrefCntl();
+        $('#btnSavePrefSettings').text("Save Preferences");
+        $('#progressSavePref').hide();
           
-        },
-        data: {"have_alt_email" : defaultHaveAltEmail.text(), "alt_email" : defaultAltEmail.text(), "uid" : window.uid},
+      },
+      data: {"send_phone" : send_phone , "send_alt_email" : send_alt_email , "list_phone" : list_phone , "list_alt_email" : list_alt_email , "list_reg_email" : list_reg_email, "uid" : window.uid },
         success: function(data) {
           if (data.retval == "DB_ERR")
           {
@@ -275,12 +436,15 @@
           {
             $('#okPref').text("Your preferences have been saved");
             $('#okPref').show();
-  
-          }  
 
-        } 
-      });
-    }
+            $('#setting_send_phone').text(send_phone);
+            $('#setting_list_phone').text(list_phone);
+            $('#setting_send_alt_email').text(send_alt_email);
+            $('#setting_list_alt_email').text(list_alt_email);
+            $('#setting_list_reg_email').text(list_reg_email);
+          }  
+      } 
+    });
   }
   </script>
 
@@ -311,13 +475,25 @@
 
 
   $query = "SELECT " .
-           "first_name, last_name, email, alt_email " .
+           "first_name, last_name, email, alt_email, phone " .
            "FROM users where user_id = $uid";
 
   $stmt = $conn->stmt_init();
   $stmt = $conn->prepare($query);
   $stmt->execute();
-  $stmt->bind_result($fname, $lname, $email, $alt_email);
+  $stmt->bind_result($fname, $lname, $email, $alt_email, $phone);
+  $stmt->fetch();
+  $stmt->close();
+
+
+  $query = "SELECT " .
+           "send_phone, send_alt_email, list_phone, list_reg_email, list_alt_email " .
+           "FROM user_settings WHERE user_id=?";
+
+  $stmt = $conn->prepare($query);
+  $stmt->bind_param('d', $uid);
+  $stmt->execute();
+  $stmt->bind_result($send_phone, $send_alt_email, $list_phone, $list_reg_email, $list_alt_email);
   $stmt->fetch();
 
   echo "<!-- Modal to edit user settings -->
@@ -331,63 +507,235 @@
               </div>
               <div class='modal-body'>
                 <ul class='nav nav-tabs' id='tabs'>
-	          <li class='active'><a href='#account' data-toggle='tab'>Account Details</a></li>
-	          <li><a href='#changepw' data-toggle='tab'>Change Password</a></li>
-	          <li><a href='#preferences' data-toggle='tab'>Preferences</a></li>
+	          <li class='active tab'><a id='tab_accnt' href='#account' data-toggle='tab'>Account</a></li>
+	          <li class='tab'><a id='tab_pref' href='#preferences' data-toggle='tab'>Preferences</a></li>
+	          <li class='tab'><a id='tab_pw' href='#changepw' data-toggle='tab'>Change Password</a></li>
 	        </ul>
-	
-	        <div id='tabcontent' class='tab-content'>
-	          <div class='tab-pane active' id='account'>
-                    <form class ='form-horizontal'>
-                      <label class='control-label' for ='txtFirstName'>First Name</label>
-	              <input class='form-control' type='text' id='txtFirstName' disabled='true' value=$fname>
-                      <label class='control-label' for ='txtLastName'>Last Name</label>
-	              <input class='form-control' type='text' id='txtLastName' disabled='true' value=$lname>
-                      <label class='control-label' for ='txtRegEmail'>Registered Email</label>
-	              <input class='form-control' type='text' id='txtRegEmail' disabled='true' value=$email>
-			<br>Please <a href=''>contact us</a> if you need to change the above details
-                    </form>
-	          </div>
 
-	          <div class='tab-pane' id='preferences'>
+                <div id='tabcontent' class='tab-content'>
+  
+                  <!----------------------Account-------------------->                  
+ 
+                  <div class='tab-pane active' id='account'>
+
+                      <form class='form-horizontal'>
+                        <div class= 'row form-group'>
+                        </div>
+
+                        <div class='row form-group'>
+                          <div class='col-sm-4'>
+                            <label class='control-label' for='txtFNameSettings'>First Name</label>
+                          </div>
+                          <div class='col-sm-6'>
+                            <input class='form-control' id='txtFNameSettings' value=$fname disabled>
+                          </div>
+                        </div> <!-- row -->
+
+                        <div class='row form-group'>
+                          <div class='col-sm-4'>
+                            <label for='txtLNameSettings'>Last Name</label>
+                          </div>
+                          <div class='col-sm-6'>
+                            <input class='form-control' id='txtLNameSettings' value=$lname disabled>
+                          </div>
+                        </div> <!-- row -->
+
+                        <div class='row form-group'>
+                          <div class='col-sm-4'>
+                            <label for='txtRegEmailSettings'>Registered Email</label>
+                          </div>
+                          <div class='col-sm-6'>
+                            <input class='form-control' id='txtRegEmailSettings' value=$email disabled>
+                          </div>
+                        </div> <!--row -->
+
+                        <div class='row form-group'>
+                          <div class='col-sm-offset-2'>
+  		            Please <a href=''>contact us</a> if you need to change the above details
+                          </div>
+                        </div> <!--row-->
+
+                        <div class='row form-group'>
+                          <div class='col-sm-4'>
+                            <label for='txtAltEmailSettings'>Alternate Email</label>
+                          </div>
+                          <div class='col-sm-6'>
+                            <input class='form-control' id='txtAltEmailSettings' value=$alt_email>
+                            <div class='err' id='errAltEmail'></div>
+                          </div>
+                        </div> <!--row -->
+
+                        <div class='row form-group'>
+                          <div class='col-sm-4'>
+                            <label for='txtPhoneSettings'>Phone</label>
+                          </div>
+                          <div class='col-sm-6'>
+                            <input class='form-control' id='txtPhoneSettings' value=$phone>
+                            <div class='err' id='errPhone'></div>
+                            <div class='ok' id='okAccnt'></div>
+                            <div class='err' id='errAccnt'></div>
+                          </div>
+                        </div> <!--row -->
+                        
+                        <div class='modal-footer'> 
+                            <button type='button' class='btn btn-default' id='btnSaveAccntSettingsClose' data-dismiss='modal'>Close</button>
+                            <button class='btn btn-primary ' id='btnSaveAccntSettings' type='submit' onclick='saveAccnt(); return false;'>Save Account Information</button>
+                            <img id='progressSaveAccnt' src='/images/load.gif'/>
+                        </div>
+
+                      </form> 
+                  </div> <!-- account pane -->
+                    
+
+                  <!----------------------Preferences-------------------->                  
+
+                  <div class='tab-pane' id='preferences'>
                     <form class='form-horizontal'>
-                      <input type='checkbox' id='cbAltEmail' onclick='toggleAltEmail()'>
-			<label class='control-label' for='cbAltEmail'>I want to be contacted by users through an alternate email</label>
-	                <input class='form-control' type='text' id='txtAltEmail'>
-                        <label class='err' id='errPref' hidden='true'></label>
-                        <label class='ok' id='okPref' hidden='true'></label>
-			<label id='default_have_alt_email' hidden='true'>$have_alt_email</label>
-			<label id='default_alt_email' hidden='true'>$alt_email</label>
-                        <br>
-                        <button class='btn btn-primary form-control' id='btnSavePref' onClick='savePref(); return false;'>Save Preferences</button>
-                    </form>
-                  </div>
+                        <div class= 'row form-group'>
+                        </div>
 
-	          <div class='tab-pane' id='changepw'>
+                        <div class='row form-group'>
+                          <div class='col-sm-12'>
+                            <label class='control-label'>When I send a message in a listing </label>
+                          </div>
+
+                          <div class='col-sm-12'>
+
+                            <div class='col-sm-offset-1'>
+                              I want the following contact information to be sent:
+                            </div>
+
+                            <!-- individual settings -->
+                            <div class='col-sm-offset-2'> 
+                              <div class='col-sm-12'>
+                                <input id='cbSendPhone'type='checkbox'> Phone: </input>
+                                <label id='pref_req_phone'></label>
+                              </div>
+                              <div class='col-sm-12'>
+                                <input type='checkbox' disabled checked> Registered Email: </input>
+                                <label id='pref_req_reg_email'></label>
+                              </div>
+                              <div class='col-sm-12'>
+                                <input id='cbSendAltEmail' type='checkbox'> Alternate Email: </input>
+                                <label id='pref_req_alt_email'></label>
+                              </div>
+                            </div> <!-- individual settings -->
+
+                          </div> <!-- settings group -->
+                        </div> <!-- row -->
+
+
+                        <div class='row form-group'>
+                          <div class='col-sm-12'>
+                            <label class='control-label'>When I create a ride listing </label>
+                          </div>
+                          
+                          
+			   <div class='col-sm-12'>
+
+                            <div class='col-sm-offset-1'>
+                              I want the following contact information to be listed:
+                            </div>
+
+                            <!-- individual settings -->
+                            <div class='col-sm-offset-2'> 
+                              <div class='col-sm-12'>
+                                <input id='cbListPhone' type='checkbox'> Phone: </input>
+                                <label id='pref_list_phone'></label>
+                              </div>
+                              <div class='col-sm-12'>
+                                <input id='cbListRegEmail' type='checkbox'> Registered Email: </input>
+                                <label id='pref_list_reg_email'></label>
+                              </div>
+                              <div class='col-sm-12'>
+                                <input id='cbListAltEmail'type='checkbox'> Alternate Email: </input>
+                                <label id='pref_list_alt_email'></label>
+                                <label id='errPref' class='err'></label>
+                                <label id='okPref' class='ok'></label>
+                              </div>
+                            </div> <!-- individual settings -->
+                           </div> <!-- settings group -->
+                        </div> <!-- row -->
+
+                      <div class='modal-footer'> 
+                          <button type='button' class='btn btn-default' id='btnSavePrefSettingsClose' data-dismiss='modal'>Close</button>
+                          <button class='btn btn-primary ' id='btnSavePrefSettings' type='submit' onclick='savePref(); return false;'>Save Preferences</button>
+                          <img id='progressSavePref' src='/images/load.gif'/>
+                      </div>
+
+                    </form>
+
+                  </div> <!-- perferences -->
+                  
+
+                  <!----------------------Change Password-------------------->                  
+
+                  <div class='tab-pane' id='changepw'>
                     <form class='form-horizontal'>
-	              <label class='control-label' for ='txtCurrPw'>Current Password</label>
-	              <input class='form-control' type='password' id='txtCurrPw'>
-                      <div class='err' id='errCurrPw'></div>
-	              <label class='control-label' for ='txtNewPw'>New Password</label>
-	              <input class='form-control' type='password' id='txtNewPw'>
-                      <div class='err' id='errNewPw'></div>
-	              <label class='control-label' for ='txtRetypeNewPw'>Retype New Password</label>
-	              <input class='form-control' type='password' id='txtRetypeNewPw'>
-                      <div class='err' id='errRetypeNewPw'></div>
-                      <div class='ok' id='okNewPw'></div>
-	              <br>
-                      <button class='btn btn-primary form-control' id='btnChangePw', onClick='changePass(); return false;'>Change Password</button>
+                        <div class= 'row form-group'>
+                        </div>
+
+                        <div class='row form-group'>
+                          <div class='col-sm-4'>
+                            <label class='control-label' for='txtCurrPwSettings'>Current Password</label>
+                          </div>
+                          <div class='col-sm-6'>
+                            <input class='form-control' type='password' id='txtCurrPwSettings'>
+                            <div class='err' id='errCurrPw'></div>
+                          </div>
+                        </div> <!-- row -->
+
+                        <div class='row form-group'>
+                          <div class='col-sm-4'>
+                            <label for='txtNewPwSettings'>New Password</label>
+                          </div>
+                          <div class='col-sm-6'>
+                            <input class='form-control' type='password' id='txtNewPwSettings'>
+                            <div class='err' id='errNewPw'></div>
+                          </div>
+                        </div> <!-- row -->
+
+                        <div class='row form-group'>
+                          <div class='col-sm-4'>
+                            <label for='txtRetypeNewPwSettings'>Retype New Password</label>
+                          </div>
+                          <div class='col-sm-6'>
+                            <input class='form-control' type='password' id='txtRetypeNewPwSettings'>
+                            <div class='err' id='errRetypeNewPw'></div>
+                            <div class='ok' id='okNewPw'></div>
+                          </div>
+                        </div> <!--row -->
+
+                        <div class='modal-footer'> 
+                            <button type='button' class='btn btn-default' id='btnChangePwSettingsClose' data-dismiss='modal'>Close</button>
+                            <button class='btn btn-primary ' type='submit' id='btnChangePwSettings' onclick='changePass(); return false;'>Change Password</button>
+                            <img id='progressChangePw' src='/images/load.gif'/>
+                        </div>
+ 
                     </form>
-                  </div>
-              </div>
+                  </div> <!-- changepw -->
+               
+          </div> <!-- Modal body -->
 
-
-            </div>
-      <div class='modal-footer'>
-        <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
-      </div>
     </div>
   </div>
+
+  <!-- Setttings for user -->
+
+  <label id='setting_alt_email' hidden='true'>$alt_email</label>
+  <label id='setting_reg_email' hidden='true'>$email</label>
+  <label id='setting_phone' hidden='true'>$phone</label>
+
+  <label id='setting_send_alt_email' hidden='true'>$send_alt_email</label>
+  <label id='setting_send_phone' hidden='true'>$send_phone</label>
+
+  <label id='setting_list_alt_email' hidden='true'>$list_alt_email</label>
+  <label id='setting_list_reg_email' hidden='true'>$list_reg_email</label>
+  <label id='setting_list_phone' hidden='true'>$list_phone</label>
+
+
 </div>"
+
+
 ?>
 

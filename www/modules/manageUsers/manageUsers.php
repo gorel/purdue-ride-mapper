@@ -15,6 +15,8 @@ if (!$_SESSION['isAdmin'])
         </script>";
   die();
 }
+
+echo "<script> window.myid = $user_id; </script>";
 ?>
 
 <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
@@ -255,6 +257,8 @@ echo   "</table>";
 
   function editUser(uid)
   {
+    hideAllEditErrMsg();
+
     var txtFname = $('#txtFname');
     var txtLname = $('#txtLname');
     var txtRegEmail = $('#txtRegEmail');
@@ -292,6 +296,39 @@ echo   "</table>";
     $("#modalEditUser").modal();
   }
 
+  function disableAllEditUsrCntl()
+  {
+    $('#txtFname').prop('disabled',  true);
+    $('#txtLname').prop('disabled',  true);
+    $('#txtRegEmail').prop('disabled',  true);
+    $('#txtAltEmail').prop('disabled',  true);
+    $('#txtPhone').prop('disabled',  true);
+    $('#txtWarning').prop('disabled',  true);
+    $('#radAdmin').prop('disabled',  true);
+    $('#radNoAdmin').prop('disabled',  true);
+    $('#radDisabled').prop('disabled',  true);
+    $('#radEnabled').prop('disabled',  true);
+    $('#btnEditUsrClose').prop('disabled', true);
+    $('#btnEditUsrSubmit').prop('disabled', true);
+  }
+
+  function enableAllEditUsrCntl()
+  {
+    $('#txtFname').prop('disabled',  false);
+    $('#txtLname').prop('disabled',  false);
+    $('#txtRegEmail').prop('disabled',  false);
+    $('#txtAltEmail').prop('disabled',  false);
+    $('#txtPhone').prop('disabled',  false);
+    $('#txtWarning').prop('disabled',  false);
+    $('#radAdmin').prop('disabled',  false);
+    $('#radNoAdmin').prop('disabled',  false);
+    $('#radDisabled').prop('disabled',  false);
+    $('#radEnabled').prop('disabled',  false);
+    $('#btnEditUsrClose').prop('disabled', false);
+    $('#btnEditUsrSubmit').prop('disabled', false);
+  }
+ 
+
   // Validate user fields
 
   function validate()
@@ -317,6 +354,7 @@ echo   "</table>";
     {
       $('#errFname').text("Please enter a first name");
       $('#errFname').show();
+      $('#txtFname').focus();
       return;
     }
 
@@ -324,6 +362,7 @@ echo   "</table>";
     {
       $('#errLname').text("Please enter a last name");
       $('#errLname').show();
+      $('#txtLname').focus();
       return;
     }
 
@@ -331,6 +370,7 @@ echo   "</table>";
     {
       $('#errRegEmail').text("Please enter a valid edu email");
       $('#errRegEmail').show();
+      $('#txtRegEmail').focus();
       return;
     }
 
@@ -340,17 +380,18 @@ echo   "</table>";
       {
         $('#errAltEmail').text("Please enter a valid email");
         $('#errAltEmail').show();
+        $('#txtAltEmail').focus();
         return;
       }
     }
 
     if (phone.length > 0)
     {
-      var patt = /^[0-9]{10}$/g;
-      if (! patt.test(phone))
+      if (! validatePhone(phone))
       {
         $('#errPhone').text("Please enter a valid 10 digit phone number");
         $('#errPhone').show();
+        $('#txtPhone').focus();
         return;
       }
     }
@@ -359,6 +400,7 @@ echo   "</table>";
     {
       $('#errWarn').text("Please enter a number");
       $('#errWarn').show();
+      $('#txtWarning').focus();
     }
     else
     {
@@ -367,6 +409,7 @@ echo   "</table>";
       {
         $('#errWarn').text("Please enter a valid number");
         $('#errWarn').show();
+        $('#txtWarning').focus();
         return;
       }
     }
@@ -389,12 +432,42 @@ echo   "</table>";
       url: "/modules/manageUsers/editUserProc.php",
       dataType: 'json',
       data: {"fname" : fname, "lname" : lname, "email" : regEmail, "alt_email" : altEmail, "phone" : phone, "admin" : admin, "enabled" : enabled, "warnings" : warn, "uid" : uid},
+      beforeSend: function() {
+        $('#progressEdit').show();
+        $('#btnEditUsrSubmit').text("Saving Changes...");
+        disableAllEditUsrCntl();
+      },
+      complete: function() {
+        $('#progressEdit').hide();
+        $('#btnEditUsrSubmit').text("Save Changes");
+        enableAllEditUsrCntl();
+
+      },
       success: function(data) {
 	console.log("Returned");
         if (data.retval == "ERR") 
         {
 	  console.log("Database error: Could not update user's details");
 	}
+
+        if (window.myid == uid)
+        {
+          $('#setting_alt_email').text(altEmail);
+          $('#setting_phone').text(phone);
+
+          if (altEmail == "")
+          {
+            $('#setting_send_alt_email').text("0");
+            $('#setting_list_alt_emaill').text("0");
+          }
+
+          if (phone == "")
+          {
+            $('#setting_send_phone').text("0");
+            $('#setting_list_phone').text("0");
+          }
+        }
+
 	$('#modalEditUser').modal('hide');
         doSearch();
 
@@ -410,6 +483,7 @@ function hideAllEditErrMsg()
   $('#errAltEmail').hide();
   $('#errPhone').hide();
   $('#errWarn').hide();
+  $('#progressEdit').hide();
 }
 
 //Send a warning email to a user
@@ -579,8 +653,9 @@ function warnUser()
 	  <input type="text" hidden="true" id="txtUid">
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" onclick="validate(); return false;">Save changes</button>
+            <button type="button" id='btnEditUsrClose'  class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" id='btnEditUsrSubmit' class="btn btn-primary" onclick="validate(); return false;">Save changes</button>
+            <img id='progressEdit' src='/images/load.gif'/>
           </div>
         </form>
         </div>
