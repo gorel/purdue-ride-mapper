@@ -91,7 +91,7 @@
 		<div id="map_canvas" style="height: 400px; width: 100%"></div>
 		<hr class="featurette-divider">
 		<div>
-			<h2 class="form-signin-heading">Search for a ride:</h2>				
+			<h2 class="form-signin-heading">Search for a ride:</h2>			<!--	
 			<form class="form-inline" role="form">
 				<div class="form-group">
 					<input id="starting_address_field" type="text" class="form-control" placeholder="Starting Address">
@@ -120,7 +120,42 @@
 					});
 				</script>
 			</form>
-			<button class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button>				
+			<button class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button>				-->
+		<table class='table table-condensed'>
+			<thead>
+				<tr>
+					<th> Starting Address </th>
+					<th> Ending Address </th>
+					<th> Ride Type </th>
+					<th> Desired Departure Date </th>
+					<th></th>
+				</tr>
+			</thead>";
+			<tbody>
+				<tr>
+					<td><input id="starting_address_field" type="text" class="form-control" placeholder="Starting Address"></td>
+					<td><input id="ending_address_field" type="text" class="form-control" placeholder="Destination Address"></td>
+					<td>
+						<input type="radio" name="mtype" value="requests">Requests
+						<input type="radio" name="mtype" value="offers">Offers
+						<input type="radio" name="mtype" value="both" checked>Both
+					</td>
+					<td>
+						<div class="input-group date" id="datetimepicker2">
+							<input type="text" class="form-control" name="dateTime" placeholder="Desired Departure Date" data-format="YYYY-MM-DD hh:mm:ss"/>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+						</div>
+						
+						<script type="text/javascript">
+							$(function () {
+								$('#datetimepicker2').datetimepicker();
+							});
+						</script>
+					</td>
+					<td><button class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button></td>
+				</tr>
+			</tbody>
+		</table>
 			
 		</div>
 		<br>
