@@ -92,7 +92,7 @@
 		<hr class="featurette-divider">
 		<div>
 			<h2 class="form-signin-heading">Search for a ride:</h2>			
-			<form class="form-inline" role="form">
+			<!-- <form class="form-inline" role="form">
 				<div class="form-group">
 					<input id="starting_address_field" type="text" class="form-control" placeholder="Starting Address">
 				</div>
@@ -120,8 +120,8 @@
 					});
 				</script>
 			</form>
-			<button class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button>			
-		<!--<table class='table table-condensed'>
+			<button class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button>	-->		
+			<table class='table table-condensed'>
 			<thead>
 				<tr>
 					<th width="20%"> Starting Address </th>
@@ -155,7 +155,7 @@
 					<td><button class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button></td>
 				</tr>
 			</tbody>
-		</table>-->
+		</table>
 			
 		</div>
 		<br>
@@ -561,6 +561,11 @@
 				}
 			}
 			mysqli_close($con);
+		}
+		
+		function test()
+		{
+			alert("hi");
 		}
 	?>
 	</div>
