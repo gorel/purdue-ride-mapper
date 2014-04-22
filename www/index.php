@@ -498,6 +498,35 @@
             } 
 
             /**
+             * disableAllSignInCntl()
+             *
+             * disable all sign in controls
+             */
+            function disableAllSignInCntl()
+            {
+              $('#txtPassword').prop('disabled', true);
+              $('#txtEmail').prop('disabled', true);
+              $('#loginButton').prop('disabled', true);
+              $('#registerButton').prop('disabled', true);
+              $('#pwModalButton').prop('disabled', true);
+	    }
+
+            /**
+             * enableAllSignInCntl()
+             *
+             * enable all sign in controls
+             */
+            function enableAllSignInCntl()
+            {
+              $('#txtPassword').prop('disabled', false);
+              $('#txtEmail').prop('disabled', false);
+              $('#loginButton').prop('disabled', false);
+              $('#registerButton').prop('disabled', false);
+              $('#pwModalButton').prop('disabled', false);
+	    }
+
+
+            /**
              * signIn()
              *
              * Authenticate user
@@ -509,17 +538,18 @@
               var email = $('#txtEmail').val().trim(); 
               var password = $('#txtPassword').val().trim();
 
-              if (! validatePurdueEmail(email))
+              if (! validatePurdueMail(email))
               {
-                $('errAuth').text("Please enter a valid Purdue email");
-                $('errAuth').show();
+                console.log("WRONG EMAIL");
+                $('#errAuth').text("Please enter a valid Purdue email");
+                $('#errAuth').show();
                 return;
               }
 
-              if (password == "")
+              if (password.length == 0)
               {
-                $('errAuth').text("Please enter your password");
-                $('errAuth').show();
+                $('#errAuth').text("Please enter your password");
+                $('#errAuth').show();
                 return;
               }
 
@@ -529,9 +559,11 @@
                 dataType: 'json',
                 data: {"email" : email, "password" : password },
                 beforeSend: function() {
+                  disableAllSignInCntl();
                   $('#progressSignIn').show();
                 },
                 complete: function() {
+                  enableAllSignInCntl();
                   $('#progressSignIn').hide();
 
                 },
