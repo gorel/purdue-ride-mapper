@@ -7,6 +7,14 @@ function validateEduMail(text)
 
 }
 
+function validatePurdueMail(text)
+{
+  var patt = /^[a-z0-9\._]+@purdue.edu$/i;
+  if (! patt.test(text))
+      return false;
+  return true;
+
+}
 
 function validateAltMail(text)
 {

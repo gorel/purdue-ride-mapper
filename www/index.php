@@ -509,6 +509,20 @@
               var email = $('#txtEmail').val().trim(); 
               var password = $('#txtPassword').val().trim();
 
+              if (! validatePurdueEmail(email))
+              {
+                $('errAuth').text("Please enter a valid Purdue email");
+                $('errAuth').show();
+                return;
+              }
+
+              if (password == "")
+              {
+                $('errAuth').text("Please enter your password");
+                $('errAuth').show();
+                return;
+              }
+
               $.ajax ({
                 type: "POST",
                 url: "/modules/signin/signinProc.php",
