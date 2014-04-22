@@ -125,10 +125,10 @@ function sendUserMail($rcpt, $rcpt_name, $msg, $requester, $requester_name, $req
 		
         $content = "<html><body>" .
                    "Hi $rcpt_name! <br><br> $requester_name has sent you " .
-                   "the following message: ----------<br><br> $msg <br><br> ." .
-                   "---------- <br><br> $requester has provided the following " .
+                   "the following message: <br><br> ---------- $msg <br><br> ." .
+                   "---------- <br><br> $requester_name has provided the following " .
                    "contact information for you to respond : <br><br> ". 
-                   " $requester_contact <br><br>" . "</body></html>";
+                   " $requester<br>$requester_contact <br><br>" . "</body></html>";
 				   
         mail($rcpt, $subject, $content, $headers);
 }
