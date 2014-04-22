@@ -107,9 +107,9 @@
 					<input type="radio" name="mtype" value="both" checked>Both<br>
 				</div>
 				
-				<div class="form-group">
+				<div class="form-group" width="20%">
 					<div class="input-group date" id="datetimepicker2" width="20%">
-						<input type="text" class="form-control" name="dateTime" placeholder="Desired Departure Date" data-format="YYYY-MM-DD hh:mm:ss"/>
+						<input type="text" width="20%" class="form-control" name="dateTime" placeholder="Desired Departure Date" data-format="YYYY-MM-DD hh:mm:ss"/>
 						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
 					</div>
 				</div>
