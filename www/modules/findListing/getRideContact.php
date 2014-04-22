@@ -53,8 +53,10 @@ if ($list_alt_email)
   $info = $info . $alt_email . "<br>";
 
 if ($list_phone)
+{
+  $phone = preg_replace('/(\d{3})(\d{3})/','(\1)-\2-', $phone);
   $info = $info. $phone . "<br>";
-
+}
 
 echo json_encode(array('contact_header' => "Contact $first_name at:", 'contact_info' => $info, 'first_name' => $first_name)); 
 ?>
