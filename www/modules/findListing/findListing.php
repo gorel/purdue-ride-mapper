@@ -121,7 +121,7 @@
 				</script>
 			</form>
 			<button class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button>	-->		
-			<table class='table table-condensed'>
+			<table class='table table-condensed' id="searchTable">
 			<thead>
 				<tr>
 					<th width="20%"> Starting Address </th>
@@ -257,7 +257,7 @@
 						
 						echo "<br>";
 						echo "<h3>Offers that match your search:</h3>";
-						echo "<table class=table table-striped'>
+						echo "<table class=table table-striped' id='listingsTable'>
 						<thead>
 						<tr>
 						<th> Match % </th>
@@ -347,7 +347,7 @@
 		}
 
 		// matcher can now be taken out of the if-else condition. There was a
-                // php session error and I moved the call to start session to the top - tim
+		// php session error and I moved the call to start session to the top - tim
 
 		if (!isset($_SESSION['user']))
 		{
@@ -445,7 +445,7 @@
 					$sql = "SELECT * FROM listings $limit";
 					$result = mysqli_query($con,$sql);
 					echo "<h1>All listings:</h1>";
-					echo "<table class='table table-striped'>
+					echo "<table class='table table-striped' id='listingsTable'>
 					<thead>
 					<tr>
 					<th> Starting Address </th>
@@ -563,10 +563,9 @@
 			mysqli_close($con);
 		}
 		
-		function test()
-		{
-			alert("hi");
-		}
+		var theWidth = $("#listingsTable").find('td:first').width();
+		alert(theWidth);
+		$("#searchTable").find("tr > td:first").width(theWidth + "px");
 	?>
 	</div>
 
