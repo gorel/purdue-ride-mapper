@@ -52,8 +52,18 @@
 						<div id="pagination_controls"><?php echo $paginationCtrls; ?></div>
 					</div>
 					<div class="col-md-6">
-						<p><b>Send them a message!</b></p>
 						<form class="form-horizontal" role="form">
+                                                <div style="display:none" id="progressContact" class="col-md-12 row">
+                                                  Loading contact information... <img src='/images/load.gif'/>
+                                                </div>
+                                                <div style="display:none" id="errContact" class="col-md-12 row">
+                                                  Error Loading contact information
+                                                </div>
+                                                <div style="display:none" id="messageBox" class="col-md-12 row">
+                                                  <label id="contactHeader" class="control-label"></label>
+                                                  <div id="contactInfo" class="col-md-offset-1">
+                                                  </div>
+						<p id="contactName"><b></b></p>
 							<div class="control-group">
 								<div class="controls">
 									<textarea name="text" id="modalMessage" rows="6" class="form-control" cols="80"></textarea>
@@ -65,6 +75,7 @@
 							<button class="btn btn-lg btn-primary btn-block" id="sendButton">Send</button>
 						</div>
 					</div>
+                                                </div>
 				</div>					
 			</div>
 			
@@ -546,6 +557,33 @@
 			{
 				numberOfPassengersModal.innerHTML = "0";
 			}
+
+                        $.ajax({
+                          type: "POST",
+                          url: "/modules/findListing/getRideContact.php",
+                          dataType: 'json',
+                          data: { "listingID" : listingID },
+                          beforeSend: function() {
+                             $('#errContact').hide();
+                             $('#messageBox').hide();
+                             $('#contactHeader').empty();
+                             $('#contactInfo').empty();
+                             $('#contactName').empty();
+                             $('#progressContact').show();
+                          },
+                          success: function(data) {
+                             $('#contactName').append("<b>Send " + data.first_name + " a message!</b>");
+                             $('#contactInfo').append(data.contact_info);
+                             $('#contactHeader').text(data.contact_header);
+                             $('#messageBox').show();
+                          },
+                          complete: function(data) {
+                             $('#progressContact').hide();
+                          },
+                          error: function(data) {
+                             $('#errContact').show();
+                          }
+                        });
 			
 			
 			$('#routeModal').modal('show');
