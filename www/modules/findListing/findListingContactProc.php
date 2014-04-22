@@ -39,7 +39,7 @@ else
 	$rcpt = $row['email'];
         $rcpt_name = $row['first_name'];
 	
-	$sql="SELECT email FROM users WHERE user_id = $from_uid";
+	$sql="SELECT first_name,email FROM users WHERE user_id = $from_uid";
 	$result = mysqli_query($con, $sql);
 	$row = mysqli_fetch_array($result);
 	$from = $row['email'];	
@@ -53,6 +53,7 @@ else
         $row = mysqli_fetch_array($result);
         $alt_email = $row['alt_email'];
         $phone = $row ['phone'];
+        $sender_name = $row['first_name'];
 
         if ($alt_email != "")
         {
@@ -64,13 +65,22 @@ else
           if ($send_alt_email)
             $sender_info = $sender_info . $alt_email . "<br>";
 
-          if ($send_phone)
-            $sender_info = $sender_info . $phone . "<br>";
         }
 	
+        if ($phone != "")
+        {
+          $sql="SELECT send_phone from user_settings where user_id=$from_uid";
+          $result = mysqli_query($con, $sql);
+          $row = mysqli_fetch_array($result);
+          $send_phone = $row['send_phone'];
+          
+          if ($send_phone)
+            $sender_info = $sender_info . $phone . "<br>";
+
+        }
 	mysqli_close($con);
 	
-	sendUserMail($rcpt, $rcpt_name, $message, $from, $sender_name, $sender_contact);
+	sendUserMail($rcpt, $rcpt_name, $message, $from, $sender_name, $sender_info);
 }			
 
 echo json_encode(array('success' => "$success", 'rcpt' => "$rcpt", 'from' => "$from")); 
