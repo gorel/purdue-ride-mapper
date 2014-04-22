@@ -562,8 +562,10 @@
 			}
 			mysqli_close($con);
 		}
-
-
+		
+		var $table = $("#listingsTable");
+		var $lastRow = $table.find("tr:last");
+		var $dataFields = $lastRow.find("td");
 	?>
 	</div>
 
