@@ -124,11 +124,11 @@
 		<table class='table table-condensed' id="searchTable">
 			<thead>
 				<tr>
-					<th width="20%"> Starting Address </th>
-					<th width="20%"> Ending Address </th>
+					<th width="24%"> Starting Address </th>
+					<th width="24%"> Ending Address </th>
 					<th width="20%"> Ride Type </th>
-					<th width="20%"> Desired Departure Date </th>
-					<th width="20%"></th>
+					<th width="30%"> Desired Departure Date </th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -562,9 +562,6 @@
 			}
 			mysqli_close($con);
 		}
-		 $(document).ready(function() { 
-			var $table = $("#listingsTable");
-		});
 	?>
 	</div>
 
