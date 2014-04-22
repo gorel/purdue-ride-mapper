@@ -562,8 +562,9 @@
 			}
 			mysqli_close($con);
 		}
-		
-		var $table = $("#listingsTable");
+		 $(document).ready(function() { 
+			var $table = $("#listingsTable");
+		});
 	?>
 	</div>
 
