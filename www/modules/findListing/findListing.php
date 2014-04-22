@@ -121,7 +121,7 @@
 				</script>
 			</form>
 			<button class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button>	-->		
-			<table class='table table-condensed' id="searchTable">
+		<table class='table table-condensed' id="searchTable">
 			<thead>
 				<tr>
 					<th width="20%"> Starting Address </th>
@@ -565,7 +565,6 @@
 		
 		var theWidth = $("#listingsTable").find('td:first').width();
 		alert(theWidth);
-		$("#searchTable").find("tr > td:first").width(theWidth + "px");
 	?>
 	</div>
 
