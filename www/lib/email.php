@@ -117,15 +117,18 @@ function sendContactMail($from, $cat, $msg)
 	mail($tmpEmail, $sub, $msg, $headers);
 }
 
-function sendUserMail($rcpt, $msg, $requester)
+function sendUserMail($rcpt, $rcpt_name, $msg, $requester, $requester_name, $requester_contact)
 {
         global $orgEmail, $orgName, $headers;
 
-        $subject = "College Carpool Contact Request";
+        $subject = "You have received a ride request!";
 		
-		$content = "<html><body>" .
-                   "Sent on behalf of: ".$requester."<br><br>".$msg.
-                   "<br><br>Please reply to: ".$requester."</body></html>";
+        $content = "<html><body>" .
+                   "Hi $rcpt_name! <br><br> $requester_name has sent you " .
+                   "the following message: ----------<br><br> $msg <br><br> ." .
+                   "---------- <br><br> $requester has provided the following " .
+                   "contact information for you to respond : <br><br> ". 
+                   " $requester_contact <br><br>" . "</body></html>";
 				   
         mail($rcpt, $subject, $content, $headers);
 }
