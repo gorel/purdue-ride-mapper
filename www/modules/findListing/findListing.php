@@ -124,11 +124,11 @@
 		<table class='table table-condensed'>
 			<thead>
 				<tr>
-					<th> Starting Address </th>
-					<th> Ending Address </th>
-					<th> Ride Type </th>
-					<th> Desired Departure Date </th>
-					<th></th>
+					<th width="20%"> Starting Address </th>
+					<th width="20%"> Ending Address </th>
+					<th width="20%"> Ride Type </th>
+					<th width="20%"> Desired Departure Date </th>
+					<th width="20%"></th>
 				</tr>
 			</thead>";
 			<tbody>
