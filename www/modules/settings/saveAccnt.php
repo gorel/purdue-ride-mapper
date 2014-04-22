@@ -25,7 +25,7 @@ $stmt->close();
 
 if ($alt_email == "" && $phone != "")
 {
-  $query = "UPDATE user_settings SET send_alt_email=0,list_alt_email=0,list_reg_email=0 WHERE user_id = ?";
+  $query = "UPDATE user_settings SET send_alt_email=0,list_alt_email=0 WHERE user_id = ?";
   $stmt = $conn->prepare($query);
   $stmt->bind_param('d', $uid);
   $stmt->execute();
@@ -41,7 +41,7 @@ else if ($alt_email != "" && $phone == "")
 }
 else if ($alt_email == "" && $phone =="")
 {
-  $query = "UPDATE user_settings SET send_alt_email=0,list_alt_email=0,list_reg_email=0,send_phone=0,list_phone=0 WHERE user_id = ?";
+  $query = "UPDATE user_settings SET send_alt_email=0,list_alt_email=0,send_phone=0,list_phone=0 WHERE user_id = ?";
   $stmt = $conn->prepare($query);
   $stmt->bind_param('d', $uid);
   $stmt->execute();
