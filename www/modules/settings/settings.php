@@ -28,10 +28,11 @@
   // preferences need to reflect latest account information
 
   $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
-   if (e.currentTarget.id == "tab_pref")
-   {
-     fillPref();
-   }
+   initFields();
+
+//   if (e.currentTarget.id == "tab_pref")
+ //  {
+ //  }
   });
   
 
@@ -42,6 +43,7 @@
     resetPasswordTab();
     resetAccountTab();
     fillAccnt();
+    fillPref();
     hideAllPrefMsg();
     $('#modalSettings').modal('show');
   }
