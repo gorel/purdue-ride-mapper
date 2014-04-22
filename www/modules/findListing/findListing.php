@@ -562,9 +562,7 @@
 			}
 			mysqli_close($con);
 		}
-		
-		var theWidth = $("#listingsTable").find('td:first').width();
-		alert(theWidth);
+
 	?>
 	</div>
 
