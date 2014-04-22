@@ -562,10 +562,7 @@
 			}
 			mysqli_close($con);
 		}
-		var tbl = document.getElementById('listingsTable');
-		var td = tbl.rows[0].cells[0];
-		var theWidth = td.width;
-		alert(theWidth);
+
 
 	?>
 	</div>
