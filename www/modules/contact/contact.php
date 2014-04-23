@@ -28,12 +28,14 @@
 			</form>
 		</div>
 		<div class="col-md-4">
-			<tr>
-			<th> Email </th>
-			<th> Date </th>
-			<th> Reply </th>
-			<th> Delete </th>
-			</tr>
+			<table class='table table-triped'>
+				<tr>
+				<th> Email </th>
+				<th> Date </th>
+				<th> Reply </th>
+				<th> Delete </th>
+				</tr>
+			</table>
 		</div>
 	</div>
 </div>
