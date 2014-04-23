@@ -430,6 +430,7 @@
 					// Establish the $pagenum variable
 					$pagenum = 1;
 					// Get pagenum from URL vars if it is present, else it is = 1
+					echo "pagenum " . $_GET['pn'];
 					if(isset($_GET['pn'])){
 						$pagenum = preg_replace('#[^0-9]#', '', $_GET['pn']);
 					}
@@ -499,7 +500,7 @@
 							echo "<li><a href=\"findListing.php?pn='" .$pn. "'\">&raquo;</a></li>
 									</ul>";
 							$count = 0;
-							echo "pagenum " . $_GET['pn'];
+							
 							$pn++;
 						}
 						else
