@@ -611,6 +611,7 @@
                              $('#contactInfo').append(data.contact_info);
                              $('#contactHeader').text(data.contact_header);
                              $('#messageBox').show();
+							 console.log($_GET[pn]);
                           },
                           complete: function(data) {
                              $('#progressContact').hide();
