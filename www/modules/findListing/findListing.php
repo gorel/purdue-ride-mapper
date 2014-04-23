@@ -499,7 +499,7 @@
 							echo "<li><a href=\"findListing.php?pn='" .$pn. "'\">&raquo;</a></li>
 									</ul>";
 							$count = 0;
-							console.log($_GET['pn']);
+							echo $_GET['pn'];
 							$pn++;
 						}
 						else
