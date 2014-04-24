@@ -85,7 +85,7 @@ function createListing()
 			}
 			else
 			{
-				alert("Addess not valid, please check and try again.");
+				alert("Addess or time format not valid, please check and try again.\nPlease use the calendar tool.");
 			}
 		} 
 	});

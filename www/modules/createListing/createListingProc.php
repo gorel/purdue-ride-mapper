@@ -23,8 +23,8 @@
 	
 	function qualityTimeFormat($dateTime)
 	{
-		$re1='((?:2|1)\\d{3}(?:-|\\/)(?:(?:0[1-9])|(?:1[0-2]))(?:-|\\/)(?:(?:0[1-9])|(?:[1-2][0-9])|(?:3[0-1]))(?:T|\\s)(?:(?:[0-1][0-9])|(?:2[0-3])):(?:[0-5][0-9]):(?:[0-5][0-9]))';//Time stamp regex
-		if(preg_match('/'.$re1.'/is',$dateTime) === 1) 		
+		$re='((?:2|1)\\d{3}(?:-|\\/)(?:(?:0[1-9])|(?:1[0-2]))(?:-|\\/)(?:(?:0[1-9])|(?:[1-2][0-9])|(?:3[0-1]))(?:T|\\s)(?:(?:[0-1][0-9])|(?:2[0-3])):(?:[0-5][0-9]):(?:[0-5][0-9]))';//Time stamp regex
+		if(preg_match('/'.$re.'/is',$dateTime) === 1) 		
 		{
 			return true;
 		}
@@ -36,6 +36,25 @@
 	
 	function qualityTimeRange($dateTime)
 	{
+		$year = substr($dateTime,0,4);
+		$month = ($dateTime,5,2);
+		$day = ($dateTime,8,2);
+		$currentyear = date("Y");
+		$currentmonth = date("m");
+		$currentday = date("d");
+		if($year < $currentyear || $year > ($currentyear+2))//Last year or 2+ years from now = bad
+		{
+			return false;
+		}
+		if($year === $currentyear && $month < $currentmonth)//Previous months = bad
+		{
+			return false;
+		}
+		if($year === $currentyear && $month === $currentmonth && $day < $currentday)//Previous days = bad
+		{
+			return false;
+		}
+		
 		return true;
 	}
 
@@ -144,7 +163,7 @@
 		VALUES
 		('$startingAddress','$startLatitude','$startLongitude','$destinationAddress','$endLatitude','$endLongitude','$isRequest','$passengers','$dateTime', '$user_id')";
 		
-		if($badInput === 0)
+		if($badInput === 0)//Only do this if it is bad input
 		{
 			if (!mysqli_query($con,$sql))
 			{
