@@ -51,7 +51,7 @@
 				<td> M2 </td>
 				</tr>
 				<tr>
-				<td colspan="4"> MSGGGGG11111122223333< /td>
+				<td colspan="4"> MSGGGGG11111122223333</td>
 				</tr>
 				<?php
 					session_start();
