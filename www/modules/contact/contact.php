@@ -58,8 +58,6 @@
 				</tr>
 				<?php
 					session_start();
-						$cat   = $_POST["category"];
-						$msg   = $_POST["text"];
 						$user_id = $_SESSION['user_id'];
 
 						$dbName   = 'purdue_test';
