@@ -490,7 +490,7 @@
 						//$paginationCtrls .= ''.$pagenum.' &nbsp; ';
 						$paginationCtrls .= '
 								<ul class="pagination">
-								  <li><a href="#" onclick="changePage('.$pagenum.');">'.$pagenum.'</a></li>
+								  <li class="disabled"><a href="#" onclick="changePage('.$pagenum.');">'.$pagenum.'</a></li>
 								</ul>
 							';
 						//echo "<script>console.log(\"paginationCtrls ".$paginationCtrls."\"); </script>";
