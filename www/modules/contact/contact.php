@@ -44,6 +44,12 @@
 				<tr>
 				<td colspan="4">MSGGGGGG</td>
 				</tr>
+				<tr>
+				<td> Just do it </td>
+				<td> Yesterday! </td>
+				<td> M1 </td>
+				<td> M2 </td>
+				</tr>
 				<?php
 					session_start();
 					if(!$_SESSION['isAdmin'])
