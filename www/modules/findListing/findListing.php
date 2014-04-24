@@ -464,13 +464,15 @@
 						   the previous page or the first page so we do nothing. If we aren't then we
 						   generate links to the first page, and to the previous page. */
 						if ($pagenum > 1) {
-						echo "<script>console.log(\"pagenum ".$pagenum."\"); </script>";
+						//echo "<script>console.log(\"pagenum ".$pagenum."\"); </script>";
 							$previous = $pagenum - 1;
 							$paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$previous.'">Previous</a> &nbsp; &nbsp; ';
+							echo "<script>console.log(\"pagenum ".$previous."\"); </script>";
 							// Render clickable number links that should appear on the left of the target page number
 							for($i = $pagenum-4; $i < $pagenum; $i++){
 								if($i > 0){
 									$paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$i.'">'.$i.'</a> &nbsp; ';
+									echo "<script>console.log(\"pagenum1 ".$i."\"); </script>";
 								}
 							}
 						}
@@ -481,6 +483,7 @@
 						for($i = $pagenum+1; $i <= $last; $i++){
 							$paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$i.'">'.$i.'</a> &nbsp; ';
 							//echo "<script>console.log(\"paginationCtrls a href ".$_SERVER['PHP_SELF']."?pn=".$i."\"); </script>";
+							echo "<script>console.log(\"pagenum2 ".$i."\"); </script>";
 							if($i >= $pagenum+4){
 								break;
 							}
@@ -490,6 +493,7 @@
 						if ($pagenum != $last) {
 							$next = $pagenum + 1;
 							$paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next.'">Next</a> ';
+							echo "<script>console.log(\"pagenum3 ".$next."\"); </script>";
 						}
 					}
 					while($row = mysqli_fetch_array($result))
