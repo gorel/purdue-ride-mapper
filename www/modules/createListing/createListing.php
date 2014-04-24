@@ -42,9 +42,47 @@ function checkForm(form)
 </script>
 <script type="text/javascript">
 
-function doFunction()
+function createListing()
 {
-	alert("Test");
+	var startingLocation = document.getElementById('startingLocation').value;
+	var destinationAddress = document.getElementById('endingLocation').value;
+	var passengers = document.getElementById('passengersTextBox').value;
+	var dateTime = document.getElementById('dateTime').value;
+	var isRequest;
+	
+	console.log(startingLocation);
+	console.log(destinationAddress);
+	console.log(passengers);
+	console.log(dateTime);
+	return;
+	
+	
+	$.ajax ({
+		type: "POST",
+		url: "/modules/createListing/createListingProc.php",
+		dataType: "json",
+		beforeSend: function() {
+			console.log("before send");
+		},
+		complete: function() {
+			console.log("complete");
+		},
+		data: {"startingAddress" : startingLocation, "destinationAddress" : destinationAddress, 
+					"passengers" : passengers, "dateTime" : dateTime, "isRequest" : isRequest},
+		success: function(data) {					
+			console.log("success");	
+
+			if(data.success == "SUCCESS")
+			{
+				console.log("Created Listing");
+				alert("The listing was successfully created.");
+			}
+			else
+			{
+				alert("An error has occured. Please try again.");
+			}
+		} 
+	});
 }
 
 </script>
@@ -57,15 +95,15 @@ function doFunction()
 		</div>				
 		
 		<div class="col-md-4">
-			<form class="form-signin" role="form" id="createListingForm" method="post" action="modules/createListing/createListingProc.php">
+			<form class="form-signin" role="form" id="createListingForm">
 				<h2 class="form-signin-heading">Create Listing</h2>
 				
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Starting Location" name="startingAddress" required autofocus>
+					<input id="startingLocation" type="text" class="form-control" placeholder="Starting Location" name="startingAddress" required autofocus>
 				</div>
 
 				<div class="form-group" id="test">
-					<input type="text" class="form-control" placeholder="Destination" name="destinationAddress" required autofocus>
+					<input id="endingLocation" type="text" class="form-control" placeholder="Destination" name="destinationAddress" required autofocus>
 				</div>
 				
 				<div class="form-group">
@@ -79,7 +117,7 @@ function doFunction()
 				
 				<div class="form-group">
 					<div class='input-group date' id='datetimepicker1'>
-						<input type='text' class="form-control" name="dateTime" placeholder="Desired Departure Date" data-format="YYYY-MM-DD hh:mm:ss" required autofocus>
+						<input id="dateTime" type='text' class="form-control" name="dateTime" placeholder="Desired Departure Date" data-format="YYYY-MM-DD hh:mm:ss" required autofocus>
 						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
 						</span>
 					</div>
@@ -90,9 +128,10 @@ function doFunction()
 						$('#datetimepicker1').datetimepicker();
 					});
 				</script>
-
-				<button class="btn btn-lg btn-primary btn-block" type="submit" id="submitButton"  onclick="doFunction();">Submit</button>
 			</form>
+			
+			
+			<button class="btn btn-lg btn-primary btn-block" id="submitButton" onclick="createListing();">Submit</button>
 		</div> <!-- col-md-4 -->
 	</div> <!-- row -->
 </div> <!-- /container -->
