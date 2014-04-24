@@ -70,13 +70,11 @@ function createListing()
 		url: "/modules/createListing/createListingProc.php",
 		dataType: "json",
 		beforeSend: function() {
-			$('#progressCreate').show();
-			console.log("before send");
+			document.getElementById('progressCreate').style.visibility = 'visible';
 			document.getElementById('submitButton').disabled = true;
 		},
 		complete: function() {
-			$('#progressCreate').hide();
-			console.log("complete");
+			document.getElementById('progressCreate').style.visibility = 'hidden';
 			document.getElementById('submitButton').disabled = false;
 		},
 		data: {"startingAddress" : startingLocation, "destinationAddress" : destinationAddress, 
