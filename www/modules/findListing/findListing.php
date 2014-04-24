@@ -430,7 +430,7 @@
 					// Get pagenum from URL vars if it is present, else it is = 1
 					
 					if(isset($_GET['pn'])){
-						echo "<script>console.log(\"ISSET\"); </script>";
+						//echo "<script>console.log(\"ISSET\"); </script>";
 						$pagenum = preg_replace('#[^0-9]#', '', $_GET['pn']);
 					}
 					// This makes sure the page number isn't below 1, or more than our $last page
@@ -466,7 +466,13 @@
 						if ($pagenum > 1) {
 						//echo "<script>console.log(\"pagenum ".$pagenum."\"); </script>";
 							$previous = $pagenum - 1;
-							$paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$previous.'">Previous</a> &nbsp; &nbsp; ';
+
+							//$paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$previous.'">Previous</a> &nbsp; &nbsp; ';
+							$paginationCtrls .= '
+								<ul class=\"pagination\">
+								  <li><a href=\"#\" onclick=\"changePage('.$previous.');\">Previous</a></li>
+								</ul>
+							';
 							echo "<script>console.log(\"pagenum ".$previous."\"); </script>";
 							// Render clickable number links that should appear on the left of the target page number
 							for($i = $pagenum-4; $i < $pagenum; $i++){
@@ -559,13 +565,11 @@
 	?>
 	</div>
 	<div id="pagination_controls"><?php echo $paginationCtrls; ?></div>
-	<ul class="pagination">
-	  <li><a href="#" onclick="changePage(2);">2</a></li>
-	</ul>
+
 	<script>
 		function changePage(pageNumber)
 		{
-		console.log("changed page");
+			//console.log("changed page");
 			$( "#content" ).load( "modules/findListing/findListing.php?pn=" + pageNumber);
 		}
 	</script>
