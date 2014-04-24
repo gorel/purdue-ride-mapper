@@ -469,8 +469,8 @@
 
 							//$paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$previous.'">Previous</a> &nbsp; &nbsp; ';
 							$paginationCtrls .= '
-								<ul class=\"pagination\">
-								  <li><a href=\"#\" onclick=\"changePage('.$previous.');\">Previous</a></li>
+								<ul class="pagination">
+								  <li><a href="#" onclick="changePage('.$previous.');">Previous</a></li>
 								</ul>
 							';
 							echo "<script>console.log(\"pagenum ".$previous."\"); </script>";
