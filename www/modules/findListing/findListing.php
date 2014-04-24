@@ -497,6 +497,7 @@
 					$pn = 1;
 					while($row = mysqli_fetch_array($result))
 					{
+						echo "<script>console.log(\"".$count."\"); </script>";
 						if($count > 10)
 						{
 							echo "<script>console.log(\"".$count."\"); </script>";
