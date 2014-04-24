@@ -409,7 +409,6 @@
 				}
 				else
 				{
-echo "<script>console.log(\"ASDF\"); </script>";
 					$sqlCount = "SELECT COUNT(listings_id) FROM listings";
 					$countRes = mysqli_query($con,$sqlCount);
 					$rowCount = mysqli_fetch_row($countRes);
@@ -422,7 +421,7 @@ echo "<script>console.log(\"ASDF\"); </script>";
 					
 					//Keep track of previous page number
 					$last = ceil($total/$page_rows);
-					
+					echo "<script>console.log(\"".$last"\"); </script>";
 					// This makes sure $last cannot be less than 1
 					if($last < 1){
 						$last = 1;
@@ -434,6 +433,7 @@ echo "<script>console.log(\"ASDF\"); </script>";
 					if(isset($_GET['pn'])){
 						$pagenum = preg_replace('#[^0-9]#', '', $_GET['pn']);
 					}
+					echo "<script>console.log(\"".$pagenum"\"); </script>";
 					// This makes sure the page number isn't below 1, or more than our $last page
 					if ($pagenum < 1) { 
 						$pagenum = 1; 
