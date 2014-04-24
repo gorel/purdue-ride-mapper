@@ -557,11 +557,11 @@
 		}
 	?>
 	</div>
-						<ul>
-						  <li><a href="#">&laquo;</a></li>
-						  <li><a href="#">1</a></li>
-						  <li><a href="#">&raquo;</a></li>
-						</ul>
+	<ul class="pagination">
+	  <li><a href="#">&laquo;</a></li>
+	  <li><a href="#">1</a></li>
+	  <li><a href="#">&raquo;</a></li>
+	</ul>
 	<script>
 		var modalMap;
 		var listingID;
