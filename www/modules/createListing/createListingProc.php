@@ -47,6 +47,7 @@
 	$passengers = test_input($_POST["passengers"]);
 	$dateTime = test_input($_POST["dateTime"]);
 	$isRequest = test_input($_POST["isRequest"]);
+	$badInput = 0;
 	
 				
 	session_start();
@@ -92,6 +93,7 @@
 		{
 			//GUYS WHAT DO WE DO IF IT IS BAD?			
 			echo json_encode(array('success' => "FAILURE"));
+			$badInput = 1;
 			$startLatitude = 0.0;
 			$startLongitude = 0.0;
 		}				
@@ -109,7 +111,8 @@
 		if(qualityCodeCheck($addressQualityCode2) === false)//If the quality code is bad
 		{
 			//GUYS WHAT DO WE DO IF IT IS BAD?
-			echo json_encode(array('success' => "FAILURE"));			
+			echo json_encode(array('success' => "FAILURE"));	
+			$badInput = 1;
 			$endLatitude = 0.0;
 			$endLongitude = 0.0;
 		}				
@@ -124,30 +127,35 @@
 		if(qualityTimeFormat($dateTime) === false)
 		{
 			//Bad!
-			echo json_encode(array('success' => "FAILURE"));	
+			echo json_encode(array('success' => "FAILURE"));
+			$badInput = 1;
 		}
 		else
 		{
 			if(qualityTimeRange($dateTime) === false)
 			{
 				//Bad!
-				echo json_encode(array('success' => "FAILURE"));	
+				echo json_encode(array('success' => "FAILURE"));
+				$badInput = 1;
 			}
 		}
 
 		$sql="INSERT INTO listings (startingAddress, start_lat, start_long, endingAddress, end_lat, end_long, isRequest, passengers, dateOfDeparture, user_id)
 		VALUES
 		('$startingAddress','$startLatitude','$startLongitude','$destinationAddress','$endLatitude','$endLongitude','$isRequest','$passengers','$dateTime', '$user_id')";
-
-		if (!mysqli_query($con,$sql))
+		
+		if($badInput === 0)
 		{
-			mysqli_close($con);
-			echo json_encode(array('success' => "FAILURE"));
+			if (!mysqli_query($con,$sql))
+			{
+				mysqli_close($con);
+				echo json_encode(array('success' => "FAILURE"));
+			}
+			else
+			{
+				mysqli_close($con);
+				echo json_encode(array('success' => "SUCCESS"));
+			}		
 		}
-		else
-		{
-			mysqli_close($con);
-			echo json_encode(array('success' => "SUCCESS"));
-		}		
 	}			
 ?>
