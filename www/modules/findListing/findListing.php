@@ -304,7 +304,7 @@
 					$val = explode(' ', $match);
 					$match = $val[0];
 					$id = $val[1];
-					$sql = "SELECT * FROM listings WHERE listings_id=$id $limit";
+					$sql = "SELECT * FROM listings $limit WHERE listings_id=$id";
 					$result = mysqli_query($con,$sql);
 					$paginationCtrls = '';
 					
