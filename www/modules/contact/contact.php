@@ -27,8 +27,9 @@
 				</div>
 			</form>
 		</div>
+		</div>
 		<div class="col-md-4">
-			<table class='table table-triped table-bordered' width="800px">
+			<table class='table table-triped table-bordered'>
 				<tr>
 				<th> Email </th>
 				<th> Date </th>
@@ -95,6 +96,5 @@
 					}
 				?>
 			</table>
-		</div>
 	</div>
 </div>
