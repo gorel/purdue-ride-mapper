@@ -28,8 +28,8 @@
 			</form>
 		</div>
 		</div>
-		<hr class="featurette-divider">
 		<div class="col-md-12">
+		<hr class="featurette-divider">
 			<table class='table table-triped table-bordered'>
 				<tr>
 				<th> Email </th>
