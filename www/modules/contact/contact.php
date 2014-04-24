@@ -30,6 +30,7 @@
 		</div>
 		<div class="col-md-12">
 		<hr class="featurette-divider">
+				<h2> Tickets </h2>
 			<table class='table table-triped table-bordered'>
 				<tr>
 				<th> Email </th>
