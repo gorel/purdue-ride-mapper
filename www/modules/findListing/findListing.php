@@ -421,7 +421,7 @@
 					
 					//Keep track of previous page number
 					$last = ceil($total/$page_rows);
-					echo "<script>console.log(\"".$last"\"); </script>";
+					echo "<script>console.log(\"".$last."\"); </script>";
 					// This makes sure $last cannot be less than 1
 					if($last < 1){
 						$last = 1;
@@ -433,7 +433,7 @@
 					if(isset($_GET['pn'])){
 						$pagenum = preg_replace('#[^0-9]#', '', $_GET['pn']);
 					}
-					echo "<script>console.log(\"".$pagenum"\"); </script>";
+					echo "<script>console.log(\"".$pagenum."\"); </script>";
 					// This makes sure the page number isn't below 1, or more than our $last page
 					if ($pagenum < 1) { 
 						$pagenum = 1; 
@@ -496,10 +496,8 @@
 						if($count > 10)
 						{
 							echo "<ul class=\"pagination\">";
-							echo "<li><a href=\"findListing.php?pn='" .$pn. "'\">&laquo;</a></li>";
 							echo "<li><a href=\"findListing.php?pn='" .$pn. "'\">". $pn ."</a></li>";
-							echo "<li><a href=\"findListing.php?pn='" .$pn. "'\">&raquo;</a></li>
-									</ul>";
+							echo "</ul>";
 							$count = 0;
 							
 							$pn++;
