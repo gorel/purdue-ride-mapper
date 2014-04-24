@@ -465,6 +465,7 @@
 						   the previous page or the first page so we do nothing. If we aren't then we
 						   generate links to the first page, and to the previous page. */
 						if ($pagenum > 1) {
+						echo "<script>console.log(\"".$pagenum."\"); </script>";
 							$previous = $pagenum - 1;
 							$paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$previous.'">Previous</a> &nbsp; &nbsp; ';
 							// Render clickable number links that should appear on the left of the target page number
