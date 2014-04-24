@@ -37,8 +37,8 @@
 	function qualityTimeRange($dateTime)
 	{
 		$year = substr($dateTime,0,4);
-		$month = ($dateTime,5,2);
-		$day = ($dateTime,8,2);
+		$month = substr($dateTime,5,2);
+		$day = substr($dateTime,8,2);
 		$currentyear = date("Y");
 		$currentmonth = date("m");
 		$currentday = date("d");
