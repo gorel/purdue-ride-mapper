@@ -100,9 +100,9 @@
 					{
 
 						// check if user exists
-						$query = "SELECT ticket_message FROM tickets";
+						$query = "SELECT ticket_id, ticket_date,  ticket_message, ticket_answer FROM tickets";
 						$stmt = $conn->prepare($query);
-						$stmt->bind_param('s', $email);
+						$stmt->bind_param('dsss', $ticket_id, $ticket_date, $ticket_message, $ticket_answer);
 						$stmt->execute();
 						$stmt->store_result();
 
@@ -111,7 +111,20 @@
 							while($stmt->fetch())
 							{
 								echo "<tr>";
-								echo "<td>
+								echo "<td> " , $ticket_id , "</td>";
+								echo "<td> " , $ticket_date , "</td>";
+								echo "<td> Button1 </td>";
+								echo "<td> Button2 </td>";
+								echo "</tr>";
+								echo "<tr>";
+								echo "<td colspan=\"4\"> " , $ticket_message , "</td>";
+								echo "</tr>";
+								if($ticket_answer != '')
+								{
+									echo "<tr>";
+									echo "<td colspan=\"4\"> " , $ticket_answer , "</td>";
+									echo "</tr>";
+								}
 							}
 						    echo  "User already exists";
 						    die;

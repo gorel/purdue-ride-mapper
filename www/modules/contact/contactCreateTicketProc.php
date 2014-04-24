@@ -51,8 +51,8 @@ $stmt->close();
 // add user to 'users' table
 date_default_timezone_set('EST');
 $today = date("Y-m-d H:i:s");
-$insert = "INSERT INTO tickets (category, user_id, ticket_date, ticket_message, ticket_helpful) "
-        . "VALUES (?, ?, ?, ?, 0)";
+$insert = "INSERT INTO tickets (category, user_id, ticket_date, ticket_message) "
+        . "VALUES (?, ?, ?, ?)";
 $stmt = $conn->prepare($insert);
 $stmt->bind_param('dsss', $cat, $user_id, $today, $msg);
 $stmt->execute();
