@@ -32,7 +32,7 @@ function createListing()
 	var passengers = document.getElementById('passengersTextBox').value;
 	var dateTime = document.getElementById('dateTime').value;
 	var isRequest = 0;
-	console.log("Trying to call validate");
+	
 	if(document.getElementById('passengersTextBox').disabled)
 	{
 		isRequest = 1;
@@ -185,6 +185,7 @@ function createListing()
 				<script type="text/javascript">
 					$(function () {
 						$('#datetimepicker1').datetimepicker();
+						console.log("Trying to call calendar");
 					});
 				</script>
 			</form>
