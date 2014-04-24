@@ -28,7 +28,7 @@
 			</form>
 		</div>
 		<div class="col-md-4">
-			<table class='table table-triped'>
+			<table class='table table-triped table-bordered'>
 				<tr>
 				<th> Email </th>
 				<th> Date </th>
@@ -42,7 +42,7 @@
 				<td> button2 </td>
 				</tr>
 				<tr>
-				<td colspan="3">MSGGGGGG</td>
+				<td colspan="4">MSGGGGGG</td>
 				</tr>
 				<?php
 					session_start();
