@@ -272,6 +272,7 @@
 					$val = explode(' ', $match);
 					$match = $val[0];
 					$id = $val[1];
+					/*
 					$sqlCount = "SELECT COUNT(listings_id) FROM listings WHERE listings_id=$id";
 					$countRes = mysqli_query($con,$sqlCount);
 					$rowCount = mysqli_fetch_row($countRes);
@@ -303,10 +304,11 @@
 					}
 					// This sets the range of rows to query for the chosen $pagenum
 					$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
-					echo "<script>console.log(\"".$limit."\"); </script>";
+					//echo "<script>console.log(\"".$limit."\"); </script>";
+					*/
 					$sql = "SELECT * FROM listings WHERE listings_id=$id";
 					$result = mysqli_query($con,$sql);
-					
+					/*
 					$paginationCtrls = '';
 					
 					if($last != 1){
@@ -350,7 +352,7 @@
 									';
 						}
 					}
-					
+					*/
 					while($row = mysqli_fetch_array($result))
 					{
 						if ($print_offer)
