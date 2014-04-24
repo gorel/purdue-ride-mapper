@@ -48,12 +48,6 @@ function createListing()
 	var destinationAddress = document.getElementById('endingLocation').value;
 	var passengers = document.getElementById('passengersTextBox').value;
 	var dateTime = document.getElementById('dateTime').value;
-	
-	console.log(startingLocation);
-	console.log(destinationAddress);
-	console.log(passengers);
-	console.log(dateTime);
-
 	var isRequest = 0;
 	
 	if(document.getElementById('passengersTextBox').disabled)
@@ -64,8 +58,13 @@ function createListing()
 	{
 		isRequest = 0;
 	}
+	
 	console.log(isRequest);
-		return;
+	console.log(startingLocation);
+	console.log(destinationAddress);
+	console.log(passengers);
+	console.log(dateTime);
+
 	$.ajax ({
 		type: "POST",
 		url: "/modules/createListing/createListingProc.php",
@@ -88,7 +87,7 @@ function createListing()
 			}
 			else
 			{
-				alert("An error has occured. Please try again.");
+				alert("Addess not valid, please check and try again.");
 			}
 		} 
 	});

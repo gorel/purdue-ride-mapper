@@ -42,7 +42,7 @@
 	// Check connection
 	if (mysqli_connect_errno())
 	{
-		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		echo json_encode(array('success' => "FAILURE"));
 	}
 	else
 	{				
@@ -106,14 +106,13 @@
 
 		if (!mysqli_query($con,$sql))
 		{
-			die('Error: ' . mysqli_error($con));
 			mysqli_close($con);
+			echo json_encode(array('success' => "FAILURE"));
 		}
 		else
 		{
 			mysqli_close($con);
-			header('Location: ../../index.php?page=editListings');
-			exit();
+			echo json_encode(array('success' => "SUCCESS"));
 		}		
 	}			
 ?>
