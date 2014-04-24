@@ -27,6 +27,7 @@
 				</div>
 			</form>
 		</div>
+	</div>
 		</div>
 		<div class="col-md-4">
 			<table class='table table-triped table-bordered'>
@@ -96,5 +97,4 @@
 					}
 				?>
 			</table>
-	</div>
 </div>
