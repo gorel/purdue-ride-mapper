@@ -103,6 +103,7 @@ function createListing()
 
 	function initialize() 
 	{
+		console.log("Trying to call 1");
 		// Create the autocomplete object, restricting the search
 		// to geographical location types.
 		autocomplete = new google.maps.places.Autocomplete( /** @type{HTMLInputElement} */(document.getElementById('startingLocation')),{ types: ['geocode'] });
@@ -125,6 +126,7 @@ function createListing()
 
 	function initialize2() 
 	{
+		console.log("Trying to call 2");
 		// Create the autocomplete object, restricting the search
 		// to geographical location types.
 		autocomplete = new google.maps.places.Autocomplete( /** @type{HTMLInputElement} */(document.getElementById('endingLocation')),{ types: ['geocode'] });
