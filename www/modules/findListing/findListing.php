@@ -559,8 +559,15 @@
 	</div>
 	
 	<ul class="pagination">
-	  <li><a href="Javascript:$('#content').load('/modules/findListing/findListing.php?=2');">1</a></li>
+	  <li><a href="" onclick="changePage(2);">2</a></li>
 	</ul>
+	<script>
+		function changePage(pageNumber)
+		{
+		console.log("changed page");
+			$( "#content" ).load( "modules/findListings/findListing.php?pn="+pageNumber );
+		}
+	</script>
 	
 	<script>
 		var modalMap;
