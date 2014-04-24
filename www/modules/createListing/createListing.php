@@ -116,7 +116,7 @@ function createListing()
 </script>
 
 <hr class="featurette-divider">
-<div class="container" onload="initialize()" >
+<div class="container" >
 	<div class="row">
 	
 		<div class="col-md-4">
@@ -133,6 +133,10 @@ function createListing()
 				<div class="form-group" id="test">
 					<input id="endingLocation" type="text" class="form-control" placeholder="Destination" name="destinationAddress" required autofocus>
 				</div>
+				
+				<script type="text/javascript">
+					initialize();
+				</script>
 				
 				<div class="form-group">
 					<input type="radio" name="isRequest" value="1" onClick="disablePassengers()" checked> Looking for a Ride 
