@@ -559,7 +559,7 @@
 	</div>
 	
 	<ul class="pagination">
-	  <li><a href="" onclick="changePage(2);">2</a></li>
+	  <li><a onclick="changePage(2);">2</a></li>
 	</ul>
 	<script>
 		function changePage(pageNumber)
