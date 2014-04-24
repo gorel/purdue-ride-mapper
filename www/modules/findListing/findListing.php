@@ -458,14 +458,14 @@
 					</thead>";
 					// Establish the $paginationCtrls variable
 					$paginationCtrls = '';
-					echo "<script>console.log(\"".$paginationCtrls."\"); </script>";
+					echo "<script>console.log(\"paginCtrls".$paginationCtrls."\"); </script>";
 					// If there is more than 1 page worth of results
 					if($last != 1){
 						/* First we check if we are on page one. If we are then we don't need a link to 
 						   the previous page or the first page so we do nothing. If we aren't then we
 						   generate links to the first page, and to the previous page. */
 						if ($pagenum > 1) {
-						echo "<script>console.log(\"".$pagenum."\"); </script>";
+						echo "<script>console.log(\"pagenum".$pagenum."\"); </script>";
 							$previous = $pagenum - 1;
 							$paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$previous.'">Previous</a> &nbsp; &nbsp; ';
 							// Render clickable number links that should appear on the left of the target page number
@@ -477,10 +477,11 @@
 						}
 						// Render the target page number, but without it being a link
 						$paginationCtrls .= ''.$pagenum.' &nbsp; ';
-						echo "<script>console.log(\"".$paginationCtrls."\"); </script>";
+						echo "<script>console.log(\"paginationCtrls".$paginationCtrls."\"); </script>";
 						// Render clickable number links that should appear on the right of the target page number
 						for($i = $pagenum+1; $i <= $last; $i++){
 							$paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$i.'">'.$i.'</a> &nbsp; ';
+							echo "<script>console.log(\"paginationCtrls a href".$paginationCtrls."\"); </script>";
 							if($i >= $pagenum+4){
 								break;
 							}
