@@ -149,11 +149,11 @@ function createListing()
 				<h2 class="form-signin-heading">Create Listing</h2>
 				
 				<div class="form-group">
-					<input id="startingLocation" type="text" class="form-control" placeholder="Starting Location" name="startingAddress" required autofocus>
+					<input id="startingLocation" type="text" placeholder="Starting Location" name="startingAddress" required autofocus>
 				</div>
 
 				<div class="form-group" id="test">
-					<input id="endingLocation" type="text" class="form-control" placeholder="Destination" name="destinationAddress" required autofocus>
+					<input id="endingLocation" type="text" placeholder="Destination" name="destinationAddress" required autofocus>
 				</div>
 				
 				<div class="form-group">
