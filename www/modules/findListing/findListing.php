@@ -430,7 +430,7 @@
 					// Establish the $pagenum variable
 					$pagenum = 1;
 					// Get pagenum from URL vars if it is present, else it is = 1
-					echo "<script>alert('WE'RE HERE!')</script>";
+					echo "<script>alert('WE'RE HERE!');</script>";
 					if(isset($_GET['pn'])){
 						$pagenum = preg_replace('#[^0-9]#', '', $_GET['pn']);
 					}
