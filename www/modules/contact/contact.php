@@ -58,82 +58,84 @@
 				</tr>
 				<?php
 					session_start();
-						$user_id = $_SESSION['user'];
+					$user_id = $_SESSION['user'];
 
-						$dbName   = 'purdue_test';
-
-						// connect to local db
-
-						$conn =  new mysqli("collegecarpool.us", "root", "collegecarpool", "purdue_test");
-
-		#	$con=mysqli_connect("collegecarpool.us","root","collegecarpool","purdue_test");
-
-						if ($conn->connect_errn)
-						{
-						    echo  $conn->connect_errno . " " . $conn->connect_error;
-						    die;
-						}
-						$stmt = $conn->stmt_init();
-					if(!$_SESSION['isAdmin'])
+					if(!isset($_SESSION['user']))
 					{
-
-						// check if user exists
-						$query = "SELECT ticket_message FROM tickets WHERE user_id like $user_id";
-						$stmt = $conn->prepare($query);
-						$stmt->bind_param('s', $email);
-						$stmt->execute();
-						$stmt->store_result();
-
-						if ($stmt->num_rows > 0)
-						{
-						    echo  "User already exists";
-						    die;
-						}
-						else
-						{
-
-						}
-						$stmt->close();
-
 					}
 					else
 					{
+						$conn = mysqli_connect("collegecarpool.us", "root", "collegecarpool", "purdue_test");
 
-						// check if user exists
-						$query = "SELECT ticket_id, ticket_date,  ticket_message, ticket_answer FROM tickets";
-						$stmt = $conn->prepare($query);
-						$stmt->execute();
-						$stmt->store_result();
-
-						$stmt->bind_result('dsss', $ticket_id, $ticket_date, $ticket_message, $ticket_answer);
-						if ($stmt->num_rows > 0)
+						if(mysqli_connect_errno())
 						{
-							while($stmt->fetch())
-							{
-								echo "<tr>";
-								echo "<td> " , $ticket_id , "</td>";
-								echo "<td> " , $ticket_date , "</td>";
-								echo "<td> Button1 </td>";
-								echo "<td> Button2 </td>";
-								echo "</tr>";
-								echo "<tr>";
-								echo "<td colspan=\"4\"> " , $ticket_message , "</td>";
-								echo "</tr>";
-								if($ticket_answer != '')
-								{
-									echo "<tr>";
-									echo "<td colspan=\"4\"> " , $ticket_answer , "</td>";
-									echo "</tr>";
-								}
-							}
-						    echo  "User already exists";
-						    die;
+							echo "Failed to connect to MySQL: " . mysqli_connect_error();
 						}
 						else
 						{
-							echo "There is no ticket!";
+							$stmt = $conn->stmt_init();
+							if(!$_SESSION['isAdmin'])
+							{
+
+								// check if user exists
+								$query = "SELECT ticket_message FROM tickets WHERE user_id like $user_id";
+								$stmt = $conn->prepare($query);
+								$stmt->bind_param('s', $email);
+								$stmt->execute();
+								$stmt->store_result();
+
+								if ($stmt->num_rows > 0)
+								{
+								    echo  "User already exists";
+								    die;
+								}
+								else
+								{
+
+								}
+								$stmt->close();
+
+							}
+							else
+							{
+
+							// check if user exists
+							$query = "SELECT ticket_id, ticket_date,  ticket_message, ticket_answer FROM tickets";
+							$stmt = $conn->prepare($query);
+							$stmt->execute();
+							$stmt->store_result();
+
+							$stmt->bind_result('dsss', $ticket_id, $ticket_date, $ticket_message, $ticket_answer);
+							if ($stmt->num_rows > 0)
+							{
+								while($stmt->fetch())
+								{
+									echo "<tr>";
+									echo "<td> " , $ticket_id , "</td>";
+									echo "<td> " , $ticket_date , "</td>";
+									echo "<td> Button1 </td>";
+									echo "<td> Button2 </td>";
+									echo "</tr>";
+									echo "<tr>";
+									echo "<td colspan=\"4\"> " , $ticket_message , "</td>";
+									echo "</tr>";
+									if($ticket_answer != '')
+									{
+										echo "<tr>";
+										echo "<td colspan=\"4\"> " , $ticket_answer , "</td>";
+										echo "</tr>";
+									}
+								}
+							    echo  "User already exists";
+							    die;
+							}
+							else
+							{
+								echo "There is no ticket!";
+							}
+							$stmt->close();
+							}
 						}
-						$stmt->close();
 					}
 				?>
 			</table>
