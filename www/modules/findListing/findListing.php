@@ -49,7 +49,6 @@
 								<td id="dateOfDepartureModal"></td>
 							</tr>
 						</table>
-						<div id="pagination_controls"><?php echo $paginationCtrls; ?></div>
 					</div>
 					<div class="col-md-6">
 						<form class="form-horizontal" role="form">
@@ -417,7 +416,7 @@
 					$total = $rowCount[0];
 					
 					//Display this number of results
-					$page_rows = 10;
+					$page_rows = 5;
 					
 					//Keep track of previous page number
 					$last = ceil($total/$page_rows);
@@ -493,8 +492,6 @@
 							$paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next.'">Next</a> ';
 						}
 					}
-					$count = 1;
-					$pn = 1;
 					while($row = mysqli_fetch_array($result))
 					{
 						echo '<tr id="'.$row['listings_id'].'">';
@@ -557,7 +554,7 @@
 		}
 	?>
 	</div>
-	
+	<div id="pagination_controls"><?php echo $paginationCtrls; ?></div>
 	<ul class="pagination">
 	  <li><a href="#" onclick="changePage(2);">2</a></li>
 	</ul>
@@ -565,7 +562,7 @@
 		function changePage(pageNumber)
 		{
 		console.log("changed page");
-			$( "#content" ).load( "modules/findListing/findListing.php?pn="+pageNumber);
+			$( "#content" ).load( "modules/findListing/findListing.php?pn=" + pageNumber);
 		}
 	</script>
 	
