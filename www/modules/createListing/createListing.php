@@ -148,7 +148,7 @@ function createListing()
 			<button class="btn btn-lg btn-primary btn-block" id="submitButton" onclick="createListing();">Submit</button>
 			<div class="row text-center">
 				<div id="progressCreate" class="col-sm-1" style="visibility:hidden">
-					<img src="/images/bigload.gif"> 
+					<img align="middle" src="/images/bigload.gif"> 
 				</div>
 			</div>
 		</div> <!-- col-md-4 -->
