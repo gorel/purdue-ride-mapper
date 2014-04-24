@@ -163,7 +163,7 @@
 		VALUES
 		('$startingAddress','$startLatitude','$startLongitude','$destinationAddress','$endLatitude','$endLongitude','$isRequest','$passengers','$dateTime', '$user_id')";
 		
-		if($badInput === 0)//Only do this if it is bad input
+		if($badInput === 0)//Only do this if it is good input
 		{
 			if (!mysqli_query($con,$sql))
 			{

@@ -20,6 +20,43 @@
 		return false; //When in doubt, assume it's a bad code
 	}
 	
+	function qualityTimeFormat($dateTime)
+	{
+		$re='((?:2|1)\\d{3}(?:-|\\/)(?:(?:0[1-9])|(?:1[0-2]))(?:-|\\/)(?:(?:0[1-9])|(?:[1-2][0-9])|(?:3[0-1]))(?:T|\\s)(?:(?:[0-1][0-9])|(?:2[0-3])):(?:[0-5][0-9]):(?:[0-5][0-9]))';//Time stamp regex
+		if(preg_match('/'.$re.'/is',$dateTime) === 1) 		
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}	
+	
+	function qualityTimeRange($dateTime)
+	{
+		$year = substr($dateTime,0,4);
+		$month = substr($dateTime,5,2);
+		$day = substr($dateTime,8,2);
+		$currentyear = date("Y");
+		$currentmonth = date("m");
+		$currentday = date("d");
+		if($year < $currentyear || $year > ($currentyear+1))//Last year or 2+ years from now = bad
+		{
+			return false;
+		}
+		if($year === $currentyear && $month < $currentmonth)//Previous months = bad
+		{
+			return false;
+		}
+		if($year === $currentyear && $month === $currentmonth && $day < $currentday)//Previous days = bad
+		{
+			return false;
+		}
+		
+		return true;
+	}
+	
 	$startingAddress = $destinationAddress = $passengers = $dateTime = $isRequest = $user_id = "";
 	$listings_id = $_POST["listingID"];
 	$startingAddress = test_input($_POST["startingAddress"]);
@@ -27,6 +64,7 @@
 	$passengers = test_input($_POST["passengers"]);
 	$dateTime = test_input($_POST["dateTime"]);
 	$isRequest = test_input($_POST["isRequest"]);
+	$badInput = 0;
 	
 	session_start();
 	$user_id = $_SESSION['user'];
@@ -41,6 +79,8 @@
 	if (mysqli_connect_errno())
 	{
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		echo json_encode(array('success' => "FAILURE"));
+		$badInput = 1;
 	}
 	else
 	{	
@@ -73,6 +113,8 @@
 			//GUYS WHAT DO WE DO IF IT IS BAD?
 			$startLatitude = 0.0;
 			$startLongitude = 0.0;
+			echo json_encode(array('success' => "FAILURE"));
+			$badInput = 1;
 		}				
 		else//If the quality of the input is good enough
 		{
@@ -90,6 +132,8 @@
 			//GUYS WHAT DO WE DO IF IT IS BAD?
 			$endLatitude = 0.0;
 			$endLongitude = 0.0;
+			echo json_encode(array('success' => "FAILURE"));
+			$badInput = 1;
 		}				
 		else//If the quality of the input is good enough
 		{
@@ -98,6 +142,22 @@
 		}				
 		//At this point the start and end Latitudes and Longitudes /should/ be correct.... if there was bad input they are 0.0. We need to handle 0.0 though.
 
+		//Check for acceptable time....
+		if(qualityTimeFormat($dateTime) === false)
+		{
+			//Bad!
+			echo json_encode(array('success' => "FAILURE"));
+			$badInput = 1;
+		}
+		else
+		{
+			if(qualityTimeRange($dateTime) === false)
+			{
+				//Bad!
+				echo json_encode(array('success' => "FAILURE"));
+				$badInput = 1;
+			}
+		}
 	
 		$sql="UPDATE listings 
 		SET startingAddress = '$startingAddress', 
@@ -111,15 +171,18 @@
 		dateOfDeparture = '$dateTime'
 		WHERE listings_id = '$listings_id'";
 		
-		if (!mysqli_query($con,$sql))
-		{			
-			mysqli_close($con);
-			echo json_encode(array('success' => "FAILURE"));
-		}
-		else
+		if($badInput === 0)//Only do this if it is good input
 		{
-			mysqli_close($con);
-			echo json_encode(array('success' => "SUCCESS"));
-		}	
+			if (!mysqli_query($con,$sql))
+			{			
+				mysqli_close($con);
+				echo json_encode(array('success' => "FAILURE"));
+			}
+			else
+			{
+				mysqli_close($con);
+				echo json_encode(array('success' => "SUCCESS"));
+			}	
+		}
 	}			
 ?>

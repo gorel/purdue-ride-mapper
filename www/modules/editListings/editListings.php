@@ -72,7 +72,7 @@
 			</form>
 			<div class = "modal-footer">
 				<a class = "btn btn-default" data-dismiss="modal">Close</a>
-				<button class = "btn btn-primary" id="saveButton">Save Changes</button>
+				<button class = "btn btn-primary" id="saveButton" onclick="createListing();">Save Changes</button>
 			</div>
 		</div>
 	</div>
@@ -391,7 +391,7 @@
 					}
 					else
 					{
-						alert("An error has occured. Please try again.");
+						alert("An error has occured. Please try again.\nAddress or time format may not be valid. Please check and try again.\nPlease use the calendar tool.");
 						console.log("Edit failed");
 					}
 					enableAllCntl();
