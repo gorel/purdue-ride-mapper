@@ -430,7 +430,7 @@
 					// Establish the $pagenum variable
 					$pagenum = 1;
 					// Get pagenum from URL vars if it is present, else it is = 1
-					echo "pagenum " . $_GET['pn'];
+					echo "<script>console.log('WE'RE HERE!'</script>";
 					if(isset($_GET['pn'])){
 						$pagenum = preg_replace('#[^0-9]#', '', $_GET['pn']);
 					}
@@ -458,6 +458,7 @@
 					</thead>";
 					// Establish the $paginationCtrls variable
 					$paginationCtrls = '';
+					
 					// If there is more than 1 page worth of results
 					if($last != 1){
 						/* First we check if we are on page one. If we are then we don't need a link to 
