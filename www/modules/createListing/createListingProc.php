@@ -79,7 +79,7 @@
 	}
 	
 	// Check connection
-	if (mysqli_connect_errno())
+	if (mysqli_connect_errno() || $startingAddress === "" || $destinationAddress === "" || $dateTime === "")
 	{
 		echo json_encode(array('success' => "FAILURE"));
 	}
