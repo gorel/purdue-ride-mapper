@@ -49,7 +49,7 @@
 								<td id="dateOfDepartureModal"></td>
 							</tr>
 						</table>
-						<ul class="pagination_controls">
+						<ul>
 						  <li><a href="#">&laquo;</a></li>
 						  <li><a href="#">1</a></li>
 						  <li><a href="#">&raquo;</a></li>
@@ -463,7 +463,7 @@
 					</thead>";
 					// Establish the $paginationCtrls variable
 					$paginationCtrls = '';
-					echo "<script>console.log(\"paginCtrls ".$paginationCtrls."\"); </script>";
+					//echo "<script>console.log(\"paginCtrls ".$paginationCtrls."\"); </script>";
 					// If there is more than 1 page worth of results
 					if($last != 1){
 						/* First we check if we are on page one. If we are then we don't need a link to 
