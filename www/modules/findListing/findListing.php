@@ -409,7 +409,7 @@
 				}
 				else
 				{
-echo "console.log(\"ASDF\"); </script>";
+echo "<script>console.log(\"ASDF\"); </script>";
 					$sqlCount = "SELECT COUNT(listings_id) FROM listings";
 					$countRes = mysqli_query($con,$sqlCount);
 					$rowCount = mysqli_fetch_row($countRes);
