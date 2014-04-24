@@ -579,11 +579,6 @@
 			}
 			mysqli_close($con);
 		}
-		/*
-			<ul class="pagination">
-		<li><a href="#" onclick="changePage(2);">2</a></li>
-	</ul>
-		*/
 	?>
 	</div>
 
