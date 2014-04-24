@@ -70,10 +70,12 @@ function createListing()
 		url: "/modules/createListing/createListingProc.php",
 		dataType: "json",
 		beforeSend: function() {
+			$('#progressCreate').show();
 			console.log("before send");
 			document.getElementById('submitButton').disabled = true;
 		},
 		complete: function() {
+			$('#progressCreate').hide();
 			console.log("complete");
 			document.getElementById('submitButton').disabled = false;
 		},
