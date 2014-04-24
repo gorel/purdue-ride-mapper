@@ -134,7 +134,7 @@ function createListing()
 				<h2 class="form-signin-heading">Create Listing</h2>
 				
 				<div class="form-group">
-					<input id="startingLocation" type="text" class="textbox" placeholder="Starting Location" name="startingAddress" value="">
+					<input id="startingLocation" type="text" class="form-control" placeholder="Starting Location" name="startingAddress" value="">
 		
 				</div>
 
