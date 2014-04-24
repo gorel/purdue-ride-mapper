@@ -485,7 +485,7 @@
 								break;
 							}
 						}
-						echo "<script>console.log(\"paginationCtrls a href ".$paginationCtrls."\"); </script>";
+						echo "<script>console.log(\"paginationCtrls a href \"); </script>";
 						// This does the same as above, only checking if we are on the last page, and then generating the "Next"
 						if ($pagenum != $last) {
 							$next = $pagenum + 1;
