@@ -71,9 +71,11 @@ function createListing()
 		dataType: "json",
 		beforeSend: function() {
 			console.log("before send");
+			document.getElementById('submitButton').disabled = true;
 		},
 		complete: function() {
 			console.log("complete");
+			document.getElementById('submitButton').disabled = false;
 		},
 		data: {"startingAddress" : startingLocation, "destinationAddress" : destinationAddress, 
 					"passengers" : passengers, "dateTime" : dateTime, "isRequest" : isRequest},
@@ -140,6 +142,11 @@ function createListing()
 			
 			
 			<button class="btn btn-lg btn-primary btn-block" id="submitButton" onclick="createListing();">Submit</button>
+		
+			<div id="progressCreate" class="col-sm-1" style="visibility:hidden">
+				<img src="/images/bigload.gif"> 
+			</div>
+			
 		</div> <!-- col-md-4 -->
 	</div> <!-- row -->
 </div> <!-- /container -->
