@@ -49,11 +49,6 @@
 								<td id="dateOfDepartureModal"></td>
 							</tr>
 						</table>
-						<ul>
-						  <li><a href="#">&laquo;</a></li>
-						  <li><a href="#">1</a></li>
-						  <li><a href="#">&raquo;</a></li>
-						</ul>
 						<div id="pagination_controls"><?php echo $paginationCtrls; ?></div>
 					</div>
 					<div class="col-md-6">
@@ -562,7 +557,11 @@
 		}
 	?>
 	</div>
-
+						<ul>
+						  <li><a href="#">&laquo;</a></li>
+						  <li><a href="#">1</a></li>
+						  <li><a href="#">&raquo;</a></li>
+						</ul>
 	<script>
 		var modalMap;
 		var listingID;
