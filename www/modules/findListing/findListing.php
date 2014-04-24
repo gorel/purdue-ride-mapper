@@ -50,6 +50,11 @@
 							</tr>
 						</table>
 						<div id="pagination_controls"><?php echo $paginationCtrls; ?></div>
+						<ul class="pagination">
+						  <li><a href="#">&laquo;</a></li>
+						  <li><a href="#">1</a></li>
+						  <li><a href="#">&raquo;</a></li>
+						</ul>
 					</div>
 					<div class="col-md-6">
 						<form class="form-horizontal" role="form">
@@ -497,72 +502,58 @@
 					$pn = 1;
 					while($row = mysqli_fetch_array($result))
 					{
-						echo "<script>console.log(\"".$count."\"); </script>";
-						if($count > 10)
+						echo '<tr id="'.$row['listings_id'].'">';
+						echo '<td id="'.$row['listings_id'].'_Starting_Address">'.$row['startingAddress'].'</td>';
+						echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
+						if($row["isRequest"] == 0)
 						{
-							echo "<script>console.log(\"In:".$count."\"); </script>";
-							echo "<ul class=\"pagination\">";
-							echo "<li><a href=\"".$_SERVER['PHP_SELF']."?pn=".$i."\">".$i."</a></li>";
-							echo "</ul>";
-							$count = 0;
-							
-							$pn++;
+							echo '<td id="'.$row['listings_id'].'_Ride_Type">Offering Ride</td>';
 						}
 						else
 						{
-							$count++;
-							echo '<tr id="'.$row['listings_id'].'">';
-							echo '<td id="'.$row['listings_id'].'_Starting_Address">'.$row['startingAddress'].'</td>';
-							echo '<td id="'.$row['listings_id'].'_Ending_Address">'.$row['endingAddress'].'</td>';
-							if($row["isRequest"] == 0)
-							{
-								echo '<td id="'.$row['listings_id'].'_Ride_Type">Offering Ride</td>';
-							}
-							else
-							{
-								echo '<td id="'.$row['listings_id'].'_Ride_Type">Requesting Ride</td>';
-							}
-
-							echo '<td id="'.$row['listings_id'].'_Passengers">'.$row['passengers'].'</td>';
-							echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
-							echo "<td>". $row['listings_id'] . "</td>";
-							echo "<td>
-									<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
-								</td>";
-							echo '<input id="'.$row['listings_id'].'_Start_Lat" type="hidden" value="'.$row['start_lat'].'">';
-							echo '<input id="'.$row['listings_id'].'_Start_Long" type="hidden" value="'.$row['start_long'].'">';
-							echo '<input id="'.$row['listings_id'].'_End_Lat" type="hidden" value="'.$row['end_lat'].'">';
-							echo '<input id="'.$row['listings_id'].'_End_Long" type="hidden" value="'.$row['end_long'].'">';
-							echo "</tr>";
-							
-							echo "<script>										
-											$(document).ready(function()
-											{
-												map.addMarker
-												({
-													lat:". $row['start_lat'] . ",
-													lng:". $row['start_long'] . ",
-												});
-												map.drawRoute
-												({
-													origin: [". $row['start_lat'] .", " . $row['start_long'] . "],
-													destination: [". $row['end_lat'].", " . $row['end_long'] . "],
-													travelMode: 'driving',
-													strokeColor: '". random_color() ."',
-													strokeOpacity: 0.6,
-													strokeWeight: 6
-												});
-												map.addMarker
-												({
-													lat:". $row['end_lat'] . ",
-													lng:". $row['end_long'] . ",
-												})
-												map.fitZoom();
-											});
-										</script>
-										";
-						
+							echo '<td id="'.$row['listings_id'].'_Ride_Type">Requesting Ride</td>';
 						}
+
+						echo '<td id="'.$row['listings_id'].'_Passengers">'.$row['passengers'].'</td>';
+						echo '<td id="'.$row['listings_id'].'_Date_Of_Departure">'.$row['dateOfDeparture'].'</td>';
+						echo "<td>". $row['listings_id'] . "</td>";
+						echo "<td>
+								<button class=\"btn btn-success\" data-id=\"". $row['listings_id'] ."\" onclick=\"showRouteModal(".$row['listings_id'].");\">View</button>
+							</td>";
+						echo '<input id="'.$row['listings_id'].'_Start_Lat" type="hidden" value="'.$row['start_lat'].'">';
+						echo '<input id="'.$row['listings_id'].'_Start_Long" type="hidden" value="'.$row['start_long'].'">';
+						echo '<input id="'.$row['listings_id'].'_End_Lat" type="hidden" value="'.$row['end_lat'].'">';
+						echo '<input id="'.$row['listings_id'].'_End_Long" type="hidden" value="'.$row['end_long'].'">';
+						echo "</tr>";
+						
+						echo "<script>										
+										$(document).ready(function()
+										{
+											map.addMarker
+											({
+												lat:". $row['start_lat'] . ",
+												lng:". $row['start_long'] . ",
+											});
+											map.drawRoute
+											({
+												origin: [". $row['start_lat'] .", " . $row['start_long'] . "],
+												destination: [". $row['end_lat'].", " . $row['end_long'] . "],
+												travelMode: 'driving',
+												strokeColor: '". random_color() ."',
+												strokeOpacity: 0.6,
+												strokeWeight: 6
+											});
+											map.addMarker
+											({
+												lat:". $row['end_lat'] . ",
+												lng:". $row['end_long'] . ",
+											})
+											map.fitZoom();
+										});
+									</script>
+									";
+						
+						
 					}
 					echo "</table>";
 				}
