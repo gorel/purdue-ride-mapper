@@ -48,15 +48,24 @@ function createListing()
 	var destinationAddress = document.getElementById('endingLocation').value;
 	var passengers = document.getElementById('passengersTextBox').value;
 	var dateTime = document.getElementById('dateTime').value;
-	var isRequest;
 	
 	console.log(startingLocation);
 	console.log(destinationAddress);
 	console.log(passengers);
 	console.log(dateTime);
-	return;
+
+	var isRequest = 0;
 	
-	
+	if(document.getElementById('passengersTextBox').disabled)
+	{
+		isRequest = 1;
+	}
+	else
+	{
+		isRequest = 0;
+	}
+	console.log(isRequest);
+		return;
 	$.ajax ({
 		type: "POST",
 		url: "/modules/createListing/createListingProc.php",
