@@ -105,7 +105,7 @@
 						$stmt->execute();
 						$stmt->store_result();
 
-						$stmt->store_result('dsss', $ticket_id, $ticket_date, $ticket_message, $ticket_answer);
+						$stmt->bind_result('dsss', $ticket_id, $ticket_date, $ticket_message, $ticket_answer);
 						if ($stmt->num_rows > 0)
 						{
 							while($stmt->fetch())
