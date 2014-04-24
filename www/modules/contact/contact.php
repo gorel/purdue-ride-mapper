@@ -41,6 +41,9 @@
 				<td> button1 </td>
 				<td> button2 </td>
 				</tr>
+				<tr>
+				<td colspan="3">MSGGGGGG</td>
+				</tr>
 				<?php
 					session_start();
 					if(!$_SESSION['isAdmin'])
