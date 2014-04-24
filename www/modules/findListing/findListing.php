@@ -269,6 +269,7 @@
 						</thead>";
 						continue;
 					}
+					/*
 					$sqlCount = "SELECT COUNT(listings_id) FROM listings";
 					$countRes = mysqli_query($con,$sqlCount);
 					$rowCount = mysqli_fetch_row($countRes);
@@ -300,12 +301,13 @@
 					}
 					// This sets the range of rows to query for the chosen $pagenum
 					$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
-					
+					*/
 					$val = explode(' ', $match);
 					$match = $val[0];
 					$id = $val[1];
-					$sql = "SELECT * FROM listings $limit WHERE listings_id=$id";
+					$sql = "SELECT * FROM listings WHERE listings_id=$id";
 					$result = mysqli_query($con,$sql);
+					/*
 					$paginationCtrls = '';
 					
 					if($last != 1){
@@ -349,7 +351,7 @@
 									';
 						}
 					}
-					
+					*/
 					while($row = mysqli_fetch_array($result))
 					{
 						if ($print_offer)
