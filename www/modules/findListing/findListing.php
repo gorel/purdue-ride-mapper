@@ -564,8 +564,8 @@
 		}
 	?>
 	</div>
-	<ul class=\"pagination\">
-		<li><a href=\"#\" onclick=\"changePage(".$previous.");\">Previous</a></li>
+	<ul class="pagination">
+		<li><a href="#" onclick="changePage(2);">2</a></li>
 	</ul>
 							
 	<div id="pagination_controls"><?php echo $paginationCtrls; ?></div>
