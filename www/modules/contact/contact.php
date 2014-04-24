@@ -58,8 +58,6 @@
 				</tr>
 				<?php
 					session_start();
-					if(!$_SESSION['isAdmin'])
-					{
 						$cat   = $_POST["category"];
 						$msg   = $_POST["text"];
 						$user_id = $_SESSION['user_id'];
@@ -76,6 +74,8 @@
 						    die;
 						}
 						$stmt = $conn->stmt_init();
+					if(!$_SESSION['isAdmin'])
+					{
 
 						// check if user exists
 						$query = "SELECT ticket_message FROM tickets WHERE user_id like $user_id";
@@ -95,6 +95,32 @@
 						}
 						$stmt->close();
 
+					}
+					else
+					{
+
+						// check if user exists
+						$query = "SELECT ticket_message FROM tickets";
+						$stmt = $conn->prepare($query);
+						$stmt->bind_param('s', $email);
+						$stmt->execute();
+						$stmt->store_result();
+
+						if ($stmt->num_rows > 0)
+						{
+							while($stmt->fetch())
+							{
+								echo "<tr>";
+								echo "<td>
+							}
+						    echo  "User already exists";
+						    die;
+						}
+						else
+						{
+							echo "There is no ticket!";
+						}
+						$stmt->close();
 					}
 				?>
 			</table>
