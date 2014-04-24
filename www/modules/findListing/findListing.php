@@ -303,7 +303,7 @@
 					}
 					// This sets the range of rows to query for the chosen $pagenum
 					$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
-					
+					echo "<script>console.log(\"".$limit."\"); </script>";
 					$sql = "SELECT * FROM listings WHERE listings_id=$id";
 					$result = mysqli_query($con,$sql);
 					
