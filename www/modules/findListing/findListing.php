@@ -421,7 +421,7 @@
 					
 					//Keep track of previous page number
 					$last = ceil($total/$page_rows);
-					echo "<script>console.log(\"".$last."\"); </script>";
+					//echo "<script>console.log(\"".$last."\"); </script>";
 					// This makes sure $last cannot be less than 1
 					if($last < 1){
 						$last = 1;
@@ -431,6 +431,7 @@
 					// Get pagenum from URL vars if it is present, else it is = 1
 					
 					if(isset($_GET['pn'])){
+						echo "<script>console.log(\"ISSET\"); </script>";
 						$pagenum = preg_replace('#[^0-9]#', '', $_GET['pn']);
 					}
 					echo "<script>console.log(\"".$pagenum."\"); </script>";
