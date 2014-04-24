@@ -107,8 +107,13 @@ function createListing()
 	
 		<div class="col-md-4">
 		</div>				
-		
+
 		<div class="col-md-4">
+			<div id="progressCreate" class="waiting" style="visibility:hidden">
+				<img src="/images/bigload.gif"> 
+				<br />
+			</div>
+		
 			<form class="form-signin" role="form" id="createListingForm">
 				<h2 class="form-signin-heading">Create Listing</h2>
 				
@@ -149,7 +154,4 @@ function createListing()
 		</div> <!-- col-md-4 -->
 	</div> <!-- row -->
 	<div> </div>
-	<div id="progressCreate" class="waiting" style="visibility:hidden">
-		<img src="/images/bigload.gif"> 
-	</div>
 </div> <!-- /container -->
