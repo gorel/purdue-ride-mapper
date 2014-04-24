@@ -309,7 +309,7 @@
 					$paginationCtrls = '';
 					
 					if($last != 1){
-						echo "<script>console.log(\"paginationCtrls1 \"); </script>";
+						//echo "<script>console.log(\"paginationCtrls1 \"); </script>";
 						if ($pagenum > 1) {
 							$previous = $pagenum - 1;
 							$paginationCtrls .= '
@@ -326,7 +326,7 @@
 								}
 							}
 						}
-						echo "<script>console.log(\"paginationCtrls2 \"); </script>";
+						echo "<script>console.log(\"".$pagenum."\"); </script>";
 						$paginationCtrls .= '
 								<ul class="pagination">
 								  <li class="disabled"><a href="#" onclick="changePage('.$pagenum.');">'.$pagenum.'</a></li>
