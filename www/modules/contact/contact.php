@@ -28,6 +28,7 @@
 			</form>
 		</div>
 		</div>
+		<hr class="featurette-divider">
 		<div class="col-md-12">
 			<table class='table table-triped table-bordered'>
 				<tr>
