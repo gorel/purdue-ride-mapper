@@ -15,7 +15,7 @@
 		<h2 class="featurette-heading">Isabel Lee
 			<span class="text-muted">Team Leader, Developer</span>
 		</h2>
-		<p class="lead">Isabel is from Guayaquil, Ecuador and is a junior in Computer Science at Purdue University. Her role was to organize the team and incorporate Google Maps.</p>
+		<p class="lead">Isabel is from Guayaquil, Ecuador and is a junior in Computer Science at Purdue University. Her role was to organize the team and incorporate gmaps.js.</p>
 	</div>
 
 	<hr class="featurette-divider">
