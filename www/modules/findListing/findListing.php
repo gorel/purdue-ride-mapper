@@ -493,7 +493,7 @@
 							$paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next.'">Next</a> ';
 						}
 					}
-					$count = 0;
+					$count = 1;
 					$pn = 1;
 					while($row = mysqli_fetch_array($result))
 					{
