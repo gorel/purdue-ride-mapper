@@ -58,7 +58,6 @@
 				</tr>
 				<?php
 					session_start();
-					$user_id = $_SESSION['user'];
 
 					if(!isset($_SESSION['user']))
 					{
