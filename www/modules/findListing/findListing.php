@@ -49,12 +49,12 @@
 								<td id="dateOfDepartureModal"></td>
 							</tr>
 						</table>
-						<div id="pagination_controls"><?php echo $paginationCtrls; ?></div>
 						<ul class="pagination">
 						  <li><a href="#">&laquo;</a></li>
 						  <li><a href="#">1</a></li>
 						  <li><a href="#">&raquo;</a></li>
 						</ul>
+						<div id="pagination_controls"><?php echo $paginationCtrls; ?></div>
 					</div>
 					<div class="col-md-6">
 						<form class="form-horizontal" role="form">
