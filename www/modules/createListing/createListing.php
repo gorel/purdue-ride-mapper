@@ -23,25 +23,8 @@
 		passengers.disabled = false;
 	}
 </script>
+
 <script type="text/javascript">
-
-function checkForm(form)
-{
-	// regular expression to match required date format
-	re = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
-
-	if(form.startdate.value != '' && !form.startdate.value.match(re)) 
-	{
-		alert("Invalid date format: " + form.startdate.value);
-		form.startdate.focus();
-		return false;
-	}
-	return true;
-}
-
-</script>
-<script type="text/javascript">
-
 function createListing()
 {
 	var startingLocation = document.getElementById('startingLocation').value;
@@ -69,17 +52,26 @@ function createListing()
 		type: "POST",
 		url: "/modules/createListing/createListingProc.php",
 		dataType: "json",
-		beforeSend: function() {
+		beforeSend: function() 
+		{
 			document.getElementById('progressCreate').style.visibility = 'visible';
 			document.getElementById('submitButton').disabled = true;
 		},
-		complete: function() {
+		complete: function()
+		{
 			document.getElementById('progressCreate').style.visibility = 'hidden';
 			document.getElementById('submitButton').disabled = false;
 		},
-		data: {"startingAddress" : startingLocation, "destinationAddress" : destinationAddress, 
-					"passengers" : passengers, "dateTime" : dateTime, "isRequest" : isRequest},
-		success: function(data) {					
+		data: 
+		{
+			"startingAddress" : startingLocation, 
+			"destinationAddress" : destinationAddress, 
+			"passengers" : passengers, 
+			"dateTime" : dateTime, 
+			"isRequest" : isRequest
+		},
+		success: function(data) 
+		{					
 			console.log("success");	
 
 			if(data.success == "SUCCESS")

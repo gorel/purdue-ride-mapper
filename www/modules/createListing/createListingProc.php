@@ -21,6 +21,25 @@
 		return false; //When in doubt, assume it's a bad code
 	}
 	
+	function qualityTimeFormat($dateTime)
+	{
+		$re1='((?:2|1)\\d{3}(?:-|\\/)(?:(?:0[1-9])|(?:1[0-2]))(?:-|\\/)(?:(?:0[1-9])|(?:[1-2][0-9])|(?:3[0-1]))(?:T|\\s)(?:(?:[0-1][0-9])|(?:2[0-3])):(?:[0-5][0-9]):(?:[0-5][0-9]))';//Time stamp regex
+		if(preg_match('/'.$re1.'/is',$dateTime) === 1) 		
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}	
+	
+	function qualityTimeRange($dateTime)
+	{
+		return true;
+	}
+
+	
 	$startingAddress = $destinationAddress = $passengers = $dateTime = $isRequest = $user_id = "";
 	
 	$startingAddress = test_input($_POST["startingAddress"]);
@@ -71,7 +90,8 @@
 		$addressQualityCode = $parsedResult->results[0]->locations[0]->geocodeQualityCode;
 		if(qualityCodeCheck($addressQualityCode) === false)//If the quality code is bad
 		{
-			//GUYS WHAT DO WE DO IF IT IS BAD?
+			//GUYS WHAT DO WE DO IF IT IS BAD?			
+			echo json_encode(array('success' => "FAILURE"));
 			$startLatitude = 0.0;
 			$startLongitude = 0.0;
 		}				
@@ -89,6 +109,7 @@
 		if(qualityCodeCheck($addressQualityCode2) === false)//If the quality code is bad
 		{
 			//GUYS WHAT DO WE DO IF IT IS BAD?
+			echo json_encode(array('success' => "FAILURE"));			
 			$endLatitude = 0.0;
 			$endLongitude = 0.0;
 		}				
@@ -97,8 +118,22 @@
 			$endLatitude = $parsedResult2->results[0]->locations[0]->latLng->lat;//Add dat tab
 			$endLongitude = $parsedResult2->results[0]->locations[0]->latLng->lng;//Add dat tab
 		}				
-		//At this point the start and end Latitudes and Longitudes /should/ be correct.... if there was bad input they are 0.0. We need to handle 0.0 though.
-
+		//At this point the start and end Latitudes and Longitudes /should/ be correct.... if there was bad input they are 0.0.
+		
+		//Check for acceptable time....
+		if(qualityTimeFormat($dateTime) === false)
+		{
+			//Bad!
+			echo json_encode(array('success' => "FAILURE"));	
+		}
+		else
+		{
+			if(qualityTimeRange($dateTime) === false)
+			{
+				//Bad!
+				echo json_encode(array('success' => "FAILURE"));	
+			}
+		}
 
 		$sql="INSERT INTO listings (startingAddress, start_lat, start_long, endingAddress, end_lat, end_long, isRequest, passengers, dateOfDeparture, user_id)
 		VALUES
