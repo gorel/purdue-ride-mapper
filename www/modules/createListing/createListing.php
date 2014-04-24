@@ -93,8 +93,52 @@ function createListing()
 
 </script>
 
+<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+<script>
+	// This example displays an address form, using the autocomplete feature
+	// of the Google Places API to help users fill in the information.
+
+	var autocomplete;
+
+	function initialize() 
+	{
+		// Create the autocomplete object, restricting the search
+		// to geographical location types.
+		autocomplete = new google.maps.places.Autocomplete( /** @type{HTMLInputElement} */(document.getElementById('startingLocation')),{ types: ['geocode'] });
+		// When the user selects an address from the dropdown,
+		// populate the address fields in the form.
+		google.maps.event.addListener(autocomplete, 'place_changed', function() 
+		{
+			fillInAddress();
+		});
+	}
+</script>
+
+<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+<script>
+	// This example displays an address form, using the autocomplete feature
+	// of the Google Places API to help users fill in the information.
+
+	var autocomplete;
+
+	function initialize() 
+	{
+		// Create the autocomplete object, restricting the search
+		// to geographical location types.
+		autocomplete = new google.maps.places.Autocomplete( /** @type{HTMLInputElement} */(document.getElementById('endingLocation')),{ types: ['geocode'] });
+		// When the user selects an address from the dropdown,
+		// populate the address fields in the form.
+		google.maps.event.addListener(autocomplete, 'place_changed', function() 
+		{
+			fillInAddress();
+		});
+	}
+</script>
+
 <hr class="featurette-divider">
-<div class="container" >
+<div class="container" onload="initialize()" >
 	<div class="row">
 	
 		<div class="col-md-4">
