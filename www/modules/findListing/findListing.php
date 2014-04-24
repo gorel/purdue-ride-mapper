@@ -442,7 +442,7 @@
 					}
 					// This sets the range of rows to query for the chosen $pagenum
 					$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
-					echo "<script>console.log(\"".$limit."\"); </script>";
+					
 					$sql = "SELECT * FROM listings $limit";
 					$result = mysqli_query($con,$sql);
 					echo "<h1>All listings:</h1>";
@@ -458,7 +458,7 @@
 					</thead>";
 					// Establish the $paginationCtrls variable
 					$paginationCtrls = '';
-					
+					echo "<script>console.log(\"".$paginationCtrls."\"); </script>";
 					// If there is more than 1 page worth of results
 					if($last != 1){
 						/* First we check if we are on page one. If we are then we don't need a link to 
@@ -476,6 +476,7 @@
 						}
 						// Render the target page number, but without it being a link
 						$paginationCtrls .= ''.$pagenum.' &nbsp; ';
+						echo "<script>console.log(\"".$paginationCtrls."\"); </script>";
 						// Render clickable number links that should appear on the right of the target page number
 						for($i = $pagenum+1; $i <= $last; $i++){
 							$paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$i.'">'.$i.'</a> &nbsp; ';
