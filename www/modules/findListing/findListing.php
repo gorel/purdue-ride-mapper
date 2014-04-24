@@ -558,7 +558,7 @@
 	?>
 	</div>
 	<ul class="pagination">
-	  <li><a href="/modules/findListing/findListing.php?=2">1</a></li>
+	  <li><a href="Javascript:$('content').load('/modules/findListing/findListing.php?=2')">1</a></li>
 	</ul>
 	<script>
 		var modalMap;
