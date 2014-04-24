@@ -473,7 +473,7 @@
 								  <li><a href="#" onclick="changePage('.$previous.');">Previous</a></li>
 								</ul>
 							';
-							echo "<script>console.log(\"pagenum ".$previous."\"); </script>";
+							//echo "<script>console.log(\"pagenum ".$previous."\"); </script>";
 							// Render clickable number links that should appear on the left of the target page number
 							for($i = $pagenum-4; $i < $pagenum; $i++){
 								if($i > 0){
@@ -487,7 +487,12 @@
 							}
 						}
 						// Render the target page number, but without it being a link
-						$paginationCtrls .= ''.$pagenum.' &nbsp; ';
+						//$paginationCtrls .= ''.$pagenum.' &nbsp; ';
+						$paginationCtrls .= '
+								<ul class="pagination">
+								  <li><a href="#" onclick="changePage('.$pagenum.');">'.$pagenum.'</a></li>
+								</ul>
+							';
 						//echo "<script>console.log(\"paginationCtrls ".$paginationCtrls."\"); </script>";
 						// Render clickable number links that should appear on the right of the target page number
 						for($i = $pagenum+1; $i <= $last; $i++){
