@@ -500,7 +500,7 @@
 						echo "<script>console.log(\"".$count."\"); </script>";
 						if($count > 10)
 						{
-							echo "<script>console.log(\"".$count."\"); </script>";
+							echo "<script>console.log(\"In:".$count."\"); </script>";
 							echo "<ul class=\"pagination\">";
 							echo "<li><a href=\"".$_SERVER['PHP_SELF']."?pn=".$i."\">".$i."</a></li>";
 							echo "</ul>";
