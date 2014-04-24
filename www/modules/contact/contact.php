@@ -58,13 +58,15 @@
 				</tr>
 				<?php
 					session_start();
-						$user_id = $_SESSION['user_id'];
+						$user_id = $_SESSION['user'];
 
 						$dbName   = 'purdue_test';
 
 						// connect to local db
 
 						$conn =  new mysqli("collegecarpool.us", "root", "collegecarpool", "purdue_test");
+
+		#	$con=mysqli_connect("collegecarpool.us","root","collegecarpool","purdue_test");
 
 						if ($conn->connect_errn)
 						{
