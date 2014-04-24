@@ -42,7 +42,7 @@
 		$currentyear = date("Y");
 		$currentmonth = date("m");
 		$currentday = date("d");
-		if($year < $currentyear || $year > ($currentyear+2))//Last year or 2+ years from now = bad
+		if($year < $currentyear || $year > ($currentyear+1))//Last year or 2+ years from now = bad
 		{
 			return false;
 		}
