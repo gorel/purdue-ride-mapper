@@ -477,8 +477,12 @@
 							// Render clickable number links that should appear on the left of the target page number
 							for($i = $pagenum-4; $i < $pagenum; $i++){
 								if($i > 0){
-									$paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$i.'">'.$i.'</a> &nbsp; ';
-									echo "<script>console.log(\"pagenum1 ".$i."\"); </script>";
+									//$paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$i.'">'.$i.'</a> &nbsp; ';
+									$paginationCtrls .= '<ul class="pagination">
+									  <li><a href="#" onclick="changePage('.$i.');">'.$i.'</a></li>
+									</ul>
+									';
+									//echo "<script>console.log(\"pagenum1 ".$i."\"); </script>";
 								}
 							}
 						}
@@ -487,9 +491,13 @@
 						//echo "<script>console.log(\"paginationCtrls ".$paginationCtrls."\"); </script>";
 						// Render clickable number links that should appear on the right of the target page number
 						for($i = $pagenum+1; $i <= $last; $i++){
-							$paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$i.'">'.$i.'</a> &nbsp; ';
+							//$paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$i.'">'.$i.'</a> &nbsp; ';
 							//echo "<script>console.log(\"paginationCtrls a href ".$_SERVER['PHP_SELF']."?pn=".$i."\"); </script>";
-							echo "<script>console.log(\"pagenum2 ".$i."\"); </script>";
+							//echo "<script>console.log(\"pagenum2 ".$i."\"); </script>";
+							$paginationCtrls .= '<ul class="pagination">
+									  <li><a href="#" onclick="changePage('.$i.');">'.$i.'</a></li>
+									</ul>
+									';
 							if($i >= $pagenum+4){
 								break;
 							}
@@ -498,8 +506,12 @@
 						// This does the same as above, only checking if we are on the last page, and then generating the "Next"
 						if ($pagenum != $last) {
 							$next = $pagenum + 1;
-							$paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next.'">Next</a> ';
-							echo "<script>console.log(\"pagenum3 ".$next."\"); </script>";
+							//$paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next.'">Next</a> ';
+							//echo "<script>console.log(\"pagenum3 ".$next."\"); </script>";
+							$paginationCtrls .= '<ul class="pagination">
+									  <li><a href="#" onclick="changePage('.$i.');">Next</a></li>
+									</ul>
+									';
 						}
 					}
 					while($row = mysqli_fetch_array($result))
@@ -562,11 +574,14 @@
 			}
 			mysqli_close($con);
 		}
-	?>
-	</div>
-	<ul class="pagination">
+		/*
+			<ul class="pagination">
 		<li><a href="#" onclick="changePage(2);">2</a></li>
 	</ul>
+		*/
+	?>
+	</div>
+
 							
 	<div id="pagination_controls"><?php echo $paginationCtrls; ?></div>
 
