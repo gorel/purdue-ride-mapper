@@ -269,12 +269,88 @@
 						</thead>";
 						continue;
 					}
-
+					$sqlCount = "SELECT COUNT(listings_id) FROM listings";
+					$countRes = mysqli_query($con,$sqlCount);
+					$rowCount = mysqli_fetch_row($countRes);
+					
+					//Total row count
+					$total = $rowCount[0];
+					
+					//Display this number of results
+					$page_rows = 3;
+					
+					//Keep track of previous page number
+					$last = ceil($total/$page_rows);
+					// This makes sure $last cannot be less than 1
+					if($last < 1){
+						$last = 1;
+					}
+					// Establish the $pagenum variable
+					$pagenum = 1;
+					// Get pagenum from URL vars if it is present, else it is = 1
+					
+					if(isset($_GET['pn'])){
+						$pagenum = preg_replace('#[^0-9]#', '', $_GET['pn']);
+					}
+					// This makes sure the page number isn't below 1, or more than our $last page
+					if ($pagenum < 1) { 
+						$pagenum = 1; 
+					} else if ($pagenum > $last) { 
+						$pagenum = $last; 
+					}
+					// This sets the range of rows to query for the chosen $pagenum
+					$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
+					
+					//$sql = "SELECT * FROM listings $limit";
+					//$result = mysqli_query($con,$sql);
 					$val = explode(' ', $match);
 					$match = $val[0];
 					$id = $val[1];
-					$sql = "SELECT * FROM listings WHERE listings_id=$id";
+					$sql = "SELECT * FROM listings WHERE listings_id=$id $limit";
 					$result = mysqli_query($con,$sql);
+					
+					$paginationCtrls = '';
+					// If there is more than 1 page worth of results
+					if($last != 1){
+						if ($pagenum > 1) {
+							$previous = $pagenum - 1;
+							$paginationCtrls .= '
+								<ul class="pagination">
+								  <li><a href="#" onclick="changePage('.$previous.');">Previous</a></li>
+								</ul>
+							';
+							for($i = $pagenum-4; $i < $pagenum; $i++){
+								if($i > 0){
+									$paginationCtrls .= '<ul class="pagination">
+									  <li><a href="#" onclick="changePage('.$i.');">'.$i.'</a></li>
+									</ul>
+									';
+								}
+							}
+						}
+						$paginationCtrls .= '
+								<ul class="pagination">
+								  <li class="disabled"><a href="#" onclick="changePage('.$pagenum.');">'.$pagenum.'</a></li>
+								</ul>
+							';
+						for($i = $pagenum+1; $i <= $last; $i++){
+							$paginationCtrls .= '<ul class="pagination">
+									  <li><a href="#" onclick="changePage('.$i.');">'.$i.'</a></li>
+									</ul>
+									';
+							if($i >= $pagenum+4){
+								break;
+							}
+						}
+						if ($pagenum != $last) {
+							$next = $pagenum + 1;
+							$paginationCtrls .= '<ul class="pagination">
+									  <li><a href="#" onclick="changePage('.$i.');">Next</a></li>
+									</ul>
+									';
+						}
+					}
+					
 					while($row = mysqli_fetch_array($result))
 					{
 						if ($print_offer)
@@ -580,11 +656,9 @@
 			mysqli_close($con);
 		}
 	?>
+	</div>				
+	<div id="pagination_controls"><?php echo $paginationCtrls; ?>
 	</div>
-
-							
-	<div id="pagination_controls"><?php echo $paginationCtrls; ?></div>
-
 	<script>
 		function changePage(pageNumber)
 		{
