@@ -481,6 +481,7 @@
 						// Render clickable number links that should appear on the right of the target page number
 						for($i = $pagenum+1; $i <= $last; $i++){
 							$paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$i.'">'.$i.'</a> &nbsp; ';
+							echo "<script>console.log(\"paginationCtrls a href ".$_SERVER['PHP_SELF']."\"); </script>";
 							if($i >= $pagenum+4){
 								break;
 							}
