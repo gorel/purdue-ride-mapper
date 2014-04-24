@@ -177,7 +177,7 @@ function createListing()
 
 <script type="text/javascript">
 	//Autocomplete variables
-	var input = document.getElementById('startingLocation');
+	var input = document.getElementById('startingAddress');
 	var place;
 	var autocomplete = new google.maps.places.Autocomplete(input);
  
