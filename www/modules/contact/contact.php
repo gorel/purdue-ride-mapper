@@ -102,10 +102,10 @@
 						// check if user exists
 						$query = "SELECT ticket_id, ticket_date,  ticket_message, ticket_answer FROM tickets";
 						$stmt = $conn->prepare($query);
-						$stmt->bind_param('dsss', $ticket_id, $ticket_date, $ticket_message, $ticket_answer);
 						$stmt->execute();
 						$stmt->store_result();
 
+						$stmt->store_result('dsss', $ticket_id, $ticket_date, $ticket_message, $ticket_answer);
 						if ($stmt->num_rows > 0)
 						{
 							while($stmt->fetch())
