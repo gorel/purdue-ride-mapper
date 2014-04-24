@@ -3,7 +3,7 @@
 
 
 <!-- Custom styles for this template -->
-<link href="signin.css" rel="stylesheet">
+<link href="css/custom.css" rel="stylesheet">
 
 <!-- Custom scripts for the datatimepicker -->
 <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" />
@@ -146,11 +146,11 @@ function createListing()
 			
 			
 			<button class="btn btn-lg btn-primary btn-block" id="submitButton" onclick="createListing();">Submit</button>
-			<div class="row text-center">
-				<div id="progressCreate" class="col-sm-1" style="visibility:hidden">
-					<img align="middle" src="/images/bigload.gif"> 
-				</div>
-			</div>
 		</div> <!-- col-md-4 -->
 	</div> <!-- row -->
+	<div class="row">
+		<div id="progressCreate" class="col-sm-1 waiting" style="visibility:hidden">
+			<img src="/images/bigload.gif"> 
+		</div>
+	</div>
 </div> <!-- /container -->
