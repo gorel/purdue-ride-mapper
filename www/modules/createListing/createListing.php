@@ -85,7 +85,12 @@ function createListing()
 			if(data.success == "SUCCESS")
 			{
 				console.log("Created Listing");
-				alert("The listing was successfully created.");
+				document.getElementById('startingLocation').value = "";
+				document.getElementById('endingLocation').value = "";
+				document.getElementById('passengersTextBox').value = "";
+				document.getElementById('dateTime').value "";
+				
+				alert("The listing was successfully created.");				
 			}
 			else
 			{
@@ -142,11 +147,11 @@ function createListing()
 			
 			
 			<button class="btn btn-lg btn-primary btn-block" id="submitButton" onclick="createListing();">Submit</button>
-		
-			<div id="progressCreate" class="col-sm-1" style="visibility:hidden">
-				<img src="/images/bigload.gif"> 
-			</div>
-			
+			<center>
+				<div id="progressCreate" class="col-sm-1" style="visibility:hidden">
+					<img src="/images/bigload.gif"> 
+				</div>
+			</center>
 		</div> <!-- col-md-4 -->
 	</div> <!-- row -->
 </div> <!-- /container -->
