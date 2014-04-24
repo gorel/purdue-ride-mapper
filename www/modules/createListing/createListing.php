@@ -83,9 +83,37 @@ function createListing()
 				document.getElementById('dateTime').value = "";
 				alert("The listing was successfully created.");				
 			}
+			else if(data.success == "FAILURE1")
+			{
+				alert("Could not connect to the database. Please try again soon, or contact us.");
+			}
+			else if(data.success == "FAILURE2")
+			{
+				alert("You must fill out all required fields.");
+			}
+			else if(data.success == "FAILURE3")
+			{
+				alert("Starting address is not valid. Please try again or be more specific.");
+			}
+			else if(data.success == "FAILURE4")
+			{
+				alert("Destination address is not valid. Please try again or be more specific.");
+			}
+			else if(data.success == "FAILURE5")
+			{
+				alert("The time of departure does not match the required format.\nPlease use the calendar tool.");
+			}
+			else if(data.success == "FAILURE6")
+			{
+				alert("You cannot enter a past date or a date over a year in the future.");
+			}
+			else if(data.success == "FAILURE7")
+			{
+				alert("Database entry failed. Please contact an administrator.");
+			}
 			else
 			{
-				alert("Address or time format not valid. Please check and try again.\nPlease use the calendar tool.");
+				alert("There was an inexplicable error. This should never happen.");
 			}
 		} 
 	});

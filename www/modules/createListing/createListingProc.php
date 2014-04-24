@@ -79,9 +79,13 @@
 	}
 	
 	// Check connection
-	if (mysqli_connect_errno() || $startingAddress === "" || $destinationAddress === "" || $dateTime === "")
+	if (mysqli_connect_errno())
 	{
-		echo json_encode(array('success' => "FAILURE"));
+		echo json_encode(array('success' => "FAILURE1"));
+	}
+	elseif($startingAddress === "" || $destinationAddress === "" || $dateTime === "" || ($isRequest !== 1 && ($passengers === 0 || $passengers === "")))
+	{
+		echo json_encode(array('success' => "FAILURE2"));
 	}
 	else
 	{				
@@ -111,7 +115,7 @@
 		if(qualityCodeCheck($addressQualityCode) === false)//If the quality code is bad
 		{
 			//GUYS WHAT DO WE DO IF IT IS BAD?			
-			echo json_encode(array('success' => "FAILURE"));
+			echo json_encode(array('success' => "FAILURE3"));
 			$badInput = 1;
 			$startLatitude = 0.0;
 			$startLongitude = 0.0;
@@ -130,7 +134,7 @@
 		if(qualityCodeCheck($addressQualityCode2) === false)//If the quality code is bad
 		{
 			//GUYS WHAT DO WE DO IF IT IS BAD?
-			echo json_encode(array('success' => "FAILURE"));	
+			echo json_encode(array('success' => "FAILURE4"));	
 			$badInput = 1;
 			$endLatitude = 0.0;
 			$endLongitude = 0.0;
@@ -146,7 +150,7 @@
 		if(qualityTimeFormat($dateTime) === false)
 		{
 			//Bad!
-			echo json_encode(array('success' => "FAILURE"));
+			echo json_encode(array('success' => "FAILURE5"));
 			$badInput = 1;
 		}
 		else
@@ -154,7 +158,7 @@
 			if(qualityTimeRange($dateTime) === false)
 			{
 				//Bad!
-				echo json_encode(array('success' => "FAILURE"));
+				echo json_encode(array('success' => "FAILURE6"));
 				$badInput = 1;
 			}
 		}
@@ -168,7 +172,7 @@
 			if (!mysqli_query($con,$sql))
 			{
 				mysqli_close($con);
-				echo json_encode(array('success' => "FAILURE"));
+				echo json_encode(array('success' => "FAILURE7"));
 			}
 			else
 			{
