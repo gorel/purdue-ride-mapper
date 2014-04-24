@@ -246,6 +246,14 @@
 	</script>
 	
 	<script>
+		function changePage(pageNumber)
+		{
+			//console.log("changed page");
+			$( "#content" ).load( "modules/editListings/editListings.php?pn=" + pageNumber);
+		}
+	</script>
+	
+	<script>
 		var listingID;
 		
 		function deleteListing(listing_ID)
@@ -419,3 +427,4 @@
 		}
 	</script>
 </div> <!-- /container -->
+<div id="pagination_controls"><?php echo $paginationCtrls; ?></div>
