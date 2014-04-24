@@ -434,7 +434,6 @@
 						echo "<script>console.log(\"ISSET\"); </script>";
 						$pagenum = preg_replace('#[^0-9]#', '', $_GET['pn']);
 					}
-					echo "<script>console.log(\"".$pagenum."\"); </script>";
 					// This makes sure the page number isn't below 1, or more than our $last page
 					if ($pagenum < 1) { 
 						$pagenum = 1; 
@@ -443,7 +442,7 @@
 					}
 					// This sets the range of rows to query for the chosen $pagenum
 					$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
-
+					echo "<script>console.log(\"".$limit."\"); </script>";
 					$sql = "SELECT * FROM listings $limit";
 					$result = mysqli_query($con,$sql);
 					echo "<h1>All listings:</h1>";
