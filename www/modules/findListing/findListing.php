@@ -558,9 +558,7 @@
 	?>
 	</div>
 	<ul class="pagination">
-	  <li><a href="#">&laquo;</a></li>
-	  <li><a href="#">1</a></li>
-	  <li><a href="#">&raquo;</a></li>
+	  <li><a href="/modules/findListing/findListing.php?=2">1</a></li>
 	</ul>
 	<script>
 		var modalMap;
