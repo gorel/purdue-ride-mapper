@@ -480,13 +480,13 @@
 						echo "<script>console.log(\"paginationCtrls ".$paginationCtrls."\"); </script>";
 						// Render clickable number links that should appear on the right of the target page number
 						for($i = $pagenum+1; $i <= $last; $i++){
-							$paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$i.'">'.$i.'</a> &nbsp; ';
-							echo "<script>console.log(\"paginationCtrls a href ".$_SERVER['PHP_SELF']."\"); </script>";
+							$paginationCtrls = '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$i.'">'.$i.'</a> &nbsp; ';
+							echo "<script>console.log(\"paginationCtrls a href ".$paginationCtrls."\"); </script>";
 							if($i >= $pagenum+4){
 								break;
 							}
 						}
-						echo "<script>console.log(\"paginationCtrls a href \"); </script>";
+//						echo "<script>console.log(\"paginationCtrls a href \"); </script>";
 						// This does the same as above, only checking if we are on the last page, and then generating the "Next"
 						if ($pagenum != $last) {
 							$next = $pagenum + 1;
