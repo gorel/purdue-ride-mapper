@@ -7,7 +7,7 @@
 
 <!-- Custom scripts for the datatimepicker -->
 <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" />
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&amp;libraries=places"></script>
+
 <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>		
 <script type="text/javascript" src="js/moment.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -121,7 +121,7 @@ function createListing()
 }
 
 </script>
-
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&amp;libraries=places"></script>
 <hr class="featurette-divider">
 <div class="container" >
 	<div class="row">
@@ -134,7 +134,8 @@ function createListing()
 				<h2 class="form-signin-heading">Create Listing</h2>
 				
 				<div class="form-group">
-					<input id="startingLocation" type="text" class="form-control" placeholder="Starting Location" name="startingAddress" required autofocus>
+					<input id="startingLocation" type="text" class="textbox" placeholder="Starting Location" name="startingAddress" value="">
+		
 				</div>
 
 				<div class="form-group" id="test">
@@ -177,7 +178,7 @@ function createListing()
 
 <script type="text/javascript">
 	//Autocomplete variables
-	var input = document.getElementById('startingAddress');
+	var input = document.getElementById('startingLocation');
 	var place;
 	var autocomplete = new google.maps.places.Autocomplete(input);
  
