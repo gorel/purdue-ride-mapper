@@ -565,7 +565,7 @@
 		function changePage(pageNumber)
 		{
 		console.log("changed page");
-			$( "#content" ).load( "modules/findListing/findListing.php");
+			$( "#content" ).load( "modules/findListing/findListing.php?pn="+pageNumber);
 		}
 	</script>
 	
