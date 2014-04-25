@@ -52,7 +52,7 @@
 	$insert = "INSERT INTO tickets (category, user_id, ticket_date, ticket_message) "
 	        . "VALUES (?, ?, ?, ?)";
 	$stmt = $conn->prepare($insert);
-	$stmt->bind_param('dsss', $cat, $user_id, $today, $msg);
+	$stmt->bind_param('ddss', $cat, $user_id, $today, $msg);
 	$stmt->execute();
 	$stmt->close();
 
