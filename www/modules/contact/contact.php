@@ -141,12 +141,12 @@ function deleteTicket(ticketID)
 
 								while($row = mysqli_fetch_array($result))
 								{
-									echo "<tr id=\"". $row['$ticket_id']."_Header>";
+									echo '<tr id="' . $row['$ticket_id'] . '_Header>';
 									echo "<th> Category </th>";
 									echo "<th> Date </th>";
 									echo "<th> </th>";
 									echo "<th> </th>";
-									echo "<tr id=\"". $row['$ticket_id']."_Body1>";
+									echo '<tr id="' . $row['$ticket_id']. '_Body1>';
 									if($row['category']==0)
 									{
 										echo "<td> Making a List </td>";
