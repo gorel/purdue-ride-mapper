@@ -23,7 +23,7 @@ function deleteTicket(ticketID)
 			// the important stuff happens here
 			console.log("success");
 
-			if(data.sucess == "SUCCESS")
+			if(data.success == "SUCCESS")
 			{
 				console.log("Delete successful");
 				alart("The ticket was sucessfully deleted.");
