@@ -77,18 +77,29 @@
 							{
 
 							// check if user exists
-								$query = "SELECT ticket_id, ticket_date,  ticket_message, ticket_answer FROM tickets";
+								$query = "SELECT * FROM tickets";
 								$result = mysqli_query($conn, $query);
 
 								while($row = mysqli_fetch_array($result))
 								{
 									echo "<tr>";
-									echo "<th> Ticket ID </th>";
+									echo "<th> Category </th>";
 									echo "<th> Date </th>";
 									echo "<th> </th>";
 									echo "<th> </th>";
 									echo "<tr>";
-									echo "<td> " , $row['ticket_id'] , "</td>";
+									if($row['category']==0)
+									{
+										echo "<td> Making a List </td>";
+									}
+									else if($row['category']==1)
+									{
+										echo "<td> Finding a List </td>";
+									}
+									else if($row['category']==2)
+									{
+										echo "<td> Others </td>";
+									}
 									echo "<td> " , $row['ticket_date'] , "</td>";
 									echo "<td> Reply </td>";
 									echo "<td> Resolved </td>";
