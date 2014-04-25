@@ -32,6 +32,7 @@
 	function replyTicket()
 	{
 		var ticket_id = document.getElementById('replyID').value;
+		var ticket_answer = document.getElementById('replyMessage').value;
 		$.ajax ({
 			type:"POST",
 			url: "/modules/contact/replyTicketProc.php",
