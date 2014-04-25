@@ -4,7 +4,7 @@
 		<div class="col-md-4">
 		</div>
 		<div class="col-md-4">
-			<form enctype="application/x-www-form-urlencoded" class="form-horizontal" action="/modules/contact/contactProc.php" method="POST"><div class="padded">
+			<form enctype="application/x-www-form-urlencoded" class="form-horizontal" action="/modules/contact/contactCreateTicketProc.php" method="POST"><div class="padded">
 				<h2 class="form-signin-heading">Contact Us</h2>
 				<div class="control-group"><label for="category" class="control-label required">Category</label>
 					<div class="controls">
