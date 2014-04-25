@@ -52,25 +52,44 @@
 							if(!$_SESSION['isAdmin'])
 							{
 
-								// check if user exists
-								$query = "SELECT ticket_message FROM tickets WHERE user_id like $user_id";
-								$stmt = $conn->prepare($query);
-								$stmt->bind_param('s', $email);
-								$stmt->execute();
-								$stmt->store_result();
 
+								$query = "SELECT * FROM tickets WHERE user_id like $user_id";
+								$result = mysqli_query($conn, $query);
 
-
-								if ($stmt->num_rows > 0)
+								while($row = mysqli_fetch_array($result))
 								{
-								    echo  "User already exists";
-								    die;
+									echo "<tr>";
+									echo "<th> Category </th>";
+									echo "<th> Date </th>";
+									echo "<th> </th>";
+									echo "<th> </th>";
+									echo "<tr>";
+									if($row['category']==0)
+									{
+										echo "<td> Making a List </td>";
+									}
+									else if($row['category']==1)
+									{
+										echo "<td> Finding a List </td>";
+									}
+									else if($row['category']==2)
+									{
+										echo "<td> Others </td>";
+									}
+									echo "<td> " , $row['ticket_date'] , "</td>";
+									echo "<td> Reply </td>";
+									echo "<td> Resolved </td>";
+									echo "</tr>";
+									echo "<tr>";
+									echo "<td colspan=\"4\"> " , $row['ticket_message'] , "</td>";
+									echo "</tr>";
+									if($row['ticket_answer'] != '')
+									{
+										echo "<tr>";
+										echo "<td colspan=\"4\"> " , $row['ticket_answer'] , "</td>";
+										echo "</tr>";
+									}
 								}
-								else
-								{
-
-								}
-								$stmt->close();
 
 							}
 							else
