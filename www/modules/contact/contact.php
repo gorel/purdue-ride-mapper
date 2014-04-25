@@ -25,7 +25,7 @@
 <script type="text/javascript">
 	function replyModal(ticket_id)
 	{
-		$('#modelReply').modal('show');
+		$('#modalReply').modal('show');
 	}
 	function deleteTicket(ticket_id)
 	{
