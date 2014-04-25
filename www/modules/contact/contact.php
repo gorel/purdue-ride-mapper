@@ -8,7 +8,7 @@ function deleteTicket(ticketID)
 		dataType: "json",
 		data: 
 		{
-			"ticketID" : ticketID
+			"ticket_id" : ticketID
 		},
 		beforeSend: function()
 		{
