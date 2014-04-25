@@ -27,9 +27,9 @@ function deleteTicket(ticketID)
 			{
 				console.log("Delete successful");
 				alert("The ticket was sucessfully deleted.");
-				var header = document.getElementById(ticket_id + '_Header');
-				var body1 = document.getElementById(ticket_id + '_Body1');
-				var body2 = document.getElementById(ticket_id + '_Body2');
+				var header = document.getElementById(ticketID + '_Header');
+				var body1 = document.getElementById(ticketID + '_Body1');
+				var body2 = document.getElementById(ticketID + '_Body2');
 				header.parentNode.removeChild(header);
 				body1.parentNode.removeChild(body1);
 				body2.parentNode.removeChild(body2);
