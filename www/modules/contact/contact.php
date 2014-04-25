@@ -161,7 +161,7 @@ function deleteTicket(ticketID)
 									}
 									echo "<td> " , $row['ticket_date'] , "</td>";
 									echo "<td> Reply </td>";
-									echo '<td> <button type="button" onclick="deleteTicket('. $ticket_id .')">Delete</button> </td>';
+									echo '<td> <button type="button" onclick="deleteTicket('. $row['ticket_id'] .')">Delete</button> </td>';
 									echo "</tr>";
 									echo "<tr id=\"". $row['ticket_id']."_Body2>";
 									echo "<td colspan=\"4\"> " , $row['ticket_message'] , "</td>";
