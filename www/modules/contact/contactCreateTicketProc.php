@@ -22,7 +22,7 @@
 
 	$conn =  new mysqli("localhost", "collegecarpool", "collegecarpool", "purdue_test");
 
-	if ($conn->connect_errn)
+	if ($conn->connect_errno)
 	{
 	    echo  $conn->connect_errno . " " . $conn->connect_error;
 	    die;
