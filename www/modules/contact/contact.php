@@ -1,4 +1,44 @@
 <hr class="featurette-divider">
+<script type="text/javascript">
+function deleteTicket(ticketID)
+{
+	$.ajax ({
+		type:"POST",
+		url: "/modules/contact/deleteTicketProc.php",
+		dataType: "json",
+		data: 
+		{
+			"ticketID" : ticketID
+		},
+		beforeSend: function()
+		{
+
+		},
+		complete: function()
+		{
+
+		},
+		success: function(data)
+		{
+			// the important stuff happens here
+			console.log("success");
+
+			if(data.sucess == "SUCCESS")
+			{
+				console.log("Delete successful");
+				alart("The ticket was sucessfully deleted.");
+				var header = document.getElementById(ticket_id + '_Header');
+				var body1 = document.getElementById(ticket_id + '_Body1');
+				var body2 = document.getElementById(ticket_id + '_Body2');
+				header.parentNode.removeChild(header);
+				body1.parentNode.removeChild(body1);
+				body2.parentNode.removeChild(body2);
+
+			}
+		}
+	})
+}
+</script>
 <div id="contact" class="contact_page">
 	<div class="container">
 		<div class="col-md-4">
@@ -101,12 +141,12 @@
 
 								while($row = mysqli_fetch_array($result))
 								{
-									echo "<tr>";
+									echo "<tr id=\"". $row['$ticket_id']."_Header>";
 									echo "<th> Category </th>";
 									echo "<th> Date </th>";
 									echo "<th> </th>";
 									echo "<th> </th>";
-									echo "<tr>";
+									echo "<tr id=\"". $row['$ticket_id']."_Body1>";
 									if($row['category']==0)
 									{
 										echo "<td> Making a List </td>";
@@ -121,9 +161,10 @@
 									}
 									echo "<td> " , $row['ticket_date'] , "</td>";
 									echo "<td> Reply </td>";
-									echo "<td> Resolved </td>";
+									$resolveQuery = "UPDATE tickets SET resolved = 1 WHERE ticket_id = $ticket_id"
+									echo "<td> <button type=\"button\" onclick=\"deleteTicket(".$ticket_id.")\">Delete</button> </td>";
 									echo "</tr>";
-									echo "<tr>";
+									echo "<tr id=\"". $row['$ticket_id']."_Body2>";
 									echo "<td colspan=\"4\"> " , $row['ticket_message'] , "</td>";
 									echo "</tr>";
 									if($row['ticket_answer'] != '')
