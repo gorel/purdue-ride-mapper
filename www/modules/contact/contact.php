@@ -83,6 +83,8 @@
 								$stmt->execute();
 								$stmt->store_result();
 
+
+
 								if ($stmt->num_rows > 0)
 								{
 								    echo  "User already exists";
@@ -99,43 +101,30 @@
 							{
 
 							// check if user exists
-							$query = "SELECT ticket_id, ticket_date,  ticket_message, ticket_answer FROM tickets";
-							$stmt = $conn->prepare($query);
-							$stmt->execute();
-							$stmt->store_result();
+								$query = "SELECT ticket_id, ticket_date,  ticket_message, ticket_answer FROM tickets";
+								$result = mysqli_query($conn, $query);
 
-							$stmt->bind_result('dsss', $ticket_id, $ticket_date, $ticket_message, $ticket_answer);
-							if ($stmt->num_rows > 0)
-							{
-								while($stmt->fetch())
+								while($row = mysqli_fetch_array($result))
 								{
 									echo "<tr>";
-									echo "<td> " , $ticket_id , "</td>";
-									echo "<td> " , $ticket_date , "</td>";
+									echo "<td> " , $row['ticket_id'] , "</td>";
+									echo "<td> " , $row['ticket_date'] , "</td>";
 									echo "<td> Button1 </td>";
 									echo "<td> Button2 </td>";
 									echo "</tr>";
 									echo "<tr>";
-									echo "<td colspan=\"4\"> " , $ticket_message , "</td>";
+									echo "<td colspan=\"4\"> " , $row['ticket_message'] , "</td>";
 									echo "</tr>";
 									if($ticket_answer != '')
 									{
 										echo "<tr>";
-										echo "<td colspan=\"4\"> " , $ticket_answer , "</td>";
+										echo "<td colspan=\"4\"> " , $row['ticket_answer'] , "</td>";
 										echo "</tr>";
 									}
 								}
-							    echo  "User already exists";
-							    die;
-							}
-							else
-							{
-								echo "There is no ticket!";
-							}
-							$stmt->close();
+
 							}
 						}
-					}
 				?>
 			</table>
 	</div>
