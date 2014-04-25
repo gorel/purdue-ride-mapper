@@ -100,6 +100,7 @@ echo   "</table>";
 <script type="text/javascript">
    $(document).ready(function () {
      $('#progressSearch').hide();
+     doSearch();
    });
   
   // disable all controls
