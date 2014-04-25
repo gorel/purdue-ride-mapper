@@ -23,6 +23,10 @@
   </div>
 </div>
 <script type="text/javascript">
+	function replyModal(ticket_id)
+	{
+		$('#modelReply').modal('show');
+	}
 	function deleteTicket(ticket_id)
 	{
 		$.ajax ({
@@ -215,7 +219,7 @@
 										echo "<td> Others </td>";
 									}
 									echo "<td> " , $row['ticket_date'] , "</td>";
-									echo "<td> Reply </td>";
+									echo '<td> <button type="button" onclick="replyModal('. $row['ticket_id'] .')">Reply</button> </td>';
 									echo '<td> <button type="button" onclick="deleteTicket('. $row['ticket_id'] .')">Delete</button> </td>';
 									echo "</tr>";
 									echo '<tr id="' . $row['ticket_id'] . '_Body2">';
