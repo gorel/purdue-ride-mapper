@@ -7,10 +7,10 @@
         <h4 class="modal-title" id="myModalLabel">Reply to ticket</h4>
       </div>
       <div class="modal-body">
-      	<input type="text" hidden="true" id="toWarnId">
+      	<input type="text" hidden="true" id="replyID">
       	<form id="replyForm" onSubmit="" method="POST">
 		<b>Type reply</b>
-		<input type='textarea' class='form-control' name='message' id='warnMessage' ><br>
+		<input type='textarea' class='form-control' name='message' id='replyMessage' ><br>
                 <label class="err" id="errWarnMsg" hidden='true'></label>
                 <label class="ok" id="okWarnMsg" hidden='true'></label>
 	</form>
@@ -25,7 +25,33 @@
 <script type="text/javascript">
 	function replyModal(ticket_id)
 	{
+		var tid = document.getElementById('replyID');
+		tid.value = ticket_id
 		$('#modalReply').modal('show');
+	}
+	function replyTicket(ticket_id)
+	{
+		$.ajax ({
+			type:"POST",
+			url: "/modules/contact/replyTicketProc.php",
+			datatype: "json",
+			data:
+			{
+				"ticket_id" : ticket_id,
+				"ticket_answer" : ticket_answer
+			},
+			success: function(data)
+			{
+
+				console.log("success");
+
+				if(data.success == "SUCCESS")
+				{
+					console.log("Reply added successfully");
+
+				}
+			}
+		})
 	}
 	function deleteTicket(ticket_id)
 	{
