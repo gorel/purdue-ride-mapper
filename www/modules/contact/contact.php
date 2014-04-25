@@ -26,7 +26,7 @@ function deleteTicket(ticketID)
 			if(data.success == "SUCCESS")
 			{
 				console.log("Delete successful");
-				alart("The ticket was sucessfully deleted.");
+				alert("The ticket was sucessfully deleted.");
 				var header = document.getElementById(ticket_id + '_Header');
 				var body1 = document.getElementById(ticket_id + '_Body1');
 				var body2 = document.getElementById(ticket_id + '_Body2');
