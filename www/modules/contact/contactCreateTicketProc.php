@@ -1,17 +1,8 @@
 <?php
 
-	/**
-	*
-	* Send a message to admin
-	*
-	*
-	* @author	Timothy Thong <tthong@purdue.edu>
-	* @version	1.0
-	 */
 
 	session_start();
 
-	require '../../lib/email.php';
 
 	$cat   = $_POST["category"];
 	$msg   = $_POST["text"];
@@ -56,6 +47,5 @@
 	$stmt->execute();
 	$stmt->close();
 
-	header("Location:../../index.php");
 
 ?>

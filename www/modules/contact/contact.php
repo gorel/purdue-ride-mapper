@@ -1,43 +1,98 @@
 <hr class="featurette-divider">
+<div class="modal fade" id="modalReply" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Reply to ticket</h4>
+      </div>
+      <div class="modal-body">
+      	<input type="text" hidden="true" id="toWarnId">
+      	<form id="replyForm" onSubmit="" method="POST">
+		<b>Type reply</b>
+		<input type='textarea' class='form-control' name='message' id='warnMessage' ><br>
+                <label class="err" id="errWarnMsg" hidden='true'></label>
+                <label class="ok" id="okWarnMsg" hidden='true'></label>
+	</form>
+      </div>
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" onClick="">Send Warning</button>
+      </div>
+    </div>
+  </div>
+</div>
 <script type="text/javascript">
-function deleteTicket(ticketID)
-{
-	$.ajax ({
-		type:"POST",
-		url: "/modules/contact/deleteTicketProc.php",
-		dataType: "json",
-		data: 
-		{
-			"ticket_id" : ticketID
-		},
-		beforeSend: function()
-		{
-
-		},
-		complete: function()
-		{
-
-		},
-		success: function(data)
-		{
-			// the important stuff happens here
-			console.log("success");
-
-			if(data.success == "SUCCESS")
+	function deleteTicket(ticket_id)
+	{
+		$.ajax ({
+			type:"POST",
+			url: "/modules/contact/deleteTicketProc.php",
+			dataType: "json",
+			data: 
 			{
-				console.log("Delete successful");
-				alert("The ticket was sucessfully deleted.");
-				var header = document.getElementById(ticketID + '_Header');
-				var body1 = document.getElementById(ticketID + '_Body1');
-				var body2 = document.getElementById(ticketID + '_Body2');
-				header.parentNode.removeChild(header);
-				body1.parentNode.removeChild(body1);
-				body2.parentNode.removeChild(body2);
+				"ticket_id" : ticket_id
+			},
+			beforeSend: function()
+			{
 
+			},
+			complete: function()
+			{
+
+			},
+			success: function(data)
+			{
+				// the important stuff happens here
+				console.log("success");
+
+				if(data.success == "SUCCESS")
+				{
+					console.log("Delete successful");
+					alert("The ticket was sucessfully deleted.");
+					var header = document.getElementById(ticket_id + '_Header');
+					var body1 = document.getElementById(ticket_id + '_Body1');
+					var body2 = document.getElementById(ticket_id + '_Body2');
+					header.parentNode.removeChild(header);
+					body1.parentNode.removeChild(body1);
+					body2.parentNode.removeChild(body2);
+
+				}
 			}
-		}
-	})
-}
+		})
+	}
+	function createTicket(ticket_id)
+	{
+		$.ajax ({
+			type:"POST",
+			url: "/modules/contact/createTicket.php",
+			dataType: "json",
+			data: 
+			{
+				// set variable here
+				"ticket_id" : ticket_id
+			},
+			beforeSend: function()
+			{
+
+			},
+			complete: function()
+			{
+
+			},
+			success: function(data)
+			{
+				// the important stuff happens here
+				console.log("success");
+
+				if(data.success == "SUCCESS")
+				{
+					// stuff happen here
+
+				}
+			}
+		})
+	}
 </script>
 <div id="contact" class="contact_page">
 	<div class="container">
