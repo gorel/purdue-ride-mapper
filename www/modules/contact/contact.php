@@ -17,7 +17,7 @@
       </div>
       <div class="modal-footer">
       	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger" onClick="">Send Warning</button>
+        <button type="button" class="btn btn-danger" onClick="replyTicket()">Reply Ticket</button>
       </div>
     </div>
   </div>
@@ -29,8 +29,9 @@
 		tid.value = ticket_id
 		$('#modalReply').modal('show');
 	}
-	function replyTicket(ticket_id)
+	function replyTicket()
 	{
+		var ticket_id = document.getElementById('replyID').value;
 		$.ajax ({
 			type:"POST",
 			url: "/modules/contact/replyTicketProc.php",
