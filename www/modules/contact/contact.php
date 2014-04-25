@@ -107,6 +107,11 @@
 								while($row = mysqli_fetch_array($result))
 								{
 									echo "<tr>";
+									echo "<th> Ticket ID </th>";
+									echo "<th> Date </th>";
+									echo "<th> </th>";
+									echo "<th> </th>";
+									echo "<tr>";
 									echo "<td> " , $row['ticket_id'] , "</td>";
 									echo "<td> " , $row['ticket_date'] , "</td>";
 									echo "<td> Button1 </td>";
