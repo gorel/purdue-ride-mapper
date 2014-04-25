@@ -96,7 +96,7 @@
 									echo "<tr>";
 									echo "<td colspan=\"4\"> " , $row['ticket_message'] , "</td>";
 									echo "</tr>";
-									if($ticket_answer != '')
+									if($row['ticket_answer'] != '')
 									{
 										echo "<tr>";
 										echo "<td colspan=\"4\"> " , $row['ticket_answer'] , "</td>";
