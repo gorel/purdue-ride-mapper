@@ -32,30 +32,6 @@
 		<hr class="featurette-divider">
 				<h2> Tickets </h2>
 			<table class='table table-triped table-bordered'>
-				<tr>
-				<th> Email </th>
-				<th> Date </th>
-				<th> Reply </th>
-				<th> Delete </th>
-				</tr>
-				<tr>
-				<td> Estevan </td>
-				<td> Today! </td>
-				<td> button1 </td>
-				<td> button2 </td>
-				</tr>
-				<tr>
-				<td colspan="4">MSGGGGGG</td>
-				</tr>
-				<tr>
-				<td> Just do it </td>
-				<td> Yesterday! </td>
-				<td> M1 </td>
-				<td> M2 </td>
-				</tr>
-				<tr>
-				<td colspan="4"> MSGGGGG11111122223333</td>
-				</tr>
 				<?php
 					session_start();
 
@@ -114,8 +90,8 @@
 									echo "<tr>";
 									echo "<td> " , $row['ticket_id'] , "</td>";
 									echo "<td> " , $row['ticket_date'] , "</td>";
-									echo "<td> Button1 </td>";
-									echo "<td> Button2 </td>";
+									echo "<td> Reply </td>";
+									echo "<td> Resolved </td>";
 									echo "</tr>";
 									echo "<tr>";
 									echo "<td colspan=\"4\"> " , $row['ticket_message'] , "</td>";

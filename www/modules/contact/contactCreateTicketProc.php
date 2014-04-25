@@ -7,7 +7,6 @@
 *
 * @author	Timothy Thong <tthong@purdue.edu>
 * @version	1.0
-
  */
 
 session_start();
@@ -18,11 +17,10 @@ $cat   = $_POST["category"];
 $msg   = $_POST["text"];
 $user_id = $_SESSION['user_id'];
 
-$dbName   = 'purdue_test';
 
 // connect to local db
 
-$conn =  new mysqli($dbHost, $dbUser, $dbPass, $dbName);
+$conn =  new mysqli("collegecarpool.us", "root", "collegecarpool", "purdue_test");
 
 if ($conn->connect_errn)
 {
