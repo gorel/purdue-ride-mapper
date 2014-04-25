@@ -51,7 +51,7 @@
 							$stmt = $conn->stmt_init();
 							if(!$_SESSION['isAdmin'])
 							{
-
+								$user_id = $_SESSION['user'];
 
 								$query = "SELECT * FROM tickets WHERE user_id like $user_id";
 								$result = mysqli_query($conn, $query);
