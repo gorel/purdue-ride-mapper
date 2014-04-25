@@ -20,7 +20,7 @@
 
 	// connect to local db
 
-	$conn =  new mysqli("collegecarpool.us", "root", "collegecarpool", "purdue_test");
+	$conn =  new mysqli("localhost", "collegecarpool", "collegecarpool", "purdue_test");
 
 	if ($conn->connect_errn)
 	{
