@@ -134,7 +134,8 @@
 		if(qualityCodeCheck($addressQualityCode2) === false)//If the quality code is bad
 		{
 			//GUYS WHAT DO WE DO IF IT IS BAD?
-			echo json_encode(array('success' => "FAILURE4"));	
+			if($badInput != 1)
+				echo json_encode(array('success' => "FAILURE4"));	
 			$badInput = 1;
 			$endLatitude = 0.0;
 			$endLongitude = 0.0;
@@ -150,7 +151,8 @@
 		if(qualityTimeFormat($dateTime) === false)
 		{
 			//Bad!
-			echo json_encode(array('success' => "FAILURE5"));
+			if($badInput != 1)
+				echo json_encode(array('success' => "FAILURE5"));
 			$badInput = 1;
 		}
 		else
@@ -158,7 +160,8 @@
 			if(qualityTimeRange($dateTime) === false)
 			{
 				//Bad!
-				echo json_encode(array('success' => "FAILURE6"));
+				if($badInput != 1)
+					echo json_encode(array('success' => "FAILURE6"));
 				$badInput = 1;
 			}
 		}
