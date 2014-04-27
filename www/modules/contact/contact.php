@@ -26,7 +26,7 @@
 	function replyModal(ticket_id)
 	{
 		var tid = document.getElementById('replyID');
-		tid.value = ticket_id
+		tid.value = ticket_id;
 		$('#modalReply').modal('show');
 	}
 	function replyTicket()
@@ -65,7 +65,7 @@
 				}
 				//$('#modalReply').hide();
 			}
-		})
+		});
 	}
 	function deleteTicket(ticket_id)
 	{
@@ -103,7 +103,7 @@
 
 				}
 			}
-		})
+		});
 	}
 	function createTicket(ticket_id)
 	{
