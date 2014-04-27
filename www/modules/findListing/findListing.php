@@ -229,7 +229,7 @@
 		function display_output($con, $matches, $mtype)
 		{
 			//If len(output) == 0, print "no matches"
-			if (strlen($matches[0]) === 0 || $matches[0] === "OFFERS")
+			if (strlen($matches[0]) === 0)
 			{
 				echo "<tr>";
 				echo '<td> </td>';
