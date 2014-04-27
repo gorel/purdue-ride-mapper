@@ -439,13 +439,9 @@
 		}
 	</script>
 	<script type="text/javascript">
-		$('#editListingsModal').on('shown', function () {
-		   alert('hi');
-		});
-		$( document ).ready(function() 
-		{
-			console.log("Ready");		
-			
+		$('#editListingsModal').on('shown.bs.modal', function () {
+		   console.log("Shown");
+		   
 			var startingAddress = document.getElementById('startingAddressModal');
 			var autocomplete1 = new google.maps.places.Autocomplete(startingAddress);
 			
@@ -459,6 +455,7 @@
 			google.maps.event.addListener(autocomplete2, 'place_changed', function() {
 				console.log("fired listener 2");
 			});
+		   
 		});
 	</script>
 </div> <!-- /container -->
