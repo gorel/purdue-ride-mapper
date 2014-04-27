@@ -403,7 +403,7 @@
 										lat:". $row['end_lat'] . ",
 										lng:". $row['end_long'] . ",
 										color: 'blue'
-									})
+									});
 									map.fitZoom();
 								});
 							</script>
@@ -646,7 +646,7 @@
 												lat:". $row['end_lat'] . ",
 												lng:". $row['end_long'] . ",
 												color: 'blue'
-											})
+											});
 											map.fitZoom();
 										});
 									</script>
@@ -818,7 +818,7 @@
 				lat:endLat,
 				lng:endLong,
 				color:'blue'
-			})
+			});
 			modalMap.fitZoom();
 		});
 	</script>
