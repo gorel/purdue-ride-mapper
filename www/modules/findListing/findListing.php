@@ -598,7 +598,7 @@
 									';
 						}
 					}
-					while($row = $result->fetch_array())
+					while($row = mysqli_fetch_array($result))
 					{
 						echo '<tr id="'.$row['listings_id'].'">';
 						echo '<td id="'.$row['listings_id'].'_Starting_Address">'.$row['startingAddress'].'</td>';
