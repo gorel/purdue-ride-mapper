@@ -332,6 +332,7 @@
 			$('#numberOfPassengersModal').prop('disabled', true);
 			$('#requestRadio').prop('disabled', true);
 			$('#offerRadio').prop('disabled', true);
+			$('#saveButton').prop('disabled', true);			
 		}
 
 		function enableAllCntl()
@@ -342,6 +343,7 @@
 			$('#numberOfPassengersModal').prop('disabled', false);
 			$('#requestRadio').prop('disabled', false);
 			$('#offerRadio').prop('disabled', false);
+			$('#saveButton').prop('disabled', false);
 		}
 				
 		function saveListing()
