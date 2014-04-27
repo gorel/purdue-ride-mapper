@@ -76,8 +76,7 @@
 					</div>
 					<ul class="nav nav-justified">
 						<li class="active"><a href="#" id="home" onClick="hideAll(this);">Home</a></li>
-						<li><a href="#" id="about" onclick="hideAll(this);">About Us</a></li>
-						<li><a href="#" id="contact" onclick="hideAll(this);">Contact Us</a></li>
+						<li><a href="#" id="contact" onclick="hideAll(this);">Support</a></li>
 						<li><a href="#" id="findARide" onclick="hideAll(this);">Find a Ride</a></li>
 						<?php
 							if (!isset($_SESSION['user']))
@@ -87,20 +86,17 @@
 							}
 							else
 							{
-                                                                if (isset($_SESSION['isAdmin']))
-                                                                {
+									if (isset($_SESSION['isAdmin']))
+									{
 								        echo '<li><a href="#" id="manageUsers" onclick="hideAll(this);">Manage Users</a></li>';
-								        echo '<li><a href="#" id="editListings" onclick="hideAll(this);">All Listings</a></li>';
-
-                                                                } 
-                                                                else
-                                                                {
-								        echo '<li><a href="#" id="editListings" onclick="hideAll(this);">My Listings</a></li>';
-
-                                                                }
+									} 
+									else
+									{
+								        echo '<li><a href="#" id="editListings" onclick="hideAll(this);">Edit Listings</a></li>';
+									}
 
 								echo '<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>';
-								echo '<li><a href="#" id="settings" onclick="">Settings</a></li>';
+								echo '<li><a href="#" id="settings" onclick="">My Settings</a></li>';
 								echo '<li><a href="#" id="logout" onclick="location.href = \'modules/signin/signoutProc.php\';">Log Out</a></li>';
 							}
 
