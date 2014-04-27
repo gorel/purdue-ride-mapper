@@ -90,11 +90,7 @@
 									{
 								        echo '<li><a href="#" id="manageUsers" onclick="hideAll(this);">Manage Users</a></li>';
 									} 
-									else
-									{
-								        echo '<li><a href="#" id="editListings" onclick="hideAll(this);">Edit Listings</a></li>';
-									}
-
+								echo '<li><a href="#" id="editListings" onclick="hideAll(this);">Edit Listings</a></li>';
 								echo '<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>';
 								echo '<li><a href="#" id="settings" onclick="">My Settings</a></li>';
 								echo '<li><a href="#" id="logout" onclick="location.href = \'modules/signin/signoutProc.php\';">Log Out</a></li>';
