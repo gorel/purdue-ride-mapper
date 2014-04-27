@@ -82,7 +82,7 @@
 		echo json_encode(array('success' => "FAILURE1"));
 		$badInput = 1;
 	}
-	elseif($startingAddress === "" || $destinationAddress === "" || $dateTime === "" || ($isRequest != 1 && ($passengers == 0 || $passengers === "")))
+	elseif($startingAddress === "" || $destinationAddress === "" || $dateTime === "" || ($isRequest != 1 && ($passengers <= 0 || $passengers === "")))
 	{
 		echo json_encode(array('success' => "FAILURE2"));
 	}
