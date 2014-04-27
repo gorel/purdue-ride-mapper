@@ -13,7 +13,7 @@
 		if (!mysqli_query($con,$sql))
 		{
 			mysqli_close($con);
-			echo json_encode(array('success' => "FAILURE2"));
+			echo json_encode(array('success' => "$sql"));
 		}
 		else
 		{
