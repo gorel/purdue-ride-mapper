@@ -86,6 +86,10 @@
 	{
 		echo json_encode(array('success' => "FAILURE2"));
 	}
+	elseif($isRequest != 1 && $passengers > 50)
+	{
+		echo json_encode(array('success' => "FAILURE8"));
+	}
 	else
 	{	
 

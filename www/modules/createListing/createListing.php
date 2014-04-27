@@ -112,6 +112,10 @@ function createListing()
 			{
 				alert("Database entry failed. Please contact an administrator.");
 			}
+			else if(data.success == "FAILURE8")
+			{
+				alert("Please input less than 50 passengers.");
+			}
 			else
 			{
 				alert("There was an inexplicable error. This should never happen.");
