@@ -438,5 +438,26 @@
 			passengers.disabled = false;
 		}
 	</script>
+	<script type="text/javascript">
+
+		$( document ).ready(function() 
+		{
+			console.log("Ready");		
+			
+			var startingAddress = document.getElementById('startingAddressModal');
+			var autocomplete1 = new google.maps.places.Autocomplete(startingAddress);
+			
+			google.maps.event.addListener(autocomplete1, 'place_changed', function() {
+				console.log("fired listener 1");
+			});	
+			
+			var endingAddress = document.getElementById('endingAddressModal');
+			var autocomplete2 = new google.maps.places.Autocomplete(endingAddress);
+			
+			google.maps.event.addListener(autocomplete2, 'place_changed', function() {
+				console.log("fired listener 2");
+			});
+		});
+	</script>
 </div> <!-- /container -->
 <div id="pagination_controls"><?php echo $paginationCtrls; ?></div>
