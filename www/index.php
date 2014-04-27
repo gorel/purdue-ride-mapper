@@ -179,7 +179,7 @@
 					});
 					$("#home").click(function()
 					{
-						$( "#content" ).load( "home.php" );
+						window.location.replace("index.php");
 					});
 					$("#listARide").click(function()
 					{
