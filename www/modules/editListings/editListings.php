@@ -112,6 +112,7 @@
 			}
 			else
 			{
+				$user_id = $_SESSION['user'];
 				$sqlCount = "SELECT COUNT(listings_id) FROM listings";
 			}
 
