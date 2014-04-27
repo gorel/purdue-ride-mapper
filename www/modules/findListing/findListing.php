@@ -449,7 +449,7 @@
 					$mtype = htmlspecialchars($_GET['mtype']);
 					$matches = array();
 					
-					echo "<h2>Finding matches starting near ". $starting_address . " and ending near ". $ending_address . "</h2>";
+					echo '<div class="alert alert-success">Finding matches starting near <b>'. $starting_address . '</b> and ending near <b>'. $ending_address . '</b></div>';
 					exec("python ../../../src/matcher.py \"$starting_address\" \"$ending_address\" \"$date\" \"$mtype\"", $matches);
 
 					if ($mtype === 'offers')
