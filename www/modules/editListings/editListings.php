@@ -104,9 +104,18 @@
 		else
 		{
 			session_start();
-			$user_id = $_SESSION['user'];
+			
+			if(!$_SESSION['isAdmin'])
+			{
+				$user_id = $_SESSION['user'];
+				$sqlCount = "SELECT COUNT(listings_id) FROM listings WHERE listings_id=$id";
+			}
+			else
+			{
+				$sqlCount = "SELECT COUNT(listings_id) FROM listings";
+			}
 
-			$sqlCount = "SELECT COUNT(listings_id) FROM listings WHERE listings_id=$id";
+
 			$countRes = mysqli_query($con,$sqlCount);
 			$rowCount = mysqli_fetch_row($countRes);
 			
@@ -114,7 +123,7 @@
 			$total = $rowCount[0];
 			
 			//Display this number of results
-			$page_rows = 5;
+			$page_rows = 10;
 			
 			//Keep track of previous page number
 			$last = ceil($total/$page_rows);
