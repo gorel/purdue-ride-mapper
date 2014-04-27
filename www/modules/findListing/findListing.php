@@ -365,7 +365,7 @@
 
 						if ($print_offer)
 						{
-							echo '<td id="'.$row['passengers'].'_Passengers">'.$row['passengers'].'</td>';
+							echo '<td id="'.$row['listings_id'].'_Passengers">'.$row['passengers'].'</td>';
 							echo '<td id="'.$row['listings_id'].'_Ride_Type">Offering Ride</td>';
 							}
 						else
@@ -495,7 +495,7 @@
 					$total = $rowCount[0];
 					
 					//Display this number of results
-					$page_rows = 5;
+					$page_rows = 10;
 					
 					//Keep track of previous page number
 					$last = ceil($total/$page_rows);
