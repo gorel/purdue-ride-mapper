@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <hr class="featurette-divider">
 <div class="modal fade" id="modalReply" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -172,7 +175,7 @@
 				<h2> Tickets </h2>
 			<table class='table table-triped table-bordered'>
 				<?php
-					session_start();
+					
 
 					if(!isset($_SESSION['user']))
 					{
