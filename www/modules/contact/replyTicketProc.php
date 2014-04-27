@@ -3,6 +3,8 @@
 	$ticket_answer = $_POST["ticket_answer"];
 	$con=mysqli_connect("localhost","collegecarpool","collegecarpool","purdue_test");
 
+	echo json_encode(array('success' => "CONNECTED"));
+
 	if(mysqli_connect_errno())
 	{
 		echo json_encode(array('success' => "FAILURE1"));
