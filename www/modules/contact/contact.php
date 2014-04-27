@@ -59,6 +59,10 @@
 				{
 					console.log("Error getting to MySQL");
 				}
+				else 
+				{
+					console.log(data.success);
+				}
 				//$('#modalReply').hide();
 			}
 		})
