@@ -194,7 +194,7 @@
 						<?php
 							if (!isset($_SESSION['user']))
 							{
-								echo 'alert("you must be logged in to use this feature");'
+								echo 'alert("you must be logged in to use this feature");';
 							}
 							else
 							{
