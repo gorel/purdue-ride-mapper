@@ -439,7 +439,9 @@
 		}
 	</script>
 	<script type="text/javascript">
-
+		$('#editListingsModal').on('shown', function () {
+		   alert('hi');
+		});
 		$( document ).ready(function() 
 		{
 			console.log("Ready");		
