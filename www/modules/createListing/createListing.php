@@ -122,7 +122,6 @@ function createListing()
 }
 
 </script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&amp;libraries=places"></script>
 <hr class="featurette-divider">
 <div class="container" >
 	<div class="row">
