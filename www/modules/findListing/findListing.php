@@ -521,7 +521,7 @@
 					// This sets the range of rows to query for the chosen $pagenum
 					$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
 					
-					$sql = "SELECT * FROM listings where dateOfDeparture >= CURDATE() $limit";
+					$sql = "SELECT * FROM listings where dateOfDeparture >= CURDATE() limit 5";
 					$result = mysqli_query($con,$sql);
 					echo "<h1>All listings:</h1>";
 					echo "<table class='table table-striped' id='listingsTable'>
