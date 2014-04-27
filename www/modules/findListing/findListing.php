@@ -495,7 +495,7 @@
 					$total = $rowCount[0];
 					
 					//Display this number of results
-					$page_rows = 5;
+					$page_rows = 10;
 					
 					//Keep track of previous page number
 					$last = ceil($total/$page_rows);
