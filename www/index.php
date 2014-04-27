@@ -151,9 +151,9 @@
 						<div class="col-lg-4">
 							<h2>Questions?</h2>
 							<p>
-							Concerns? Not sure how this works? Found a bug? Feel free to email us!
+							Concerns? Not sure how this works? Found a bug? Feel free to contact us!
 							</p>
-							<p><a class="btn btn-primary" id="contactAlternative" href="#" role="button" onclick="hideAll(this);">Contact us</a></p>
+							<p><a class="btn btn-primary" id="contactAlternative" href="#" role="button" onclick="hideAll(this);">Support</a></p>
 						</div>
 					</div>
 				</div>
@@ -189,7 +189,9 @@
 							{
 								echo '$( "#content" ).load( "modules/contact/contact.php" );';
 							}
-						?>								
+						?>	
+						var supportButton = document.getElementById('contact');
+						supportButton.className = "active";
 					});
 					$("#home").click(function()
 					{
