@@ -5,6 +5,21 @@
 <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
 <hr class="featurette-divider">
 
+ <style type="text/css">
+	.pac-container {
+		background-color: #FFF;
+		z-index: 20;
+		position: fixed;
+		display: inline-block;
+		float: left;
+	}
+	.modal{
+		z-index: 20;   
+	}
+	.modal-backdrop{
+		z-index: 10;        
+	}​
+</style>
 <!-- Edit Listings Modal -->
 <div class="modal fade" id="editListingsModal" tabindex="-1" role="dialog" aria-labelledby="editListingsModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
