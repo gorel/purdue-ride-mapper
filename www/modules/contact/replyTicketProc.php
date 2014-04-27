@@ -9,7 +9,7 @@
 	}
 	else
 	{
-		$sql = "UPDATE tickets SET ticket_answer = $ticket_answer WHERE ticket_id = $ticket_id";
+		$sql = "UPDATE tickets SET ticket_answer = '$ticket_answer' WHERE ticket_id = $ticket_id";
 		if (!mysqli_query($con,$sql))
 		{
 			mysqli_close($con);
