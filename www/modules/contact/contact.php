@@ -50,8 +50,8 @@
 				if(data.success == "SUCCESS")
 				{
 					console.log("Reply added successfully");
-
 				}
+				$('#modalReply').hide();
 			}
 		})
 	}
