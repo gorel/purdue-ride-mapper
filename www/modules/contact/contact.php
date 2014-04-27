@@ -20,7 +20,7 @@ session_start();
       </div>
       <div class="modal-footer">
       	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger" onClick="replyTicket()">Reply Ticket</button>
+        <button type="button" class="btn btn-primary" onClick="replyTicket()">Reply Ticket</button>
       </div>
     </div>
   </div>
@@ -261,8 +261,8 @@ session_start();
 										echo "<td> Others </td>";
 									}
 									echo "<td> " , $row['ticket_date'] , "</td>";
-									echo '<td> <button type="button" onclick="replyModal('. $row['ticket_id'] .')">Reply</button> </td>';
-									echo '<td> <button type="button" onclick="deleteTicket('. $row['ticket_id'] .')">Delete</button> </td>';
+									echo '<td> <button class="btn btn-primary" type="button" onclick="replyModal('. $row['ticket_id'] .')">Reply</button> </td>';
+									echo '<td> <button class="btn btn-danger" type="button" onclick="deleteTicket('. $row['ticket_id'] .')">Delete</button> </td>';
 									echo "</tr>";
 									echo '<tr id="' . $row['ticket_id'] . '_Body2">';
 									echo "<td colspan=\"4\"> " , $row['ticket_message'] , "</td>";
