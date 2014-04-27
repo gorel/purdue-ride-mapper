@@ -27,9 +27,9 @@ class Circle:
 		# Default search radius is 10 miles
 		# We multiply by 4 since we only do the crude straight line matching
 		if rad is not None and rad != 0:
-			self.rad = rad * 4
+			self.rad = rad * 3
 		else:
-			self.rad = 10 * 4
+			self.rad = 10 * 3
 
 class Line:
 	def __init__(self, start_lat, start_lon, end_lat, end_lon):
@@ -123,7 +123,7 @@ class Matcher:
 		for offer in offers:
 			# Only look at matches if the start locations are close and the departure dates are within one day of each other
 			if request.date is None or offer[9] is None or abs(request.date - offer[9]) < timedelta(days=1, hours=12):
-				if self.startLocProximity(request.start_lat, request.start_lon, offer[2], offer[3]) < 2 * circle.rad:
+				if self.startLocProximity(request.start_lat, request.start_lon, offer[2], offer[3]) < circle.rad:
 					line = Line(offer[2], offer[3], offer[5], offer[6])
 					score = self.score(self.dist(circle, line), circle.rad)
 					scores.append([score, offer[0]])
@@ -146,7 +146,7 @@ class Matcher:
 				radius = request[8] * 3
 				if radius == 0:
 					radius = 10 * 3
-				if self.startLocProximity(request[2], request[3], offer.start_lat, offer.start_lon) < 2 * radius:
+				if self.startLocProximity(request[2], request[3], offer.start_lat, offer.start_lon) < radius:
 					circle = Circle(request[5], request[6], request[8])
 					score = self.score(self.dist(circle, line), circle.rad)
 					scores.append([score, request[0]])
