@@ -186,7 +186,7 @@ class Matcher:
 	
 	# Score a ride based on its distance from a destination and desired drop-off radius
 	def score(self, distance, desired_radius):
-		result = 1 - 0.35 * (distance / desired_radius) ** 1.8
+		result = 1 - 0.3 * (distance / desired_radius) ** 1.8
 
 		if result < 0:
 			result = 0
