@@ -365,7 +365,7 @@
 
 						if ($print_offer)
 						{
-							echo '<td id="'.$row['listings_id'].'_Passengers">'.$row['passengers'].'</td>';
+							echo '<td id="'.$row['passengers'].'_Passengers">'.$row['passengers'].'</td>';
 							echo '<td id="'.$row['listings_id'].'_Ride_Type">Offering Ride</td>';
 							}
 						else
@@ -487,7 +487,7 @@
 				}
 				else
 				{
-					$sqlCount = "SELECT COUNT(listings_id) FROM listings where dateOfDeparture >= CURDATE()";
+					$sqlCount = "SELECT COUNT(listings_id) FROM listings";
 					$countRes = mysqli_query($con,$sqlCount);
 					$rowCount = mysqli_fetch_row($countRes);
 					
@@ -521,7 +521,7 @@
 					// This sets the range of rows to query for the chosen $pagenum
 					$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
 					
-					$sql = "SELECT * FROM listings $limit where dateOfDeparture >= CURDATE()";
+					$sql = "SELECT * FROM listings $limit";
 					$result = mysqli_query($con,$sql);
 					echo "<h1>All listings:</h1>";
 					echo "<table class='table table-striped' id='listingsTable'>
