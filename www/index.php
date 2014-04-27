@@ -185,13 +185,13 @@
 							{
 								echo '$( "#content" ).load( "modules/contact/contact_LoggedOut.php" );';
 								echo 'var supportButton = document.getElementById("contact_LoggedOut");';
-								echo 'supportButton.className = "active";'
+								echo 'supportButton.className = "active";';
 							}
 							else
 							{
 								echo '$( "#content" ).load( "modules/contact/contact.php" );';
 								echo 'var supportButton = document.getElementById("contact");';
-								echo 'supportButton.className = "active";'
+								echo 'supportButton.className = "active";';
 							}
 						?>	
 						
