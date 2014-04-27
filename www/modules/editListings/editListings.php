@@ -277,11 +277,7 @@
 					if(data.success == "SUCCESS")
 					{		
 						alert("The listing was successfully deleted.");					
-						$( "#content" ).load( "modules/editListings/editListings.php" );
-						return;
-						console.log("Delete successful");						
-						var row = document.getElementById(listingID + "_Row");
-						row.parentNode.removeChild(row);						
+						$( "#content" ).load( "modules/editListings/editListings.php" );					
 					}
 					else
 					{
