@@ -181,11 +181,18 @@ function createListing()
 	{
 		console.log("Ready");		
 		
-		var input = document.getElementById('startingLocation');
-		var autocomplete = new google.maps.places.Autocomplete(input);
+		var startingAddress = document.getElementById('startingLocation');
+		var autocomplete1 = new google.maps.places.Autocomplete(startingAddress);
 		
-		google.maps.event.addListener(autocomplete, 'place_changed', function() {
-			console.log("fired listener");
+		google.maps.event.addListener(autocomplete1, 'place_changed', function() {
+			console.log("fired listener 1");
+		});	
+		
+		var endingAddress = document.getElementById('endingLocation');
+		var autocomplete2 = new google.maps.places.Autocomplete(endingAddress);
+		
+		google.maps.event.addListener(autocomplete2, 'place_changed', function() {
+			console.log("fired listener 2");
 		});
 	});
 /*
