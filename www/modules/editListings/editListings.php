@@ -106,7 +106,7 @@
 			session_start();
 			$user_id = $_SESSION['user'];
 
-			$sqlCount = "SELECT COUNT(listings_id) FROM listings";
+			$sqlCount = "SELECT COUNT(listings_id) FROM listings WHERE listings_id=$id";
 			$countRes = mysqli_query($con,$sqlCount);
 			$rowCount = mysqli_fetch_row($countRes);
 			
