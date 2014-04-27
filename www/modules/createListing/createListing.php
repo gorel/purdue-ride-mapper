@@ -180,7 +180,8 @@ function createListing()
 
 <script type="text/javascript">
 
-	$( document ).ready(function() {
+	$( document ).ready(function() 
+	{
 		console.log("Ready");		
 		
 		var input = document.getElementById('startingLocation');
@@ -189,6 +190,7 @@ function createListing()
 		google.maps.event.addListener(autocomplete, 'place_changed', function() {
 			console.log("fired listener");
 		});
+	});
 /*
 	//Autocomplete variables
 	var input = document.getElementById('startingLocation');
