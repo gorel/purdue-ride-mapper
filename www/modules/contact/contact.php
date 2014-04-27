@@ -51,7 +51,15 @@
 				{
 					console.log("Reply added successfully");
 				}
-				$('#modalReply').hide();
+				else if(data.success == "FAILURE2")
+				{
+					console.log("Error updating");
+				}
+				else if(data.success == "FAILURE1")
+				{
+					console.log("Error getting to MySQL");
+				}
+				//$('#modalReply').hide();
 			}
 		})
 	}
