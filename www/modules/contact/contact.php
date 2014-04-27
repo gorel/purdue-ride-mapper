@@ -39,7 +39,7 @@ session_start();
 		$.ajax ({
 			type:"POST",
 			url: "/modules/contact/replyTicketProc.php",
-			datatype: "json",
+			dataType: "json",
 			data:
 			{
 				"ticket_id" : ticket_id,
