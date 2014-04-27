@@ -822,5 +822,26 @@
 			modalMap.fitZoom();
 		});
 	</script>
+	<script type="text/javascript">
+
+		$( document ).ready(function() 
+		{
+			console.log("Ready");		
+			
+			var startingAddress = document.getElementById('starting_address_field');
+			var autocomplete1 = new google.maps.places.Autocomplete(startingAddress);
+			
+			google.maps.event.addListener(autocomplete1, 'place_changed', function() {
+				console.log("fired listener 1");
+			});	
+			
+			var endingAddress = document.getElementById('ending_address_field');
+			var autocomplete2 = new google.maps.places.Autocomplete(endingAddress);
+			
+			google.maps.event.addListener(autocomplete2, 'place_changed', function() {
+				console.log("fired listener 2");
+			});
+		});
+	</script>
 </body>
 </html>
