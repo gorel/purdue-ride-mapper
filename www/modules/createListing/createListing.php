@@ -12,6 +12,8 @@
 <script type="text/javascript" src="js/moment.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places&language=en-AU"></script>
+
 <script>
 	function disablePassengers()
 	{
@@ -134,7 +136,7 @@ function createListing()
 				<h2 class="form-signin-heading">Create Listing</h2>
 				
 				<div class="form-group">
-					<input id="startingLocation" type="text" class="form-control" placeholder="Starting Location" name="startingAddress" value="">
+					<input id="startingLocation" type="text" class="form-control" placeholder="Starting Location" name="startingAddress">
 		
 				</div>
 
@@ -177,6 +179,17 @@ function createListing()
 </div> <!-- /container -->
 
 <script type="text/javascript">
+
+	$( document ).ready(function() {
+		console.log("Ready");
+		var autocomplete = new google.maps.places.Autocomplete($("#startingLocation")[0], {});
+
+		google.maps.event.addListener(autocomplete, 'place_changed', function() {
+			var place = autocomplete.getPlace();
+			console.log(place.address_components);
+		});
+	});
+/*
 	//Autocomplete variables
 	var input = document.getElementById('startingLocation');
 	var place;
@@ -216,5 +229,5 @@ function createListing()
 		});
 	}
  
-	google.maps.event.addDomListener(window, 'load', initialize); 
+	google.maps.event.addDomListener(window, 'load', initialize); */
 </script>
