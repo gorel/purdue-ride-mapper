@@ -12,7 +12,7 @@
 <script type="text/javascript" src="js/moment.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+
 <script>
 	function disablePassengers()
 	{
