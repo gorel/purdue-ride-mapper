@@ -64,6 +64,9 @@
 				if (document.getElementById("editListings")) {
 					document.getElementById('editListings').parentNode.className = "inactive";
 				}
+				if (document.getElementById("contactLoggedOut")) {
+					document.getElementById('contactLoggedOut').parentNode.className = "inactive";
+				}
 				sender.parentNode.className = "active";
 			}
 		</script>
