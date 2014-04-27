@@ -175,7 +175,16 @@
 					});
 					$("#contactAlternative").click(function()
 					{
-						$( "#content" ).load( "modules/contact/contact.php" );
+						<?php
+							if (!isset($_SESSION['user']))
+							{
+								echo '$( "#content" ).load( "modules/contact/contact_LoggedOut.php" );';
+							}
+							else
+							{
+								echo '$( "#content" ).load( "modules/contact/contact.php" );';
+							}
+						?>								
 					});
 					$("#home").click(function()
 					{
