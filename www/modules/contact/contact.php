@@ -11,7 +11,7 @@ session_start();
       </div>
       <div class="modal-body">
       	<input type="text" hidden="true" id="replyID">
-      	<form id="replyForm" onSubmit="" method="POST">
+      	<form id="replyForm" onSubmit="Javascript:replyTicket(); return false;" method="POST">
 		<b>Type reply</b>
 		<input type='textarea' class='form-control' name='message' id='replyMessage' ><br>
                 <label class="err" id="errWarnMsg" hidden='true'></label>
@@ -66,7 +66,6 @@ session_start();
 				{
 					console.log(data.success);
 				}
-				//$('#modalReply').hide();
 			}
 		});
 	}
