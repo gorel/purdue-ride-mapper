@@ -365,7 +365,7 @@
 
 						if ($print_offer)
 						{
-							echo '<td id="'.$row['passengers'].'_Passengers">'.$row['passengers'].'</td>';
+							echo '<td id="'.$row['listings_id'].'_Passengers">'.$row['passengers'].'</td>';
 							echo '<td id="'.$row['listings_id'].'_Ride_Type">Offering Ride</td>';
 							}
 						else
