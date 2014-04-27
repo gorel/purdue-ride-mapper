@@ -36,8 +36,8 @@
 			function showSignInModal()
 			{
 				clrSignInCntl();
-                                hideAllSignInMsg();
-                                enableAllSignInCntl();
+				hideAllSignInMsg();
+				enableAllSignInCntl();
 				$('#signInModal').modal('show');
 			}
 			
@@ -76,14 +76,16 @@
 					</div>
 					<ul class="nav nav-justified">
 						<li class="active"><a href="#" id="home" onClick="hideAll(this);">Home</a></li>						
-						<li><a href="#" id="findARide" onclick="hideAll(this);">Find a Ride</a></li>
+						
 						<?php
 							if (!isset($_SESSION['user']))
 							{
+								echo '<li><a href="#" id="contactLoggedOut" onclick="hideAll(this);">Support</a></li>';
 								echo '<li><a href="#" id="loginModal" onclick="showSignInModal()">Log In</a></li>';
 							}
 							else
 							{
+								echo '<li><a href="#" id="findARide" onclick="hideAll(this);">Find a Ride</a></li>';
 								echo '<li><a href="#" id="editListings" onclick="hideAll(this);">Edit Rides</a></li>';
 								echo '<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>';
 								
@@ -163,6 +165,10 @@
 					$("#contact").click(function()
 					{
 						$( "#content" ).load( "modules/contact/contact.php" );
+					});
+					$("#contactLoggedOut").click(function()
+					{
+						$( "#content" ).load( "modules/contact/contact_LoggedOut.php" );
 					});
 					$("#contactAlternative").click(function()
 					{
