@@ -123,8 +123,13 @@
 						in a student population of 40,000 can be difficult or even impossible.
 						College Carpool is here to make it easier!
 						</p>
-
-						<p><a class="btn btn-lg btn-success" id="register" href="#" role="button" onclick="showRegisterModal();">Register Now!</a></p>
+						<?php
+							if (!isset($_SESSION['user']))
+							{
+								echo '<p><a class="btn btn-lg btn-success" id="register" href="#" role="button" onclick="showRegisterModal();">Register Now!</a></p>';
+							}
+						?>	
+						
 					</div>
 
 					<!-- Example row of columns -->
