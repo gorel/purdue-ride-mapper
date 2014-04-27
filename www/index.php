@@ -75,24 +75,25 @@
 						<img src="images/LogoHiRes.png" align="middle" width="600" alt="College-Carpool-Banner">
 					</div>
 					<ul class="nav nav-justified">
-						<li class="active"><a href="#" id="home" onClick="hideAll(this);">Home</a></li>
-						<li><a href="#" id="contact" onclick="hideAll(this);">Support</a></li>
+						<li class="active"><a href="#" id="home" onClick="hideAll(this);">Home</a></li>						
 						<li><a href="#" id="findARide" onclick="hideAll(this);">Find a Ride</a></li>
 						<?php
 							if (!isset($_SESSION['user']))
 							{
 								echo '<li><a href="#" id="loginModal" onclick="showSignInModal()">Log In</a></li>';
-								//echo '<li><a href="#" id="login" onclick="hideAll(this);">Log In</a></li>';
 							}
 							else
 							{
-									if (isset($_SESSION['isAdmin']))
-									{
-								        echo '<li><a href="#" id="manageUsers" onclick="hideAll(this);">Manage Users</a></li>';
-									} 
-								echo '<li><a href="#" id="editListings" onclick="hideAll(this);">Edit Listings</a></li>';
+								echo '<li><a href="#" id="editListings" onclick="hideAll(this);">Edit Rides</a></li>';
 								echo '<li><a href="#" id="listARide" onclick="hideAll(this);">Create a Ride</a></li>';
+								
+								if (isset($_SESSION['isAdmin']))
+								{
+									echo '<li><a href="#" id="manageUsers" onclick="hideAll(this);">Manage Users</a></li>';
+								} 
+								
 								echo '<li><a href="#" id="settings" onclick="">My Settings</a></li>';
+								echo '<li><a href="#" id="contact" onclick="hideAll(this);">Support</a></li>';
 								echo '<li><a href="#" id="logout" onclick="location.href = \'modules/signin/signoutProc.php\';">Log Out</a></li>';
 							}
 
@@ -177,11 +178,30 @@
 					});
 					$("#findARideAlternative").click(function()
 					{
-						$( "#content" ).load( "modules/findListing/findListing.php" );
+						<?php
+							if (!isset($_SESSION['user']))
+							{
+								echo 'alert("you must be logged in to use this feature");'
+							}
+							else
+							{
+								echo '$( "#content" ).load( "modules/findListing/findListing.php" );';
+							}
+						?>						
 					});
 					$("#listARideAlternative").click(function()
 					{
-						$( "#content" ).load( "modules/createListing/createListing.php" );
+						<?php
+							if (!isset($_SESSION['user']))
+							{
+								echo 'alert("you must be logged in to use this feature");'
+							}
+							else
+							{
+								echo '$( "#content" ).load( "modules/createListing/createListing.php" );';
+							}
+						?>
+						
 					});
 					$("#findARide").click(function()
 					{
@@ -192,7 +212,7 @@
 						$( "#content" ).load( "modules/about/about.php" );
 					});
 
-                                        $("#settings").click(function()
+					$("#settings").click(function()
 					{
 						initFields();
 					});
