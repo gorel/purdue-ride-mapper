@@ -12,7 +12,7 @@
 <script type="text/javascript" src="js/moment.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
-<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
 
 <script>
 	function disablePassengers()
@@ -181,14 +181,14 @@ function createListing()
 <script type="text/javascript">
 
 	$( document ).ready(function() {
-		console.log("Ready");
-		var autocomplete = new google.maps.places.Autocomplete($("#startingLocation")[0], {});
-
+		console.log("Ready");		
+		
+		var input = document.getElementById('startingLocation');
+		var autocomplete = new google.maps.places.Autocomplete(input);
+		
 		google.maps.event.addListener(autocomplete, 'place_changed', function() {
-			var place = autocomplete.getPlace();
-			console.log(place.address_components);
+			console.log("fired listener");
 		});
-	});
 /*
 	//Autocomplete variables
 	var input = document.getElementById('startingLocation');
