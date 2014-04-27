@@ -184,14 +184,17 @@
 							if (!isset($_SESSION['user']))
 							{
 								echo '$( "#content" ).load( "modules/contact/contact_LoggedOut.php" );';
+								echo 'var supportButton = document.getElementById("contact_LoggedOut");';
+								echo 'supportButton.className = "active";'
 							}
 							else
 							{
 								echo '$( "#content" ).load( "modules/contact/contact.php" );';
+								echo 'var supportButton = document.getElementById("contact");';
+								echo 'supportButton.className = "active";'
 							}
 						?>	
-						var supportButton = document.getElementById('contact');
-						supportButton.className = "active";
+						
 					});
 					$("#home").click(function()
 					{
