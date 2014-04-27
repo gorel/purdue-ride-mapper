@@ -1,6 +1,6 @@
 <?php
 	$ticket_id = $_POST["ticket_id"];
-	$ticket_answer = $_POST['ticket_answer'];
+	$ticket_answer = $_POST["ticket_answer"];
 	$con=mysqli_connect("localhost","collegecarpool","collegecarpool","purdue_test");
 
 	if(mysqli_connect_errno())
