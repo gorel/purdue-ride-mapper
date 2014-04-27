@@ -183,12 +183,7 @@ function createListing()
 	{
 		console.log("Ready");		
 		
-		var input = document.getElementById('startingLocation');
-		var autocomplete = new google.maps.places.Autocomplete(input);
-		
-		google.maps.event.addListener(autocomplete, 'place_changed', function() {
-			console.log("fired listener");
-		});
+
 	});
 /*
 	//Autocomplete variables
