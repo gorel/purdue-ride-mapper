@@ -255,7 +255,7 @@
 						echo "</table>";
 						
 						echo "<br>";
-						echo "<h3>Offers that match your search:</h3>";
+						echo "<h4>Offers that match your search:</h4>";
 						echo "<table class=table table-striped' id='listingsTable'>
 						<thead>
 						<tr>
@@ -454,7 +454,7 @@
 
 					if ($mtype === 'offers')
 					{
-						echo "<h3>Offers that match your search:</h3>";
+						echo "<h4>Offers that match your search:</h4>";
 						echo "<table class='table table-striped'>
 						<thead>
 						<tr>
@@ -469,7 +469,7 @@
 					}
 					else
 					{
-						echo "<h3>Requests that match your search:</h3>";
+						echo "<h4>Requests that match your search:</h4>";
 						echo "<table class='table table-striped'>
 						<thead>
 						<tr>
