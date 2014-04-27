@@ -12,7 +12,6 @@
 <script type="text/javascript" src="js/moment.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
-
 <script>
 	function disablePassengers()
 	{
@@ -182,7 +181,12 @@ function createListing()
 	{
 		console.log("Ready");		
 		
-
+		var input = document.getElementById('startingLocation');
+		var autocomplete = new google.maps.places.Autocomplete(input);
+		
+		google.maps.event.addListener(autocomplete, 'place_changed', function() {
+			console.log("fired listener");
+		});
 	});
 /*
 	//Autocomplete variables
