@@ -48,13 +48,13 @@ if ($pagenum < 1) {
 // This sets the range of rows to query for the chosen $pagenum
 $limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
 echo "<script>console.log(\"".$limit."\"); </script>";
-$query = "SELECT * FROM users $limit";
-/*
+//$query = "SELECT * FROM users $limit";
+
 $query = "SELECT" .
          " user_id, email, alt_email, phone, first_name, last_name, verified, enabled, warned, is_admin " .
          "FROM users " .
          "WHERE LOWER($by) LIKE '%$term%' $limit";
-*/ 
+ 
 $result = mysqli_query($con,$query);
 
 // Establish the $paginationCtrls variable
