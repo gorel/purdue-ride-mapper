@@ -153,7 +153,15 @@
 			//$sql = "SELECT * FROM listings $limit";
 			echo "<script>console.log(\"".$limit."\"); </script>";
 			
-			$sql = "SELECT * FROM listings WHERE user_id =$user_id $limit";
+			if(!$_SESSION['isAdmin'])
+			{
+				$sql = "SELECT * FROM listings WHERE user_id =$user_id $limit";
+			}
+			else
+			{
+				$sql = "SELECT * FROM listings $limit";
+			}
+
 			$result = mysqli_query($con,$sql);
 			
 			echo "<table class='table table-striped'>
