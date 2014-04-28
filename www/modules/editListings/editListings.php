@@ -5,7 +5,7 @@
 <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
 <hr class="featurette-divider">
 
- <style type="text/css">
+<style type="text/css">
 	.pac-container {
 		background-color: #FFF;
 		z-index: 20;
