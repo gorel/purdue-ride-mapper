@@ -126,6 +126,11 @@ input[type="radio"]{
 				</script>
 			</form>
 			<button class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button>	-->		
+			<div id="progressSearch" class="waiting" style="visibility:hidden">
+				<br />
+				<img src="images/bigload.gif"> 				
+			</div>
+
 		<table class='table table-condensed' id="searchTable">
 			<thead>
 				<tr>
@@ -169,6 +174,7 @@ input[type="radio"]{
 			var map;
 			function matchNewAddress()
 			{
+				document.getElementById('progressSearch').style.visibility = 'visible';
 				var starting_address = document.getElementById('starting_address_field').value.split(' ').join('+');
 				var ending_address = document.getElementById('ending_address_field').value.split(' ').join('+');
 
