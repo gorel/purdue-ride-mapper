@@ -122,6 +122,7 @@
 			
 			//Total row count
 			$total = $rowCount[0];
+			echo "<script>console.log(\"".$total."\"); </script>";
 			
 			//Display this number of results
 			$page_rows = 10;
@@ -151,7 +152,7 @@
 			
 			//$sql = "SELECT * FROM listings $limit";
 			echo "<script>console.log(\"".$limit."\"); </script>";
-			$sql = "SELECT * FROM listings";
+			$sql = "SELECT * FROM listings $limit";
 			$result = mysqli_query($con,$sql);
 			
 			echo "<table class='table table-striped'>
