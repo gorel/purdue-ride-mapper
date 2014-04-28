@@ -146,7 +146,7 @@ session_start();
 		</div>
 		<div class="col-md-4">
 			<form enctype="application/x-www-form-urlencoded" class="form-horizontal" action="/modules/contact/contactCreateTicketProc.php" method="POST"><div class="padded">
-				<h2 class="form-signin-heading">Contact Us</h2>
+				<h2 class="form-signin-heading">Create Ticket</h2>
 				<div class="control-group"><label for="category" class="control-label required">Category</label>
 					<div class="controls">
 						<select name="category" id="category" class="form-control">
@@ -218,8 +218,8 @@ session_start();
 										echo "<td> Others </td>";
 									}
 									echo "<td> " , $row['ticket_date'] , "</td>";
-									echo "<td> Reply </td>";
-									echo "<td> Resolved </td>";
+									echo "<td>  </td>";
+									echo '<td> <button class="btn btn-danger" type="button" onclick="deleteTicket('. $row['ticket_id'] .')">Delete</button> </td>';
 									echo "</tr>";
 									echo "<tr>";
 									echo "<td colspan=\"4\"> " , $row['ticket_message'] , "</td>";
