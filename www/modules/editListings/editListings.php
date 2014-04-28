@@ -214,10 +214,14 @@
 							';
 				}
 			}
+			echo "<script>console.log(\"User ID: " . $user_id."\"); </script>";
+			echo "<script>console.log(\"User ID: " . $_SESSION['user']."\"); </script>";
 			while($row = mysqli_fetch_array($result))
 			{
+				echo "<script>console.log(\"Out\"); </script>";
 				if($_SESSION['user'] == $row["user_id"] || $_SESSION['isAdmin']==1)
 				{
+					echo "<script>console.log(\"In\"); </script>";
 					echo '<tr id="'.$row['listings_id'].'_Row">';
 					echo '<td id="'.$row['listings_id'].'_Starting_Address">'. $row['startingAddress'] . '</td>';
 					echo '<td id="'.$row['listings_id'].'_Ending_Address">'. $row["endingAddress"] . '</td>';
