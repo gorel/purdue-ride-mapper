@@ -94,7 +94,7 @@ echo   "</table>";
 ?>
 
 </div> <!-- /container -->
-
+<div id="pagination_controls"><?php echo $paginationCtrls; ?>
 <!-- User Management Functions -->
 
 <script type="text/javascript">
@@ -219,6 +219,7 @@ echo   "</table>";
           $("#tableusr").append(markup);
         }
         $("#searchinfo").text(data.num + " result(s) found");
+		$( "#content" ).load( "modules/manageUsers/manageUsers.php" );
       }
     });
   }
