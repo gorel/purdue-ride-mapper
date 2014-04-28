@@ -11,6 +11,11 @@
 <script type='text/javascript' src='js/bootstrap-datetimepicker.min.js'></script>
 <link href="/css/bootstrap.css" rel="stylesheet">
 
+<style type="text/css">
+input[type="radio"]{
+  margin: 0 10px 0 10px;
+}
+</style>
 
 <!-- VIEW ROUTE MODAL -->
 <div class="modal fade" id="routeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
