@@ -215,6 +215,8 @@
 					}
 				}
 				// This does the same as above, only checking if we are on the last page, and then generating the "Next"
+				echo "<script>console.log(\"pagenum: " . $pagenum."\"); </script>";
+				echo "<script>console.log(\"last: " . $last."\"); </script>";
 				if ($pagenum != $last) {
 					$next = $pagenum + 1;
 					$paginationCtrls .= '<ul class="pagination">
@@ -223,15 +225,12 @@
 							';
 				}
 			}
-			echo "<script>console.log(\"User ID: " . $user_id."\"); </script>";
-			echo "<script>console.log(\"Session: " . $_SESSION['user']."\"); </script>";
+			//echo "<script>console.log(\"User ID: " . $user_id."\"); </script>";
+			//echo "<script>console.log(\"Session: " . $_SESSION['user']."\"); </script>";
 			while($row = mysqli_fetch_array($result))
 			{
-				echo "<script>console.log(\"User ID: " . $row["user_id"]."\"); </script>";
-				echo "<script>console.log(\"Session: " . $_SESSION['user']."\"); </script>";
 				if($_SESSION['user'] == $row["user_id"] || $_SESSION['isAdmin']==1)
 				{
-					echo "<script>console.log(\"In\"); </script>";
 					echo '<tr id="'.$row['listings_id'].'_Row">';
 					echo '<td id="'.$row['listings_id'].'_Starting_Address">'. $row['startingAddress'] . '</td>';
 					echo '<td id="'.$row['listings_id'].'_Ending_Address">'. $row["endingAddress"] . '</td>';
