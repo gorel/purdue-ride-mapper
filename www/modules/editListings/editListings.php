@@ -104,7 +104,7 @@
 		else
 		{
 			session_start();
-			/*
+			
 			if(!$_SESSION['isAdmin'])
 			{
 				$user_id = $_SESSION['user'];
@@ -149,9 +149,8 @@
 			// This sets the range of rows to query for the chosen $pagenum
 			$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
 			
-			$sql = "SELECT * FROM listings $limit";
-			$result = mysqli_query($con,$sql);
-			*/
+			//$sql = "SELECT * FROM listings $limit";
+			echo "<script>console.log(\"".$limit."\"); </script>";
 			$sql = "SELECT * FROM listings";
 			$result = mysqli_query($con,$sql);
 			
@@ -165,7 +164,7 @@
 			<th> Date of Departure </th>
 			</tr>
 			</thead>";
-			/*
+			
 			// Establish the $paginationCtrls variable
 			$paginationCtrls = '';
 			// If there is more than 1 page worth of results
@@ -213,7 +212,7 @@
 							</ul>
 							';
 				}
-			}*/
+			}
 			while($row = mysqli_fetch_array($result))
 			{
 				if($_SESSION['user'] == $row["user_id"] || $_SESSION['isAdmin']==1)
