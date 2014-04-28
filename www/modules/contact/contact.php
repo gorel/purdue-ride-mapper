@@ -250,7 +250,7 @@ session_start();
 									echo '<th id="' . $row['ticket_id'] . '_dateTH"> Date </th>';
 									echo '<th id="' . $row['ticket_id'] . '_empty1TH"> </th>';
 									echo '<th id="' . $row['ticket_id'] . '_empty2TH"> </th>';
-									echo '</tr>'
+									echo '</tr>';
 									echo '<tr id="' . $row['ticket_id']. '_Body1">';
 									if($row['category']==0)
 									{
