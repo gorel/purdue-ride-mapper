@@ -26,7 +26,7 @@ $page_rows = 5;
 
 //Keep track of previous page number
 $last = ceil($total/$page_rows);
-echo "<script>console.log(\"".$last."\"); </script>";
+
 // This makes sure $last cannot be less than 1
 if($last < 1){
 	$last = 1;
