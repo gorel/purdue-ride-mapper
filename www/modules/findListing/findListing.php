@@ -71,7 +71,7 @@
 							<br>							
 						</form>
 						<div>
-							<button class="btn btn-lg btn-primary btn-block" id="sendButton">Send</button>
+							<button class="btn btn-lg btn-primary btn-block" id="sendButton" onclick="sendMessage();">Send</button>
 						</div>
 					</div>
 					</div>
@@ -731,10 +731,7 @@
 			$('#routeModal').modal('show');
 		}
 		
-		$('#sendButton').on('click', function()
-		{				
-			sendMessage();
-		});
+
 		
 		function sendMessage()
 		{
