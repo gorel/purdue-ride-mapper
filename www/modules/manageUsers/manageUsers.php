@@ -92,7 +92,6 @@ echo   "</table>";
  echo "</div>";
 
 ?>
-<div id="pagination_controls"><?php echo $paginationCtrls; ?></div>
 
 <!-- User Management Functions -->
 
