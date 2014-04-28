@@ -122,7 +122,7 @@
 			
 			//Total row count
 			$total = $rowCount[0];
-			echo "<script>console.log(\"".$total."\"); </script>";
+			//echo "<script>console.log(\"".$total."\"); </script>";
 			
 			//Display this number of results
 			$page_rows = 10;
@@ -151,7 +151,7 @@
 			$limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
 			
 			//$sql = "SELECT * FROM listings $limit";
-			echo "<script>console.log(\"".$limit."\"); </script>";
+			//echo "<script>console.log(\"".$limit."\"); </script>";
 			
 			if(!$_SESSION['isAdmin'])
 			{

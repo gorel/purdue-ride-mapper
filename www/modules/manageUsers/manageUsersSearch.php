@@ -20,20 +20,21 @@ $rowCount = mysqli_fetch_row($countRes);
 
 //Total row count
 $total = $rowCount[0];
-
+echo "<script>console.log(\"".$total."\"); </script>";
 //Display this number of results
 $page_rows = 5;
 
 //Keep track of previous page number
 $last = ceil($total/$page_rows);
+echo "<script>console.log(\"".$last."\"); </script>";
 // This makes sure $last cannot be less than 1
 if($last < 1){
 	$last = 1;
 }
 // Establish the $pagenum variable
 $pagenum = 1;
-// Get pagenum from URL vars if it is present, else it is = 1
 
+// Get pagenum from URL vars if it is present, else it is = 1
 if(isset($_GET['pn'])){
 	//echo "<script>console.log(\"ISSET\"); </script>";
 	$pagenum = preg_replace('#[^0-9]#', '', $_GET['pn']);
@@ -46,14 +47,14 @@ if ($pagenum < 1) {
 }
 // This sets the range of rows to query for the chosen $pagenum
 $limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
-
-//$sql = "SELECT * FROM users $limit";
-
+echo "<script>console.log(\"".$limit."\"); </script>";
+$query = "SELECT * FROM users $limit";
+/*
 $query = "SELECT" .
          " user_id, email, alt_email, phone, first_name, last_name, verified, enabled, warned, is_admin " .
          "FROM users " .
          "WHERE LOWER($by) LIKE '%$term%' $limit";
-		 
+*/ 
 $result = mysqli_query($con,$query);
 
 // Establish the $paginationCtrls variable
