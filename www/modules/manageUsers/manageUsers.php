@@ -94,7 +94,7 @@ echo   "</table>";
 ?>
 
 </div> <!-- /container -->
-
+<div id="pagination_controls"><?php echo $paginationCtrls; ?></div>
 <!-- User Management Functions -->
 
 <script type="text/javascript">

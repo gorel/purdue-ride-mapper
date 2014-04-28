@@ -601,8 +601,7 @@ input[type="radio"]{
 		}
 	?>
 	</div>				
-	<div id="pagination_controls"><?php echo $paginationCtrls; ?>
-	</div>
+	<div id="pagination_controls"><?php echo $paginationCtrls; ?></div>
 	<script>
 		function changePage(pageNumber)
 		{
