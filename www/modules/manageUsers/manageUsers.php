@@ -219,7 +219,6 @@ echo   "</table>";
           $("#tableusr").append(markup);
         }
         $("#searchinfo").text(data.num + " result(s) found");
-		$( "#content" ).load( "modules/manageUsers/manageUsers.php" );
       }
     });
   }
