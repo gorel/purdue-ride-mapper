@@ -26,6 +26,7 @@ $page_rows = 5;
 
 //Keep track of previous page number
 $last = ceil($total/$page_rows);
+echo "<script>console.log(\"".$last."\"); </script>";
 // This makes sure $last cannot be less than 1
 if($last < 1){
 	$last = 1;
@@ -46,7 +47,7 @@ if ($pagenum < 1) {
 }
 // This sets the range of rows to query for the chosen $pagenum
 $limit = 'LIMIT ' .($pagenum - 1) * $page_rows .',' .$page_rows;
-
+echo "<script>console.log(\"".$limit."\"); </script>";
 //$sql = "SELECT * FROM users $limit";
 
 $query = "SELECT" .
