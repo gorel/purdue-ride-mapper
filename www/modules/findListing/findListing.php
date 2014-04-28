@@ -52,17 +52,17 @@
 					</div>
 					<div class="col-md-6">
 						<form class="form-horizontal" role="form">
-                                                <div style="display:none" id="progressContact" class="col-md-12 row">
-                                                  Loading contact information... <img src='/images/load.gif'/>
-                                                </div>
-                                                <div style="display:none" id="errContact" class="col-md-12 row">
-                                                  Error Loading contact information
-                                                </div>
-                                                <div style="display:none" id="messageBox" class="col-md-12 row">
-                                                  <label id="contactHeader" class="control-label"></label>
-                                                  <div id="contactInfo" class="col-md-offset-1">
-                                                  </div>
-						<p id="contactName"><b></b></p>
+							<div style="display:none" id="progressContact" class="col-md-12 row">
+							  Loading contact information... <img src='/images/load.gif'/>
+							</div>
+							<div style="display:none" id="errContact" class="col-md-12 row">
+							  Error Loading contact information
+							</div>
+							<div style="display:none" id="messageBox" class="col-md-12 row">
+							  <label id="contactHeader" class="control-label"></label>
+							  <div id="contactInfo" class="col-md-offset-1">
+							  </div>
+							<p id="contactName"><b></b></p>
 							<div class="control-group">
 								<div class="controls">
 									<textarea name="text" id="modalMessage" rows="6" class="form-control" cols="80"></textarea>
@@ -74,7 +74,7 @@
 							<button class="btn btn-lg btn-primary btn-block" id="sendButton">Send</button>
 						</div>
 					</div>
-                                                </div>
+					</div>
 				</div>					
 			</div>
 			
@@ -699,33 +699,33 @@
 				numberOfPassengersModal.innerHTML = "0";
 			}
 
-                        $.ajax({
-                          type: "POST",
-                          url: "/modules/findListing/getRideContact.php",
-                          dataType: 'json',
-                          data: { "listingID" : listingID },
-                          beforeSend: function() {
-                             $('#errContact').hide();
-                             $('#messageBox').hide();
-                             $('#contactHeader').empty();
-                             $('#contactInfo').empty();
-                             $('#contactName').empty();
-                             $('#progressContact').show();
-                          },
-                          success: function(data) {
-                             $('#contactName').append("<b>Send " + data.first_name + " a message!</b>");
-                             $('#contactInfo').append(data.contact_info);
-                             $('#contactHeader').text(data.contact_header);
-                             $('#messageBox').show();
-						
-                          },
-                          complete: function(data) {
-                             $('#progressContact').hide();
-                          },
-                          error: function(data) {
-                             $('#errContact').show();
-                          }
-                        });
+			$.ajax({
+			  type: "POST",
+			  url: "/modules/findListing/getRideContact.php",
+			  dataType: 'json',
+			  data: { "listingID" : listingID },
+			  beforeSend: function() {
+				 $('#errContact').hide();
+				 $('#messageBox').hide();
+				 $('#contactHeader').empty();
+				 $('#contactInfo').empty();
+				 $('#contactName').empty();
+				 $('#progressContact').show();
+			  },
+			  success: function(data) {
+				 $('#contactName').append("<b>Send " + data.first_name + " a message!</b>");
+				 $('#contactInfo').append(data.contact_info);
+				 $('#contactHeader').text(data.contact_header);
+				 $('#messageBox').show();
+			
+			  },
+			  complete: function(data) {
+				 $('#progressContact').hide();
+			  },
+			  error: function(data) {
+				 $('#errContact').show();
+			  }
+			});
 			
 			
 			$('#routeModal').modal('show');
@@ -749,17 +749,17 @@
 			console.log(from_uid);
 			console.log(listingID);
 			$.ajax ({
-				  type: "POST",
-				  url: "/modules/findListing/findListingContactProc.php",
-				  dataType: "json",
-				  beforeSend: function() {
-						console.log("before send");
-				  },
-				  complete: function() {
+				type: "POST",
+				url: "/modules/findListing/findListingContactProc.php",
+				dataType: "json",
+				beforeSend: function() {
+					console.log("before send");
+				},
+				complete: function() {
 					console.log("complete");
-				  },
-				  data: {"listingID" : listingID, "message" : message, "from_uid" : from_uid},
-				  success: function(data) {					
+				},
+				data: {"listingID" : listingID, "message" : message, "from_uid" : from_uid},
+				success: function(data) {					
 					console.log("success");
 					console.log(data.success);
 					console.log(data.rcpt);
@@ -773,9 +773,8 @@
 					{
 						alert("Message failed to send.");
 					}
-					
-				  } 
-				});
+				} 
+			});
 		}
 
 		$('#routeModal').on('shown.bs.modal', function() {
