@@ -215,12 +215,12 @@
 					}
 				}
 				// This does the same as above, only checking if we are on the last page, and then generating the "Next"
-				echo "<script>console.log(\"pagenum: " . $pagenum."\"); </script>";
-				echo "<script>console.log(\"last: " . $last."\"); </script>";
+				//echo "<script>console.log(\"pagenum: " . $pagenum."\"); </script>";
+				//echo "<script>console.log(\"last: " . $last."\"); </script>";
 				if ($pagenum != $last) {
 					$next = $pagenum + 1;
 					$paginationCtrls .= '<ul class="pagination">
-							  <li><a href="#" onclick="changePage('.$i.');">Next</a></li>
+							  <li><a href="#" onclick="changePage('.$next.');">Next</a></li>
 							</ul>
 							';
 				}

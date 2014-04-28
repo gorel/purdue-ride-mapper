@@ -533,7 +533,7 @@ input[type="radio"]{
 							//$paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next.'">Next</a> ';
 							//echo "<script>console.log(\"pagenum3 ".$next."\"); </script>";
 							$paginationCtrls .= '<ul class="pagination">
-									  <li><a href="#" onclick="changePage('.$i.');">Next</a></li>
+									  <li><a href="#" onclick="changePage('.$next.');">Next</a></li>
 									</ul>
 									';
 						}
