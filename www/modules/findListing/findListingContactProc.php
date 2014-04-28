@@ -1,6 +1,4 @@
 <?php
-echo json_encode(array('success' => "SUCCESS", 'rcpt' => "$rcpt", 'from' => "$from")); 
-return;
 /**
 *
 * Send a message to admin
