@@ -96,6 +96,11 @@ input[type="radio"]{
 		<div id="map_canvas" style="height: 400px; width: 100%"></div>
 		<hr class="featurette-divider">
 		<div>
+			<div id="progressSearch" class="waiting" style="visibility:hidden">
+				<br />
+				<img src="images/bigload.gif"> 				
+			</div>
+
 			<h2 class="form-signin-heading">Search for a ride:</h2>			
 			<!-- <form class="form-inline" role="form">
 				<div class="form-group">
@@ -126,10 +131,6 @@ input[type="radio"]{
 				</script>
 			</form>
 			<button class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button>	-->		
-			<div id="progressSearch" class="waiting" style="visibility:hidden">
-				<br />
-				<img src="images/bigload.gif"> 				
-			</div>
 
 		<table class='table table-condensed' id="searchTable">
 			<thead>
