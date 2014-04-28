@@ -108,7 +108,7 @@
 			if(!$_SESSION['isAdmin'])
 			{
 				$user_id = $_SESSION['user'];
-				$sqlCount = "SELECT COUNT(listings_id) FROM listings WHERE listings_id=$id";
+				$sqlCount = "SELECT COUNT(listings_id) FROM listings WHERE listings_id=$user_id";
 			}
 			else
 			{
