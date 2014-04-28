@@ -215,10 +215,11 @@
 				}
 			}
 			echo "<script>console.log(\"User ID: " . $user_id."\"); </script>";
-			echo "<script>console.log(\"User ID: " . $_SESSION['user']."\"); </script>";
+			echo "<script>console.log(\"Session: " . $_SESSION['user']."\"); </script>";
 			while($row = mysqli_fetch_array($result))
 			{
-				echo "<script>console.log(\"Out\"); </script>";
+				echo "<script>console.log(\"User ID: " . $row["user_id"]."\"); </script>";
+				echo "<script>console.log(\"Session: " . $_SESSION['user']."\"); </script>";
 				if($_SESSION['user'] == $row["user_id"] || $_SESSION['isAdmin']==1)
 				{
 					echo "<script>console.log(\"In\"); </script>";
