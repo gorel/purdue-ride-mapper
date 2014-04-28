@@ -51,7 +51,7 @@
 						</table>
 					</div>
 					<div class="col-md-6">
-						<form class="form-horizontal" role="form">
+						<!--<form class="form-horizontal" role="form">-->
 							<div style="display:none" id="progressContact" class="col-md-12 row">
 							  Loading contact information... <img src='/images/load.gif'/>
 							</div>
@@ -68,11 +68,12 @@
 									<textarea name="text" id="modalMessage" rows="6" class="form-control" cols="80"></textarea>
 								</div>
 							</div>
-							<br>							
-						</form>
-						<div>
-							<button class="btn btn-lg btn-primary btn-block" id="sendButton" onclick="sendMessage();">Send</button>
-						</div>
+							<br>	
+							<div>
+								<button class="btn btn-lg btn-primary btn-block" id="sendButton" onclick="sendMessage();">Send</button>
+							</div>							
+						<!--</form>-->
+						
 					</div>
 					</div>
 				</div>					
