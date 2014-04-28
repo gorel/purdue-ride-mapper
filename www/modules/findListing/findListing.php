@@ -153,7 +153,7 @@ input[type="radio"]{
 					</td>
 					<td>
 						<div class="input-group date" id="datetimepicker2">
-							<input type="text" class="form-control" name="dateTime" placeholder="Desired Departure Date" data-format="YYYY-MM-DD hh:mm:ss"/>
+							<input id="dateTimePickerText" type="text" class="form-control" name="dateTime" placeholder="Desired Departure Date" data-format="YYYY-MM-DD hh:mm:ss"/>
 							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
 						</div>
 						
@@ -163,7 +163,7 @@ input[type="radio"]{
 							});
 						</script>
 					</td>
-					<td><button class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button></td>
+					<td><button id="searchButton" class="btn btn-default" onclick="matchNewAddress(); return false;" >Search</button></td>
 				</tr>
 			</tbody>
 		</table>
@@ -175,6 +175,11 @@ input[type="radio"]{
 			var map;
 			function matchNewAddress()
 			{
+				document.getElementById('starting_address_field').disabled = true;
+				document.getElementById('ending_address_field').disabled = true;
+				document.getElementById('dateTimePickerText').disabled = true;
+				document.getElementById('searchButton').disabled = true;
+				
 				document.getElementById('progressSearch').style.visibility = 'visible';
 				var starting_address = document.getElementById('starting_address_field').value.split(' ').join('+');
 				var ending_address = document.getElementById('ending_address_field').value.split(' ').join('+');
