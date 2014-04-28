@@ -748,6 +748,7 @@
 			console.log(message);
 			console.log(from_uid);
 			console.log(listingID);
+			return;
 			$.ajax ({
 				type: "POST",
 				url: "/modules/findListing/findListingContactProc.php",
