@@ -173,39 +173,46 @@ session_start();
 
 								while($row = mysqli_fetch_array($result))
 								{
-									echo "<tr>";
-									echo "<th> Category </th>";
-									echo "<th> Date </th>";
-									echo "<th> </th>";
-									echo "<th> </th>";
-									echo "<tr>";
+									echo '<tr id="' . $row['ticket_id'] . '_Header">';
+									echo '<th id="' . $row['ticket_id'] . '_categoryTH"> Category </th>';
+									echo '<th id="' . $row['ticket_id'] . '_dateTH"> Date </th>';
+									echo '<th id="' . $row['ticket_id'] . '_empty1TH"> </th>';
+									echo '<th id="' . $row['ticket_id'] . '_empty2TH"> </th>';
+									echo '</tr>';
+									echo '<tr id="' . $row['ticket_id']. '_Body1">';
 									if($row['category']==0)
 									{
-										echo "<td> Making a List </td>";
+										echo '<td id="' . $row['ticket_id'] . '_categoryTD1"> Making a List </td>';
 									}
 									else if($row['category']==1)
 									{
-										echo "<td> Finding a List </td>";
+										echo '<td id="' . $row['ticket_id'] . '_categoryTD2"> Finding a List </td>';
 									}
 									else if($row['category']==2)
 									{
-										echo "<td> Others </td>";
+										echo '<td id="' . $row['ticket_id'] . '_categoryTD3"> Others </td>';
 									}
-									echo "<td> " , $row['ticket_date'] , "</td>";
-									echo "<td>  </td>";
-									echo '<td> <button class="btn btn-danger" type="button" onclick="deleteTicket('. $row['ticket_id'] .')">Delete</button> </td>';
+									echo '<td id="' . $row['ticket_id'] . '_dateTD"> ' . $row['ticket_date'] . '</td>';
+									if($row['ticket_answer'] == '')
+									{
+										echo '<td id="' . $row['ticket_id'] . '_replyTD"> Not replied yet </button> </td>';
+									}
+									else
+									{
+										echo '<td id="' . $row['ticket_id'] . '_replyTD"> Replied </td>';
+									}
+									echo '<td id="' . $row['ticket_id'] . '_deleteTD"> <button class="btn btn-danger" type="button" onclick="deleteTicket('. $row['ticket_id'] .')">Delete</button> </td>';
 									echo "</tr>";
-									echo "<tr>";
-									echo "<td colspan=\"4\"> " , $row['ticket_message'] , "</td>";
+									echo '<tr id="' . $row['ticket_id'] . '_Body2">';
+									echo '<td id="' . $row['ticket_id'] . '_MSGTD" colspan="4"> ' . $row['ticket_message'] . '</td>';
 									echo "</tr>";
 									if($row['ticket_answer'] != '')
 									{
 										echo '<tr id="' . $row['ticket_id'] . '_Body3">';
-										echo "<td colspan=\"4\"> " , $row['ticket_answer'] , "</td>";
+										echo '<td id="' . $row['ticket_id'] . '_ANSTD" colspan="4"> ' . $row['ticket_answer'] . '</td>';
 										echo "</tr>";
 									}
 								}
-
 							}
 							else
 							{
