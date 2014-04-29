@@ -75,7 +75,7 @@ session_start();
 				else 
 				{
 					console.log(data.success);
-					$("#content").load("/modules/contact/contact.php");
+					header("Location:../../index.php#contact");
 				}
 			}
 		});
