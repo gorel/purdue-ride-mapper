@@ -75,7 +75,7 @@ session_start();
 				else 
 				{
 					console.log(data.success);
-					$("#contact").load("/modules/contact/contact.php");
+					$("#content").load("/modules/contact/contact.php");
 				}
 			}
 		});
@@ -119,38 +119,6 @@ session_start();
 				}
 			}
 		});
-	}
-	function createTicket(ticket_id)
-	{
-		$.ajax ({
-			type:"POST",
-			url: "/modules/contact/createTicket.php",
-			dataType: "json",
-			data: 
-			{
-				// set variable here
-				"ticket_id" : ticket_id
-			},
-			beforeSend: function()
-			{
-
-			},
-			complete: function()
-			{
-
-			},
-			success: function(data)
-			{
-				// the important stuff happens here
-				console.log("success");
-
-				if(data.success == "SUCCESS")
-				{
-					// stuff happen here
-
-				}
-			}
-		})
 	}
 </script>
 <div id="contact" class="contact_page">
