@@ -10,15 +10,6 @@ session_start();
         <h4 class="modal-title" id="myModalLabel">Reply to ticket</h4>
       </div>
       <div class="modal-body">
-      	<div class="control-group"><label for="category" class="control-label required">Category</label>
-					<div class="controls">
-						<select name="category" id="category" class="form-control">
-						<option value="0">Making a Listing</option>
-						<option value="1">Finding a Listing</option>
-						<option value="2">Other</option>
-						</select>
-					</div>
-				</div>
       	<input type="text" hidden="true" id="replyID">
       	<form id="replyForm" onSubmit="Javascript:replyTicket(); return false;" method="POST">
 		<b>Type reply</b>
@@ -34,30 +25,7 @@ session_start();
     </div>
   </div>
 </div>
-<div class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Create Ticket</h4>
-      </div>
-      <div class="modal-body">
-      	<input type="text" hidden="true" id="replyID">
 
-      	<form id="replyForm" onSubmit="Javascript:createTicket(); return false;" method="POST">
-		<b>Type reply</b>
-		<input type='textarea' class='form-control' name='message' id='replyMessage' ><br>
-                <label class="err" id="errWarnMsg" hidden='true'></label>
-                <label class="ok" id="okWarnMsg" hidden='true'></label>
-	</form>
-      </div>
-      <div class="modal-footer">
-      	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onClick="createTicket()">Reply Ticket</button>
-      </div>
-    </div>
-  </div>
-</div>
 <script type="text/javascript">
 
 
