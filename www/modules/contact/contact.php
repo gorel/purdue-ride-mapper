@@ -75,7 +75,7 @@ session_start();
 				else 
 				{
 					console.log(data.success);
-					<?php header("Location:../../index.php#contact"); ?>
+					<?php header("Location:../../index.php"); ?>
 				}
 			}
 		});
