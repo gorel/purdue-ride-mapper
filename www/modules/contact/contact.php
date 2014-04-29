@@ -234,7 +234,14 @@ session_start();
 										echo '<td id="' . $row['ticket_id'] . '_categoryTD3"> Others </td>';
 									}
 									echo '<td id="' . $row['ticket_id'] . '_dateTD"> ' . $row['ticket_date'] . '</td>';
-									echo '<td id="' . $row['ticket_id'] . '_replyTD"> <button class="btn btn-primary" type="button" onclick="replyModal('. $row['ticket_id'] .')">Reply</button> </td>';
+									if($row['ticket_answer'] != '')
+									{
+										echo '<td id="' . $row['ticket_id'] . '_replyTD"> <button class="btn btn-primary" type="button" onclick="replyModal('. $row['ticket_id'] .')">Reply</button> </td>';
+									}
+									else
+									{
+										echo '<td id="' . $row['ticket_id'] . '_replyTD"> Replied </td>';
+									}
 									echo '<td id="' . $row['ticket_id'] . '_deleteTD"> <button class="btn btn-danger" type="button" onclick="deleteTicket('. $row['ticket_id'] .')">Delete</button> </td>';
 									echo "</tr>";
 									echo '<tr id="' . $row['ticket_id'] . '_Body2">';
