@@ -145,7 +145,7 @@ session_start();
 		<div class="col-md-12">
 		<hr class="featurette-divider">
 				<h2> Tickets </h2>
-				<button class ="btn btn-primary btn-block" type="button" onclick="createModal(<?php echo $_SESSION['user'] ?>);" id="createButton">Create</button>
+				<!--<button class ="btn btn-primary btn-block" type="button" onclick="createModal(<?php echo $_SESSION['user'] ?>);" id="createButton">Create</button>-->
 			<table class='table table-triped table-bordered' id="ticketTable">
 				<?php
 					
