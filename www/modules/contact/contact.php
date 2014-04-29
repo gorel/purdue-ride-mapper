@@ -14,8 +14,8 @@ session_start();
       	<form id="replyForm" onSubmit="Javascript:replyTicket(); return false;" method="POST">
 		<b>Type reply</b>
 		<input type='textarea' class='form-control' name='message' id='replyMessage' ><br>
-                <label class="err" id="errWarnMsg" hidden='true'></label>
-                <label class="ok" id="okWarnMsg" hidden='true'></label>
+                <label class="err" id="errReplyMsg" hidden='true'></label>
+                <label class="ok" id="okReplyMsg" hidden='true'></label>
 	</form>
       </div>
       <div class="modal-footer">
@@ -62,6 +62,8 @@ session_start();
 				if(data.success == "SUCCESS")
 				{
 					console.log("Reply added successfully");
+					$('#okReplyMsg').text("Reply sent. Please refresh the page");
+					$('#okReplyMsg').show();
 
 				}
 				else if(data.success == "FAILURE2")
@@ -75,7 +77,7 @@ session_start();
 				else 
 				{
 					console.log(data.success);
-					<?php header("Location:../../index.php"); ?>
+
 				}
 			}
 		});
