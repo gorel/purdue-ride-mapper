@@ -34,8 +34,6 @@ session_start();
     </div>
   </div>
 </div>
-<script type="text/javascript">
-
 <div class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -61,6 +59,8 @@ session_start();
   </div>
 </div>
 <script type="text/javascript">
+
+
 
 	function createTicket(user_id, msg)
 	{
