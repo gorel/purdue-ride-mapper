@@ -10,6 +10,15 @@ session_start();
         <h4 class="modal-title" id="myModalLabel">Reply to ticket</h4>
       </div>
       <div class="modal-body">
+      	<div class="control-group"><label for="category" class="control-label required">Category</label>
+					<div class="controls">
+						<select name="category" id="category" class="form-control">
+						<option value="0">Making a Listing</option>
+						<option value="1">Finding a Listing</option>
+						<option value="2">Other</option>
+						</select>
+					</div>
+				</div>
       	<input type="text" hidden="true" id="replyID">
       	<form id="replyForm" onSubmit="Javascript:replyTicket(); return false;" method="POST">
 		<b>Type reply</b>
@@ -26,6 +35,38 @@ session_start();
   </div>
 </div>
 <script type="text/javascript">
+
+<div class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Create Ticket</h4>
+      </div>
+      <div class="modal-body">
+      	<input type="text" hidden="true" id="replyID">
+
+      	<form id="replyForm" onSubmit="Javascript:createTicket(); return false;" method="POST">
+		<b>Type reply</b>
+		<input type='textarea' class='form-control' name='message' id='replyMessage' ><br>
+                <label class="err" id="errWarnMsg" hidden='true'></label>
+                <label class="ok" id="okWarnMsg" hidden='true'></label>
+	</form>
+      </div>
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onClick="createTicket()">Reply Ticket</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+
+	function createTicket(user_id, msg)
+	{
+
+	}
+
 	function replyModal(ticket_id)
 	{
 		var tid = document.getElementById('replyID');
@@ -66,6 +107,7 @@ session_start();
 				else 
 				{
 					console.log(data.success);
+					$("#contact").load("/modules/contact/contact.php");
 				}
 			}
 		});
@@ -150,16 +192,6 @@ session_start();
 		<div class="col-md-4">
 			<form enctype="application/x-www-form-urlencoded" class="form-horizontal" action="/modules/contact/contactCreateTicketProc.php" method="POST"><div class="padded">
 				<h2 class="form-signin-heading">Create Ticket</h2>
-				<div class="control-group"><label for="category" class="control-label required">Category</label>
-					<div class="controls">
-						<select name="category" id="category" class="form-control">
-						<option value="0">Making a Listing</option>
-						<option value="1">Finding a Listing</option>
-						<option value="2">Other</option>
-						</select>
-					</div>
-				</div>
-
 				<div class="control-group"><label for="text" class="control-label required">Message</label>
 					<div class="controls">
 						<textarea name="text" id="text" rows="6" class="form-control" cols="80"></textarea>
@@ -175,7 +207,8 @@ session_start();
 		<div class="col-md-12">
 		<hr class="featurette-divider">
 				<h2> Tickets </h2>
-			<table class='table table-triped table-bordered'>
+				<button class ="btn btn-primary btn-block" type="button" onclick="createModal(<?php echo $_SESSION['user'] ?>);" id="createButton">Create</button>
+			<table class='table table-triped table-bordered' id="ticketTable">
 				<?php
 					
 
